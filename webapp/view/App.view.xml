@@ -1,0 +1,169 @@
+<mvc:View
+    controllerName="rfidwarehousesuiteui.controller.App"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:tnt="sap.tnt"
+    xmlns:f="sap.f"
+    displayBlock="true"
+    height="100%">
+        <!-- ToolPage below ShellBar -->
+        <tnt:ToolPage id="toolPage" class="sapUiNoContentPadding">
+        <tnt:header>
+        <f:ShellBar
+            id="shellBar"
+            title="RFID Warehouse Suite"
+            secondTitle="{appState>/warehouseName}"
+            homeIcon="sap-icon://warehouse"
+            showMenuButton="true"
+            menuButtonPressed=".onSideNavButtonPress"
+            showNavButton="false"
+            showCopilot="true"
+            showSearch="true"
+            searchButtonPressed=".onSearchButtonPressed"
+            showNotifications="true"
+            notificationsNumber="{appState>/notificationCount}"
+            notificationsPressed=".onNotificationsPressed"
+            
+            >
+            <f:profile>
+                <Avatar
+                    initials="{appState>/userInitials}"
+                    displaySize="XS"
+                    press=".onUserAvatarPress"/>
+            </f:profile>
+        </f:ShellBar>
+        </tnt:header>
+            
+            <!-- Side Navigation -->
+            <tnt:sideContent>
+                <tnt:SideNavigation
+                    id="sideNavigation"
+                    selectedKey="{appState>/selectedKey}"
+                    expanded="{appState>/sideNavExpanded}"
+                    itemSelect=".onItemSelect">
+                    
+                    <tnt:NavigationList>
+                        
+                        <!-- Dashboard -->
+                        <tnt:NavigationListItem
+                            text="Dashboard"
+                            icon="sap-icon://home"
+                            key="Dashboard"/>
+                        
+                        <!-- Inbound Operations -->
+                        <tnt:NavigationListItem
+                            text="Inbound Operations"
+                            icon="sap-icon://inbox"
+                            expanded="true"
+                            selectable="false">
+                            <tnt:NavigationListItem
+                                text="Goods Receipt"
+                                icon="sap-icon://receipt"
+                                key="GoodsReceipt"/>
+                            <tnt:NavigationListItem
+                                text="Put-Away"
+                                icon="sap-icon://add-product"
+                                key="PutAway"/>
+                            <tnt:NavigationListItem
+                                text="Receiving History"
+                                icon="sap-icon://history"
+                                key="ReceivingHistory"/>
+                        </tnt:NavigationListItem>
+                        
+                        <!-- Outbound Operations -->
+                        <tnt:NavigationListItem
+                            text="Outbound Operations"
+                            icon="sap-icon://outbox"
+                            expanded="true"
+                            selectable="false">
+                            <tnt:NavigationListItem
+                                text="Picking Tasks"
+                                icon="sap-icon://cart"
+                                key="PickingTasks"/>
+                            <tnt:NavigationListItem
+                                text="Packing"
+                                icon="sap-icon://shipping-status"
+                                key="Packing"/>
+                            <tnt:NavigationListItem
+                                text="Shipping Queue"
+                                icon="sap-icon://cargo-train"
+                                key="Shipping"/>
+                        </tnt:NavigationListItem>
+                        
+                        <!-- Analytics & Reports -->
+                        <tnt:NavigationListItem
+                            text="Analytics &amp; Reports"
+                            icon="sap-icon://bar-chart"
+                            expanded="false"
+                            selectable="false">
+                            <tnt:NavigationListItem
+                                text="Analytics Dashboard"
+                                icon="sap-icon://business-objects-experience"
+                                key="Analytics"/>
+                            <tnt:NavigationListItem
+                                text="Performance Reports"
+                                icon="sap-icon://performance"
+                                key="PerformanceReports"/>
+                            <tnt:NavigationListItem
+                                text="Exception Reports"
+                                icon="sap-icon://warning"
+                                key="ExceptionReports"/>
+                        </tnt:NavigationListItem>
+                        
+                        <!-- Administration -->
+                        <tnt:NavigationListItem
+                            text="Administration"
+                            icon="sap-icon://settings"
+                            expanded="false"
+                            selectable="false">
+                            <tnt:NavigationListItem
+                                text="Storage location Masters"
+                                icon="sap-icon://grid"
+                                key="StorageLocationMasters"
+                                select="onItemSelect('StorageLocationMasters')"
+                                />
+                            <tnt:NavigationListItem
+                                text="Tag Registry"
+                                icon="sap-icon://tag"
+                                key="TagRegistry"/>
+                            <tnt:NavigationListItem
+                                text="Zone Configuration"
+                                icon="sap-icon://map"
+                                key="ZoneConfiguration"/>
+                            <tnt:NavigationListItem
+                                text="User Management"
+                                icon="sap-icon://group"
+                                key="UserManagement"/>
+                            <tnt:NavigationListItem
+                                text="System Settings"
+                                icon="sap-icon://action-settings"
+                                key="SystemSettings"/>
+                        </tnt:NavigationListItem>
+                        
+                    </tnt:NavigationList>
+                    
+                    <!-- Fixed Items at Bottom -->
+                    <tnt:fixedItem>
+                        <tnt:NavigationList>
+                            <tnt:NavigationListItem
+                                text="Help"
+                                icon="sap-icon://sys-help"
+                                key="Help"/>
+                            <tnt:NavigationListItem
+                                text="About"
+                                icon="sap-icon://hint"
+                                key="About"/>
+                        </tnt:NavigationList>
+                    </tnt:fixedItem>
+                    
+                </tnt:SideNavigation>
+            </tnt:sideContent>
+            
+            <!-- Main Content Area -->
+            <tnt:mainContents>
+                <App id="app" busy="{appState>/busy}"/>
+            </tnt:mainContents>
+            
+        </tnt:ToolPage>
+    
+</mvc:View>

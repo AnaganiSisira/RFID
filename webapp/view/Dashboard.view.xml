@@ -1,0 +1,326 @@
+<mvc:View
+    controllerName="com.sap.rfid.warehouse.controller.Dashboard"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:f="sap.f"
+    xmlns:card="sap.f.cards"
+    height="100%">
+    
+    <Page
+        id="dashboardPage"
+        title="Dashboard"
+        showNavButton="false"
+        showHeader="true"
+        enableScrolling="true"
+        class="sapUiContentPadding">
+        
+        <headerContent>
+            <Title text="{dashboard>/warehouseName}" level="H3"/>
+            <Text text="{dashboard>/currentDateTime}"/>
+            <Button
+                icon="sap-icon://refresh"
+                tooltip="Refresh Dashboard"
+                press=".onRefresh"/>
+        </headerContent>
+        
+        <content>
+            
+            <!-- KPI Section -->
+            <VBox class="sapUiSmallMarginBottom">
+                <Title text="Key Performance Indicators" level="H2" class="sapUiSmallMarginBottom"/>
+                
+                <layout:Grid
+                    defaultSpan="XL3 L4 M6 S12"
+                    hSpacing="1"
+                    vSpacing="1">
+                    
+                    <!-- Active Tasks KPI -->
+                    <f:Card class="sapUiSmallMargin">
+                        <f:header>
+                            <card:Header
+                                title="Active Tasks"
+                                subtitle="Currently in progress"
+                                iconSrc="sap-icon://activities"/>
+                        </f:header>
+                        <f:content>
+                            <VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
+                                <Title
+                                    text="{dashboard>/kpi/activeTasks}"
+                                    level="H1"
+                                    class="kpiValue"/>
+                                <HBox alignItems="Center" class="sapUiTinyMarginTop">
+                                    <core:Icon
+                                        src="sap-icon://trend-up"
+                                        color="{= ${dashboard>/kpi/activeTasksTrend} > 0 ? 'Positive' : 'Negative'}"
+                                        size="1rem"/>
+                                    <Text
+                                        text="{dashboard>/kpi/activeTasksTrend}%"
+                                        class="sapUiTinyMarginBegin"/>
+                                </HBox>
+                            </VBox>
+                        </f:content>
+                    </f:Card>
+                    
+                    <!-- Pending Receipts KPI -->
+                    <f:Card class="sapUiSmallMargin">
+                        <f:header>
+                            <card:Header
+                                title="Pending Receipts"
+                                subtitle="Awaiting processing"
+                                iconSrc="sap-icon://inbox"/>
+                        </f:header>
+                        <f:content>
+                            <VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
+                                <Title
+                                    text="{dashboard>/kpi/pendingReceipts}"
+                                    level="H1"
+                                    class="kpiValue"/>
+                                <HBox alignItems="Center" class="sapUiTinyMarginTop">
+                                    <core:Icon
+                                        src="sap-icon://alert"
+                                        color="{= ${dashboard>/kpi/pendingReceipts} > 10 ? 'Critical' : 'Default'}"
+                                        size="1rem"/>
+                                    <Text text="Open POs" class="sapUiTinyMarginBegin"/>
+                                </HBox>
+                            </VBox>
+                        </f:content>
+                    </f:Card>
+                    
+                    <!-- Completed Today KPI -->
+                    <f:Card class="sapUiSmallMargin">
+                        <f:header>
+                            <card:Header
+                                title="Completed Today"
+                                subtitle="Tasks finished"
+                                iconSrc="sap-icon://accept"/>
+                        </f:header>
+                        <f:content>
+                            <VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
+                                <Title
+                                    text="{dashboard>/kpi/completedToday}"
+                                    level="H1"
+                                    class="kpiValue kpiSuccess"/>
+                                <HBox alignItems="Center" class="sapUiTinyMarginTop">
+                                    <Text text="Target: {dashboard>/kpi/todayTarget}"/>
+                                </HBox>
+                            </VBox>
+                        </f:content>
+                    </f:Card>
+                    
+                    <!-- Alerts KPI -->
+                    <f:Card class="sapUiSmallMargin">
+                        <f:header>
+                            <card:Header
+                                title="Active Alerts"
+                                subtitle="Requires attention"
+                                iconSrc="sap-icon://warning"/>
+                        </f:header>
+                        <f:content>
+                            <VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
+                                <Title
+                                    text="{dashboard>/kpi/activeAlerts}"
+                                    level="H1"
+                                    class="kpiValue kpiCritical"/>
+                                <HBox alignItems="Center" class="sapUiTinyMarginTop">
+                                    <Link
+                                        text="View Details"
+                                        press=".onViewAlerts"/>
+                                </HBox>
+                            </VBox>
+                        </f:content>
+                    </f:Card>
+                    
+                </layout:Grid>
+            </VBox>
+            
+            <!-- Main Content Grid -->
+            <layout:Grid
+                defaultSpan="XL8 L8 M12 S12"
+                hSpacing="1"
+                vSpacing="1">
+                
+                <!-- Activity Feed -->
+                <VBox class="sapUiSmallMargin">
+                    <f:Card>
+                        <f:header>
+                            <card:Header
+                                title="Real-Time Activity Feed"
+                                subtitle="Updates every 10 seconds"
+                                iconSrc="sap-icon://activity-items"/>
+                        </f:header>
+                        <f:content>
+                            <VBox>
+                                <Toolbar>
+                                    <ToolbarSpacer/>
+                                    <Button
+                                        icon="sap-icon://filter"
+                                        tooltip="Filter Activities"
+                                        type="Transparent"
+                                        press=".onFilterActivities"/>
+                                </Toolbar>
+                                <List
+                                    id="activityFeed"
+                                    items="{dashboard>/activities}"
+                                    noDataText="No activities yet">
+                                    <FeedListItem
+                                        sender="{dashboard>userName}"
+                                        icon="{dashboard>icon}"
+                                        senderActive="false"
+                                        iconActive="false"
+                                        info="{dashboard>taskType}"
+                                        timestamp="{dashboard>timestamp}"
+                                        text="{dashboard>description}"/>
+                                </List>
+                            </VBox>
+                        </f:content>
+                    </f:Card>
+                </VBox>
+                
+                <!-- Warehouse Zone Status -->
+                <VBox class="sapUiSmallMargin">
+                    <f:Card>
+                        <f:header>
+                            <card:Header
+                                title="Warehouse Zone Status"
+                                subtitle="Occupancy overview"
+                                iconSrc="sap-icon://map"/>
+                        </f:header>
+                        <f:content>
+                            <List
+                                items="{dashboard>/zones}"
+                                noDataText="No zone data available">
+                                <CustomListItem>
+                                    <VBox width="100%">
+                                        <HBox justifyContent="SpaceBetween" width="100%">
+                                            <Label text="{dashboard>zoneName}"/>
+                                            <Text text="{dashboard>occupancyPercent}%"/>
+                                        </HBox>
+                                        <ProgressIndicator
+                                            percentValue="{dashboard>occupancyPercent}"
+                                            displayValue="{dashboard>occupancyPercent}%"
+                                            state="{= ${dashboard>occupancyPercent} > 90 ? 'Error' : ${dashboard>occupancyPercent} > 75 ? 'Warning' : 'Success'}"
+                                            width="100%"
+                                            class="sapUiTinyMarginTop"/>
+                                        <HBox justifyContent="SpaceBetween" width="100%" class="sapUiTinyMarginTop">
+                                            <Text text="Capacity: {dashboard>capacity} bins"/>
+                                            <Text text="Used: {dashboard>usedBins} bins"/>
+                                        </HBox>
+                                    </VBox>
+                                </CustomListItem>
+                            </List>
+                        </f:content>
+                    </f:Card>
+                </VBox>
+                
+            </layout:Grid>
+            
+            <!-- Quick Actions Panel -->
+            <VBox class="sapUiSmallMarginTop">
+                <f:Card>
+                    <f:header>
+                        <card:Header
+                            title="Quick Actions"
+                            subtitle="Frequently used tasks"
+                            iconSrc="sap-icon://action"/>
+                    </f:header>
+                    <f:content>
+                        <HBox wrap="Wrap" class="sapUiSmallMargin">
+                            <Button
+                                text="Create Picking Wave"
+                                icon="sap-icon://cart"
+                                press=".onCreatePickingWave"
+                                class="sapUiTinyMargin"/>
+                            <Button
+                                text="Start Goods Receipt"
+                                icon="sap-icon://receipt"
+                                press=".onStartGoodsReceipt"
+                                class="sapUiTinyMargin"/>
+                            <Button
+                                text="Generate Tags"
+                                icon="sap-icon://tag"
+                                press=".onGenerateTags"
+                                class="sapUiTinyMargin"/>
+                            <Button
+                                text="Start Cycle Count"
+                                icon="sap-icon://inventory"
+                                press=".onStartCycleCount"
+                                class="sapUiTinyMargin"/>
+                            <Button
+                                text="View Reports"
+                                icon="sap-icon://business-objects-experience"
+                                press=".onViewReports"
+                                class="sapUiTinyMargin"/>
+                            <Button
+                                text="Manage Bins"
+                                icon="sap-icon://grid"
+                                press=".onManageBins"
+                                class="sapUiTinyMargin"/>
+                        </HBox>
+                    </f:content>
+                </f:Card>
+            </VBox>
+            
+            <!-- Active Workers -->
+            <VBox class="sapUiSmallMarginTop">
+                <f:Card>
+                    <f:header>
+                        <card:Header
+                            title="Active Workers"
+                            subtitle="{dashboard>/activeWorkersCount} workers online"
+                            iconSrc="sap-icon://group"/>
+                    </f:header>
+                    <f:content>
+                        <Table
+                            id="workersTable"
+                            items="{dashboard>/activeWorkers}"
+                            sticky="ColumnHeaders">
+                            <columns>
+                                <Column width="3rem">
+                                    <Text text=""/>
+                                </Column>
+                                <Column>
+                                    <Text text="Worker"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Current Task"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Location"/>
+                                </Column>
+                                <Column hAlign="End">
+                                    <Text text="Tasks Today"/>
+                                </Column>
+                                <Column hAlign="Center">
+                                    <Text text="Status"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Avatar
+                                            initials="{dashboard>initials}"
+                                            displaySize="XS"/>
+                                        <Text text="{dashboard>name}"/>
+                                        <Text text="{dashboard>currentTask}"/>
+                                        <Text text="{dashboard>location}"/>
+                                        <ObjectNumber
+                                            number="{dashboard>tasksCompleted}"
+                                            emphasized="false"/>
+                                        <ObjectStatus
+                                            text="{dashboard>status}"
+                                            state="{= ${dashboard>status} === 'Available' ? 'Success' : 'Warning'}"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </f:content>
+                </f:Card>
+            </VBox>
+            
+        </content>
+        
+    </Page>
+    
+</mvc:View>

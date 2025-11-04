@@ -1,0 +1,95 @@
+
+/* Reset all margins and padding */
+html, body, #content {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* ShellBar background and basic styling */
+.sapFShellBar {
+
+    background: linear-gradient(to right, #1873b4, #0f5a8f) !important;
+    display: flex;
+
+}
+/* Custom.css */
+.sapFShellBarMenuButton .sapMBtnIcon.sapUiIcon {
+    background-color : #ffffff !important;
+    color            : #ffffff !important;
+}
+.sapFShellBarMenuButton {
+    transition : transform 0.3s ease;
+}
+.sapFShellBarMenuButton:hover {
+    transform  : rotate(90deg);
+}
+
+
+/* 2. Align main & secondary title baselines */
+.sapFShellBarTitle,
+.sapFShellBarSecondTitle {
+   
+    color: #ffffff !important;font-weight: normal !important;
+}
+
+.sapFShellBarTitle {
+    margin-left: 1rem !important;
+}
+
+.sapFShellBarSecondTitle {
+    margin-left: 1rem !important;
+}
+
+/* 3. Push everything-right to the far end */
+.sapFShellBarWrapper {
+    justify-content: space-between !important;
+}
+
+/* (optional) keep avatar last with a hair-space */
+.sapFShellBar .sapFShellBarProfile { margin-left: 0.5rem !important; }
+/* Space after home icon */
+.sapFShellBar .sapFShellBarHomeIcon {
+
+    margin-right: 1.5rem !important;
+}
+/* Remove any unwanted padding that's causing left alignment issues */
+/* .sapFShellBar .sapFShellBarOTB {
+
+    padding-left: 0 !important;
+}
+
+
+/* Push right-side items (notifications, profile) further */
+/* .sapFShellBar .sapFShellBarOTB > * {
+
+    margin-left: 1rem !important;
+    
+} */ */
+
+/* Specific spacing for notification badge */
+.sapFShellBar [id$="notifications"] {
+
+    margin-left: 1rem !important;
+}
+
+
+
+/* ============================================
+   Layout Fix - VBox and ToolPage
+   ============================================ */
+
+/* VBox should take full height
+.sapMVBox {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+Remove any padding from VBox
+.sapMVBox.sapUiNoContentPadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+/* 

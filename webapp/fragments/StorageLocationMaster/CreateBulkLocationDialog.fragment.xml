@@ -1,0 +1,24 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:form="sap.ui.layout.form">
+
+	<Dialog
+		id="createBulkLocationDialog"
+		title="Bulk Location Creation"
+		contentWidth="80%">
+		<content>
+		<MessageStrip class="sapUiSmallMargin" showIcon="true" type="Information" text="Create multiple storage locations at once. Each combination of Aisle-Rack-Level-Bin creates a unique location."></MessageStrip>
+		<IconTabBar >
+		<items>
+		<IconTabFilter text="Structured (Rack System)">
+		
+		</IconTabFilter>
+		<IconTabFilter text="Simple Pattern"></IconTabFilter>
+		<IconTabFilter text="Import Excel"></IconTabFilter>
+		</items>
+		</IconTabBar>
+		
+		</content>
+	</Dialog>
+</core:FragmentDefinition>
