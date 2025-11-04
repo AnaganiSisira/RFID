@@ -9,7 +9,7 @@
         <!-- ToolPage below ShellBar -->
         <tnt:ToolPage id="toolPage" class="sapUiNoContentPadding">
         <tnt:header>
-        <f:ShellBar
+        <!-- <f:ShellBar
             id="shellBar"
             title="RFID Warehouse Suite"
             secondTitle="{appState>/warehouseName}"
@@ -31,7 +31,43 @@
                     displaySize="XS"
                     press=".onUserAvatarPress"/>
             </f:profile>
-        </f:ShellBar>
+        </f:ShellBar> -->
+         <tnt:ToolHeader  >
+                	<Button class="ButtonColor" icon="sap-icon://nav-back" type="Transparent"  press=".onMenuButtonPress" >
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Button>
+            <Title text="IntelliCarrier" wrapping="false">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Title>
+            <Text text="Shipping Execution Platform" >
+				<layoutData>
+					<OverflowToolbarLayoutData priority="Disappear"/>
+				</layoutData>
+			</Text>
+            <ToolbarSpacer ></ToolbarSpacer>
+            <Button class="ButtonColor" icon="sap-icon://bell" type="Transparent" tooltip="Notification" badgeStyle="Default">
+            	<customData>
+						<BadgeCustomData
+							key="badge"
+							value="3"
+							/>
+					</customData>
+		
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Button>
+            	<Avatar initials="HC" displaySize="XS" tooltip="Profile">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Avatar>
+                </tnt:ToolHeader>
+                
         </tnt:header>
             
             <!-- Side Navigation -->
