@@ -75,6 +75,24 @@ html, body, #content {
 }
 
 
+.kpiBox {
+    padding: 12px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.kpiTitle { font-size: 0.9rem; color: #6c757d; }
+.kpiNumber { font-size: 2rem; font-weight: bold; }
+.kpiTrend { color: #2ecc71; font-weight: bold; }
+.kpiDanger { color: #e74c3c; font-weight: bold; }
+
+.toolbarRow Button {
+    margin-left: 8px;
+}
+
+
+
 
 /* ============================================
    Layout Fix - VBox and ToolPage
@@ -93,3 +111,6 @@ Remove any padding from VBox
     margin: 0 !important;
 }
 /* 
+
+
+

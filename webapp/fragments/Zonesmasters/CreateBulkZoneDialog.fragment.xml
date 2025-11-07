@@ -1,0 +1,25 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form">
+
+    <Dialog
+        id="createBulkZonesDialog"
+        title="Bulk Location Creation"
+        contentWidth="80%">
+        <content>
+            <MessageStrip
+                class="sapUiSmallMargin"
+                showIcon="true"
+                type="Information"
+                text="Create multiple storage locations at once." />
+            <IconTabBar>
+                <items>
+                    <IconTabFilter text="Structured (Rack System)" />
+                    <IconTabFilter text="Simple Pattern" />
+                    <IconTabFilter text="Import Excel" />
+                </items>
+            </IconTabBar>
+        </content>
+    </Dialog>
+</core:FragmentDefinition>
