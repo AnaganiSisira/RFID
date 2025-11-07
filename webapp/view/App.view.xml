@@ -9,7 +9,7 @@
         <!-- ToolPage below ShellBar -->
         <tnt:ToolPage id="toolPage" class="sapUiNoContentPadding">
         <tnt:header>
-        <f:ShellBar
+        <!-- <f:ShellBar
             id="shellBar"
             title="RFID Warehouse Suite"
             secondTitle="{appState>/warehouseName}"
@@ -31,8 +31,8 @@
                     displaySize="XS"
                     press=".onUserAvatarPress"/>
             </f:profile>
-        </f:ShellBar>
-         <!-- <tnt:ToolHeader  >
+        </f:ShellBar> -->
+         <tnt:ToolHeader  >
                 	<Button class="ButtonColor" icon="sap-icon://nav-back" type="Transparent"  press=".onSideNavButtonPress" >
 				<layoutData>
 					<OverflowToolbarLayoutData priority="NeverOverflow"/>
@@ -68,7 +68,7 @@
 				</layoutData>
 			</Avatar>
                 </tnt:ToolHeader>
-                 -->
+                
         </tnt:header>
             
             <!-- Side Navigation -->
