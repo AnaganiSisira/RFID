@@ -15,14 +15,14 @@ sap.ui.define([
 
         },
         onCreateStorageLocation: function () {
-            if (!this._ItemsDialog) {
-                this._ItemsDialog = this.loadFragments("rfidwarehousesuiteui.fragments.StorageLocationMaster.CreateStorageLocationDialog")
+            if (!this._CreateStorageDialog) {
+                this._CreateStorageDialog = this.loadFragments("rfidwarehousesuiteui.fragments.StorageLocationMaster.CreateStorageLocationDialog")
             }
-            this._ItemsDialog.then(function (oDialog) {
+            this._CreateStorageDialog.then(function (oDialog) {
                 oDialog.open();
             });
         },
-        onBulkOperations: function () {
+        onBulkLocationOperations: function () {
             if (!this._BulkLocationDialog) {
                 this._BulkLocationDialog = this.loadFragments("rfidwarehousesuiteui.fragments.StorageLocationMaster.CreateBulkLocationDialog")
             }

@@ -1,4 +1,4 @@
-<core:FragmentDefinition
+<core:FragmentDefinition xmlns:layout="sap.ui.layout" xmlns:calendar="sap.ui.unified.calendar"
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core"
 	xmlns:form="sap.ui.layout.form">
@@ -6,10 +6,15 @@
 	<Dialog
 		id="createStorageLocationDialog"
 		title="Create Storage Location"
-
-		contentWidth="80%">
+		contentWidth="80%"
+		class="sapUiResponsiveContentPadding"
+		>
 		<content>
-
+			<Title text="Location Structure Type" ></Title>
+			<HBox >
+			
+						</HBox>
+			
 			<form:SimpleForm
 				editable="true"
 				layout="ColumnLayout"
@@ -17,18 +22,25 @@
                 columnsL="2"
                 columnsM="1"
                 >
-                
+                <core:Title text="Basic Information" />
 				<Label text="Warehouse" required="true" />
 				<Select id="warehouseSelect" selectedKey="WH-001 - Main Warehouse">
 					<core:Item key="WH-001 - Main Warehouse" text="WH-001 - Main Warehouse" />
 					</Select>
+				<Label text="Zone" required="true" />
+				<Select id="ZoneTypeSelect">
+					<core:Item key="Receiving" text="Receiving" />
+					<core:Item key="FloorStorage" text="Floor Storage" />
+					<core:Item key="ColdStorage" text="Cold Storage" />
+					<core:Item key="Shelving" text="Shelving" />
+				</Select>
 
-				<Label text="Location Code" required="true" />
+				<Label text="Location Name" required="true" />
 				<Input
-					id="locationCodeInput"
+					id="locationNameInput"
 					placeholder="e.g., RACK-01, COLD-1"
 					value="" />
-
+<!-- 
 				<Label text="Description" required="true" />
 				<Input
 					id="descriptionInput"
@@ -41,41 +53,57 @@
 					<core:Item key="FloorStorage" text="Floor Storage" />
 					<core:Item key="ColdStorage" text="Cold Storage" />
 					<core:Item key="Shelving" text="Shelving" />
-				</Select>
+				</Select> -->
+				
 			</form:SimpleForm>
-           <form:SimpleForm editable="true" >
+			<Panel >
+			<headerToolbar>
+			<OverflowToolbar >
+			<core:Icon src="sap-icon://tree" ></core:Icon>
+			<Title text="Hierarchy Components (Optional)"></Title>
+			<ToolbarSpacer ></ToolbarSpacer>
+			<Button text="Add Component"></Button>
+			</OverflowToolbar>
+			</headerToolbar>
+			<form:SimpleForm >
+			<Label text="Aisle" />
+            <Input id="idAisle" width="100%" placeholder="A" liveChange=".onGenerateCode" />
 
-				<Label text="Volume Capacity" />
-				<Input
-					id="volumeCapacityInput"
-					type="Number"
-					placeholder="e.g., 2.5" />
-                    <Label text="Temperature Zone" />
-				<Select id="temperatureZoneSelect" selectedKey="Ambient">
-					<core:Item key="Ambient" text="Ambient" />
-					<core:Item key="Chilled" text="Chilled" />
-					<core:Item key="Frozen" text="Frozen" />
-				</Select>
-                <Label text="Max Weight" />
-				<HBox>
-					<Input
-						id="maxWeightInput"
-						type="Number"
-						placeholder="Optional" />
-					<Select  selectedKey="KGs">
-					<core:Item key="Grams" text="Grams" />
-					<core:Item key="KGs" text="KGs" />
-					<core:Item key="Tonons" text="Tonons" />
-				</Select>
-				</HBox>
+            <Label text="Rack" />
+            <Input id="idRack" width="100%" placeholder="01" liveChange=".onGenerateCode" />
+
+            <Label text="Level" />
+            <Input id="idLevel" width="100%" placeholder="02" liveChange=".onGenerateCode" />
+
+            <Label text="Bin" />
+            <Input id="idBin" width="100%" placeholder="03" liveChange=".onGenerateCode" />
+
+            <Label text="Generated Location Code" />
+            <Text id="idGenCode" text="(Enter component values above)" />
+			</form:SimpleForm>
+			</Panel>
+           <form:SimpleForm editable="true" >
+				
            </form:SimpleForm>
+		   <form:SimpleForm >
+		   <Label text="Rule Type"></Label>
+		   <Select  selectedKey="Single SKU Rule">
+					<core:Item key="Single SKU Rule" text="Single SKU Rule" />
+					<core:Item key="Multi SKU Rule" text="Multi SKU Rule" />
+					</Select>
+			  <Label text="Status"></Label>
+		   <Select  selectedKey="Active">
+					<core:Item key="Active" text="Active" />
+					<core:Item key="Inactive" text="Inactive" />
+					</Select>
+		   </form:SimpleForm>
     
 		</content>
 		<beginButton>
 			<Button text="Create Location" type="Emphasized" press="onCreateLocationPress" />
 		</beginButton>
 		<endButton>
-			<Button text="Cancel" press="onCancelPress" />
+			<Button text="Cancel" press="onCancelPress('createStorageLocationDialog')" />
 		</endButton>
 	</Dialog>
 </core:FragmentDefinition>
