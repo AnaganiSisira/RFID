@@ -4,59 +4,58 @@
     xmlns:core="sap.ui.core"
     xmlns:f="sap.f" displayBlock="true">
 
-    <Page title="Storage Location" class="sapUiResponsiveContentPadding">
-        <!-- <headerContent>
-            <Button text="Barecode-based System" type="Accept"></Button>
+    <Page class="sapUiResponsiveContentPadding">
+        <headerContent>
+            <Title text="Storage Location"></Title>
+            <Text class="sapUiSmallMarginTop" text="Fixed warehouse locations with barcode identification"/>
+            <ToolbarSpacer ></ToolbarSpacer>
+            <!-- <Button text="Barecode-based System" type="Accept"></Button>
             <Button text="Export"></Button>
-            <Button text="Template"></Button>
-        </headerContent> -->
-        <subHeader>
-            <OverflowToolbar >
-                <Text text="Fixed warehouse locations with barcode identification"/>
-            </OverflowToolbar>
-        </subHeader>
-        <content>
-            <!-- KPIs Section -->
-            <HBox justifyContent="SpaceBetween" class="sapUiSmallMarginTop sapUiSmallMarginBottom" wrap="Wrap">
-                <GenericTile header="Total Locations">
-                    <TileContent footer="All with barcodes">
-                        <NumericContent value="1234"></NumericContent>
-                    </TileContent>
-                </GenericTile>
-                <GenericTile header="Active Locations">
-                    <TileContent footer="90% available">
-                        <NumericContent value="234"></NumericContent>
-                    </TileContent>
-                </GenericTile>
-                <!-- <GenericTile header="Labels Printed">
-                    <TileContent footer="100% labeled">
-                        <NumericContent value="456"></NumericContent>
-                    </TileContent>
-                </GenericTile> -->
-                <GenericTile header="Avg. Utilization">
-                    <TileContent footer="Volume Occupied">
-                        <NumericContent value="68%"></NumericContent>
-                    </TileContent>
-                </GenericTile>
-                <GenericTile header="Temperature Zones">
-                    <TileContent >
-                        <NumericContent value="Ambient: 70% | Cold: 30%"></NumericContent>
-                    </TileContent>
-                </GenericTile>
-            </HBox>
+            <Button text="Template"></Button> -->
+        </headerContent>
 
+        <content>
+            <HBox class="sapUiSmallMarginBottom" justifyContent="Inherit" wrap="Wrap">
+                <VBox class="sapUiSmallMargin card" alignItems="Center">
+                    <Title text="Total Locations" wrapping="true" />
+                    <Text text="2,456" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <Text text="All with barcodes" />
+                </VBox>
+
+                <VBox class="sapUiSmallMargin card" alignItems="Center">
+                    <Title text="Active Locations" wrapping="true"/>
+                    <ObjectNumber number="2,234" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+                    <ObjectStatus text="91% available" state="Success"></ObjectStatus>
+                </VBox>
+
+                <VBox class="sapUiSmallMargin card" alignItems="Center">
+                    <Title text="Avg. Utilization" wrapping="true"/>
+                    <ObjectNumber number="68%" state="Warning" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+                    <ObjectStatus text="Volume occupied" state="Warning"></ObjectStatus>
+                </VBox>
+
+                <VBox class="sapUiSmallMargin card" alignItems="Center">
+                    <Title text="Temperature Zones" wrapping="true"/>
+                    <Text text="Ambient: 70% | Cold: 30%"/>
+                </VBox>
+            </HBox>
             <!-- Cost Optimization Banner -->
             <MessageStrip text="Smart Cost Optimization — Using barcodes for fixed locations saves ₹1,22,800 vs RFID. ₹50/location saved." type="Success" showIcon="true" class="sapUiSmallMarginBottom" />
-
-            <!-- Table Section -->
-            <Table id="idLocationTable" inset="false" backgroundDesign="Solid">
-                <headerToolbar >
+            
+            <Table >
+                <headerToolbar>
                     <OverflowToolbar>
-                        <Title text="Storage Locations (2,456 total)" level="H3" />
-                        <ToolbarSpacer ></ToolbarSpacer>
-                        <Button text="Print Labels" icon="sap-icon://print" press=".onPrintLabels" />
-                        <Button text="Create Location" type="Emphasized" icon="sap-icon://add" press=".onCreateStorageLocation" class="sapUiTinyMarginBegin" />
-                        <Button text="Bulk Operations" icon="sap-icon://upload" press=".onBulkOperations" class="sapUiTinyMarginBegin" />
+                        <content>
+                            <SearchField width="25%" placeholder="Search by code, name, type" liveChange="onSearch" />
+                            <Button icon="sap-icon://filter" text="Filters" />
+
+                            <ToolbarSpacer />
+
+                            <Button icon="sap-icon://download" text="Export" />
+                            <Button icon="sap-icon://upload" text="Import" />
+                            <Button icon="sap-icon://batch-payments" text="Bulk Create" press=".onBulkLocationOperations" />
+                            <Button icon="sap-icon://add" text="Create Location" type="Emphasized" press=".onCreateStorageLocation" />
+                        </content>
                     </OverflowToolbar>
                 </headerToolbar>
 
@@ -65,19 +64,22 @@
                         <Text text="Location Code" />
                     </Column>
                     <Column>
-                        <Text text="Description" />
+                        <Text text="Location Name" />
                     </Column>
                     <Column>
-                        <Text text="Type" />
+                        <Text text="Zone/Type" />
                     </Column>
                     <Column>
-                        <Text text="Temperature" />
+                        <Text text="Structure" />
                     </Column>
                     <Column>
-                        <Text text="Barcode Label" />
+                        <Text text="Capacity/Usage" />
                     </Column>
                     <Column>
-                        <Text text="Volume Capacity" />
+                        <Text text="Status" />
+                    </Column>
+                    <Column>
+                        <Text text="Actions" />
                     </Column>
                 </columns>
 
@@ -85,11 +87,17 @@
                     <ColumnListItem>
                         <cells>
                             <ObjectIdentifier title="RACK-01" text="WH-001" />
-                            <Text text="Receiving Area - Main Rack 1" />
-                            <Text text="Pallet Rack" />
-                            <Text text="Ambient" />
-                            <Text text="LOC-WH001-RACK01-2025" />
-                            <Text text="2.5 m³" />
+                            <ObjectIdentifier title="RACK-01" text="WH-001" />
+                            <ObjectIdentifier title="RACK-01" text="WH-001" />
+                            <ObjectIdentifier title="RACK-01" text="WH-001" />
+                            <ProgressIndicator percentValue="60" displayValue="79%" />
+
+                            <ObjectStatus text="Active" state="{= ${status} === 'Active' ? 'Success' : 'Error'}" />
+                            <HBox>
+                                <Button icon="sap-icon://show" />
+                                <Button icon="sap-icon://edit" />
+                                <Button icon="sap-icon://delete" />
+                            </HBox>
                         </cells>
                     </ColumnListItem>
                 </items>

@@ -1,4 +1,4 @@
-<mvc:View
+<mvc:View xmlns:core="sap.ui.core"
     controllerName="rfidwarehousesuiteui.controller.App"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
@@ -9,7 +9,7 @@
         <!-- ToolPage below ShellBar -->
         <tnt:ToolPage id="toolPage" class="sapUiNoContentPadding">
         <tnt:header>
-        <f:ShellBar
+        <!-- <f:ShellBar
             id="shellBar"
             title="RFID Warehouse Suite"
             secondTitle="{appState>/warehouseName}"
@@ -31,7 +31,44 @@
                     displaySize="XS"
                     press=".onUserAvatarPress"/>
             </f:profile>
-        </f:ShellBar>
+        </f:ShellBar> -->
+         <tnt:ToolHeader  >
+                	<Button class="ButtonColor" icon="sap-icon://nav-back" type="Transparent"  press=".onSideNavButtonPress" >
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Button>
+            <core:Icon src="sap-icon://warehouse"></core:Icon>
+            <Title text="RFID Warehouse Suite" wrapping="false">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Title>
+            <Text text="{appState>/warehouseName}" >
+				<layoutData>
+					<OverflowToolbarLayoutData priority="Disappear"/>
+				</layoutData>
+			</Text>
+            <ToolbarSpacer ></ToolbarSpacer>
+            <Button class="ButtonColor" icon="sap-icon://bell" type="Transparent" tooltip="Notification" badgeStyle="Default">
+            	<customData>
+						<BadgeCustomData
+							key="badge"
+							value="3"
+							/>
+					</customData>
+		
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Button>
+            	<Avatar initials="HC" displaySize="XS" tooltip="Profile">
+				<layoutData>
+					<OverflowToolbarLayoutData priority="NeverOverflow"/>
+				</layoutData>
+			</Avatar>
+                </tnt:ToolHeader>
+                
         </tnt:header>
             
             <!-- Side Navigation -->

@@ -67,6 +67,9 @@ sap.ui.define([
                 oView.addDependent(oDialog);
                 return oDialog;
             });
+        },
+        onCancelPress: function (oDialogId) {
+            this.byId(oDialogId).close();
         }
     });
 });

@@ -112,5 +112,46 @@ Remove any padding from VBox
 }
 /* 
 
+/* storage location masters tiles */
+.card {
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 1rem;
+    width: 18%;
+    text-align: center;
+    min-width: 7rem !important;
+}
+.card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+.Tile{
+    height: 8rem !important;
+    width: 15rem !important;
+}
+
+
+.structureCardSelected {
+  border: 2px solid #0a6ed1;
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: #f8fbff;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(10, 110, 209, 0.2);
+}
+
+.structureCardUnselected {
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.structureCardSelected:hover,
+.structureCardUnselected:hover {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
 
 

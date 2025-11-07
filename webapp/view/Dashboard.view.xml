@@ -44,6 +44,7 @@
                                 subtitle="Currently in progress"
                                 iconSrc="sap-icon://activities"/>
                         </f:header>
+                        
                         <f:content>
                             <VBox alignItems="Center" justifyContent="Center" class="sapUiSmallMargin">
                                 <Title
