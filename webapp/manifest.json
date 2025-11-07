@@ -51,6 +51,10 @@
         "settings": {
           "bundleName": "rfidwarehousesuiteui.i18n.i18n"
         }
+      },
+      "ZonesModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/data.json"
       }
     },
     "resources": {
@@ -86,6 +90,13 @@
           "target": [
             "TargetStorageLocationMasters"
           ]
+        },
+        {
+          "name": "ZonesMasters",
+          "pattern": "ZonesMasters",
+          "target": [
+            "TargetZonesMasters"
+          ]
         }
       ],
       "targets": {
@@ -93,9 +104,13 @@
           "id": "Dashboard",
           "name": "Dashboard"
         },
-         "TargetStorageLocationMasters": {
+        "TargetStorageLocationMasters": {
           "id": "StorageLocationMasters",
           "name": "StorageLocationMasters"
+        },
+        "TargetZonesMasters": {
+          "id": "ZonesMasters",
+          "name": "ZonesMasters"
         }
       }
     },
