@@ -166,7 +166,8 @@
                             <tnt:NavigationListItem
                                 text="Zone Configuration"
                                 icon="sap-icon://map"
-                                key="ZoneConfiguration"/>
+                                key="ZoneConfiguration"
+                                select="onItemSelect('ZonesMasters')"/>
                             <tnt:NavigationListItem
                                 text="User Management"
                                 icon="sap-icon://group"

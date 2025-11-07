@@ -1,0 +1,116 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+
+    <Dialog id="createZoneDialog" title="Create Zone" contentWidth="80%">
+        <content>
+            <l:HorizontalLayout allowWrapping="true" class="sapUiTinyMarginBottom">
+                <GenericTile class="sapUiTinyMargin"  header="Receiving" subheader="Incoming Goods" frameType="TwoByHalf" press="onZoneTypeSelect">
+                    <TileContent footer="Receiving">
+                       <ImageContent src="sap-icon://home-share" />
+                    </TileContent>
+                </GenericTile>
+
+                <GenericTile class="sapUiTinyMargin"  header="Storage" subheader="Primary Storage" frameType="TwoByHalf" press="onZoneTypeSelect">
+                    <TileContent footer="Storage">
+                        <NumericContent  icon="sap-icon://inventory" valueColor="Neutral" indicator="None" />
+                    </TileContent>
+                </GenericTile>
+
+                <GenericTile class="sapUiTinyMargin"  header="Picking" subheader="Order Fulfillment" frameType="TwoByHalf" press="onZoneTypeSelect">
+                    <TileContent footer="Picking">
+                        <NumericContent  icon="sap-icon://cart" valueColor="Critical" indicator="Down" />
+                    </TileContent>
+                </GenericTile>
+
+                <GenericTile class="sapUiTinyMargin"  header="Shipping" subheader="Outbound Staging" frameType="TwoByHalf" press="onZoneTypeSelect">
+                    <TileContent footer="Shipping">
+                        <NumericContent  icon="sap-icon://shipping-status" valueColor="Good" indicator="Up" />
+                    </TileContent>
+                </GenericTile>
+            </l:HorizontalLayout>
+
+            <form:SimpleForm editable="true" layout="ColumnLayout" columnsXL="2" columnsL="2" columnsM="1">
+                <Label text="Zone Code" required="true" />
+                <Input placeholder="e.g., STOR-A, RCV-01" description="Unique zone identifier" />
+
+                <Label text="Zone Name" required="true" />
+                <Input placeholder="e.g., Storage Area A" />
+            </form:SimpleForm>
+
+            <form:SimpleForm editable="true" layout="ColumnLayout" columnsXL="3" columnsL="2" columnsM="1" title="Zone Properties">
+                <Label text="Area Size" />
+                <Input type="Number" value="500" description="m²" />
+
+                <Label text="Max Weight" />
+                <Input type="Number" value="50000" description="kg" />
+
+                <Label text="Max Volume" />
+                <Input type="Number" value="1000" description="m³" />
+
+                <Label text="Max Pallets" />
+                <Input type="Number" value="500" />
+
+                <Label text="Height" />
+                <Input type="Number" value="8" description="m" />
+
+                <Label text="Floor Level" />
+                <Input type="Number" value="1" />
+            </form:SimpleForm>
+
+            <form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Temperature Control">
+                <Label text="" />
+                <HBox alignItems="Center">
+                    <Label text="Min Temperature" class="sapUiTinyMarginEnd" />
+                    <Input type="Number" value="2" width="5rem" />
+                    <Select selectedKey="°C" width="4rem" class="sapUiTinyMarginBeginEnd">
+                        <core:Item key="°C" text="°C" />
+                        <core:Item key="°F" text="°F" />
+                    </Select>
+                    <Label text="Max Temperature" class="sapUiTinyMarginEnd" />
+                    <Input type="Number" value="8" width="5rem" />
+                </HBox>
+                <Label text="" />
+                <CheckBox text="Enable" />
+            </form:SimpleForm>
+
+            <form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Storage Rules">
+                <Label text="" />
+                <HBox width="100%" justifyContent="SpaceBetween">
+                    <CheckBox text="Allow Mixed SKUs" />
+                    <CheckBox text="Allow Mixed Batches" />
+                    <CheckBox text="FIFO Enforced" selected="true" />
+                </HBox>
+            </form:SimpleForm>
+
+            <form:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Zone Flags">
+                <Label text="" />
+                <HBox width="100%" justifyContent="SpaceBetween">
+                    <CheckBox text="Picking Zone" />
+                    <CheckBox text="Reserve Zone" />
+                    <CheckBox text="Staging Zone" />
+                </HBox>
+            </form:SimpleForm>
+
+            <form:SimpleForm editable="true" layout="ColumnLayout" columnsXL="3" columnsL="2" columnsM="1" title="Security &amp; Access">
+                <Label text="Security Level" />
+                <Select selectedKey="STANDARD" width="100%">
+                    <core:Item key="STANDARD" text="STANDARD" />
+                    <core:Item key="HIGH" text="HIGH" />
+                    <core:Item key="SECURE" text="SECURE" />
+                </Select>
+                <CheckBox text="Camera Monitored" />
+            </form:SimpleForm>
+        </content>
+
+        <beginButton>
+            <Button text="Cancel" press="onCancelPress" />
+        </beginButton>
+
+        <endButton>
+            <Button text="Create Zone" type="Emphasized" press="onCreateZonePress" />
+        </endButton>
+
+    </Dialog>
+</core:FragmentDefinition>

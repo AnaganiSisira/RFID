@@ -1,0 +1,54 @@
+{
+  "Zones": [
+    {
+      "zoneCode": "RCV-01",
+      "zoneName": "Receiving Bay 1",
+      "type": "Receiving",
+      "areaCapacity": "200㎡ / 20,000kg",
+      "utilization": 42,
+      "pallets": "18 / 50",
+      "locations": 25,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "STR-02",
+      "zoneName": "Storage Zone A",
+      "type": "Storage",
+      "areaCapacity": "500㎡ / 50,000kg",
+      "utilization": 68,
+      "pallets": "34 / 50",
+      "locations": 40,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "PKG-03",
+      "zoneName": "Packaging Unit",
+      "type": "Packaging",
+      "areaCapacity": "150㎡ / 15,000kg",
+      "utilization": 55,
+      "pallets": "12 / 30",
+      "locations": 18,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "DIS-04",
+      "zoneName": "Dispatch Area",
+      "type": "Dispatch",
+      "areaCapacity": "300㎡ / 25,000kg",
+      "utilization": 77,
+      "pallets": "25 / 35",
+      "locations": 22,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "QLT-05",
+      "zoneName": "Quality Check Zone",
+      "type": "Inspection",
+      "areaCapacity": "120㎡ / 10,000kg",
+      "utilization": 38,
+      "pallets": "10 / 25",
+      "locations": 12,
+      "status": "Inactive"
+    }
+  ]
+}

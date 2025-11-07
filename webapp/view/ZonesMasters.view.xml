@@ -1,0 +1,112 @@
+<mvc:View controllerName="rfidwarehousesuiteui.controller.ZonesMasters"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core" displayBlock="true">
+    <Page title="Zones Master">
+        <headerContent>
+            <Select selectedKey="WH-001">
+                <items>
+                    <core:Item key="WH-001" text="WH-001 - Main Warehouse" />
+                    <core:Item key="WH-002" text="WH-002 - Secondary Warehouse" />
+                </items>
+            </Select>
+        </headerContent>
+
+        <content>
+            <GenericTile class="sapUiTinyMargin sapUiLargeMarginEnd" header="Total Zones" subheader="Warehouse Overview" frameType="TwoByHalf" width="98%">
+                <TileContent>
+                    <NumericContent value="25" scale="" indicator="Up" valueColor="Good" icon="sap-icon://database" />
+                </TileContent>
+            </GenericTile>
+
+            <GenericTile class="sapUiTinyMargin sapUiLargeMarginEnd" header="Active Zones" subheader="Currently operational" frameType="TwoByHalf" width="98%">
+                <TileContent>
+                    <NumericContent value="23" scale="" indicator="Up" valueColor="Good" icon="sap-icon://checklist-item" />
+                </TileContent>
+            </GenericTile>
+
+            <GenericTile class="sapUiTinyMargin sapUiLargeMarginEnd" header="Avg. Utilization" subheader="Storage utilization" frameType="TwoByHalf" width="98%">
+                <TileContent>
+                    <NumericContent value="66" scale="%" indicator="Up" valueColor="Good" icon="sap-icon://horizontal-bar-chart" />
+                </TileContent>
+            </GenericTile>
+
+            <GenericTile class="sapUiTinyMargin sapUiLargeMarginEnd" header="Active Alerts" subheader="Critical conditions" frameType="TwoByHalf" width="98%">
+                <TileContent>
+                    <NumericContent value="3" scale="" indicator="Down" valueColor="Error" icon="sap-icon://alert" />
+                </TileContent>
+            </GenericTile>
+
+            <Table id="idZonesTable" inset="false" items="{
+    path: 'ZonesModel>/Zones',
+    sorter: { path: 'zoneName' }
+}">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <SearchField width="25%" placeholder="Search by code, name, type" liveChange="onSearch" />
+                            <Button icon="sap-icon://filter" text="Filters" />
+
+                            <ToolbarSpacer />
+
+                            <Button icon="sap-icon://download" text="Export" />
+                            <Button icon="sap-icon://upload" text="Import" />
+                            <Button icon="sap-icon://batch-payments" text="Bulk Create" press=".onBulkOperations" />
+                            <Button icon="sap-icon://add" text="Create Zone" type="Emphasized" press=".onCreateZonesMasters" />
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column>
+                        <Text text="Zone Code" />
+                    </Column>
+                    <Column>
+                        <Text text="Zone Name" />
+                    </Column>
+                    <Column>
+                        <Text text="Type" />
+                    </Column>
+                    <Column>
+                        <Text text="Area/Capacity" />
+                    </Column>
+                    <Column>
+                        <Text text="Utilization" />
+                    </Column>
+                    <Column>
+                        <Text text="Pallets" />
+                    </Column>
+                    <Column>
+                        <Text text="Locations" />
+                    </Column>
+                    <Column>
+                        <Text text="Status" />
+                    </Column>
+                    <Column>
+                        <Text text="Actions" />
+                    </Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{ZonesModel>zoneCode}" />
+                            <Text text="{ZonesModel>zoneName}" />
+                            <Text text="{ZonesModel>type}" />
+                            <Text text="{ZonesModel>areaCapacity}" />
+                            <ProgressIndicator percentValue="{ZonesModel>utilization}" displayValue="{ZonesModel>utilization}%" />
+                            <Text text="{ZonesModel>pallets}" />
+                            <Text text="{ZonesModel>locations}" />
+                            <ObjectStatus text="{ZonesModel>status}" state="{= ${status} === 'Active' ? 'Success' : 'Error'}" />
+                            <HBox>
+                                <Button icon="sap-icon://show" />
+                                <Button icon="sap-icon://edit" />
+                                <Button icon="sap-icon://delete" />
+                            </HBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
