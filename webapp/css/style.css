@@ -115,12 +115,11 @@ Remove any padding from VBox
 /* storage location masters tiles */
 .card {
     background-color: #fff;
-    border-radius: 1rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     padding: 1rem;
-    width: 18%;
+    margin-bottom: 2px;
+    width: 24%;
     text-align: center;
-    min-width: 7rem !important;
 }
 .card:hover {
     transform: scale(1.05);
@@ -155,3 +154,62 @@ Remove any padding from VBox
 }
 
 
+.hierarchy-panel {
+    
+    border-radius: 10px;
+    box-shadow: 0 1px 4px #d1d1d1;
+    padding: 1rem;
+    margin-bottom:1rem ;
+}
+.hierarchy-panel .sapMToolbar {
+    background-color: transparent;
+    border-bottom: 1px solid #bcdfff;
+    margin-bottom: 0.75rem;
+}
+
+.component-box {
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.generated-box {
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 0.75rem;
+    background-color: #faf6e6;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.generated-text {
+    color: #004ecb;
+    font-size: 1rem;
+}
+
+.example-box {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.75rem;
+    width: 30%;
+    background-color: #fcfcfc;
+    margin: 0.5rem 0;
+}
+
+.example-box Text:first-child {
+    font-weight: bold;
+}
+
+.Mandatory-Fields{
+    background-color: #FFF9E6;
+    border: 1px solid #f7c65d;
+}
+
+.Barcode-Strategy{
+    background-color: #f9f6ff;
+   border: 1px solid #ce8ccb;
+}
+
+.Hierarchy-Components{
+     background-color: #f8fbff;
+   border: 1px solid #6f94b7;
+}

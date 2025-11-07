@@ -1,24 +1,117 @@
-<core:FragmentDefinition
-	xmlns="sap.m"
+<core:FragmentDefinition xmlns="sap.m"
 	xmlns:core="sap.ui.core"
 	xmlns:form="sap.ui.layout.form">
 
-	<Dialog
-		id="createBulkLocationDialog"
-		title="Bulk Location Creation"
-		contentWidth="80%">
+	<Dialog id="createBulkLocationDialog" title="Bulk Location Creation" contentWidth="80%" class="sapUiResponsiveContentPadding">
 		<content>
-		<MessageStrip class="sapUiSmallMargin" showIcon="true" type="Information" text="Create multiple storage locations at once. Each combination of Aisle-Rack-Level-Bin creates a unique location."></MessageStrip>
-		<IconTabBar >
-		<items>
-		<IconTabFilter text="Structured (Rack System)">
-		
-		</IconTabFilter>
-		<IconTabFilter text="Simple Pattern"></IconTabFilter>
-		<IconTabFilter text="Import Excel"></IconTabFilter>
-		</items>
-		</IconTabBar>
-		
+			<form:SimpleForm class="hierarchy-panel Mandatory-Fields" backgroundDesign="Transparent" editable="true" layout="ColumnLayout" columnsXL="3" columnsL="2" columnsM="2" width="100%">
+				<form:toolbar>
+					<Toolbar>
+						<content>
+							<core:Icon src="sap-icon://tree" />
+							<Title text="Common Properties (Applied to all Locations)" />
+						</content>
+					</Toolbar>
+				</form:toolbar>
+
+				<Label text="Warehouse" required="true" />
+				<Select id="warehouseSelectBulk" selectedKey="WH-001 - Main Warehouse">
+					<core:Item key="WH-001 - Main Warehouse" text="WH-001 - Main Warehouse" />
+				</Select>
+
+				<Label text="Zone" required="true" />
+				<Select id="ZoneTypeSelectBulk">
+					<core:Item key="Receiving" text="Receiving" />
+					<core:Item key="FloorStorage" text="Floor Storage" />
+					<core:Item key="ColdStorage" text="Cold Storage" />
+					<core:Item key="Shelving" text="Shelving" />
+				</Select>
+
+				<Label text="Location Type"></Label>
+				<Select id="LocationTypeSelectBulk">
+					<core:Item key="Floor Space" text="Floor Space" />
+					<core:Item key="FloorStorage" text="Floor Storage" />
+					<core:Item key="ColdStorage" text="Cold Storage" />
+					<core:Item key="Shelving" text="Shelving" />
+				</Select>
+
+				<Label text="Storage Strategy"></Label>
+				<Select id="StorageStrategySelectBulk">
+					<core:Item key="FIFO" text="FIFO" />
+					<core:Item key="FloorStorage" text="Floor Storage" />
+					<core:Item key="ColdStorage" text="Cold Storage" />
+					<core:Item key="Shelving" text="Shelving" />
+				</Select>
+			</form:SimpleForm>
+			<Panel class="hierarchy-panel Hierarchy-Components" backgroundDesign="Translucent">
+				<Toolbar >
+					<OverflowToolbar class="Hierarchy-Components" design="Transparent">
+						<core:Icon src="sap-icon://dimension" size="1.5rem" color="#1f77d0"/>
+						<Title text="Component Ranges " />
+					</OverflowToolbar>
+				</Toolbar>
+
+
+				<Text text="Select which components to use and specify their ranges. The system will generate all combinations." class="descriptionText sapUiSmallMarginBottom"/>
+
+				<!-- Form Fields -->
+				<VBox class="componentForm">
+
+					<!-- Aisle -->
+					<HBox alignItems="Center" class="rangeRow">
+						<CheckBox id="chkAisle" text="Aisle" selected="true"/>
+						<Input placeholder="A" width="4rem" class="sapUiTinyMarginBegin"/>
+						<Text text="to" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
+						<Input placeholder="J" width="4rem"/>
+						<Text text="(10 aisles: A, B, C...)" class="noteText sapUiTinyMarginBegin"/>
+					</HBox>
+
+					<!-- Rack -->
+					<HBox alignItems="Center" class="rangeRow">
+						<CheckBox id="chkRack" text="Rack" selected="true"/>
+						<Input placeholder="1" width="4rem" class="sapUiTinyMarginBegin"/>
+						<Text text="to" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
+						<Input placeholder="20" width="4rem"/>
+						<Text text="(20 racks: 01, 02, ... 20)" class="noteText sapUiTinyMarginBegin"/>
+					</HBox>
+
+					<!-- Level -->
+					<HBox alignItems="Center" class="rangeRow">
+						<CheckBox id="chkLevel" text="Level" selected="true"/>
+						<Input placeholder="1" width="4rem" class="sapUiTinyMarginBegin"/>
+						<Text text="to" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
+						<Input placeholder="4" width="4rem"/>
+						<Text text="(4 levels: 01, 02, 03, 04)" class="noteText sapUiTinyMarginBegin"/>
+					</HBox>
+
+					<!-- Bin -->
+					<HBox alignItems="Center" class="rangeRow">
+						<CheckBox id="chkBin" text="Bin" selected="true"/>
+						<Input placeholder="1" width="4rem" class="sapUiTinyMarginBegin"/>
+						<Text text="to" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
+						<Input placeholder="2" width="4rem"/>
+						<Text text="(2 bins: 01, 02)" class="noteText sapUiTinyMarginBegin"/>
+					</HBox>
+				</VBox>
+
+				<!-- Add More -->
+				<Link text="+ Add More Components (Bay, Shelf, Position, etc.)" class="sapUiSmallMarginTop addLink"/>
+
+				<!-- Sample Generated Codes -->
+				<VBox class="sampleBox sapUiSmallMarginTop">
+					<Text text="Sample Generated Location Codes:" class="sapUiTinyMarginBottom"/>
+					<HBox wrap="Wrap" class="codeContainer">
+						<ObjectStatus text="A-01-01-01" state="Information"/>
+						<ObjectStatus text="A-01-02-01" state="Information"/>
+						<ObjectStatus text="A-01-02-02" state="Information"/>
+						<ObjectStatus text="J-20-04-02" state="Information"/>
+					</HBox>
+					<HBox alignItems="Center" class="sapUiTinyMarginTop">
+						<Text text="Final Destination:" class="noteText sapUiTinyMarginEnd"/>
+						<ObjectStatus text="Last component (BIN in this example)" state="Success"/>
+					</HBox>
+				</VBox>
+			</Panel>
 		</content>
 	</Dialog>
 </core:FragmentDefinition>

@@ -4,44 +4,32 @@
     xmlns:core="sap.ui.core"
     xmlns:f="sap.f" displayBlock="true">
 
-    <Page class="sapUiResponsiveContentPadding">
-        <headerContent>
-            <Title text="Storage Location"></Title>
-            <Text class="sapUiSmallMarginTop" text="Fixed warehouse locations with barcode identification"/>
-            <ToolbarSpacer ></ToolbarSpacer>
-            <!-- <Button text="Barecode-based System" type="Accept"></Button>
-            <Button text="Export"></Button>
-            <Button text="Template"></Button> -->
-        </headerContent>
-
+    <Page title="Storage Location" showNavButton="false" class="sapUiResponsiveContentPadding">
         <content>
-            <HBox class="sapUiSmallMarginBottom" justifyContent="Inherit" wrap="Wrap">
-                <VBox class="sapUiSmallMargin card" alignItems="Center">
+            <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" gap="-3rem" wrap="Wrap">
+                <VBox class=" card" alignItems="Center">
                     <Title text="Total Locations" wrapping="true" />
                     <Text text="2,456" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
                     <Text text="All with barcodes" />
                 </VBox>
 
-                <VBox class="sapUiSmallMargin card" alignItems="Center">
+                <VBox class=" card" alignItems="Center">
                     <Title text="Active Locations" wrapping="true"/>
                     <ObjectNumber number="2,234" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
                     <ObjectStatus text="91% available" state="Success"></ObjectStatus>
                 </VBox>
 
-                <VBox class="sapUiSmallMargin card" alignItems="Center">
+                <VBox class=" card" alignItems="Center">
                     <Title text="Avg. Utilization" wrapping="true"/>
                     <ObjectNumber number="68%" state="Warning" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
                     <ObjectStatus text="Volume occupied" state="Warning"></ObjectStatus>
                 </VBox>
 
-                <VBox class="sapUiSmallMargin card" alignItems="Center">
+                <VBox class=" card" alignItems="Center">
                     <Title text="Temperature Zones" wrapping="true"/>
                     <Text text="Ambient: 70% | Cold: 30%"/>
                 </VBox>
-            </HBox>
-            <!-- Cost Optimization Banner -->
-            <MessageStrip text="Smart Cost Optimization — Using barcodes for fixed locations saves ₹1,22,800 vs RFID. ₹50/location saved." type="Success" showIcon="true" class="sapUiSmallMarginBottom" />
-            
+            </HBox>            
             <Table >
                 <headerToolbar>
                     <OverflowToolbar>

@@ -2,7 +2,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core" displayBlock="true">
-    <Page title="Zones Master">
+    <Page title="Zones Master" class="sapUiResponsiveContentPadding">
         <headerContent>
             <Select selectedKey="WH-001">
                 <items>
@@ -13,29 +13,35 @@
         </headerContent>
 
         <content>
-            <GenericTile class="sapUiTinyMargin sapUiLargeMarginEnd" header="Total Zones" subheader="Warehouse Overview" frameType="TwoByHalf" width="98%">
-                <TileContent>
-                    <NumericContent value="25" scale="" indicator="Up" valueColor="Good" icon="sap-icon://database" />
-                </TileContent>
-            </GenericTile>
+            <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" wrap="Wrap">
+    <!-- Total Zones -->
+    <VBox class="card" alignItems="Center">
+        <Title text="Total Zones" wrapping="true" />
+        <ObjectNumber number="25" state="Information" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+        <ObjectStatus text="Warehouse Overview" state="Information"></ObjectStatus>
+    </VBox>
 
-            <GenericTile class="sapUiTinyMargin sapUiLargeMarginEnd" header="Active Zones" subheader="Currently operational" frameType="TwoByHalf" width="98%">
-                <TileContent>
-                    <NumericContent value="23" scale="" indicator="Up" valueColor="Good" icon="sap-icon://checklist-item" />
-                </TileContent>
-            </GenericTile>
+    <!-- Active Zones -->
+    <VBox class="card" alignItems="Center">
+        <Title text="Active Zones" wrapping="true"/>
+        <ObjectNumber number="23" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+        <ObjectStatus text="Currently operational" state="Success"></ObjectStatus>
+    </VBox>
 
-            <GenericTile class="sapUiTinyMargin sapUiLargeMarginEnd" header="Avg. Utilization" subheader="Storage utilization" frameType="TwoByHalf" width="98%">
-                <TileContent>
-                    <NumericContent value="66" scale="%" indicator="Up" valueColor="Good" icon="sap-icon://horizontal-bar-chart" />
-                </TileContent>
-            </GenericTile>
+    <!-- Avg. Utilization -->
+    <VBox class="card" alignItems="Center">
+        <Title text="Avg. Utilization" wrapping="true"/>
+        <ObjectNumber number="66%" state="Warning" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+        <ObjectStatus text="Storage utilization" state="Warning"></ObjectStatus>
+    </VBox>
 
-            <GenericTile class="sapUiTinyMargin sapUiLargeMarginEnd" header="Active Alerts" subheader="Critical conditions" frameType="TwoByHalf" width="98%">
-                <TileContent>
-                    <NumericContent value="3" scale="" indicator="Down" valueColor="Error" icon="sap-icon://alert" />
-                </TileContent>
-            </GenericTile>
+    <!-- Active Alerts -->
+    <VBox class="card" alignItems="Center">
+        <Title text="Active Alerts" wrapping="true"/>
+        <ObjectNumber number="3" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+        <ObjectStatus text="Critical conditions" state="Error"></ObjectStatus>
+    </VBox>
+</HBox>
 
             <Table id="idZonesTable" inset="false" items="{
     path: 'ZonesModel>/Zones',
