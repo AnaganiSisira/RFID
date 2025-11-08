@@ -58,7 +58,7 @@
 				<VBox class="componentForm">
 
 					<!-- Aisle -->
-					<HBox alignItems="Center" class="rangeRow">
+					<HBox alignItems="Center" class="rangeRow" wrap="Wrap">
 						<CheckBox id="chkAisle" text="Aisle" selected="true"/>
 						<Input placeholder="A" width="4rem" class="sapUiTinyMarginBegin"/>
 						<Text text="to" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
@@ -67,7 +67,7 @@
 					</HBox>
 
 					<!-- Rack -->
-					<HBox alignItems="Center" class="rangeRow">
+					<HBox alignItems="Center" class="rangeRow" wrap="Wrap">
 						<CheckBox id="chkRack" text="Rack" selected="true"/>
 						<Input placeholder="1" width="4rem" class="sapUiTinyMarginBegin"/>
 						<Text text="to" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
@@ -76,7 +76,7 @@
 					</HBox>
 
 					<!-- Level -->
-					<HBox alignItems="Center" class="rangeRow">
+					<HBox alignItems="Center" class="rangeRow" wrap="Wrap">
 						<CheckBox id="chkLevel" text="Level" selected="true"/>
 						<Input placeholder="1" width="4rem" class="sapUiTinyMarginBegin"/>
 						<Text text="to" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
@@ -85,7 +85,7 @@
 					</HBox>
 
 					<!-- Bin -->
-					<HBox alignItems="Center" class="rangeRow">
+					<HBox alignItems="Center" class="rangeRow" wrap="Wrap">
 						<CheckBox id="chkBin" text="Bin" selected="true"/>
 						<Input placeholder="1" width="4rem" class="sapUiTinyMarginBegin"/>
 						<Text text="to" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
@@ -112,6 +112,72 @@
 					</HBox>
 				</VBox>
 			</Panel>
+			<Panel class="hierarchy-panel quickPresetsPanel" backgroundDesign="Translucent">
+    <!-- Header -->
+    <Toolbar design="Transparent">
+        <Title text="Quick Presets (Optional)" class="sectionTitle"/>
+    </Toolbar>
+
+    <!-- Preset Options -->
+    <HBox justifyContent="SpaceBetween" class="presetContainer sapUiSmallMarginBottom">
+        <!-- Simple Warehouse -->
+        <VBox class="presetCard simpleCard sapUiSmallMarginTop">
+            <Title text="Simple Warehouse" class="presetTitle"/>
+            <Text text="Rack + Position only" class="presetSubtitle"/>
+            <Text text="100 locations (10 racks × 10 positions)" class="presetDesc"/>
+        </VBox>
+
+        <!-- Standard Rack System -->
+        <VBox class="presetCard standardCard sapUiSmallMarginTop">
+            <Title text="Standard Rack System" class="presetTitle"/>
+            <Text text="Aisle + Rack + Level + Bin" class="presetSubtitle"/>
+            <Text text="1,600 locations (10×20×4×2)" class="presetDesc"/>
+        </VBox>
+
+        <!-- Complex Multi-Level -->
+        <VBox class="presetCard complexCard sapUiSmallMarginTop">
+            <Title text="Complex Multi-Level" class="presetTitle"/>
+            <Text text="All components" class="presetSubtitle"/>
+            <Text text="Custom configuration" class="presetDesc"/>
+        </VBox>
+    </HBox>
+
+    
+</Panel>
+<!-- Total Summary Box -->
+    <VBox class="summaryBox hierarchy-panel">
+        <Text text="Total Locations to Create:" class="summaryTitle"/>
+        <Text text="10 aisles × 20 racks × 4 levels × 2 bins" class="summaryEquation"/>
+
+        <HBox alignItems="Center" justifyContent="SpaceBetween" class="summaryDetails">
+            <VBox>
+                <HBox alignItems="Center" class="sapUiTinyMarginBottom">
+                    <core:Icon src="sap-icon://barcode" size="1rem" color="#1d4ed8"/>
+                    <Text text="Barcode labels required: 1,600" class="summaryLine sapUiTinyMarginBegin"/>
+                </HBox>
+
+                <HBox alignItems="Center" class="sapUiTinyMarginBottom">
+                    <core:Icon src="sap-icon://money-bills" size="1rem" color="#059669"/>
+                    <Text text="Estimated cost: ~$400 (@ $0.25/label)" class="summaryLine sapUiTinyMarginBegin"/>
+                </HBox>
+
+                <HBox alignItems="Center">
+                    <core:Icon src="sap-icon://flag" size="1rem" color="#f59e0b"/>
+                    <Text text="Final destination: BIN (last component)" class="summaryLine sapUiTinyMarginBegin"/>
+                </HBox>
+            </VBox>
+
+            <Text text="1,600" class="summaryCount"/>
+        </HBox>
+    </VBox>
 		</content>
+		
+		<beginButton>
+			<Button text="Create Location" type="Emphasized" press="onCreateLocationPress" />
+		</beginButton>
+
+		<endButton>
+			<Button text="Cancel" press=".onCancelPress('createBulkLocationDialog')" />
+		</endButton>
 	</Dialog>
 </core:FragmentDefinition>

@@ -31,8 +31,8 @@
                 </VBox>
             </HBox>            
             <Table >
-                <headerToolbar>
-                    <OverflowToolbar>
+                <headerToolbar >
+                    <OverflowToolbar design="Solid">
                         <content>
                             <SearchField width="25%" placeholder="Search by code, name, type" liveChange="onSearch" />
                             <Button icon="sap-icon://filter" text="Filters" />
@@ -40,7 +40,7 @@
                             <ToolbarSpacer />
 
                             <Button icon="sap-icon://download" text="Export" />
-                            <Button icon="sap-icon://upload" text="Import" />
+                            <Button icon="sap-icon://upload" text="Import" press=".onImportStorageLocation" />
                             <Button icon="sap-icon://batch-payments" text="Bulk Create" press=".onBulkLocationOperations" />
                             <Button icon="sap-icon://add" text="Create Location" type="Emphasized" press=".onCreateStorageLocation" />
                         </content>

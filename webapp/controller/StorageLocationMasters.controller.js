@@ -29,6 +29,14 @@ sap.ui.define([
             this._BulkLocationDialog.then(function (oDialog) {
                 oDialog.open();
             });
+        },
+        onImportStorageLocation: function(){
+            if (!this._ImportStorageLocationDialog) {
+                this._ImportStorageLocationDialog = this.loadFragments("rfidwarehousesuiteui.fragments.StorageLocationMaster.StorageLocationsImport")
+            }
+            this._ImportStorageLocationDialog.then(function (oDialog) {
+                oDialog.open();
+            });
         }
 
     });

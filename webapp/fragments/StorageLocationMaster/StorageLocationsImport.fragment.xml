@@ -1,0 +1,77 @@
+<core:FragmentDefinition xmlns:unified="sap.ui.unified"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+
+    <Dialog
+        id="storageImportDialog"
+        title="Import Storage Locations"
+        class="sapUiSizeCompact"
+        stretch="{= ${device>/system/phone} }"
+        resizable="true">
+
+        <VBox class="sapUiSmallMargin importDialogBox" alignItems="Center" justifyContent="Center">
+            
+            <!-- Upload Icon -->
+            <core:Icon
+                src="sap-icon://upload-to-cloud"
+                size="3rem"
+                color="#0070f2"
+                class="sapUiTinyMarginBottom" />
+
+            <!-- Upload Header -->
+            <Title text="Upload Excel File" level="H2" class="sapUiTinyMarginBottom" />
+
+            <!-- Description -->
+            <Text
+                text="Import multiple locations from your Excel spreadsheet. Download the template to see the required format."
+                textAlign="Center"
+                class="sapUiTinyMarginBottom" />
+
+            <!-- Required Columns Box -->
+            <VBox class="requiredBox sapUiSmallMarginBottom">
+                <Title text="Required Columns:" level="H3" class="sapUiTinyMarginBottom" />
+
+                <Text text="• Location Code (Required)" />
+                <Text text="• Description (Optional)" />
+                <Text text="• Zone/Area (Required)" />
+                <Text text="• Location Type (Required)" />
+                <Text text="• Temperature (Optional)" />
+                <Text text="• Capacity (Optional)" />
+            </VBox>
+
+            <!-- Action Buttons -->
+            <HBox alignItems="Center" justifyContent="Center" wrap="Wrap" class="sapUiSmallMarginTop">
+                <Button
+                    icon="sap-icon://download"
+                    text="Download Template"
+                    type="Transparent"
+                    press=".onDownloadTemplate"
+                    class="sapUiTinyMarginEnd" />
+                <unified:FileUploader
+                    id="fileUploader"
+                    name="uploadExcel"
+                    width="13rem"
+                    buttonOnly="true"
+                    icon="sap-icon://upload"
+                    buttonText="Choose Excel File"
+                    fileType="xlsx,xls,csv"
+                    maximumFileSize="5"
+                    tooltip="Choose an Excel or CSV file"
+                    change=".onFileSelected"
+                     />
+            </HBox>
+            <VBox alignItems="Center">
+    <Text text="Supported formats: .xlsx, .xls, .csv" textAlign="Center" />
+    <Text text="Maximum file size: 5 MB" textAlign="Center" />
+    <Text text="Maximum rows: 10,000 locations" textAlign="Center" />
+</VBox>
+
+        </VBox>
+
+        <endButton>
+			<Button text="Cancel" press=".onCancelPress('storageImportDialog')" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
