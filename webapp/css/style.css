@@ -113,6 +113,66 @@ Remove any padding from VBox
 /* 
 
 /* storage location masters tiles */
+.typeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Container base style */
+.typeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Card base style */
+.typeCard {
+  flex: 1 1 22rem;           /* Default width with flexibility */
+  border: 1px solid #d3d3d3;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  min-width: 18rem;          /* Prevents too small cards */
+}
+
+.typeCard:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Selected style */
+.selectedCard {
+  border: 2px solid #0070f2 !important;
+  background-color: #f0f7ff;
+  box-shadow: 0 0 10px rgba(0, 112, 242, 0.4);
+}
+
+/* Example text styling */
+.exampleText {
+  color: #0070f2;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* 📱 Responsive Behavior */
+
+/* Tablet screens (2 columns) */
+@media (max-width: 1024px) {
+  .typeCard {
+    flex: 1 1 45%; /* 2 cards per row */
+  }
+}
+
+/* Mobile screens (1 column) */
+@media (max-width: 600px) {
+  .typeCard {
+    flex: 1 1 100%; /* Stack vertically */
+  }
+}
+
 .card {
     background-color: #fff;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -182,7 +242,6 @@ Remove any padding from VBox
 }
 
 .generated-text {
-    color: #004ecb;
     font-size: 1rem;
 }
 
@@ -213,6 +272,30 @@ Remove any padding from VBox
      background-color: #f8fbff;
    border: 1px solid #6f94b7;
 }
+
+.PutawayProcess{
+    background-color: white;
+    border: 1px solid #686d74;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px #d1d1d1;
+}
+.ScanItem{
+    background-color: #6f94b7;
+    padding: 5px;
+    border-radius: 10px;
+}
+.ScanLocationBarcode{
+    background-color: #ce8ccb;
+    padding: 5px;
+    border-radius: 10px;
+}
+.Verified{
+    background-color: #bbed90;
+    padding: 5px;
+    border-radius: 10px;
+}
+
 
 /* Bulk storage location */
 
@@ -254,664 +337,23 @@ Remove any padding from VBox
     padding: 1rem 1.25rem;
 }
 
-/* ==================== CREATE ZONE DIALOG STYLES ==================== */
-
-/* Zone Section Container - White box with border */
-.sapUiTinyMarginBottom .sapMGT {
-    width: 160px;
-    height: 140px;
-    cursor: pointer;
-    border: 2px solid #e5e5e5;
-    border-radius: 8px;
-    transition: all 0.2s ease;
+.rangeRow{
+    margin: 10px;
+    padding: 15px;
+     border: 1px solid #6f94b7;
+     background-color: white;
 }
 
-.sapUiTinyMarginBottom .sapMGT:hover {
-    border-color: #0070f2;
-    box-shadow: 0 2px 8px rgba(0, 112, 242, 0.15);
-    transform: translateY(-2px);
-}
-
-.sapUiTinyMarginBottom .sapMGT.selected {
-    border-color: #0070f2;
-    background-color: #f5f9ff;
-}
-
-.zoneSection {
+.sampleBox{
     background-color: white;
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
-    padding: 1rem 1.25rem;
-}
-
-/* Section Title */
-.sectionTitle {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #32363a;
-    margin-bottom: 0.5rem;
-}
-
-.sectionLabel {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #32363a;
-    margin-bottom: 0.5rem;
-}
-
-/* Zone Type Cards */
-.zoneTypeCardWrapper {
-    cursor: pointer;
-    margin-right: 0.5rem;
-}
-
-.zoneTypeCard {
-    width: 130px;
-    min-height: 100px;
-    border: 2px solid #d9d9d9;
-    border-radius: 4px;
-    padding: 1rem 0.75rem;
-    text-align: center;
-    align-items: center;
-    background-color: white;
-    transition: all 0.2s ease;
-}
-
-.zoneTypeCardWrapper:hover .zoneTypeCard {
-    border-color: #0070f2;
-    box-shadow: 0 2px 8px rgba(0, 112, 242, 0.15);
-}
-
-.zoneTypeCard.selectedCard {
-    border-color: #0070f2;
-    background-color: #f0f7ff;
-    border-width: 2px;
-}
-
-.zoneTypeCard.selectedCard .sapUiIcon {
-    color: #0070f2 !important;
-}
-
-.zoneTypeCard .cardTitle {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #32363a;
-    margin-bottom: 0.125rem;
-}
-
-.zoneTypeCard .cardSubtitle {
-    font-size: 0.75rem;
-    color: #6a6d70;
-}
-
-/* Form Labels */
-.sapMLabel {
-    font-size: 0.875rem;
-    color: #32363a;
-    margin-bottom: 0.25rem;
-}
-
-/* Input Fields */
-.sapMInput {
-    margin-bottom: 0.25rem;
-}
-
-.sapMInputBaseInner {
-    border: 1px solid #89919a;
-    border-radius: 4px;
-    font-size: 0.875rem;
-}
-
-.sapMInputBaseInner:focus {
-    border-color: #0070f2;
-    border-width: 2px;
-    outline: none;
-}
-
-/* Field Description */
-.fieldDescription {
-    font-size: 0.75rem;
-    color: #6a6d70;
-    margin-top: 0.125rem;
-}
-
-/* Unit Selects (m², kg, etc.) */
-.unitSelect {
-    width: 80px !important;
-    min-width: 80px !important;
-}
-
-.unitSelect .sapMSltLabel {
-    font-size: 0.875rem;
-}
-
-/* Grid Layouts */
-.sapUiLayoutGrid > div {
-    padding: 0 0.5rem;
-}
-
-.sapUiLayoutGrid > div:first-child {
-    padding-left: 0;
-}
-
-.sapUiLayoutGrid > div:last-child {
-    padding-right: 0;
-}
-
-/* Checkboxes */
-.sapMCb {
-    margin-top: 0.5rem;
-}
-
-.sapMCb .sapMCbLabel {
-    font-size: 0.875rem;
-    color: #32363a;
-}
-
-.sapMCb.sapMCbChecked .sapMCbBg {
-    background-color: #0070f2;
-    border-color: #0070f2;
-}
-
-/* Select Dropdown */
-.sapMSlt {
-    border: 1px solid #89919a;
-    border-radius: 4px;
-}
-
-.sapMSlt:hover {
-    border-color: #0070f2;
-}
-
-.sapMSltLabel {
-    font-size: 0.875rem;
-    color: #32363a;
-}
-
-/* Dialog Styling */
-#createZoneDialog .sapMDialogScroll {
-    background-color: #f5f5f5;
-}
-
-#createZoneDialog .sapMDialog {
-    border-radius: 4px;
-}
-
-/* Dialog Footer Buttons */
-#createZoneDialog .sapMDialogFooter {
-    border-top: 1px solid #e5e5e5;
-    padding: 0.75rem 1rem;
-    background-color: white;
-}
-
-#createZoneDialog .sapMBtn {
-    min-width: 100px;
-    font-size: 0.875rem;
-}
-
-#createZoneDialog .sapMBtnEmphasized {
-    background-color: #0070f2;
-    border-color: #0070f2;
-}
-
-/* Dialog Title */
-#createZoneDialog .sapMDialogTitle {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #32363a;
-}
-
-
-/* ==================== BULK CREATE ZONES DIALOG STYLES ==================== */
-
-/* Dialog Subtitle */
-.dialogSubtitle {
-    font-size: 0.875rem;
-    color: #6a6d70;
-    line-height: 1.4;
-}
-
-/* Section Labels and Titles */
-.sectionLabel {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #32363a;
-    margin-bottom: 0.25rem;
-}
-
-.sectionTitle {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: #32363a;
-    margin-bottom: 0.5rem;
-}
-
-/* Creation Method Cards */
-.creationMethodCard {
-    width: 320px;
-    min-height: 100px;
-    border: 2px solid #d9d9d9;
-    border-radius: 6px;
-    padding: 1.25rem;
-    margin-right: 1rem;
-    margin-bottom: 0.75rem;
-    cursor: pointer;
-    background-color: white;
-    transition: all 0.2s ease;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.creationMethodCard .sapMFlexBox {
-    display: block;
-}
-
-.creationMethodCard:hover {
-    border-color: #0070f2;
-    box-shadow: 0 2px 12px rgba(0, 112, 242, 0.15);
-    transform: translateY(-2px);
-}
-
-.creationMethodCard.selectedMethodCard {
-    border-color: #0070f2;
-    background-color: #f0f7ff;
-    box-shadow: 0 2px 8px rgba(0, 112, 242, 0.2);
-}
-
-.methodCardTitle {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: #32363a;
-    margin-bottom: 0.25rem;
-}
-
-.methodCardSubtitle {
-    font-size: 0.8125rem;
-    color: #6a6d70;
-    line-height: 1.4;
-}
-
-/* Field Description */
-.fieldDescription {
-    font-size: 0.75rem;
-    color: #6a6d70;
-    margin-top: 0.25rem;
-}
-
-/* Range Input Spacing */
-.rangeToText {
-    line-height: 2.5rem;
-    color: #6a6d70;
-    font-size: 0.875rem;
-    font-weight: 500;
-}
-
-/* Generated Zone Codes Box */
-.generatedCodesBox {
-    background-color: #f0f7ff;
-    padding: 1rem;
-    border-radius: 6px;
-    border: 1px solid #d0e7ff;
-    display: flex;
-    gap: 0.5rem;
-}
-
-.generatedCodeChip {
-    background-color: white;
-    border: 1px solid #0070f2;
-    border-radius: 4px;
-    padding: 0.375rem 0.875rem;
-    font-family: 'Courier New', 'Consolas', monospace;
-    font-size: 0.8125rem;
-    color: #0070f2;
-    font-weight: 600;
-}
-
-.generatedCodeChip .sapMObjStatusText {
-    color: #0070f2 !important;
-    font-family: 'Courier New', 'Consolas', monospace;
-    font-weight: 600;
-}
-
-/* Quick Template Cards */
-.quickTemplateCard {
-    width: 310px;
-    min-height: 90px;
-    border: 2px solid #d9d9d9;
-    border-radius: 6px;
-    padding: 1.25rem;
-    margin-right: 1rem;
-    margin-bottom: 0.75rem;
-    cursor: pointer;
-    background-color: white;
-    transition: all 0.2s ease;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.quickTemplateCard .sapMPanelContent {
-    padding: 0 !important;
-}
-
-.quickTemplateCard:hover {
-    border-color: #0070f2;
-    box-shadow: 0 2px 12px rgba(0, 112, 242, 0.15);
-    transform: translateY(-2px);
-}
-
-.quickTemplateCard.largeTemplateCard {
-    border-color: #4caf50;
-    background-color: #f1f8f4;
-}
-
-.quickTemplateCard.largeTemplateCard:hover {
-    border-color: #4caf50;
-    box-shadow: 0 2px 12px rgba(76, 175, 80, 0.2);
-}
-
-.templateCardTitle {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: #0070f2;
-    margin-bottom: 0.375rem;
-}
-
-.largeTemplateCard .templateCardTitle {
-    color: #4caf50;
-}
-
-.templateCardSubtitle {
-    font-size: 0.8125rem;
-    color: #6a6d70;
-    line-height: 1.5;
-}
-
-/* Total Summary Box */
-.totalSummaryBox {
-    background-color: #fffbea;
-    border: 2px solid #ffd54f;
-    border-radius: 6px;
-    padding: 1.5rem;
-}
-
-.summaryLabel {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: #32363a;
-    margin-bottom: 0.25rem;
-}
-
-.summarySubtext {
-    font-size: 0.8125rem;
-    color: #6a6d70;
-}
-
-.summaryNumber {
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: #f57c00;
-    line-height: 1;
-}
-
-/* Footer Note */
-.footerNote {
-    font-size: 0.75rem;
-    color: #6a6d70;
-    text-align: center;
-    font-style: italic;
-}
-
-/* ==================== EXCEL IMPORT STYLES ==================== */
-
-/* Column Labels */
-.columnLabel {
-    font-size: 0.8125rem;
-    color: #32363a;
-    font-weight: 500;
-}
-
-.optionalLabel {
-    color: #6a6d70;
-}
-
-/* Excel Action Boxes */
-.excelActionBox {
-    background-color: #fafafa;
-    border: 2px dashed #d9d9d9;
-    border-radius: 6px;
-    padding: 2rem 1.5rem;
-    text-align: center;
-}
-
-.excelActionTitle {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #32363a;
-    margin-bottom: 0.25rem;
-}
-
-.excelActionSubtext {
-    font-size: 0.8125rem;
-    color: #6a6d70;
-    line-height: 1.5;
-}
-
-/* Sample Data Table */
-.sampleTable {
-    border: 1px solid #e5e5e5;
-    border-radius: 4px;
-}
-
-.sampleTable .sapMListTblHeaderCell {
-    background-color: #f5f5f5;
-    font-weight: 600;
-    font-size: 0.8125rem;
-    color: #32363a;
-}
-
-.sampleDataCell {
-    font-size: 0.8125rem;
-    color: #32363a;
-}
-
-/* ==================== DIALOG SIZING & LAYOUT ==================== */
-
-#createBulkZonesDialog {
-    min-height: 600px;
-}
-
-#createBulkZonesDialog .sapMDialogScroll {
-    background-color: #fafafa;
-}
-
-#createBulkZonesDialog .sapMDialogTitle {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #32363a;
-}
-
-#createBulkZonesDialog .sapMDialogFooter {
-    border-top: 1px solid #e5e5e5;
-    padding: 1rem 1.5rem;
-    background-color: white;
-}
-
-/* ==================== MESSAGE STRIP CUSTOMIZATION ==================== */
-
-.sapMMessageStrip {
-    border-radius: 4px;
-}
-
-/* ==================== RESPONSIVE ADJUSTMENTS ==================== */
-
-@media (max-width: 768px) {
-    .creationMethodCard {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 0.75rem;
-    }
-    
-    .quickTemplateCard {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 0.75rem;
-    }
-    
-    .summaryNumber {
-        font-size: 2.5rem;
-    }
-    
-    .excelActionBox {
-        padding: 1.5rem 1rem;
-    }
-}
-
-/* ==================== GENERAL SAPUI5 OVERRIDES ==================== */
-
-.sapMTitle.sapMTitleStyleH2 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #32363a;
-    margin-bottom: 0.75rem;
-}
-
-.sapMTitle.sapMTitleStyleH3 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #32363a;
-    margin-bottom: 0.5rem;
-}
-
-.sapMPanel {
-    border: none;
-    box-shadow: none;
-}
-
-.sapMITBContainerContent {
-    padding: 1.5rem;
-    background-color: white;
-}
-
-.sapMText {
-    line-height: 1.4;
-}
-
-.sapMLabel {
-    font-weight: 500;
-    color: #32363a;
-    margin-bottom: 0.375rem;
-}
-
-/* Input field consistency */
-.sapMInputBaseInner {
-    border-radius: 4px;
-}
-
-/* Button styling */
-.sapMBtn {
-    border-radius: 4px;
-}
-
-/* Ensure proper spacing in VBox */
-.sapUiVlt > * {
-    margin-bottom: 0;
-}
-
-/* HBox alignment */
-.sapMHBox {
-    align-items: center;
-}
-
-/* Horizontal Layout for Cards */
-.sapUiHLayout {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-}
-
-.sapUiHLayout > * {
-    flex-shrink: 0;
-}
-
-/* ==================== SECTION BACKGROUND COLORS ==================== */
-/* ==================== SECTION BACKGROUND COLORS ==================== */
-
-/* Mandatory Sections - Light Yellow/Cream */
-.zoneSection.mandatory {
-    background-color: #FFF9E6;
-    border: 1px solid #F5E5B8;
-}
-
-/* Optional/Non-Mandatory Sections - Light Blue */
-.zoneSection.optional {
-    background-color: #E3F2FD;
-    border: 1px solid #BBDEFB;
-}
-
-/* Display-Only Sections - Light Purple */
-.zoneSection.displayOnly {
-    background-color: #F3E5F5;
-    border: 1px solid #E1BEE7;
-}
-
-/* Default Zone Section (if no class specified) */
-.zoneSection {
-    background-color: white;
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
-    padding: 1rem 1.25rem;
-    margin-bottom: 0.75rem;
-    transition: all 0.2s ease;
-}
-
-/* Excel Action Box - Remove background so section color shows */
-.zoneSection .excelActionBox {
-    background-color: transparent !important;
-    border: 2px dashed rgba(0, 0, 0, 0.15);
-    border-radius: 6px;
-    padding: 2rem 1.5rem;
-    text-align: center;
-}
-
-/* Adjust border colors for different section types */
-.zoneSection.mandatory .excelActionBox {
-    border-color: rgba(245, 229, 184, 0.8);
-}
-
-.zoneSection.optional .excelActionBox {
-    border-color: rgba(187, 222, 251, 0.8);
-}
-
-.zoneSection.displayOnly .excelActionBox {
-    border-color: rgba(225, 190, 231, 0.8);
-}
-
-/* Section Title styling for better visibility on colored backgrounds */
-.zoneSection.mandatory .sectionTitle,
-.zoneSection.optional .sectionTitle,
-.zoneSection.displayOnly .sectionTitle {
-    font-weight: 600;
-    color: #32363a;
-}
-
-/* Optional: Add a small indicator icon or badge */
-.zoneSection.mandatory::before {
-    content: "● ";
-    color: #F57C00;
-    font-size: 0.875rem;
-    margin-right: 0.25rem;
-}
-
-.zoneSection.optional .sectionTitle::after {
-    content: " (Optional)";
-    font-size: 0.75rem;
-    color: #6a6d70;
-    font-weight: 400;
-}
-
-.zoneSection.displayOnly .sectionTitle::after {
-    content: " (Display Only)";
-    font-size: 0.75rem;
-    color: #6a6d70;
-    font-weight: 400;
+    border: 1px solid #686d74;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px #d1d1d1; 
+}
+.SampleGeneratedLocationCodes{
+    background-color: #bdcddd;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
 }

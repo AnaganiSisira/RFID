@@ -53,6 +53,10 @@
           "bundleName": "rfidwarehousesuiteui.i18n.i18n"
         }
       },
+       "StorageLocationModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/storageLocation.json"
+      },
       "ZonesModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/data.json"
