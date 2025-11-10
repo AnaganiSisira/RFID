@@ -60,36 +60,36 @@
 					<!-- Aisle -->
 					<HBox alignItems="Center" class="rangeRow" wrap="Wrap">
 						<CheckBox id="chkAisle" text="Aisle" selected="true"/>
-						<Input placeholder="A" width="4rem" class="sapUiTinyMarginBegin"/>
+						<Input id="inpAisleFrom" placeholder="A" width="4rem" change=".onGenerateCodes" class="sapUiTinyMarginBegin"/>
 						<Text text="to" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
-						<Input placeholder="J" width="4rem"/>
+						<Input id="inpAisleTo" placeholder="J" change=".onGenerateCodes" width="4rem"/>
 						<Text text="(10 aisles: A, B, C...)" class="noteText sapUiTinyMarginBegin"/>
 					</HBox>
 
 					<!-- Rack -->
 					<HBox alignItems="Center" class="rangeRow" wrap="Wrap">
 						<CheckBox id="chkRack" text="Rack" selected="true"/>
-						<Input placeholder="1" width="4rem" class="sapUiTinyMarginBegin"/>
+						<Input id="inpRackFrom" placeholder="1" width="4rem" change=".onGenerateCodes" class="sapUiTinyMarginBegin"/>
 						<Text text="to" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
-						<Input placeholder="20" width="4rem"/>
+						<Input id="inpRackTo" placeholder="20" change=".onGenerateCodes" width="4rem"/>
 						<Text text="(20 racks: 01, 02, ... 20)" class="noteText sapUiTinyMarginBegin"/>
 					</HBox>
 
 					<!-- Level -->
 					<HBox alignItems="Center" class="rangeRow" wrap="Wrap">
 						<CheckBox id="chkLevel" text="Level" selected="true"/>
-						<Input placeholder="1" width="4rem" class="sapUiTinyMarginBegin"/>
+						<Input id="inpLevelFrom" placeholder="1" width="4rem" change=".onGenerateCodes" class="sapUiTinyMarginBegin"/>
 						<Text text="to" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
-						<Input placeholder="4" width="4rem"/>
+						<Input id="inpLevelTo" placeholder="4" width="4rem" change=".onGenerateCodes"/>
 						<Text text="(4 levels: 01, 02, 03, 04)" class="noteText sapUiTinyMarginBegin"/>
 					</HBox>
 
 					<!-- Bin -->
 					<HBox alignItems="Center" class="rangeRow" wrap="Wrap">
 						<CheckBox id="chkBin" text="Bin    " selected="true"/>
-						<Input placeholder="1" width="4rem" class="sapUiTinyMarginBegin"/>
+						<Input id="inpBinFrom" placeholder="1" width="4rem" change=".onGenerateCodes" class="sapUiTinyMarginBegin"/>
 						<Text text="to" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
-						<Input placeholder="2" width="4rem"/>
+						<Input id="inpBinTo" placeholder="2" width="4rem" change=".onGenerateCodes"/>
 						<Text text="(2 bins: 01, 02)" class="noteText sapUiTinyMarginBegin"/>
 					</HBox>
 				</VBox>
@@ -101,7 +101,7 @@
 				<VBox class="sampleBox sapUiSmallMarginTop">
 					<Title text="Sample Generated Location Codes:" class="sapUiTinyMarginBottom"/>
 					<HBox wrap="Wrap" class="codeContainer">
-						<Text class="SampleGeneratedLocationCodes" text="A-01-01-01" />
+						<Text class="SampleGeneratedLocationCodes" text="{localModel>/displayCodes}" />
 						<Text class="SampleGeneratedLocationCodes" text="A-01-02-01" />
 						<Text class="SampleGeneratedLocationCodes" text="A-01-02-02" />
 						<Text class="SampleGeneratedLocationCodes" text="J-20-04-02" />

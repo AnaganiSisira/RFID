@@ -93,7 +93,69 @@ sap.ui.define([
           ? aValues.join("–")
           : "(Enter component values above)";
       oModel.refresh(true);
+    },
+    onGenerateCodes: function () {
+    const view = this.getView();
+    const components = [];
+
+    const addComp = (chkId, fromId, toId) => {
+        const chk = view.byId(chkId);
+        if (chk.getSelected()) {
+            components.push({
+                from: this.byId(fromId).getValue(),
+                to: this.byId(toId).getValue()
+            });
+        }
+    };
+
+    addComp("chkAisle", "inpAisleFrom", "inpAisleTo");
+    addComp("chkRack", "inpRackFrom", "inpRackTo");
+    addComp("chkLevel", "inpLevelFrom", "inpLevelTo");
+    addComp("chkBin", "inpBinFrom", "inpBinTo");
+
+    if (components.length === 0) {
+        this.getView().getModel("locationModel").setProperty("/displayCodes", "(Select at least one component)");
+        return;
     }
+
+    // Build ranges
+    const ranges = components.map(c => {
+        const from = c.from || "1";
+        const to = c.to || "1";
+        if (isNaN(from)) {
+            const start = from.charCodeAt(0);
+            const end = to.charCodeAt(0);
+            return Array.from({ length: end - start + 1 }, (_, i) => String.fromCharCode(start + i));
+        } else {
+            const start = parseInt(from);
+            const end = parseInt(to);
+            return Array.from({ length: end - start + 1 }, (_, i) => (start + i).toString().padStart(2, "0"));
+        }
+    });
+
+    // Generate combinations
+    const combinations = ranges.reduce((acc, curr) => {
+        const res = [];
+        acc.forEach(a => curr.forEach(b => res.push(a + "-" + b)));
+        return res;
+    }, [""]);
+
+    if (combinations.length === 0) {
+        this.getView().getModel("localModel").setProperty("/displayCodes", "(No combinations found)");
+        return;
+    }
+
+    // Select first 2 + last 2
+    const sampleCodes = [
+        combinations[0] || combinations[1],
+        combinations[2] || combinations[1],
+        "...",
+        combinations[combinations.length - 2],
+        combinations[combinations.length - 1]
+    ].filter(Boolean);
+
+    this.getView().getModel("localModel").setProperty("/displayCodes", sampleCodes.join("    "));
+}
 
   });
 });
