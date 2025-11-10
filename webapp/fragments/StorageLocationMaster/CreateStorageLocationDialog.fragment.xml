@@ -1,4 +1,4 @@
-<core:FragmentDefinition xmlns:layout="sap.ui.layout"
+<core:FragmentDefinition xmlns:f="sap.f" xmlns:layout="sap.ui.layout"
 	xmlns:calendar="sap.ui.unified.calendar"
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core"
@@ -8,6 +8,25 @@
 
 		<content>
 			<Title text="Location Structure Type" />
+			<HBox class="typeContainer sapUiMediumMarginBottom" justifyContent="Start" wrap="Wrap">
+
+				<!-- Hierarchical Card -->
+				<layout:VerticalLayout ></layout:VerticalLayout>
+				<VBox id="idHierarchicalCard"  class="typeCard" tooltip="Hierarchical (Auto-generated)">
+					<Title text="Hierarchical (Auto-generated)" level="H5" />
+					<Text text="Build location code from components like Aisle, Rack, Level, Bin, etc." />
+					<Text text="Example: A-01-02-03 or R01-12 or COLD-RM01-S3" class="exampleText" />
+				</VBox>
+
+				<!-- Simple Card -->
+				<VBox id="idSimpleCard" class="typeCard" tooltip="Simple (Custom Code)">
+					<Title text="Simple (Custom Code)" level="H5" />
+					<Text text="Enter your own custom location code manually." />
+					<Text text="Example: RECV-BAY-01 or FLOOR-AREA-5" class="exampleText" />
+				</VBox>
+
+			</HBox>
+
 
 			<form:SimpleForm class="hierarchy-panel Mandatory-Fields" backgroundDesign="Transparent" editable="true" layout="ColumnLayout" columnsXL="3" columnsL="2" columnsM="2" width="100%">
 				<form:toolbar>
@@ -46,47 +65,52 @@
 						<MenuButton text="+ Add Component" type="Emphasized">
 							<menu>
 								<Menu>
-									<MenuItem text="Aisle" />
-									<MenuItem text="Rack" />
-									<MenuItem text="Level" />
-									<MenuItem text="Bin" />
+									<MenuItem text="Aisle" press=".onAddComponent" />
+									<MenuItem text="Rack" press=".onAddComponent" />
+									<MenuItem text="Level" press=".onAddComponent" />
+									<MenuItem text="Bin" press=".onAddComponent" />
 								</Menu>
 							</menu>
 						</MenuButton>
 					</OverflowToolbar>
 				</Toolbar>
 
-				<HBox justifyContent="SpaceBetween" alignItems="Center" wrap="Wrap" class="sapUiSmallMarginBottom">
+				<HBox justifyContent="Start" alignItems="Center" wrap="Wrap" class="sapUiSmallMarginTop sapUiSmallMarginBottom">
 
-					<HBox alignItems="Center" class="component-box">
+					<!-- Aisle -->
+					<HBox alignItems="Center" class="component-box" visible="{localModel>/Aisle/visible}">
 						<Label text="Aisle" showColon="true" labelFor="idAisle" class="sapUiSmallMarginEnd" />
-						<Input id="idAisle" width="5rem" liveChange=".onInputChange" />
-						<Button icon="sap-icon://decline" type="Transparent" press=".onRemoveComponent" />
+						<Input id="idAisle" width="5rem" value="{localModel>/Aisle/value}" change=".onInputChange" />
+						<Button icon="sap-icon://decline" type="Transparent" press=".onRemoveComponent('Aisle')" />
 					</HBox>
 
-					<HBox alignItems="Center" class="component-box">
+					<!-- Rack -->
+					<HBox alignItems="Center" class="component-box" visible="{localModel>/Rack/visible}">
 						<Label text="Rack" showColon="true" labelFor="idRack" class="sapUiSmallMarginEnd" />
-						<Input id="idRack" width="5rem" liveChange=".onInputChange" />
-						<Button icon="sap-icon://decline" type="Transparent" press=".onRemoveComponent" />
+						<Input id="idRack" width="5rem" value="{localModel>/Rack/value}" change=".onInputChange" />
+						<Button icon="sap-icon://decline" type="Transparent" press=".onRemoveComponent('Rack')" />
 					</HBox>
 
-					<HBox alignItems="Center" class="component-box">
+					<!-- Level -->
+					<HBox alignItems="Center" class="component-box" visible="{localModel>/Level/visible}">
 						<Label text="Level" showColon="true" labelFor="idLevel" class="sapUiSmallMarginEnd" />
-						<Input id="idLevel" width="5rem" liveChange=".onInputChange" />
-						<Button icon="sap-icon://decline" type="Transparent" press=".onRemoveComponent" />
+						<Input id="idLevel" width="5rem" value="{localModel>/Level/value}" change=".onInputChange" />
+						<Button icon="sap-icon://decline" type="Transparent" press=".onRemoveComponent('Level')" />
 					</HBox>
 
-					<HBox alignItems="Center" class="component-box">
+					<!-- Bin -->
+					<HBox alignItems="Center" class="component-box" visible="{localModel>/Bin/visible}">
 						<Label text="Bin" showColon="true" labelFor="idBin" class="sapUiSmallMarginEnd" />
-						<Input id="idBin" width="5rem" liveChange=".onInputChange" />
-						<Button icon="sap-icon://decline" type="Transparent" press=".onRemoveComponent" />
+						<Input id="idBin" width="5rem" value="{localModel>/Bin/value}" change=".onInputChange" />
+						<Button icon="sap-icon://decline" type="Transparent" press=".onRemoveComponent('Bin')" />
 					</HBox>
 
 				</HBox>
 
+
 				<VBox class="generated-box">
 					<Label text="Generated Location Code:" />
-					<Text id="idGeneratedCode" text="(Enter component values above)" class="sapUiSmallMarginTop generated-text" wrapping="true" />
+					<Text id="idGeneratedCode" text="{localModel>/GeneratedCode}" class="sapUiSmallMarginTop generated-text" wrapping="true" />
 				</VBox>
 
 				<Label text="Common Structure Examples:" design="Bold" class="sapUiSmallMarginBottom" />
@@ -112,7 +136,7 @@
 				</HBox>
 			</Panel>
 			<Panel class="hierarchy-panel Barcode-Strategy" backgroundDesign="Transparent">
-				<Toolbar design="Transparent" >
+				<Toolbar design="Transparent">
 					<OverflowToolbar class="Barcode-Strategy">
 						<core:Icon src="sap-icon://bar-code" size="1.5rem" color="#8e44ad"/>
 						<Title text="Barcode Strategy: Composite Single Barcode" />
@@ -126,17 +150,17 @@
 				<!-- Features Line -->
 				<HBox class="sapUiTinyMarginTop" justifyContent="SpaceAround" wrap="Wrap">
 					<HBox alignItems="Center">
-						<core:Icon src="sap-icon://accept" color="green" size="1rem"/>
+						<core:Icon src="sap-icon://sys-enter" color="green" size="1rem"/>
 						<Text text="Fast - only 2 scans (item + location)" class="sapUiTinyMarginBegin"/>
 					</HBox>
 
 					<HBox alignItems="Center">
-						<core:Icon src="sap-icon://accept" color="green" size="1rem"/>
+						<core:Icon src="sap-icon://sys-enter" color="green" size="1rem"/>
 						<Text text="Accurate verification" class="sapUiTinyMarginBegin"/>
 					</HBox>
 
 					<HBox alignItems="Center">
-						<core:Icon src="sap-icon://accept" color="green" size="1rem"/>
+						<core:Icon src="sap-icon://sys-enter" color="green" size="1rem"/>
 						<Text text="QR code option available" class="sapUiTinyMarginBegin"/>
 					</HBox>
 				</HBox>
@@ -145,14 +169,14 @@
 				<VBox class="dividerLine sapUiSmallMarginTop sapUiSmallMarginBottom"/>
 
 				<!-- Putaway Process -->
-				<VBox>
+				<VBox class="PutawayProcess ">
 					<Text text="Putaway Process:" class="sapUiTinyMarginBottom" />
 					<HBox alignItems="Center">
-						<Button text="1. Scan Item" type="Transparent" />
-						<Text text="›" class="sapUiTinyMarginBegin sapUiTinyMarginEnd" />
-						<Button text="2. Scan Location Barcode" type="Transparent" />
-						<Text text="›" class="sapUiTinyMarginBegin sapUiTinyMarginEnd" />
-						<ObjectStatus text="Verified" state="Success"/>
+						<Text text="1. Scan Item" class="ScanItem" />
+						<core:Icon src="sap-icon://slim-arrow-right" size="15px" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"></core:Icon>
+						<Text text="2. Scan Location Barcode" class="ScanLocationBarcode" />
+						<core:Icon src="sap-icon://slim-arrow-right" size="15px" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"></core:Icon>
+						<Text text="✓ Verified" class="Verified" />
 					</HBox>
 				</VBox>
 			</Panel>
@@ -200,10 +224,10 @@
 				<Label text="Allowed Product Categories"></Label>
 				<Input placeholder="All Categories"></Input>
 				<Label ></Label>
-				<CheckBox text="Allow Mixed SKUs"></CheckBox>
-				<CheckBox text="Allow Mixed Batches"></CheckBox>
-				<CheckBox text="QC Check Required"></CheckBox>
-				<CheckBox text="High Security"></CheckBox>
+				<CheckBox text="Allow Mixed SKUs" wrapping="true"></CheckBox>
+				<CheckBox text="Allow Mixed Batches" wrapping="true"></CheckBox>
+				<CheckBox text="QC Check Required" wrapping="true"></CheckBox>
+				<CheckBox text="High Security" wrapping="true"></CheckBox>
 			</form:SimpleForm>
 
 		</content>

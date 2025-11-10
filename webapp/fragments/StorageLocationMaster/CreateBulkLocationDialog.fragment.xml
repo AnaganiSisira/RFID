@@ -43,9 +43,9 @@
 					<core:Item key="Shelving" text="Shelving" />
 				</Select>
 			</form:SimpleForm>
-			<Panel class="hierarchy-panel Hierarchy-Components" backgroundDesign="Translucent">
-				<Toolbar >
-					<OverflowToolbar class="Hierarchy-Components" design="Transparent">
+			<Panel class="hierarchy-panel Hierarchy-Components" backgroundDesign="Transparent">
+				<Toolbar  design="Transparent" width="100%" >
+					<OverflowToolbar class="Hierarchy-Components">
 						<core:Icon src="sap-icon://dimension" size="1.5rem" color="#1f77d0"/>
 						<Title text="Component Ranges " />
 					</OverflowToolbar>
@@ -86,7 +86,7 @@
 
 					<!-- Bin -->
 					<HBox alignItems="Center" class="rangeRow" wrap="Wrap">
-						<CheckBox id="chkBin" text="Bin" selected="true"/>
+						<CheckBox id="chkBin" text="Bin    " selected="true"/>
 						<Input placeholder="1" width="4rem" class="sapUiTinyMarginBegin"/>
 						<Text text="to" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
 						<Input placeholder="2" width="4rem"/>
@@ -99,15 +99,16 @@
 
 				<!-- Sample Generated Codes -->
 				<VBox class="sampleBox sapUiSmallMarginTop">
-					<Text text="Sample Generated Location Codes:" class="sapUiTinyMarginBottom"/>
+					<Title text="Sample Generated Location Codes:" class="sapUiTinyMarginBottom"/>
 					<HBox wrap="Wrap" class="codeContainer">
-						<ObjectStatus text="A-01-01-01" state="Information"/>
-						<ObjectStatus text="A-01-02-01" state="Information"/>
-						<ObjectStatus text="A-01-02-02" state="Information"/>
-						<ObjectStatus text="J-20-04-02" state="Information"/>
+						<Text class="SampleGeneratedLocationCodes" text="A-01-01-01" />
+						<Text class="SampleGeneratedLocationCodes" text="A-01-02-01" />
+						<Text class="SampleGeneratedLocationCodes" text="A-01-02-02" />
+						<Text class="SampleGeneratedLocationCodes" text="J-20-04-02" />
 					</HBox>
 					<HBox alignItems="Center" class="sapUiTinyMarginTop">
-						<Text text="Final Destination:" class="noteText sapUiTinyMarginEnd"/>
+						<core:Icon src="sap-icon://map" class="sapUiTinyMarginEnd" color="red"></core:Icon>
+						<Title text="Final Destination:" class="noteText sapUiTinyMarginEnd"/>
 						<ObjectStatus text="Last component (BIN in this example)" state="Success"/>
 					</HBox>
 				</VBox>
@@ -146,7 +147,7 @@
 </Panel>
 <!-- Total Summary Box -->
     <VBox class="summaryBox hierarchy-panel">
-        <Text text="Total Locations to Create:" class="summaryTitle"/>
+        <Title text="Total Locations to Create:" class="summaryTitle"/>
         <Text text="10 aisles × 20 racks × 4 levels × 2 bins" class="summaryEquation"/>
 
         <HBox alignItems="Center" justifyContent="SpaceBetween" class="summaryDetails">
@@ -167,7 +168,7 @@
                 </HBox>
             </VBox>
 
-            <Text text="1,600" class="summaryCount"/>
+            <Title text="1,600" level="H6" class="summaryCount"/>
         </HBox>
     </VBox>
 		</content>
