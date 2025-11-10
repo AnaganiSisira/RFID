@@ -302,6 +302,63 @@ sap.ui.define([
             }
             
             return (aParts[0].charAt(0) + aParts[aParts.length - 1].charAt(0)).toUpperCase();
+        },
+
+          
+       
+        getUtilizationState: function (utilization) {
+            if (!utilization && utilization !== 0) {
+                return "None";
+            }
+
+            var value = parseFloat(utilization);
+
+            if (value <= 50) {
+                return "Success"; // Green
+            } else if (value <= 75) {
+                return "Warning"; // Orange
+            } else {
+                return "Error"; // Red
+            }
+        },
+
+        /**
+         * Formatter to add custom CSS class for utilization styling
+         * @param {number} utilization - The utilization percentage
+         * @returns {string} The CSS class name
+         */
+        getUtilizationClass: function (utilization) {
+            if (!utilization && utilization !== 0) {
+                return "";
+            }
+
+            var value = parseFloat(utilization);
+
+            if (value <= 50) {
+                return "utilizationLow";
+            } else if (value <= 75) {
+                return "utilizationMedium";
+            } else {
+                return "utilizationHigh";
+            }
+        },
+
+        /**
+         * Formatter for status state
+         * @param {string} status - The status value
+         * @returns {string} The state for ObjectStatus
+         */
+        getStatusState: function (status) {
+            switch (status) {
+                case "Active":
+                    return "Success";
+                case "Inactive":
+                    return "Error";
+                case "Maintenance":
+                    return "Warning";
+                default:
+                    return "None";
+            }
         }
 
     };

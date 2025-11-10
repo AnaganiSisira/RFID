@@ -13,40 +13,57 @@
         </headerContent>
 
         <content>
-            <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" wrap="Wrap">
-    <!-- Total Zones -->
-    <VBox class="card" alignItems="Center">
-        <Title text="Total Zones" wrapping="true" />
-        <ObjectNumber number="25" state="Information" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
-        <ObjectStatus text="Warehouse Overview" state="Information"></ObjectStatus>
-    </VBox>
+            <HBox class="sapUiSmallMarginBottom kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
+                <!-- Total Zones -->
+                <VBox class="card" alignItems="Center" justifyContent="Center">
+                    <Title text="Total Zones" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber 
+                        number="25" 
+                        state="Information" 
+                        emphasized="true"
+                        class="cardNumber" />
+                    <ObjectStatus text="Warehouse Overview" state="Information" class="cardStatus"/>
+                </VBox>
 
-    <!-- Active Zones -->
-    <VBox class="card" alignItems="Center">
-        <Title text="Active Zones" wrapping="true"/>
-        <ObjectNumber number="23" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
-        <ObjectStatus text="Currently operational" state="Success"></ObjectStatus>
-    </VBox>
+                <!-- Active Zones -->
+                <VBox class="card" alignItems="Center" justifyContent="Center">
+                    <Title text="Active Zones" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber 
+                        number="23" 
+                        state="Success" 
+                        emphasized="true"
+                        class="cardNumber" />
+                    <ObjectStatus text="Currently operational" state="Success" class="cardStatus"/>
+                </VBox>
 
-    <!-- Avg. Utilization -->
-    <VBox class="card" alignItems="Center">
-        <Title text="Avg. Utilization" wrapping="true"/>
-        <ObjectNumber number="66%" state="Warning" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
-        <ObjectStatus text="Storage utilization" state="Warning"></ObjectStatus>
-    </VBox>
+                <!-- Avg. Utilization -->
+                <VBox class="card" alignItems="Center" justifyContent="Center">
+                    <Title text="Avg. Utilization" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber 
+                        number="66" 
+                        unit="%" 
+                        state="Warning" 
+                        emphasized="true"
+                        class="cardNumber" />
+                    <ObjectStatus text="Storage utilization" state="Warning" class="cardStatus"/>
+                </VBox>
 
-    <!-- Active Alerts -->
-    <VBox class="card" alignItems="Center">
-        <Title text="Active Alerts" wrapping="true"/>
-        <ObjectNumber number="3" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
-        <ObjectStatus text="Critical conditions" state="Error"></ObjectStatus>
-    </VBox>
-</HBox>
+                <!-- Active Alerts -->
+                <VBox class="card" alignItems="Center" justifyContent="Center">
+                    <Title text="Active Alerts" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber 
+                        number="3" 
+                        state="Error" 
+                        emphasized="true"
+                        class="cardNumber" />
+                    <ObjectStatus text="Critical conditions" state="Error" class="cardStatus"/>
+                </VBox>
+            </HBox>
 
             <Table id="idZonesTable" inset="false" items="{
-    path: 'ZonesModel>/Zones',
-    sorter: { path: 'zoneName' }
-}">
+                path: 'ZonesModel>/Zones',
+                sorter: { path: 'zoneName' }
+            }">
                 <headerToolbar>
                     <OverflowToolbar>
                         <content>
@@ -56,7 +73,7 @@
                             <ToolbarSpacer />
 
                             <Button icon="sap-icon://download" text="Export" />
-                            <Button icon="sap-icon://upload" text="Import" />
+                            <!-- <Button icon="sap-icon://upload" text="Import" /> -->
                             <Button icon="sap-icon://batch-payments" text="Bulk Create" press=".onBulkOperations" />
                             <Button icon="sap-icon://add" text="Create Zone" type="Emphasized" press=".onCreateZonesMasters" />
                         </content>
@@ -100,14 +117,18 @@
                             <Text text="{ZonesModel>zoneName}" />
                             <Text text="{ZonesModel>type}" />
                             <Text text="{ZonesModel>areaCapacity}" />
-                            <ProgressIndicator percentValue="{ZonesModel>utilization}" displayValue="{ZonesModel>utilization}%" />
+                            <ProgressIndicator 
+                                percentValue="{ZonesModel>utilization}" 
+                                displayValue="{ZonesModel>utilization}%" 
+                                state="{path: 'ZonesModel>utilization', formatter: '.formatter.getUtilizationState'}"
+                                class="{path: 'ZonesModel>utilization', formatter: '.formatter.getUtilizationClass'}" />
                             <Text text="{ZonesModel>pallets}" />
                             <Text text="{ZonesModel>locations}" />
-                            <ObjectStatus text="{ZonesModel>status}" state="{= ${status} === 'Active' ? 'Success' : 'Error'}" />
+                            <ObjectStatus text="{ZonesModel>status}" state="{= ${ZonesModel>status} === 'Active' ? 'Success' : 'Error'}" />
                             <HBox>
-                                <Button icon="sap-icon://show" />
-                                <Button icon="sap-icon://edit" />
-                                <Button icon="sap-icon://delete" />
+                                <Button icon="sap-icon://show" press=".onViewZone" />
+                                <Button icon="sap-icon://edit" press=".onEditZone" />
+                                <Button icon="sap-icon://delete" press=".onDeleteZone" />
                             </HBox>
                         </cells>
                     </ColumnListItem>

@@ -1,25 +1,294 @@
-<core:FragmentDefinition
-    xmlns="sap.m"
+<core:FragmentDefinition xmlns="sap.m"
     xmlns:core="sap.ui.core"
-    xmlns:form="sap.ui.layout.form">
-
-    <Dialog
-        id="createBulkZonesDialog"
-        title="Bulk Location Creation"
-        contentWidth="80%">
+    xmlns:l="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc">
+    <Dialog id="createBulkZonesDialog" title="Bulk Create Zones" contentWidth="700px" resizable="true" draggable="true">
         <content>
-            <MessageStrip
-                class="sapUiSmallMargin"
-                showIcon="true"
-                type="Information"
-                text="Create multiple storage locations at once." />
-            <IconTabBar>
-                <items>
-                    <IconTabFilter text="Structured (Rack System)" />
-                    <IconTabFilter text="Simple Pattern" />
-                    <IconTabFilter text="Import Excel" />
-                </items>
-            </IconTabBar>
+            <VBox class="sapUiSmallMargin">
+                <!-- Creation Method Section -->
+                <VBox class="sapUiSmallMarginTop ">
+                    <Label text="Creation Method" class="sectionLabel sapUiTinyMarginBottom"/>
+                    <l:HorizontalLayout allowWrapping="true" class="sapUiTinyMarginTop">
+                        <FlexBox id="patternMethodCard" class="creationMethodCard selectedMethodCard">
+                            <customData>
+                                <core:CustomData key="method" value="pattern"/>
+                            </customData>
+                            <layoutData>
+                                <FlexItemData growFactor="0"/>
+                            </layoutData>
+                            <VBox alignItems="Start" width="100%">
+                                <core:Icon src="sap-icon://form" size="1.5rem" color="#0070f2" class="sapUiTinyMarginBottom"/>
+                                <Text text="Pattern-based Creation" class="methodCardTitle"/>
+                                <Text text="Create similar zones with pattern" class="methodCardSubtitle"/>
+                            </VBox>
+                        </FlexBox>
+
+                        <FlexBox id="excelMethodCard" class="creationMethodCard">
+                            <customData>
+                                <core:CustomData key="method" value="excel"/>
+                            </customData>
+                            <layoutData>
+                                <FlexItemData growFactor="0"/>
+                            </layoutData>
+                            <VBox alignItems="Start" width="100%">
+                                <core:Icon src="sap-icon://excel-attachment" size="1.5rem" color="#107C41" class="sapUiTinyMarginBottom"/>
+                                <Text text="Excel Import" class="methodCardTitle"/>
+                                <Text text="Upload Excel file with zones" class="methodCardSubtitle"/>
+                            </VBox>
+                        </FlexBox>
+                    </l:HorizontalLayout>
+                </VBox>
+
+                <!-- Pattern-based Content (visible by default) -->
+                <VBox id="patternContent" visible="true">
+                    <!-- Pattern Configuration Section -->
+                    <VBox class="zoneSection mandatory sapUiSmallMarginTop">
+                        <Text text="Pattern Configuration" class="sectionTitle sapUiTinyMarginBottom"/>
+                        <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+                            <VBox>
+                                <Label text="Prefix"/>
+                                <Input id="prefixInput" value="STOR-" placeholder="e.g., STOR-" width="100%" change="onInputChange"/>
+                                <Text text="Letters, numbers, and hyphens" class="fieldDescription"/>
+                            </VBox>
+                            <VBox>
+                                <Label text="Number Range"/>
+                                <HBox width="100%" alignItems="Center">
+                                    <Input id="fromInput" value="1" type="Number" width="42%" placeholder="From: 1" change="onInputChange"/>
+                                    <Text text="to" class="rangeToText sapUiSmallMarginBeginEnd"/>
+                                    <Input id="toInput" value="10" type="Number" width="42%" placeholder="To: 10" change="onInputChange"/>
+                                </HBox>
+                            </VBox>
+                        </l:Grid>
+                    </VBox>
+
+                    <!-- Generated Codes Section -->
+                    <VBox class="zoneSection optional sapUiSmallMarginTop">
+                        <Text text="Generated Zone Codes:" class="sectionTitle sapUiTinyMarginBottom"/>
+                        <HBox class="generatedCodesBox sapUiTinyMarginTop" wrap="Wrap">
+                            <ObjectStatus text="STOR-01" state="None" class="generatedCodeChip"/>
+                            <ObjectStatus text="STOR-02" state="None" class="generatedCodeChip"/>
+                            <ObjectStatus text="STOR-03" state="None" class="generatedCodeChip"/>
+                            <ObjectStatus text="..." state="None" class="generatedCodeChip"/>
+                            <ObjectStatus text="STOR-10" state="None" class="generatedCodeChip"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Common Properties Section -->
+                    <VBox class="zoneSection mandatory sapUiSmallMarginTop">
+                        <Text text="Common Properties (Applied to all zones)" class="sectionTitle sapUiTinyMarginBottom"/>
+                        <l:Grid containerQuery="true" defaultSpan="L4 M4 S12" class="sapUiSmallMarginTop">
+                            <VBox>
+                                <Label text="Area Size"/>
+                                <HBox alignItems="Center">
+                                    <Input value="500" type="Number" width="100%"/>
+                                    <Select selectedKey="m2" class="unitSelect sapUiTinyMarginBegin">
+                                        <core:Item key="m2" text="m²"/>
+                                        <core:Item key="ft2" text="ft²"/>
+                                    </Select>
+                                </HBox>
+                            </VBox>
+                            <VBox>
+                                <Label text="Max Weight"/>
+                                <HBox alignItems="Center">
+                                    <Input value="50000" type="Number" width="100%"/>
+                                    <Select selectedKey="kg" class="unitSelect sapUiTinyMarginBegin">
+                                        <core:Item key="kg" text="kg"/>
+                                        <core:Item key="lb" text="lb"/>
+                                    </Select>
+                                </HBox>
+                            </VBox>
+                            <VBox>
+                                <Label text="Max Volume"/>
+                                <HBox alignItems="Center">
+                                    <Input value="1000" type="Number" width="100%"/>
+                                    <Select selectedKey="m3" class="unitSelect sapUiTinyMarginBegin">
+                                        <core:Item key="m3" text="m³"/>
+                                        <core:Item key="ft3" text="ft³"/>
+                                    </Select>
+                                </HBox>
+                            </VBox>
+                        </l:Grid>
+                        <l:Grid containerQuery="true" defaultSpan="L4 M4 S12" class="sapUiTinyMarginTop">
+                            <VBox>
+                                <Label text="Max Pallets"/>
+                                <Input value="500" type="Number" width="100%"/>
+                            </VBox>
+                            <VBox>
+                                <Label text="Max Pallets"/>
+                                <Input value="500" type="Number" width="100%"/>
+                            </VBox>
+                            <VBox>
+                                <Label text="Initial Status"/>
+                                <Select selectedKey="Active" width="100%">
+                                    <core:Item key="Active" text="Active"/>
+                                    <core:Item key="Inactive" text="Inactive"/>
+                                </Select>
+                            </VBox>
+                        </l:Grid>
+                    </VBox>
+
+                    <!-- Quick Templates Section -->
+                    <VBox class="sapUiSmallMarginTop">
+                        <Text text="Or Use Quick Templates" class="sectionTitle sapUiTinyMarginBottom"/>
+                        <l:HorizontalLayout allowWrapping="true" class="sapUiTinyMarginTop">
+                            <Panel class="quickTemplateCard" headerText="">
+                                <customData>
+                                    <core:CustomData key="template" value="small"/>
+                                </customData>
+                                <content>
+                                    <VBox width="100%">
+                                        <Text text="Small Warehouse" class="templateCardTitle"/>
+                                        <Text text="5 zones (STOR-01 to STOR-05) with standard settings" class="templateCardSubtitle"/>
+                                    </VBox>
+                                </content>
+                            </Panel>
+
+                            <Panel class="quickTemplateCard largeTemplateCard" headerText="">
+                                <customData>
+                                    <core:CustomData key="template" value="large"/>
+                                </customData>
+                                <content>
+                                    <VBox width="100%">
+                                        <Text text="Large Warehouse" class="templateCardTitle"/>
+                                        <Text text="20 zones (STOR-01 to STOR-20) with high capacity" class="templateCardSubtitle"/>
+                                    </VBox>
+                                </content>
+                            </Panel>
+                        </l:HorizontalLayout>
+                    </VBox>
+
+                    <!-- Total Summary Section -->
+                    <VBox class="totalSummaryBox sapUiSmallMarginTop">
+                        <HBox justifyContent="SpaceBetween" alignItems="Center" width="100%">
+                            <VBox>
+                                <Text text="Total Zones to Create:" class="summaryLabel"/>
+                                <Text id="summaryRangeText" text="From STOR-01 to STOR-10" class="summarySubtext"/>
+                            </VBox>
+                            <Text id="summaryNumberText" text="10" class="summaryNumber"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- Footer Note -->
+                    <Text text="Zones will be created with auto-generated codes" class="footerNote sapUiSmallMarginTop"/>
+                </VBox>
+
+                <!-- Excel Import Content (hidden by default) -->
+                <VBox id="excelContent" visible="false">
+                    <!-- Excel Template Info -->
+                    <MessageStrip text="Download the template, fill in your zones data, and upload back. Required columns are marked." type="Information" showIcon="true" class="sapUiSmallMarginTop sapUiSmallMarginBottom">
+                        <link>
+                            <Link text="Download the template" press="onDownloadTemplate"/>
+                        </link>
+                    </MessageStrip>
+
+                    <!-- Required Columns Section - MANDATORY -->
+                    <VBox class="zoneSection mandatory sapUiSmallMarginTop">
+                        <Text text="Required Columns" class="sectionTitle sapUiTinyMarginBottom"/>
+                        <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://accept" color="#2D7D2D" size="1rem" class="sapUiTinyMarginEnd"/>
+                                <Text text="Zone Code (Required)" class="columnLabel"/>
+                            </HBox>
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://accept" color="#2D7D2D" size="1rem" class="sapUiTinyMarginEnd"/>
+                                <Text text="Zone Name (Required)" class="columnLabel"/>
+                            </HBox>
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://accept" color="#2D7D2D" size="1rem" class="sapUiTinyMarginEnd"/>
+                                <Text text="Zone Type (Required)" class="columnLabel"/>
+                            </HBox>
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://circle-task" color="#6a6d70" size="1rem" class="sapUiTinyMarginEnd"/>
+                                <Text text="Area Size (Optional)" class="columnLabel optionalLabel"/>
+                            </HBox>
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://circle-task" color="#6a6d70" size="1rem" class="sapUiTinyMarginEnd"/>
+                                <Text text="Max Weight (Optional)" class="columnLabel optionalLabel"/>
+                            </HBox>
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://circle-task" color="#6a6d70" size="1rem" class="sapUiTinyMarginEnd"/>
+                                <Text text="Max Pallets (Optional)" class="columnLabel optionalLabel"/>
+                            </HBox>
+                        </l:Grid>
+                    </VBox>
+
+                    <!-- Download Template Section - OPTIONAL -->
+                    <VBox class="zoneSection optional sapUiSmallMarginTop">
+                        <VBox class="excelActionBox" alignItems="Center">
+                            <core:Icon src="sap-icon://excel-attachment" size="3rem" color="#107C41" class="sapUiTinyMarginBottom"/>
+                            <Text text="Download Excel Template" class="excelActionTitle"/>
+                            <Text text="Get the pre-formatted template with all required columns" class="excelActionSubtext sapUiTinyMarginBottom"/>
+                            <Button text="Download Template" icon="sap-icon://download" type="Default" press="onDownloadTemplate" class="sapUiTinyMarginTop"/>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Upload Section - MANDATORY -->
+                    <VBox class="zoneSection mandatory sapUiSmallMarginTop">
+                        <VBox class="excelActionBox" alignItems="Center">
+                            <core:Icon src="sap-icon://upload" size="3rem" color="#0070f2" class="sapUiTinyMarginBottom"/>
+                            <Text text="Upload Completed Excel File" class="excelActionTitle"/>
+                            <Text text="Supported formats: .xlsx, .xls, .csv (Max 5MB, up to 1000 zones)" class="excelActionSubtext sapUiTinyMarginBottom"/>
+                            <Button text="Choose File" icon="sap-icon://upload" type="Emphasized" press="onUploadExcel" class="sapUiTinyMarginTop"/>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Sample Data Section - DISPLAY ONLY -->
+                    <VBox class="zoneSection displayOnly sapUiSmallMarginTop">
+                        <Text text="Sample Excel Data" class="sectionTitle sapUiTinyMarginBottom"/>
+                        <Table id="sampleDataTable" class="sampleTable">
+                            <columns>
+                                <Column width="12%">
+                                    <Text text="Zone Code"/>
+                                </Column>
+                                <Column width="20%">
+                                    <Text text="Zone Name"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Zone Type"/>
+                                </Column>
+                                <Column width="12%">
+                                    <Text text="Area Size"/>
+                                </Column>
+                                <Column width="15%">
+                                    <Text text="Max Weight"/>
+                                </Column>
+                                <Column width="13%">
+                                    <Text text="Max Pallets"/>
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="STOR-A" class="sampleDataCell"/>
+                                        <Text text="Storage Area A" class="sampleDataCell"/>
+                                        <Text text="Storage" class="sampleDataCell"/>
+                                        <Text text="500" class="sampleDataCell"/>
+                                        <Text text="50000" class="sampleDataCell"/>
+                                        <Text text="500" class="sampleDataCell"/>
+                                    </cells>
+                                </ColumnListItem>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="RCV-01" class="sampleDataCell"/>
+                                        <Text text="Receiving Bay 1" class="sampleDataCell"/>
+                                        <Text text="Receiving" class="sampleDataCell"/>
+                                        <Text text="200" class="sampleDataCell"/>
+                                        <Text text="20000" class="sampleDataCell"/>
+                                        <Text text="50" class="sampleDataCell"/>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </VBox>
+                </VBox>
+            </VBox>
         </content>
+
+        <beginButton>
+            <Button text="Cancel" type="Transparent" press=".onBulkCancelPress"/>
+        </beginButton>
+        <endButton>
+            <Button id="createButton" text="Create 10 Zones" type="Emphasized" press="onCreateZones"/>
+        </endButton>
     </Dialog>
 </core:FragmentDefinition>
