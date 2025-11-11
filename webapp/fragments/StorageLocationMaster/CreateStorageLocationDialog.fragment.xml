@@ -7,11 +7,9 @@
 	<Dialog id="createStorageLocationDialog" title="Create Storage Location" contentWidth="80%" class="sapUiResponsiveContentPadding">
 
 		<content>
-			<Title text="Location Structure Type" />
-			<HBox class="typeContainer sapUiMediumMarginBottom" justifyContent="Start" wrap="Wrap">
-
+			<Title class="sapUiMediumMarginBegin" text="Location Structure Type" />
+				<FlexBox class="sapUiTinyMarginTop sapUiTinyMarginBottom" justifyContent="Center" gap="1rem" wrap="Wrap" alignItems="Stretch">
 				<!-- Hierarchical Card -->
-				<layout:VerticalLayout ></layout:VerticalLayout>
 				<VBox id="idHierarchicalCard"  class="typeCard" tooltip="Hierarchical (Auto-generated)">
 					<Title text="Hierarchical (Auto-generated)" level="H5" />
 					<Text text="Build location code from components like Aisle, Rack, Level, Bin, etc." />
@@ -25,7 +23,7 @@
 					<Text text="Example: RECV-BAY-01 or FLOOR-AREA-5" class="exampleText" />
 				</VBox>
 
-			</HBox>
+			</FlexBox>
 
 
 			<form:SimpleForm class="hierarchy-panel Mandatory-Fields" backgroundDesign="Transparent" editable="true" layout="ColumnLayout" columnsXL="3" columnsL="2" columnsM="2" width="100%">
@@ -233,7 +231,7 @@
 		</content>
 
 		<beginButton>
-			<Button text="Create Location" type="Emphasized" press="onCreateLocationPress" />
+			<Button text="Save Location" type="Emphasized" press=".onSavePress('Location','createStorageLocationDialog')" />
 		</beginButton>
 
 		<endButton>
