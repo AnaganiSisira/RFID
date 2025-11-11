@@ -94,7 +94,6 @@ sap.ui.define([
             const oAppStateModel = this.getView().getModel("appState");
             
             oAppStateModel.setProperty("/selectedKey", sRouteName);
-            this._updatePageTitle(sRouteName);
         },
 
         /**

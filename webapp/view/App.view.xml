@@ -32,43 +32,60 @@
                     press=".onUserAvatarPress"/>
             </f:profile>
         </f:ShellBar> -->
-         <tnt:ToolHeader  >
-                	<Button class="ButtonColor" icon="sap-icon://nav-back" type="Transparent"  press=".onSideNavButtonPress" >
-				<layoutData>
-					<OverflowToolbarLayoutData priority="NeverOverflow"/>
-				</layoutData>
-			</Button>
-            <core:Icon src="sap-icon://warehouse"></core:Icon>
-            <Title text="RFID Warehouse Suite" wrapping="false">
-				<layoutData>
-					<OverflowToolbarLayoutData priority="NeverOverflow"/>
-				</layoutData>
-			</Title>
-            <Text text="{appState>/warehouseName}" >
-				<layoutData>
-					<OverflowToolbarLayoutData priority="Disappear"/>
-				</layoutData>
-			</Text>
-            <ToolbarSpacer ></ToolbarSpacer>
-            <Button class="ButtonColor" icon="sap-icon://bell" type="Transparent" tooltip="Notification" badgeStyle="Default">
-            	<customData>
-						<BadgeCustomData
-							key="badge"
-							value="3"
-							/>
-					</customData>
-		
-				<layoutData>
-					<OverflowToolbarLayoutData priority="NeverOverflow"/>
-				</layoutData>
-			</Button>
-            	<Avatar initials="HC" displaySize="XS" tooltip="Profile">
-				<layoutData>
-					<OverflowToolbarLayoutData priority="NeverOverflow"/>
-				</layoutData>
-			</Avatar>
-                </tnt:ToolHeader>
-                
+         <tnt:ToolHeader>
+    <Button class="ButtonColor" icon="sap-icon://menu2" type="Transparent" press=".onSideNavButtonPress">
+        <layoutData>
+            <OverflowToolbarLayoutData priority="NeverOverflow"/>
+        </layoutData>
+    </Button>
+    
+    <core:Icon src="sap-icon://warehouse"></core:Icon>
+    
+    <Title text="RFID Warehouse Suite" wrapping="false">
+        <layoutData>
+            <OverflowToolbarLayoutData priority="NeverOverflow"/>
+        </layoutData>
+    </Title>
+    
+    <Text text="{appState>/warehouseName}">
+        <layoutData>
+            <OverflowToolbarLayoutData priority="Disappear"/>
+        </layoutData>
+    </Text>
+    
+    <ToolbarSpacer></ToolbarSpacer>
+    
+    <!-- Search Button -->
+    <Button class="ButtonColor" icon="sap-icon://search" type="Transparent" tooltip="Search" press=".onSearchButtonPressed">
+        <layoutData>
+            <OverflowToolbarLayoutData priority="Low"/>
+        </layoutData>
+    </Button>
+    
+    <!-- Copilot Button -->
+    <Button class="ButtonColor" icon="sap-icon://da" type="Transparent" tooltip="Copilot">
+        <layoutData>
+            <OverflowToolbarLayoutData priority="Low"/>
+        </layoutData>
+    </Button>
+    
+    <!-- Notifications Button -->
+    <Button class="ButtonColor" icon="sap-icon://bell" type="Transparent" tooltip="Notifications" press=".onNotificationsPressed">
+        <customData>
+            <BadgeCustomData key="badge" value="{appState>/notificationCount}"/>
+        </customData>
+        <layoutData>
+            <OverflowToolbarLayoutData priority="NeverOverflow"/>
+        </layoutData>
+    </Button>
+    
+    <!-- User Avatar -->
+    <Avatar initials="{appState>/userInitials}" displaySize="XS" tooltip="Profile" backgroundColor="Random" press=".onUserAvatarPress">
+        <layoutData>
+            <OverflowToolbarLayoutData priority="NeverOverflow"/>
+        </layoutData>
+    </Avatar>
+</tnt:ToolHeader>
         </tnt:header>
             
             <!-- Side Navigation -->
@@ -160,9 +177,10 @@
                                 select="onItemSelect('StorageLocationMasters')"
                                 />
                             <tnt:NavigationListItem
-                                text="Tag Registry"
+                                text="Items"
                                 icon="sap-icon://tag"
-                                key="TagRegistry"/>
+                                key="ItemMasters"
+                                select="onItemSelect('ItemMasters')"/>
                             <tnt:NavigationListItem
                                 text="Zone Configuration"
                                 icon="sap-icon://map"
@@ -172,6 +190,16 @@
                                 text="User Management"
                                 icon="sap-icon://group"
                                 key="UserManagement"/>
+                            <tnt:NavigationListItem
+                                text="Warehouse "
+                                icon="sap-icon://group"
+                                key="WarehouseMasters"
+                                select="onItemSelect('WarehouseMasters')"/>
+                            <tnt:NavigationListItem
+                                text="Pick Strategy"
+                                icon="sap-icon://group"
+                                key="PickStrategy"
+                                select="onItemSelect('PickStrategy')"/>
                             <tnt:NavigationListItem
                                 text="System Settings"
                                 icon="sap-icon://action-settings"

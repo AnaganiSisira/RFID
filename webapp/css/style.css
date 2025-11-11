@@ -7,71 +7,75 @@ html, body, #content {
     overflow: hidden;
 }
 
-/* ShellBar background and basic styling */
-.sapFShellBar {
-
-    background: linear-gradient(to right, #1873b4, #0f5a8f) !important;
-    display: flex;
-
-}
-/* Custom.css */
-.sapFShellBarMenuButton .sapMBtnIcon.sapUiIcon {
-    background-color : #ffffff !important;
-    color            : #ffffff !important;
-}
-.sapFShellBarMenuButton {
-    transition : transform 0.3s ease;
-}
-.sapFShellBarMenuButton:hover {
-    transform  : rotate(90deg);
+/* ToolHeader Background Gradient */
+.sapTntToolHeader {
+    background: linear-gradient(to right, #1873b4, #1672b4) !important;
 }
 
-
-/* 2. Align main & secondary title baselines */
-.sapFShellBarTitle,
-.sapFShellBarSecondTitle {
-   
-    color: #ffffff !important;font-weight: normal !important;
+/* ToolHeader Title - White Color */
+.sapTntToolHeader .sapMTitle {
+    color: #ffffff !important;
 }
 
-.sapFShellBarTitle {
-    margin-left: 1rem !important;
+/* ToolHeader Text - White Color */
+.sapTntToolHeader .sapMText {
+    color: #ffffff !important;
 }
 
-.sapFShellBarSecondTitle {
-    margin-left: 1rem !important;
+/* ToolHeader Icons - White Color */
+.sapTntToolHeader .sapUiIcon {
+    color: #ffffff !important;
 }
 
-/* 3. Push everything-right to the far end */
-.sapFShellBarWrapper {
-    justify-content: space-between !important;
+/* ToolHeader Buttons - White Color */
+.sapTntToolHeader .sapMBtn {
+    color: #ffffff !important;
 }
 
-/* (optional) keep avatar last with a hair-space */
-.sapFShellBar .sapFShellBarProfile { margin-left: 0.5rem !important; }
-/* Space after home icon */
-.sapFShellBar .sapFShellBarHomeIcon {
-
-    margin-right: 1.5rem !important;
-}
-/* Remove any unwanted padding that's causing left alignment issues */
-/* .sapFShellBar .sapFShellBarOTB {
-
-    padding-left: 0 !important;
+/* Button Icons - White Color */
+.sapTntToolHeader .sapMBtn .sapUiIcon {
+    color: #ffffff !important;
 }
 
+/* Avatar Initials - White Color */
+.sapTntToolHeader .sapFAvatar .sapFAvatarInitials {
+    color: #ffffff !important;
+}
 
-/* Push right-side items (notifications, profile) further */
-/* .sapFShellBar .sapFShellBarOTB > * {
+/* Avatar Background - White with transparency */
+.sapTntToolHeader .sapFAvatar {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
 
-    margin-left: 1rem !important;
-    
-} */ */
+/* Avatar Icon - White Color (if icon is used instead of initials) */
+.sapTntToolHeader .sapFAvatar .sapUiIcon {
+    color: #ffffff !important;
+}
 
-/* Specific spacing for notification badge */
-.sapFShellBar [id$="notifications"] {
+/* Button Hover State */
+.sapTntToolHeader .sapMBtn:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
 
-    margin-left: 1rem !important;
+/* Keep icon white on hover */
+.sapTntToolHeader .sapMBtn:hover .sapUiIcon {
+    color: #181818 !important;
+}
+
+/* Button Active/Pressed State */
+.sapTntToolHeader .sapMBtn:active {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Keep icon white when pressed */
+.sapTntToolHeader .sapMBtn:active .sapUiIcon {
+    color: #ffffff !important;
+}
+
+/* Optional: Badge styling for notification button */
+.sapTntToolHeader .sapMBadgeIndicator {
+    color: #ffffff !important;
 }
 
 

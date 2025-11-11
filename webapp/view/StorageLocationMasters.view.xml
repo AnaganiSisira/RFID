@@ -4,92 +4,101 @@
     xmlns:core="sap.ui.core"
     xmlns:f="sap.f" displayBlock="true">
 
-    <Page title="Storage Location" showNavButton="false" class="sapUiResponsiveContentPadding">
+    <Page title="{i18n>Storagepage.title}" showNavButton="false" class="sapUiResponsiveContentPadding">
         <content>
             <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" gap="-3rem" wrap="Wrap">
-                <VBox class=" card" alignItems="Center">
-                    <Title text="Total Locations" wrapping="true" />
-                    <Text text="2,456" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
-                    <Text text="All with barcodes" />
+
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.totalLocations}" class="cardTitle" wrapping="true" />
+                    <ObjectStatus text="2,456" state="Information" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                     <ObjectStatus text="{i18n>card.totalLocations.sub}" state="Information" class="cardStatus"/>
                 </VBox>
 
-                <VBox class=" card" alignItems="Center">
-                    <Title text="Active Locations" wrapping="true"/>
-                    <ObjectNumber number="2,234" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
-                    <ObjectStatus text="91% available" state="Success"></ObjectStatus>
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.activeLocations}" class="cardTitle" wrapping="true" />
+                    <ObjectNumber number="2,234" state="Success"
+                        class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.activeLocations.percent}" state="Success" />
                 </VBox>
 
-                <VBox class=" card" alignItems="Center">
-                    <Title text="Avg. Utilization" wrapping="true"/>
-                    <ObjectNumber number="68%" state="Warning" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
-                    <ObjectStatus text="Volume occupied" state="Warning"></ObjectStatus>
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.avgUtilization}" class="cardTitle" wrapping="true" />
+                    <ObjectNumber number="68%" state="Warning"
+                        class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.avgUtilization.sub}" state="Warning" />
                 </VBox>
 
-                <VBox class=" card" alignItems="Center">
-                    <Title text="Temperature Zones" wrapping="true"/>
-                    <Text text="Ambient: 70% | Cold: 30%"/>
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.tempZones}" class="cardTitle" wrapping="true" />
+                    <ObjectStatus text="{i18n>card.tempZones.Ambientdetails}" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.tempZones.Colddetails}" state="Error" />
+
                 </VBox>
-            </HBox>            
-            <Table >
-                <headerToolbar >
+
+            </HBox>
+
+            <Table id="tblLocations"
+                items="{path: 'StorageLocationModel>/Locations'}"
+                growing="true" growingScrollToLoad="true" width="100%" autoPopinMode="true" class="sapUiSmallMarginTop">
+
+                <headerToolbar>
                     <OverflowToolbar design="Solid">
                         <content>
-                            <SearchField width="25%" placeholder="Search by code, name, type" liveChange="onSearch" />
-                            <Button icon="sap-icon://filter" text="Filters" />
-
+                            <SearchField width="25%" placeholder="{i18n>toolbar.searchPlaceholder}" liveChange=".onSearch" />
+                            <Button icon="sap-icon://filter" text="{i18n>toolbar.filter}" />
                             <ToolbarSpacer />
-
-                            <Button icon="sap-icon://download" text="Export" />
-                            <Button icon="sap-icon://upload" text="Import" press=".onImportStorageLocation" />
-                            <Button icon="sap-icon://batch-payments" text="Bulk Create" press=".onBulkLocationOperations" />
-                            <Button icon="sap-icon://add" text="Create Location" type="Emphasized" press=".onCreateStorageLocation" />
+                            <Button icon="sap-icon://download" text="{i18n>toolbar.export}" />
+                            <Button icon="sap-icon://upload" text="{i18n>toolbar.import}" press="onImportStorageLocation" />
+                            <Button icon="sap-icon://batch-payments" text="{i18n>toolbar.bulkCreate}" press="onBulkLocationOperations"/>
+                            <Button icon="sap-icon://add" text="{i18n>toolbar.createLocation}" type="Emphasized" press="onCreateStorageLocation"/>
                         </content>
                     </OverflowToolbar>
                 </headerToolbar>
 
                 <columns>
-                    <Column>
-                        <Text text="Location Code" />
-                    </Column>
-                    <Column>
-                        <Text text="Location Name" />
-                    </Column>
-                    <Column>
-                        <Text text="Zone/Type" />
-                    </Column>
-                    <Column>
-                        <Text text="Structure" />
-                    </Column>
-                    <Column>
-                        <Text text="Capacity/Usage" />
-                    </Column>
-                    <Column>
-                        <Text text="Status" />
-                    </Column>
-                    <Column>
-                        <Text text="Actions" />
-                    </Column>
+                    <Column><Text text="{i18n>col.locationCode}" /></Column>
+                    <Column><Text text="{i18n>col.locationName}" /></Column>
+                    <Column><Text text="{i18n>col.zoneType}" /></Column>
+                    <Column><Text text="{i18n>col.structure}" /></Column>
+                    <Column><Text text="{i18n>col.capacityUsage}" /></Column>
+                    <Column><Text text="{i18n>col.status}" /></Column>
+                    <Column width="5rem"><Text text="{i18n>col.actions}" /></Column>
                 </columns>
 
                 <items>
-                    <ColumnListItem>
+                    <ColumnListItem vAlign="Middle">
                         <cells>
-                            <ObjectIdentifier title="RACK-01" text="WH-001" />
-                            <ObjectIdentifier title="RACK-01" text="WH-001" />
-                            <ObjectIdentifier title="RACK-01" text="WH-001" />
-                            <ObjectIdentifier title="RACK-01" text="WH-001" />
-                            <ProgressIndicator percentValue="60" displayValue="79%" />
+                            <ObjectIdentifier title="{StorageLocationModel>code}" text="{StorageLocationModel>warehouse}" />
 
-                            <ObjectStatus text="Active" state="{= ${status} === 'Active' ? 'Success' : 'Error'}" />
-                            <HBox>
-                                <Button icon="sap-icon://show" />
-                                <Button icon="sap-icon://edit" />
-                                <Button icon="sap-icon://delete" />
+                            <ObjectIdentifier title="{StorageLocationModel>name}" text="Last: {StorageLocationModel>updated}" />
+
+                            <Text text="{StorageLocationModel>type}" />
+
+                            <VBox>
+                                <Text text="Structure:" />
+                                <Text text="Aisle: {StorageLocationModel>structure/aisle}" visible="{= !!${StorageLocationModel>structure/aisle}}" />
+                                <Text text="Rack: {StorageLocationModel>structure/rack}" visible="{= !!${StorageLocationModel>structure/rack}}" />
+                                <Text text="Level: {StorageLocationModel>structure/level}" visible="{= !!${StorageLocationModel>structure/level}}" />
+                                <Text text="Bin: {StorageLocationModel>structure/bin}" visible="{= !!${StorageLocationModel>structure/bin}}" />
+                            </VBox>
+
+                            <VBox>
+                                <Text text="{StorageLocationModel>capacity}" />
+                                <ProgressIndicator percentValue="{StorageLocationModel>usage}" displayValue="{StorageLocationModel>usage}% used"  state="{path: 'StorageLocationModel>usage', formatter: '.formatter.getUtilizationState'}" />
+                            </VBox>
+
+                            <ObjectStatus text="{StorageLocationModel>status}" state="{= ${StorageLocationModel>status} === 'Active' ? 'Success' : 'Error'}" />
+
+                            <HBox justifyContent="Center" alignItems="Center">
+                                <Button icon="sap-icon://show" type="Transparent" />
+                                <Button icon="sap-icon://edit" type="Transparent" />
+                                <Button icon="sap-icon://delete" type="Transparent" />
                             </HBox>
                         </cells>
                     </ColumnListItem>
                 </items>
             </Table>
+
         </content>
     </Page>
 </mvc:View>

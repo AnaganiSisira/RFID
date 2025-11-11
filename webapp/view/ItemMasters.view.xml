@@ -1,0 +1,88 @@
+<mvc:View xmlns:cards="sap.f.cards" controllerName="rfidwarehousesuiteui.controller.ItemMasters"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f" displayBlock="true">
+
+    <Page title="{i18n>Itemepage.title}" showNavButton="false" class="sapUiResponsiveContentPadding">
+        <content>
+            <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" gap="-3rem" wrap="Wrap">
+
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.totalitems}" class="cardTitle" wrapping="true" />
+                    <ObjectStatus text="45,678" state="Information" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                     <ObjectStatus text="{i18n>card.totalitems.sub}" state="Information" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.activeItems}" class="cardTitle" wrapping="true" />
+                    <ObjectNumber number="44,890" state="Success"
+                        class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.activeItems.sub}" state="Success" />
+                </VBox>
+
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.RFIDEnabled}" class="cardTitle" wrapping="true" />
+                    <ObjectNumber number="12,345" state="Warning"
+                        class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.RFIDEnabled.sub}" state="Warning" />
+                </VBox>
+
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.LowStockItems}" class="cardTitle" wrapping="true" />
+                    <ObjectStatus text="234" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.LowStockItems.sub}" state="Error" />
+
+                </VBox>
+
+            </HBox>
+
+            <Table id="tblItems"
+                items="{path: 'ItemMastersModel>/ItemMasterSet'}"
+                growing="true" growingScrollToLoad="true" width="100%" autoPopinMode="true" class="sapUiSmallMarginTop">
+
+                <headerToolbar>
+                    <OverflowToolbar design="Solid">
+                        <content>
+                            <SearchField width="25%" placeholder="{i18n>toolbar.searchPlaceholder}" liveChange=".onSearch" />
+                            <Button icon="sap-icon://filter" text="{i18n>toolbar.filter}" />
+                            <ToolbarSpacer />
+                            <Button icon="sap-icon://download" text="{i18n>toolbar.export}" />
+                            <Button icon="sap-icon://upload" text="{i18n>toolbar.import}" press="onImportStorageLocation" />
+                            <Button icon="sap-icon://batch-payments" text="{i18n>toolbar.sync}" press="onBulkLocationOperations"/>
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column><Text text="{i18n>col.ItemCode}" /></Column>
+                    <Column><Text text="{i18n>col.ItemName}" /></Column>
+                    <Column><Text text="{i18n>col.category}" /></Column>
+                    <Column><Text text="{i18n>col.stockLevel}" /></Column>
+                    <Column><Text text="{i18n>col.Identification}" /></Column>
+                    <Column><Text text="{i18n>col.status}" /></Column>
+                    <Column width="6rem"><Text text="{i18n>col.actions}" /></Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="{ItemMastersModel>ItemCode}"></Text>
+                            <Text text="{ItemMastersModel>ItemName}"></Text>
+                            <Text text="{ItemMastersModel>Category}"></Text>
+                            <Text text="{ItemMastersModel>StockLevel}"></Text>
+                            <Text text="{ItemMastersModel>Identification}"></Text>
+                            <ObjectStatus text="{ItemMastersModel>Status}" state="{= ${ItemMastersModel>Status} === 'Active' ? 'Success' : 'Error'}" />
+                            <HBox justifyContent="Center" alignItems="Center">
+                                <Button icon="sap-icon://show" type="Transparent" />
+                                <Button icon="sap-icon://edit" type="Transparent" />
+                                <Button icon="sap-icon://delete" type="Transparent" />
+                            </HBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+        </content>
+    </Page>
+</mvc:View>

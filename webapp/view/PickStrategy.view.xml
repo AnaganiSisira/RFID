@@ -1,0 +1,93 @@
+<mvc:View xmlns:cards="sap.f.cards" controllerName="rfidwarehousesuiteui.controller.PickStrategy"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f" displayBlock="true">
+
+    <Page title="{i18n>PickStrategypage.title}" showNavButton="false" class="sapUiResponsiveContentPadding">
+        <content>
+            <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" gap="-3rem" wrap="Wrap">
+
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.totalStrategies}" class="cardTitle" wrapping="true" />
+                    <ObjectStatus text="18" state="Information" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.totalStrategies.sub}" state="Information" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.ordersProcessed}" class="cardTitle" wrapping="true" />
+                    <ObjectNumber number="12.5K" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.ordersProcessed.sub}" state="Success" />
+                </VBox>
+
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.avgPickTime}" class="cardTitle" wrapping="true" />
+                    <ObjectNumber number="2.8" unit="min" state="Warning" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.avgPickTime.sub}" state="Warning" />
+                </VBox>
+
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.pickAccuracy}" class="cardTitle" wrapping="true" />
+                    <ObjectStatus text="99.2%" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.pickAccuracy.sub}" state="Error" />
+                </VBox>
+
+            </HBox>
+
+            <Table id="tblPickStrategy"
+                items="{path: 'PickStrategyModel>/PickStrategySet'}"
+                growing="true" growingScrollToLoad="true" width="100%" autoPopinMode="true" class="sapUiSmallMarginTop">
+
+                <headerToolbar>
+                    <OverflowToolbar design="Solid">
+                        <content>
+                            <SearchField width="25%" placeholder="{i18n>toolbar.searchStrategy}" liveChange=".onSearch" />
+                            <Button icon="sap-icon://filter" text="{i18n>toolbar.filter}" />
+                            <ToolbarSpacer />
+                            <Button icon="sap-icon://download" text="{i18n>toolbar.export}" />
+                            <Button icon="sap-icon://copy" text="{i18n>toolbar.duplicate}" />
+                            <Button icon="sap-icon://add" text="{i18n>toolbar.createStrategy}" press="onCreateStrategy" />
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column><Text text="{i18n>col.strategyCode}" /></Column>
+                    <Column><Text text="{i18n>col.strategyName}" /></Column>
+                    <Column><Text text="{i18n>col.type}" /></Column>
+                    <Column><Text text="{i18n>col.priority}" /></Column>
+                    <Column><Text text="{i18n>col.orderCriteria}" /></Column>
+                    <Column><Text text="{i18n>col.pickMethod}" /></Column>
+                    <Column><Text text="{i18n>col.pathOptimization}" /></Column>
+                    <Column><Text text="{i18n>col.ordersLinked}" /></Column>
+                    <Column><Text text="{i18n>col.status}" /></Column>
+                    <Column width="6rem"><Text text="{i18n>col.actions}" /></Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="{PickStrategyModel>StrategyCode}"></Text>
+                            <Text text="{PickStrategyModel>StrategyName}"></Text>
+                            <ObjectStatus text="{PickStrategyModel>Type}" 
+                                state="{= ${PickStrategyModel>Type} === 'Single Order' ? 'Information' : ${PickStrategyModel>Type} === 'Batch' ? 'Warning' : ${PickStrategyModel>Type} === 'Wave' ? 'Success' : 'None'}" />
+                            <ObjectStatus text="{PickStrategyModel>Priority}" 
+                                state="{= ${PickStrategyModel>Priority} === 'Priority 1' ? 'Error' : ${PickStrategyModel>Priority} === 'Priority 2' ? 'Warning' : ${PickStrategyModel>Priority} === 'Priority 3' ? 'Warning' : 'Information'}" />
+                            <Text text="{PickStrategyModel>OrderCriteria}" class="sapUiSmallMarginEnd"></Text>
+                            <Text text="{PickStrategyModel>PickMethod}"></Text>
+                            <Text text="{PickStrategyModel>PathOptimization}"></Text>
+                            <ObjectNumber number="{PickStrategyModel>OrdersLinked}" emphasized="false"></ObjectNumber>
+                            <ObjectStatus text="{PickStrategyModel>Status}" state="{= ${PickStrategyModel>Status} === 'Active' ? 'Success' : 'Error'}" />
+                            <HBox justifyContent="Center" alignItems="Center">
+                                <Button icon="sap-icon://show" type="Transparent" />
+                                <Button icon="sap-icon://edit" type="Transparent" />
+                                <Button icon="sap-icon://copy" type="Transparent" />
+                            </HBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,61 @@
+{
+  "Locations": [
+    {
+      "code": "A-01-02-03",
+      "warehouse": "WH-001",
+      "name": "Aisle A Rack 1 Level 2 Bin 3",
+      "type": "Storage",
+      "structure": {
+        "aisle": "A",
+        "rack": "01",
+        "level": "02",
+        "bin": "03"
+      },
+      "capacity": "2000 kg",
+      "usage": 80,
+      "status": "Active",
+      "updated": "5 mins ago"
+    },
+    {
+      "code": "R01-12",
+      "warehouse": "WH-001",
+      "name": "Rack 1 Position 12",
+      "type": "Storage",
+      "structure": {
+        "rack": "R01",
+        "position": "12"
+      },
+      "capacity": "500 kg",
+      "usage": 60,
+      "status": "Active",
+      "updated": "1 hour ago"
+    },
+    {
+      "code": "RECV-BAY-01",
+      "warehouse": "WH-001",
+      "name": "Receiving Bay 1",
+      "type": "Receiving",
+      "structure": {
+        "location": "RECV-BAY-01"
+      },
+      "capacity": "5000 kg",
+      "usage": 45,
+      "status": "Active",
+      "updated": "2 hours ago"
+    },
+    {
+      "code": "COLD-RM01-S3",
+      "warehouse": "WH-001",
+      "name": "Cold Room 1 Shelf 3",
+      "type": "Cold Storage",
+      "structure": {
+        "room": "RM01",
+        "shelf": "S3"
+      },
+      "capacity": "1000 kg",
+      "usage": 70,
+      "status": "Active",
+      "updated": "30 mins ago"
+    }
+  ]
+}
