@@ -1,0 +1,96 @@
+<mvc:View controllerName="rfidwarehousesuiteui.controller.UserManagement"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    displayBlock="true">
+    
+    <Page title="{i18n>userManagementTitle}" class="sapUiResponsiveContentPadding">
+        <content>
+            <!-- KPI Cards -->
+            <HBox class="sapUiSmallMarginBottom kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
+                
+                <VBox class="card" alignItems="Center" justifyContent="Center">
+                    <Title text="{i18n>totalUsers}" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="256" state="Information" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="{i18n>allRegisteredUsers}" state="Information" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center" justifyContent="Center">
+                    <Title text="{i18n>activeNow}" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="48" state="Success" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="{i18n>currentlyOnline}" state="Success" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center" justifyContent="Center">
+                    <Title text="{i18n>warehouseStaff}" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="180" state="None" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="70% {i18n>ofTotal}" state="None" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center" justifyContent="Center">
+                    <Title text="{i18n>newThisMonth}" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="12" state="Success" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="{i18n>recentlyAdded}" state="Success" class="cardStatus"/>
+                </VBox>
+            </HBox>
+
+            <!-- Users Table -->
+            <Table id="idUsersTable" inset="false" items="{
+                path: 'UsersModel>/Users',
+                sorter: { path: 'name' }
+            }">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <SearchField width="30%" placeholder="{i18n>searchUsersPlaceholder}" liveChange="onSearch" />
+                            <Button icon="sap-icon://filter" text="{i18n>filters}" />
+                            <ToolbarSpacer />
+                            <Button icon="sap-icon://user-settings" text="{i18n>rolesPermissions}" />
+                            <Button icon="sap-icon://download" text="{i18n>export}" />
+                            <Button icon="sap-icon://add" text="{i18n>addUser}" type="Emphasized" press=".onCreateUsersMasters" />
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column width="8%"><Text text="{i18n>colUserId}" /></Column>
+                    <Column width="12%"><Text text="{i18n>colName}" /></Column>
+                    <Column width="15%"><Text text="{i18n>colEmail}" /></Column>
+                    <Column width="10%"><Text text="{i18n>colRole}" /></Column>
+                    <Column width="8%"><Text text="{i18n>colWarehouse}" /></Column>
+                    <Column width="10%"><Text text="{i18n>colDepartment}" /></Column>
+                    <Column width="12%"><Text text="{i18n>colRfidCard}" /></Column>
+                    <Column width="10%"><Text text="{i18n>colLastActive}" /></Column>
+                    <Column width="8%"><Text text="{i18n>colStatus}" /></Column>
+                    <Column width="6rem"><Text text="{i18n>colActions}" /></Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{UsersModel>id}" class="sapUiTinyMarginEnd" />
+                            <Text text="{UsersModel>name}" />
+                            <Text text="{UsersModel>email}" />
+                            <ObjectStatus 
+                                text="{UsersModel>role}" 
+                                state="None"
+                                inverted="true" />
+                            <Text text="{UsersModel>warehouse}" />
+                            <Text text="{UsersModel>department}" />
+                            <Text text="{UsersModel>rfidCard}" class="sapUiMonoFont" />
+                            <Text text="{UsersModel>lastActive}" />
+                            <ObjectStatus 
+                                text="{UsersModel>status}" 
+                                state="{= ${UsersModel>status} === 'Active' ? 'Success' : 'Error'}" />
+                            <HBox justifyContent="Center">
+                                <Button icon="sap-icon://show" tooltip="{i18n>viewUser}" press=".onViewUser" type="Transparent" />
+                                <Button icon="sap-icon://edit" tooltip="{i18n>editUser}" press=".onEditUser" type="Transparent" />
+                                <Button icon="sap-icon://key" tooltip="{i18n>managePermissions}" press=".onManagePermissions" type="Transparent" />
+                            </HBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

@@ -72,6 +72,13 @@
       "PickStrategyModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/pickStrategy.json"
+      "UsersModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/users.json"
+      },
+      "StrategiesModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/putaway.json"
       }
     },
     "resources": {
@@ -134,6 +141,17 @@
           "pattern": "PickStrategy",
           "target": [
             "TargetPickStrategy"
+          "name": "UserManagement",
+          "pattern": "UserManagement",
+          "target": [
+            "TargetUserManagement"
+          ]
+        },
+        {
+          "name": "PutawayStrategy",
+          "pattern": "PutawayStrategy",
+          "target": [
+            "TargetPutawayStrategy"
           ]
         }
       ],
@@ -161,6 +179,13 @@
          "TargetPickStrategy": {
           "id": "PickStrategy",
           "name": "PickStrategy"
+        "TargetUserManagement": {
+          "id": "UserManagement",
+          "name": "UserManagement"
+        },
+        "TargetPutawayStrategy": {
+          "id": "PutawayStrategy",
+          "name": "PutawayStrategy"
         }
       }
     },

@@ -1,0 +1,88 @@
+{
+    "Users": [
+        {
+            "id": "USR-001",
+            "name": "Rajesh Kumar",
+            "email": "rajesh.kumar@company.com",
+            "role": "Warehouse Manager",
+            "warehouse": "WH-001",
+            "department": "Operations",
+            "lastActive": "2 mins ago",
+            "rfidCard": "E20034120089001",
+            "status": "Active",
+            "phone": "+91-9876543210",
+            "address": "Hyderabad, Telangana",
+            "joinDate": "2023-01-15"
+        },
+        {
+            "id": "USR-002",
+            "name": "Priya Sharma",
+            "email": "priya.sharma@company.com",
+            "role": "Picker",
+            "warehouse": "WH-001",
+            "department": "Fulfillment",
+            "lastActive": "15 mins ago",
+            "rfidCard": "E20034120089002",
+            "status": "Active",
+            "phone": "+91-9876543211",
+            "address": "Hyderabad, Telangana",
+            "joinDate": "2023-03-20"
+        },
+        {
+            "id": "USR-003",
+            "name": "Arun Patel",
+            "email": "arun.patel@company.com",
+            "role": "Supervisor",
+            "warehouse": "WH-002",
+            "department": "Inbound",
+            "lastActive": "1 hour ago",
+            "rfidCard": "E20034120089003",
+            "status": "Active",
+            "phone": "+91-9876543212",
+            "address": "Mumbai, Maharashtra",
+            "joinDate": "2022-11-10"
+        },
+        {
+            "id": "USR-004",
+            "name": "Sneha Verma",
+            "email": "sneha.verma@company.com",
+            "role": "Quality Inspector",
+            "warehouse": "WH-001",
+            "department": "Quality",
+            "lastActive": "Yesterday",
+            "rfidCard": "E20034120089004",
+            "status": "Inactive",
+            "phone": "+91-9876543213",
+            "address": "Pune, Maharashtra",
+            "joinDate": "2023-05-01"
+        },
+        {
+            "id": "USR-005",
+            "name": "Mohammed Ali",
+            "email": "mohammed.ali@company.com",
+            "role": "Forklift Operator",
+            "warehouse": "WH-003",
+            "department": "Operations",
+            "lastActive": "30 mins ago",
+            "rfidCard": "E20034120089005",
+            "status": "Active",
+            "phone": "+91-9876543214",
+            "address": "Bangalore, Karnataka",
+            "joinDate": "2023-07-12"
+        },
+        {
+            "id": "USR-006",
+            "name": "Kavya Reddy",
+            "email": "kavya.reddy@company.com",
+            "role": "Admin",
+            "warehouse": "WH-001",
+            "department": "IT",
+            "lastActive": "5 mins ago",
+            "rfidCard": "E20034120089006",
+            "status": "Active",
+            "phone": "+91-9876543215",
+            "address": "Hyderabad, Telangana",
+            "joinDate": "2022-08-25"
+        }
+    ]
+}

@@ -3,106 +3,106 @@
     xmlns:form="sap.ui.layout.form"
     xmlns:l="sap.ui.layout">
 
-    <Dialog id="createZoneDialog" title="Create Zone" contentWidth="900px">
+    <Dialog id="createZoneDialog" title="{i18n>createZoneTitle}" contentWidth="900px">
         <content>
             <VBox class="sapUiSmallMargin">
                 <!-- Zone Type Section -->
                 <VBox class="zoneSection mandatory">
+                    <Label text="{i18n>zoneType}" required="true" class="sapUiTinyMarginBottom"/>
+                    <l:HorizontalLayout allowWrapping="true" class="sapUiTinyMarginBottom">
+                        <GenericTile class="sapUiTinyMargin" header="{i18n>receiving}" subheader="{i18n>incomingGoods}" frameType="TwoByHalf" press="onZoneTypeSelect" pressEnabled="true">
+                            <TileContent footer="{i18n>receiving}">
+                                <ImageContent src="sap-icon://home-share" />
+                            </TileContent>
+                        </GenericTile>
 
-                <Label text="Zone Type" required="true" class="sapUiTinyMarginBottom"/>
-                <l:HorizontalLayout allowWrapping="true" class="sapUiTinyMarginBottom">
-                    <GenericTile class="sapUiTinyMargin" header="Receiving" subheader="Incoming goods" frameType="TwoByHalf" press="onZoneTypeSelect" pressEnabled="true" >
-                        <TileContent footer="Receiving">
-                            <ImageContent src="sap-icon://home-share" />
-                        </TileContent>
-                    </GenericTile>
+                        <GenericTile class="sapUiTinyMargin" header="{i18n>storage}" subheader="{i18n>primaryStorage}" frameType="TwoByHalf" press="onZoneTypeSelect">
+                            <TileContent footer="{i18n>storage}">
+                                <ImageContent src="sap-icon://inventory" />
+                            </TileContent>
+                        </GenericTile>
 
-                    <GenericTile class="sapUiTinyMargin" header="Storage" subheader="Primary storage" frameType="TwoByHalf" press="onZoneTypeSelect">
-                        <TileContent footer="Storage">
-                            <ImageContent src="sap-icon://inventory" />
-                        </TileContent>
-                    </GenericTile>
+                        <GenericTile class="sapUiTinyMargin" header="{i18n>picking}" subheader="{i18n>orderFulfillment}" frameType="TwoByHalf" press="onZoneTypeSelect">
+                            <TileContent footer="{i18n>picking}">
+                                <ImageContent src="sap-icon://cart" />
+                            </TileContent>
+                        </GenericTile>
 
-                    <GenericTile class="sapUiTinyMargin" header="Picking" subheader="Order fulfillment" frameType="TwoByHalf" press="onZoneTypeSelect">
-                        <TileContent footer="Picking">
-                            <ImageContent src="sap-icon://cart" />
-                        </TileContent>
-                    </GenericTile>
-
-                    <GenericTile class="sapUiTinyMargin" header="Shipping" subheader="Outbound staging" frameType="TwoByHalf" press="onZoneTypeSelect">
-                        <TileContent footer="Shipping">
-                            <ImageContent src="sap-icon://shipping-status" />
-                        </TileContent>
-                    </GenericTile>
-                </l:HorizontalLayout>
+                        <GenericTile class="sapUiTinyMargin" header="{i18n>shipping}" subheader="{i18n>outboundStaging}" frameType="TwoByHalf" press="onZoneTypeSelect">
+                            <TileContent footer="{i18n>shipping}">
+                                <ImageContent src="sap-icon://shipping-status" />
+                            </TileContent>
+                        </GenericTile>
+                    </l:HorizontalLayout>
                 </VBox>
 
                 <!-- Zone Code and Name -->
-                 <VBox class="zoneSection mandatory">
-                <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
-                    <VBox>
-                        <Label text="Zone Code" required="true"/>
-                        <Input placeholder="e.g., STOR-A, RCV-01" width="100%"/>
-                        <Text text="Unique zone identifier" class="fieldDescription"/>
-                    </VBox>
-                    <VBox>
-                        <Label text="Zone Name" required="true"/>
-                        <Input placeholder="e.g., Storage Area A" width="100%"/>
-                    </VBox>
-                </l:Grid>
+                <VBox class="zoneSection mandatory">
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+                        <VBox>
+                            <Label text="{i18n>zoneCode}" required="true"/>
+                            <Input placeholder="{i18n>zoneCodePlaceholder}" width="100%"/>
+                            <Text text="{i18n>zoneCodeDescription}" class="fieldDescription"/>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>zoneName}" required="true"/>
+                            <Input placeholder="{i18n>zoneNamePlaceholder}" width="100%"/>
+                        </VBox>
+                    </l:Grid>
                 </VBox>
+
                 <!-- Zone Properties Section -->
                 <VBox class="zoneSection optional sapUiSmallMarginTop">
-                    <Text text="Zone Properties" class="sectionTitle"/>
+                    <Text text="{i18n>zoneProperties}" class="sectionTitle"/>
                     <l:Grid containerQuery="true" defaultSpan="L4 M4 S12" class="sapUiSmallMarginTop">
                         <VBox>
-                            <Label text="Area Size"/>
+                            <Label text="{i18n>areaSize}"/>
                             <HBox alignItems="Center">
                                 <Input value="500" type="Number" width="100%"/>
                                 <Select selectedKey="m2" class="unitSelect sapUiTinyMarginBegin">
-                                    <core:Item key="m2" text="m²"/>
-                                    <core:Item key="ft2" text="ft²"/>
+                                    <core:Item key="m2" text="{i18n>m2}"/>
+                                    <core:Item key="ft2" text="{i18n>ft2}"/>
                                 </Select>
                             </HBox>
                         </VBox>
                         <VBox>
-                            <Label text="Max Weight"/>
+                            <Label text="{i18n>maxWeight}"/>
                             <HBox alignItems="Center">
                                 <Input value="50000" type="Number" width="100%"/>
                                 <Select selectedKey="kg" class="unitSelect sapUiTinyMarginBegin">
-                                    <core:Item key="kg" text="kg"/>
-                                    <core:Item key="lb" text="lb"/>
+                                    <core:Item key="kg" text="{i18n>kg}"/>
+                                    <core:Item key="lb" text="{i18n>lb}"/>
                                 </Select>
                             </HBox>
                         </VBox>
                         <VBox>
-                            <Label text="Max Volume"/>
+                            <Label text="{i18n>maxVolume}"/>
                             <HBox alignItems="Center">
                                 <Input value="1000" type="Number" width="100%"/>
                                 <Select selectedKey="m3" class="unitSelect sapUiTinyMarginBegin">
-                                    <core:Item key="m3" text="m³"/>
-                                    <core:Item key="ft3" text="ft³"/>
+                                    <core:Item key="m3" text="{i18n>m3}"/>
+                                    <core:Item key="ft3" text="{i18n>ft3}"/>
                                 </Select>
                             </HBox>
                         </VBox>
                     </l:Grid>
                     <l:Grid containerQuery="true" defaultSpan="L4 M4 S12" class="sapUiTinyMarginTop">
                         <VBox>
-                            <Label text="Max Pallets"/>
+                            <Label text="{i18n>maxPallets}"/>
                             <Input value="500" type="Number" width="100%"/>
                         </VBox>
                         <VBox>
-                            <Label text="Height"/>
+                            <Label text="{i18n>height}"/>
                             <HBox alignItems="Center">
                                 <Input value="8" type="Number" width="100%"/>
                                 <Select selectedKey="m" class="unitSelect sapUiTinyMarginBegin">
-                                    <core:Item key="m" text="m"/>
-                                    <core:Item key="ft" text="ft"/>
+                                    <core:Item key="m" text="{i18n>m}"/>
+                                    <core:Item key="ft" text="{i18n>ft}"/>
                                 </Select>
                             </HBox>
                         </VBox>
                         <VBox>
-                            <Label text="Floor Level"/>
+                            <Label text="{i18n>floorLevel}"/>
                             <Input value="1" type="Number" width="100%"/>
                         </VBox>
                     </l:Grid>
@@ -111,22 +111,22 @@
                 <!-- Temperature Control Section -->
                 <VBox class="zoneSection optional sapUiSmallMarginTop">
                     <HBox justifyContent="SpaceBetween" alignItems="Center">
-                        <Text text="Temperature Control" class="sectionTitle"/>
-                        <CheckBox text="Enable"/>
+                        <Text text="{i18n>temperatureControl}" class="sectionTitle"/>
+                        <CheckBox text="{i18n>enable}"/>
                     </HBox>
                     <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
                         <VBox>
-                            <Label text="Min Temperature"/>
+                            <Label text="{i18n>minTemperature}"/>
                             <HBox alignItems="Center">
                                 <Input value="2" type="Number" width="100%"/>
                                 <Select selectedKey="C" class="unitSelect sapUiTinyMarginBegin">
-                                    <core:Item key="C" text="°C"/>
-                                    <core:Item key="F" text="°F"/>
+                                    <core:Item key="C" text="{i18n>celsius}"/>
+                                    <core:Item key="F" text="{i18n>fahrenheit}"/>
                                 </Select>
                             </HBox>
                         </VBox>
                         <VBox>
-                            <Label text="Max Temperature"/>
+                            <Label text="{i18n>maxTemperature}"/>
                             <Input value="8" type="Number" width="100%"/>
                         </VBox>
                     </l:Grid>
@@ -134,39 +134,39 @@
 
                 <!-- Storage Rules Section -->
                 <VBox class="zoneSection optional sapUiSmallMarginTop">
-                    <Text text="Storage Rules" class="sectionTitle"/>
+                    <Text text="{i18n>storageRules}" class="sectionTitle"/>
                     <l:Grid containerQuery="true" defaultSpan="L4 M4 S12" class="sapUiSmallMarginTop">
-                        <CheckBox text="Allow Mixed SKUs"/>
-                        <CheckBox text="Allow Mixed Batches"/>
-                        <CheckBox text="FIFO Enforced" selected="true"/>
+                        <CheckBox text="{i18n>allowMixedSKUs}"/>
+                        <CheckBox text="{i18n>allowMixedBatches}"/>
+                        <CheckBox text="{i18n>fifoEnforced}" selected="true"/>
                     </l:Grid>
                 </VBox>
 
                 <!-- Zone Flags Section -->
                 <VBox class="zoneSection optional sapUiSmallMarginTop">
-                    <Text text="Zone Flags" class="sectionTitle"/>
+                    <Text text="{i18n>zoneFlags}" class="sectionTitle"/>
                     <l:Grid containerQuery="true" defaultSpan="L4 M4 S12" class="sapUiSmallMarginTop">
-                        <CheckBox text="Picking Zone"/>
-                        <CheckBox text="Reserve Zone"/>
-                        <CheckBox text="Staging Zone"/>
+                        <CheckBox text="{i18n>pickingZone}"/>
+                        <CheckBox text="{i18n>reserveZone}"/>
+                        <CheckBox text="{i18n>stagingZone}"/>
                     </l:Grid>
                 </VBox>
 
                 <!-- Security & Access Section -->
                 <VBox class="zoneSection optional sapUiSmallMarginTop">
-                    <Text text="Security &amp; Access" class="sectionTitle"/>
+                    <Text text="{i18n>securityAccess}" class="sectionTitle"/>
                     <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
                         <VBox>
-                            <Label text="Security Level"/>
+                            <Label text="{i18n>securityLevel}"/>
                             <Select selectedKey="STANDARD" width="100%">
-                                <core:Item key="STANDARD" text="STANDARD"/>
-                                <core:Item key="HIGH" text="HIGH"/>
-                                <core:Item key="SECURE" text="SECURE"/>
+                                <core:Item key="STANDARD" text="{i18n>standard}"/>
+                                <core:Item key="HIGH" text="{i18n>high}"/>
+                                <core:Item key="SECURE" text="{i18n>secure}"/>
                             </Select>
                         </VBox>
                         <VBox class="sapUiTinyMarginTop">
                             <Label text="" />
-                            <CheckBox text="Camera Monitored"/>
+                            <CheckBox text="{i18n>cameraMonitored}"/>
                         </VBox>
                     </l:Grid>
                 </VBox>
@@ -174,11 +174,11 @@
         </content>
 
         <beginButton>
-            <Button text="Cancel" press="onCancelPress('createZoneDialog')"/>
+            <Button text="{i18n>cancel}" press="onCancelPress('createZoneDialog')"/>
         </beginButton>
 
         <endButton>
-            <Button text="Create Zone" type="Emphasized" press="onCreateZonePress"/>
+            <Button text="{i18n>createZone}" type="Emphasized" press="onCreateZonePress"/>
         </endButton>
 
     </Dialog>

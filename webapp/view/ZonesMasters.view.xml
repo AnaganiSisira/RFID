@@ -1,62 +1,44 @@
 <mvc:View controllerName="rfidwarehousesuiteui.controller.ZonesMasters"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:core="sap.ui.core" displayBlock="true">
-    <Page title="Zones Master" class="sapUiResponsiveContentPadding">
+    xmlns:core="sap.ui.core"
+    displayBlock="true">
+    
+    <Page title="{i18n>zonesMasterTitle}" class="sapUiResponsiveContentPadding">
         <headerContent>
             <Select selectedKey="WH-001">
                 <items>
-                    <core:Item key="WH-001" text="WH-001 - Main Warehouse" />
-                    <core:Item key="WH-002" text="WH-002 - Secondary Warehouse" />
+                    <core:Item key="WH-001" text="{i18n>warehouseMain}" />
+                    <core:Item key="WH-002" text="{i18n>warehouseSecondary}" />
                 </items>
             </Select>
         </headerContent>
 
         <content>
             <HBox class="sapUiSmallMarginBottom kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
-                <!-- Total Zones -->
+                
                 <VBox class="card" alignItems="Center" justifyContent="Center">
-                    <Title text="Total Zones" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber 
-                        number="25" 
-                        state="Information" 
-                        emphasized="true"
-                        class="cardNumber" />
-                    <ObjectStatus text="Warehouse Overview" state="Information" class="cardStatus"/>
+                    <Title text="{i18n>totalZones}" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="25" state="Information" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="{i18n>warehouseOverview}" state="Information" class="cardStatus"/>
                 </VBox>
 
-                <!-- Active Zones -->
                 <VBox class="card" alignItems="Center" justifyContent="Center">
-                    <Title text="Active Zones" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber 
-                        number="23" 
-                        state="Success" 
-                        emphasized="true"
-                        class="cardNumber" />
-                    <ObjectStatus text="Currently operational" state="Success" class="cardStatus"/>
+                    <Title text="{i18n>activeZones}" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="23" state="Success" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="{i18n>currentlyOperational}" state="Success" class="cardStatus"/>
                 </VBox>
 
-                <!-- Avg. Utilization -->
                 <VBox class="card" alignItems="Center" justifyContent="Center">
-                    <Title text="Avg. Utilization" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber 
-                        number="66" 
-                        unit="%" 
-                        state="Warning" 
-                        emphasized="true"
-                        class="cardNumber" />
-                    <ObjectStatus text="Storage utilization" state="Warning" class="cardStatus"/>
+                    <Title text="{i18n>avgUtilization}" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="66" unit="%" state="Warning" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="{i18n>storageUtilization}" state="Warning" class="cardStatus"/>
                 </VBox>
 
-                <!-- Active Alerts -->
                 <VBox class="card" alignItems="Center" justifyContent="Center">
-                    <Title text="Active Alerts" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber 
-                        number="3" 
-                        state="Error" 
-                        emphasized="true"
-                        class="cardNumber" />
-                    <ObjectStatus text="Critical conditions" state="Error" class="cardStatus"/>
+                    <Title text="{i18n>activeAlerts}" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="3" state="Error" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="{i18n>criticalConditions}" state="Error" class="cardStatus"/>
                 </VBox>
             </HBox>
 
@@ -67,47 +49,26 @@
                 <headerToolbar>
                     <OverflowToolbar>
                         <content>
-                            <SearchField width="25%" placeholder="Search by code, name, type" liveChange="onSearch" />
-                            <Button icon="sap-icon://filter" text="Filters" />
-
+                            <SearchField width="25%" placeholder="{i18n>searchPlaceholder}" liveChange="onSearch" />
+                            <Button icon="sap-icon://filter" text="{i18n>filters}" />
                             <ToolbarSpacer />
-
-                            <Button icon="sap-icon://download" text="Export" />
-                            <!-- <Button icon="sap-icon://upload" text="Import" /> -->
-                            <Button icon="sap-icon://batch-payments" text="Bulk Create" press=".onBulkOperations" />
-                            <Button icon="sap-icon://add" text="Create Zone" type="Emphasized" press=".onCreateZonesMasters" />
+                            <Button icon="sap-icon://download" text="{i18n>export}" />
+                            <Button icon="sap-icon://batch-payments" text="{i18n>bulkCreate}" press=".onBulkOperations" />
+                            <Button icon="sap-icon://add" text="{i18n>createZone}" type="Emphasized" press=".onCreateZonesMasters" />
                         </content>
                     </OverflowToolbar>
                 </headerToolbar>
 
                 <columns>
-                    <Column>
-                        <Text text="Zone Code" />
-                    </Column>
-                    <Column>
-                        <Text text="Zone Name" />
-                    </Column>
-                    <Column>
-                        <Text text="Type" />
-                    </Column>
-                    <Column>
-                        <Text text="Area/Capacity" />
-                    </Column>
-                    <Column>
-                        <Text text="Utilization" />
-                    </Column>
-                    <Column>
-                        <Text text="Pallets" />
-                    </Column>
-                    <Column>
-                        <Text text="Locations" />
-                    </Column>
-                    <Column>
-                        <Text text="Status" />
-                    </Column>
-                    <Column>
-                        <Text text="Actions" />
-                    </Column>
+                    <Column><Text text="{i18n>colZoneCode}" /></Column>
+                    <Column><Text text="{i18n>colZoneName}" /></Column>
+                    <Column><Text text="{i18n>colType}" /></Column>
+                    <Column><Text text="{i18n>colAreaCapacity}" /></Column>
+                    <Column><Text text="{i18n>colUtilization}" /></Column>
+                    <Column><Text text="{i18n>colPallets}" /></Column>
+                    <Column><Text text="{i18n>colLocations}" /></Column>
+                    <Column><Text text="{i18n>colStatus}" /></Column>
+                    <Column><Text text="{i18n>colActions}" /></Column>
                 </columns>
 
                 <items>
@@ -126,9 +87,9 @@
                             <Text text="{ZonesModel>locations}" />
                             <ObjectStatus text="{ZonesModel>status}" state="{= ${ZonesModel>status} === 'Active' ? 'Success' : 'Error'}" />
                             <HBox>
-                                <Button icon="sap-icon://show" press=".onViewZone" />
-                                <Button icon="sap-icon://edit" press=".onEditZone" />
-                                <Button icon="sap-icon://delete" press=".onDeleteZone" />
+                                <Button icon="sap-icon://show" tooltip="{i18n>viewZone}" press=".onViewZone" />
+                                <Button icon="sap-icon://edit" tooltip="{i18n>editZone}" press=".onEditZone" />
+                                <Button icon="sap-icon://delete" tooltip="{i18n>deleteZone}" press=".onDeleteZone" />
                             </HBox>
                         </cells>
                     </ColumnListItem>

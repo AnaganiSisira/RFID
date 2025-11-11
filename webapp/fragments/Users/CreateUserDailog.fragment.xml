@@ -1,0 +1,164 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+
+    <Dialog id="createUsersDialog" title="{i18n>createNewUser}" contentWidth="1100px">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <!-- Personal Information Section -->
+                <VBox class="zoneSection mandatory">
+                    <HBox alignItems="Center" class="sapUiTinyMarginBottom">
+                        <core:Icon src="sap-icon://alert" color="#856404" class="sapUiTinyMarginEnd" />
+                        <Text text="{i18n>personalInformation}" class="sectionTitle"/>
+                    </HBox>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+                        <VBox>
+                            <Label text="{i18n>firstName}" required="true"/>
+                            <Input placeholder="{i18n>enterFirstName}" width="100%"/>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>lastName}" required="true"/>
+                            <Input placeholder="{i18n>enterLastName}" width="100%"/>
+                        </VBox>
+                    </l:Grid>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
+                        <VBox>
+                            <Label text="{i18n>employeeId}" required="true"/>
+                            <Input placeholder="{i18n>employeeIdPlaceholder}" width="100%"/>
+                            <Text text="{i18n>uniqueEmployeeIdentifier}" class="fieldDescription"/>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>emailAddress}" required="true"/>
+                            <Input placeholder="{i18n>emailPlaceholder}" type="Email" width="100%"/>
+                        </VBox>
+                    </l:Grid>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
+                        <VBox>
+                            <Label text="{i18n>mobileNumber}" required="true"/>
+                            <Input placeholder="{i18n>mobileNumberPlaceholder}" type="Tel" width="100%"/>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>dateOfBirth}"/>
+                            <DatePicker placeholder="{i18n>dateFormat}" width="100%" displayFormat="dd-MM-yyyy"/>
+                        </VBox>
+                    </l:Grid>
+                </VBox>
+
+                <!-- Role & Access Control Section -->
+                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                    <HBox alignItems="Center" class="sapUiTinyMarginBottom">
+                        <core:Icon src="sap-icon://shield" color="#0070D8" class="sapUiTinyMarginEnd" />
+                        <Text text="{i18n>roleAccessControl}" class="sectionTitle"/>
+                    </HBox>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L4 M6 S12" class="sapUiSmallMarginTop">
+                        <VBox>
+                            <Label text="{i18n>userRole}" required="true"/>
+                            <Select selectedKey="" width="100%">
+                                <core:Item key="" text="{i18n>selectRole}"/>
+                                <core:Item key="ADMIN" text="{i18n>administrator}"/>
+                                <core:Item key="MANAGER" text="{i18n>warehouseManager}"/>
+                                <core:Item key="SUPERVISOR" text="{i18n>supervisor}"/>
+                                <core:Item key="OPERATOR" text="{i18n>operator}"/>
+                                <core:Item key="VIEWER" text="{i18n>viewer}"/>
+                            </Select>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>department}" required="true"/>
+                            <Select selectedKey="" width="100%">
+                                <core:Item key="" text="{i18n>selectDepartment}"/>
+                                <core:Item key="RECEIVING" text="{i18n>receiving}"/>
+                                <core:Item key="STORAGE" text="{i18n>storage}"/>
+                                <core:Item key="PICKING" text="{i18n>picking}"/>
+                                <core:Item key="SHIPPING" text="{i18n>shipping}"/>
+                                <core:Item key="QUALITY" text="{i18n>qualityControl}"/>
+                            </Select>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>assignedWarehouse}" required="true"/>
+                            <Select selectedKey="" width="100%">
+                                <core:Item key="" text="{i18n>selectWarehouse}"/>
+                                <core:Item key="WH01" text="Warehouse A"/>
+                                <core:Item key="WH02" text="Warehouse B"/>
+                                <core:Item key="WH03" text="Warehouse C"/>
+                            </Select>
+                        </VBox>
+                    </l:Grid>
+                </VBox>
+
+                <!-- RFID & Authentication Section -->
+                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                    <Text text="{i18n>rfidAuthentication}" class="sectionTitle"/>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+                        <VBox>
+                            <Label text="{i18n>rfidCardNumber}"/>
+                            <Input placeholder="{i18n>rfidCardPlaceholder}" width="100%"/>
+                            <Text text="{i18n>forWarehouseAccessControl}" class="fieldDescription"/>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>biometricId}"/>
+                            <Input placeholder="{i18n>fingerprintId}" width="100%"/>
+                        </VBox>
+                    </l:Grid>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
+                        <VBox>
+                            <Label text="{i18n>username}" required="true"/>
+                            <Input placeholder="{i18n>autoGeneratedFromEmail}" width="100%"/>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>initialPassword}" required="true"/>
+                            <Input placeholder="{i18n>min8Characters}" type="Password" width="100%"/>
+                        </VBox>
+                    </l:Grid>
+                </VBox>
+
+                <!-- Module Permissions Section -->
+                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                    <Text text="{i18n>modulePermissions}" class="sectionTitle"/>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+                        <CheckBox text="{i18n>inboundOperations}"/>
+                        <CheckBox text="{i18n>outboundOperations}"/>
+                    </l:Grid>
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
+                        <CheckBox text="{i18n>inventoryManagement}"/>
+                        <CheckBox text="{i18n>reportsAnalytics}"/>
+                    </l:Grid>
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
+                        <CheckBox text="{i18n>masterData}"/>
+                        <CheckBox text="{i18n>systemSettings}"/>
+                    </l:Grid>
+                </VBox>
+
+                <!-- Additional Settings Section -->
+                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                    <Text text="{i18n>additionalSettings}" class="sectionTitle"/>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+                        <CheckBox text="{i18n>userIsActive}" selected="true"/>
+                        <CheckBox text="{i18n>sendWelcomeEmail}" selected="true"/>
+                    </l:Grid>
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
+                        <CheckBox text="{i18n>enable2FA}"/>
+                        <CheckBox text="{i18n>enableMobileAppAccess}"/>
+                    </l:Grid>
+                </VBox>
+            </VBox>
+        </content>
+
+        <beginButton>
+            <Button text="{i18n>cancel}" press="onCancelPress('createUsersDialog')"/>
+        </beginButton>
+
+        <endButton>
+            <Button text="{i18n>createUser}" type="Emphasized" press="onCreateUserPress"/>
+        </endButton>
+
+    </Dialog>
+</core:FragmentDefinition>

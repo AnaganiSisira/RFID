@@ -359,6 +359,93 @@ sap.ui.define([
                 default:
                     return "None";
             }
+        },
+
+          getPriorityState: function (sPriority) {
+            if (!sPriority) {
+                return "None";
+            }
+            
+            switch (sPriority) {
+                case "1":
+                    return "Error";
+                case "2":
+                    return "Warning";
+                case "3":
+                    return "Success";
+                case "4":
+                    return "Information";
+                case "5":
+                    return "None";
+                default:
+                    return "None";
+            }
+        },
+
+        /**
+         * Formats utilization percentage to state
+         * @param {number} iUtilization - Utilization percentage
+         * @returns {string} State for ProgressIndicator
+         */
+        getUtilizationState: function (iUtilization) {
+            if (iUtilization >= 90) {
+                return "Error";
+            } else if (iUtilization >= 70) {
+                return "Warning";
+            } else if (iUtilization >= 50) {
+                return "Success";
+            } else {
+                return "None";
+            }
+        },
+
+        /**
+         * Formats utilization percentage to CSS class
+         * @param {number} iUtilization - Utilization percentage
+         * @returns {string} CSS class for styling
+         */
+        getUtilizationClass: function (iUtilization) {
+            if (iUtilization >= 90) {
+                return "utilizationHigh";
+            } else if (iUtilization >= 70) {
+                return "utilizationMedium";
+            } else {
+                return "utilizationLow";
+            }
+        },
+
+        /**
+         * Formats status text
+         * @param {string} sStatus - Status value
+         * @returns {string} Formatted status text
+         */
+        formatStatus: function (sStatus) {
+            return sStatus || "Unknown";
+        },
+
+        /**
+         * Formats date to readable format
+         * @param {string} sDate - ISO date string
+         * @returns {string} Formatted date
+         */
+        formatDate: function (sDate) {
+            if (!sDate) {
+                return "";
+            }
+            var oDate = new Date(sDate);
+            return oDate.toLocaleDateString();
+        },
+
+        /**
+         * Formats number with thousand separator
+         * @param {number} iNumber - Number to format
+         * @returns {string} Formatted number
+         */
+        formatNumber: function (iNumber) {
+            if (!iNumber && iNumber !== 0) {
+                return "";
+            }
+            return iNumber.toLocaleString();
         }
 
     };

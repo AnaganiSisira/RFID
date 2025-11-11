@@ -1,0 +1,224 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+
+    <Dialog id="createPutawayDialog" title="{i18n>createPutawayStrategy}" contentWidth="1100px">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <!-- Strategy Definition Section -->
+                <VBox class="zoneSection mandatory">
+                    <HBox alignItems="Center" class="sapUiTinyMarginBottom">
+                        <core:Icon src="sap-icon://alert" color="#856404" class="sapUiTinyMarginEnd" />
+                        <Text text="{i18n>strategyDefinition}" class="sectionTitle"/>
+                    </HBox>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+                        <VBox>
+                            <Label text="{i18n>strategyCode}" required="true"/>
+                            <Input placeholder="{i18n>strategyCodePlaceholder}" width="100%"/>
+                            <Text text="{i18n>uniqueStrategyIdentifier}" class="fieldDescription"/>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>strategyName}" required="true"/>
+                            <Input placeholder="{i18n>strategyNamePlaceholder}" width="100%"/>
+                        </VBox>
+                    </l:Grid>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
+                        <VBox>
+                            <Label text="{i18n>priority}" required="true"/>
+                            <Select selectedKey="1" width="100%">
+                                <core:Item key="1" text="{i18n>priorityHighest}"/>
+                                <core:Item key="2" text="{i18n>priorityHigh}"/>
+                                <core:Item key="3" text="{i18n>priorityMedium}"/>
+                                <core:Item key="4" text="{i18n>priorityLow}"/>
+                                <core:Item key="5" text="{i18n>priorityLowest}"/>
+                            </Select>
+                            <Text text="{i18n>executionOrderMultiple}" class="fieldDescription"/>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>status}" required="true"/>
+                            <Select selectedKey="ACTIVE" width="100%">
+                                <core:Item key="ACTIVE" text="{i18n>active}"/>
+                                <core:Item key="INACTIVE" text="{i18n>inactive}"/>
+                                <core:Item key="DRAFT" text="{i18n>draft}"/>
+                            </Select>
+                        </VBox>
+                    </l:Grid>
+                </VBox>
+
+                <!-- Item Selection Criteria Section -->
+                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                    <HBox alignItems="Center" class="sapUiTinyMarginBottom">
+                        <core:Icon src="sap-icon://filter" color="#0070D8" class="sapUiTinyMarginEnd" />
+                        <Text text="{i18n>itemSelectionCriteria}" class="sectionTitle"/>
+                    </HBox>
+                    
+                    <VBox class="sapUiSmallMarginTop">
+                        <Label text="{i18n>itemFilterExpression}" required="true"/>
+                        <TextArea 
+                            placeholder="{i18n>itemFilterPlaceholder}" 
+                            width="100%" 
+                            rows="3"/>
+                        <Text text="{i18n>sqlLikeExpression}" class="fieldDescription"/>
+                    </VBox>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L4 M6 S12" class="sapUiSmallMarginTop">
+                        <VBox>
+                            <Label text="{i18n>categoryFilter}"/>
+                            <Select selectedKey="ALL" width="100%">
+                                <core:Item key="ALL" text="{i18n>allCategories}"/>
+                                <core:Item key="ELECTRONICS" text="{i18n>electronics}"/>
+                                <core:Item key="CLOTHING" text="{i18n>clothing}"/>
+                                <core:Item key="FOOD" text="{i18n>food}"/>
+                                <core:Item key="FURNITURE" text="{i18n>furniture}"/>
+                            </Select>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>abcClass}"/>
+                            <Select selectedKey="ALL" width="100%">
+                                <core:Item key="ALL" text="{i18n>allClasses}"/>
+                                <core:Item key="A" text="{i18n>classA}"/>
+                                <core:Item key="B" text="{i18n>classB}"/>
+                                <core:Item key="C" text="{i18n>classC}"/>
+                            </Select>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>storageCondition}"/>
+                            <Select selectedKey="ANY" width="100%">
+                                <core:Item key="ANY" text="{i18n>any}"/>
+                                <core:Item key="AMBIENT" text="{i18n>ambient}"/>
+                                <core:Item key="REFRIGERATED" text="{i18n>refrigerated}"/>
+                                <core:Item key="FROZEN" text="{i18n>frozen}"/>
+                                <core:Item key="HAZMAT" text="{i18n>hazardous}"/>
+                            </Select>
+                        </VBox>
+                    </l:Grid>
+                </VBox>
+
+                <!-- Put-away Rules Section -->
+                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                    <Text text="{i18n>putawayRules}" class="sectionTitle"/>
+                    <Text text="{i18n>sequentialExecution}" class="fieldDescription sapUiTinyMarginTop"/>
+                    
+                    <VBox id="rulesContainer" class="sapUiSmallMarginTop">
+                        <!-- Rule 1 -->
+                        <HBox alignItems="Start" justifyContent="SpaceBetween" class="ruleRow sapUiSmallMarginBottom">
+                            <HBox alignItems="Center" width="100%">
+                                <VBox alignItems="Center" justifyContent="Center" class="ruleNumber sapUiTinyMarginEnd">
+                                    <Text text="1" class="ruleNumberText"/>
+                                </VBox>
+                                <VBox width="25%" class="sapUiTinyMarginEnd">
+                                    <Label text="{i18n>ruleType}"/>
+                                    <Select selectedKey="ZONE" width="100%">
+                                        <core:Item key="ZONE" text="{i18n>zoneSelection}"/>
+                                        <core:Item key="BIN" text="{i18n>binSelection}"/>
+                                        <core:Item key="CAPACITY" text="{i18n>capacityBased}"/>
+                                        <core:Item key="PROXIMITY" text="{i18n>proximityBased}"/>
+                                    </Select>
+                                </VBox>
+                                <VBox width="35%" class="sapUiTinyMarginEnd">
+                                    <Label text="{i18n>condition}"/>
+                                    <Input placeholder="{i18n>conditionPlaceholder}" width="100%"/>
+                                </VBox>
+                                <VBox width="35%" class="sapUiTinyMarginEnd">
+                                    <Label text="{i18n>action}"/>
+                                    <Input placeholder="{i18n>actionPlaceholder}" width="100%"/>
+                                </VBox>
+                            </HBox>
+                            <Button icon="sap-icon://delete" type="Transparent" press=".onDeleteRule" tooltip="{i18n>deleteRule}"/>
+                        </HBox>
+                    </VBox>
+                    
+                    <!-- Add Rule Button -->
+                    <Button 
+                        icon="sap-icon://add" 
+                        text="{i18n>addRule}" 
+                        type="Transparent" 
+                        press=".onAddRule" 
+                        class="sapUiSmallMarginTop addRuleButton"/>
+                </VBox>
+
+                <!-- Location Search Strategy Section -->
+                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                    <Text text="{i18n>locationSearchStrategy}" class="sectionTitle"/>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+                        <VBox>
+                            <Label text="{i18n>searchMethod}"/>
+                            <Select selectedKey="NEAREST" width="100%">
+                                <core:Item key="NEAREST" text="{i18n>nearestAvailableLocation}"/>
+                                <core:Item key="EMPTY_FIRST" text="{i18n>emptyLocationsFirst}"/>
+                                <core:Item key="PARTIAL_FIRST" text="{i18n>partialLocationsFirst}"/>
+                                <core:Item key="FURTHEST" text="{i18n>furthestLocation}"/>
+                            </Select>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>consolidation}"/>
+                            <Select selectedKey="SAME_SKU" width="100%">
+                                <core:Item key="SAME_SKU" text="{i18n>allowSameSKUOnly}"/>
+                                <core:Item key="SAME_BATCH" text="{i18n>allowSameBatch}"/>
+                                <core:Item key="ANY" text="{i18n>allowAny}"/>
+                                <core:Item key="NONE" text="{i18n>noConsolidation}"/>
+                            </Select>
+                        </VBox>
+                    </l:Grid>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L4 M6 S12" class="sapUiTinyMarginTop">
+                        <VBox>
+                            <Label text="{i18n>fillStrategy}"/>
+                            <Select selectedKey="CAPACITY" width="100%">
+                                <core:Item key="CAPACITY" text="{i18n>fillToCapacity}"/>
+                                <core:Item key="BALANCED" text="{i18n>balanced}"/>
+                                <core:Item key="MINIMAL" text="{i18n>minimalLocations}"/>
+                            </Select>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>overflowHandling}"/>
+                            <Select selectedKey="NEXT_BEST" width="100%">
+                                <core:Item key="NEXT_BEST" text="{i18n>nextBestLocation}"/>
+                                <core:Item key="OVERFLOW_ZONE" text="{i18n>overflowZone}"/>
+                                <core:Item key="MANUAL" text="{i18n>manualIntervention}"/>
+                            </Select>
+                        </VBox>
+                        <VBox>
+                            <Label text="{i18n>abcSegregation}"/>
+                            <Select selectedKey="ENFORCE" width="100%">
+                                <core:Item key="ENFORCE" text="{i18n>enforceStrictly}"/>
+                                <core:Item key="PREFER" text="{i18n>preferButAllow}"/>
+                                <core:Item key="IGNORE" text="{i18n>ignore}"/>
+                            </Select>
+                        </VBox>
+                    </l:Grid>
+                </VBox>
+
+                <!-- Additional Settings Section -->
+                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                    <Text text="{i18n>additionalSettings}" class="sectionTitle"/>
+                    
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+                        <CheckBox text="{i18n>requireRFIDVerification}" selected="true"/>
+                        <CheckBox text="{i18n>qualityCheckBeforePutaway}"/>
+                    </l:Grid>
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
+                        <CheckBox text="{i18n>photoVerificationRequired}"/>
+                        <CheckBox text="{i18n>autoConfirmPutaway}" selected="true"/>
+                    </l:Grid>
+                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
+                        <CheckBox text="{i18n>allowCrossDocking}"/>
+                    </l:Grid>
+                </VBox>
+            </VBox>
+        </content>
+
+        <beginButton>
+            <Button text="{i18n>cancel}" press="onCancelPress('createPutawayDialog')"/>
+        </beginButton>
+
+        <endButton>
+            <Button text="{i18n>createStrategy}" type="Emphasized" press="onCreatePutawayPress"/>
+        </endButton>
+
+    </Dialog>
+</core:FragmentDefinition>
