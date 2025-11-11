@@ -1,0 +1,95 @@
+<mvc:View controllerName="rfidwarehousesuiteui.controller.PutawayStrategy"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    displayBlock="true">
+    
+    <Page title="{i18n>putawayStrategyTitle}" class="sapUiResponsiveContentPadding">
+        <content>
+            <!-- KPI Cards -->
+            <HBox class="sapUiSmallMarginBottom kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
+                
+                <VBox class="card" alignItems="Center" justifyContent="Center">
+                    <Title text="{i18n>totalStrategies}" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="24" state="Information" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="{i18n>activeConfigurations}" state="Information" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center" justifyContent="Center">
+                    <Title text="{i18n>itemsCovered}" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="45234" state="Success" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="99% {i18n>ofInventory}" state="Success" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center" justifyContent="Center">
+                    <Title text="{i18n>avgPutawayTime}" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="3.2" unit="{i18n>min}" state="None" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="{i18n>perTransaction}" state="None" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center" justifyContent="Center">
+                    <Title text="{i18n>optimizationRate}" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="94" unit="%" state="Success" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="{i18n>spaceUtilization}" state="Success" class="cardStatus"/>
+                </VBox>
+            </HBox>
+
+            <!-- Strategies Table -->
+            <Table id="idStrategiesTable" inset="false" items="{
+                path: 'StrategiesModel>/Strategies',
+                sorter: { path: 'strategyCode' }
+            }">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <SearchField width="25%" placeholder="{i18n>searchStrategiesPlaceholder}" liveChange="onSearch" />
+                            <Button icon="sap-icon://filter" text="{i18n>filters}" />
+                            <ToolbarSpacer />
+                            <Button icon="sap-icon://download" text="{i18n>export}" />
+                            <Button icon="sap-icon://duplicate" text="{i18n>duplicate}" />
+                            <Button icon="sap-icon://add" text="{i18n>createStrategy}" type="Emphasized" press=".onCreatePutawayMasters" />
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column width="10%"><Text text="{i18n>colStrategyCode}" /></Column>
+                    <Column width="15%"><Text text="{i18n>colStrategyName}" /></Column>
+                    <Column width="8%"><Text text="{i18n>colPriority}" /></Column>
+                    <Column width="22%"><Text text="{i18n>colItemCriteria}" /></Column>
+                    <Column width="15%"><Text text="{i18n>colTargetZones}" /></Column>
+                    <Column width="8%"><Text text="{i18n>colRules}" /></Column>
+                    <Column width="8%"><Text text="{i18n>colItemsLinked}" /></Column>
+                    <Column width="8%"><Text text="{i18n>colStatus}" /></Column>
+                    <Column width="6%"><Text text="{i18n>colActions}" /></Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{StrategiesModel>strategyCode}" class="sapUiTinyMarginEnd" />
+                            <Text text="{StrategiesModel>strategyName}" />
+                            <ObjectStatus 
+                                text="{StrategiesModel>priority}" 
+                                state="{path: 'StrategiesModel>priority', formatter: '.formatter.getPriorityState'}"
+                                inverted="true" />
+                            <Text text="{StrategiesModel>itemCriteria}" class="sapUiMonoFont sapUiTinyFontSize" />
+                            <Text text="{StrategiesModel>targetZones}" />
+                            <Text text="{StrategiesModel>rules}" />
+                            <Text text="{StrategiesModel>itemsLinked}" />
+                            <ObjectStatus 
+                                text="{StrategiesModel>status}" 
+                                state="{= ${StrategiesModel>status} === 'Active' ? 'Success' : 'Error'}" />
+                            <HBox>
+                                <Button icon="sap-icon://show" tooltip="{i18n>viewStrategy}" press=".onViewStrategy" type="Transparent" />
+                                <Button icon="sap-icon://edit" tooltip="{i18n>editStrategy}" press=".onEditStrategy" type="Transparent" />
+                                <Button icon="sap-icon://copy" tooltip="{i18n>duplicateStrategy}" press=".onDuplicateStrategy" type="Transparent" />
+                            </HBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
