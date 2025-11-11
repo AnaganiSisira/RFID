@@ -1,0 +1,404 @@
+{
+  "ItemMasterSet": [
+    {
+      "ItemCode": "ITM-001234",
+      "ItemName": "Dell Laptop Inspiron 15",
+      "Category": "Electronics",
+      "StockLevel": "234 / 500",
+      "Identification": "RFID + Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-005678",
+      "ItemName": "Amul Butter 500g",
+      "Category": "Grocery / Dairy",
+      "StockLevel": "1234 / 2000",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-009876",
+      "ItemName": "Samsung 65\" Smart TV",
+      "Category": "Electronics",
+      "StockLevel": "45 / 100",
+      "Identification": "RFID",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002345",
+      "ItemName": "Office Chair Ergonomic",
+      "Category": "Furniture",
+      "StockLevel": "89 / 200",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-007890",
+      "ItemName": "Basmati Rice 5kg",
+      "Category": "Grocery",
+      "StockLevel": "567 / 1000",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-003456",
+      "ItemName": "HP Pavilion Desktop",
+      "Category": "Electronics",
+      "StockLevel": "75 / 150",
+      "Identification": "RFID + Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-004567",
+      "ItemName": "Sony WH-1000XM5 Headphones",
+      "Category": "Electronics",
+      "StockLevel": "125 / 200",
+      "Identification": "RFID",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-006789",
+      "ItemName": "Wooden Dining Table Set",
+      "Category": "Furniture",
+      "StockLevel": "30 / 60",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-008901",
+      "ItemName": "Apple iPhone 15 Pro",
+      "Category": "Electronics",
+      "StockLevel": "120 / 200",
+      "Identification": "RFID",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-009012",
+      "ItemName": "Mi Air Purifier 4",
+      "Category": "Electronics",
+      "StockLevel": "48 / 100",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001345",
+      "ItemName": "Amul Cheese 1kg",
+      "Category": "Grocery / Dairy",
+      "StockLevel": "567 / 800",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001456",
+      "ItemName": "Godrej Refrigerator 300L",
+      "Category": "Electronics",
+      "StockLevel": "76 / 150",
+      "Identification": "RFID + Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001567",
+      "ItemName": "Prestige Gas Stove 3 Burner",
+      "Category": "Appliances",
+      "StockLevel": "112 / 250",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001678",
+      "ItemName": "Nilkamal Plastic Chair",
+      "Category": "Furniture",
+      "StockLevel": "400 / 600",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001789",
+      "ItemName": "Tata Salt 1kg",
+      "Category": "Grocery",
+      "StockLevel": "2000 / 2500",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001890",
+      "ItemName": "Asus ROG Strix Laptop",
+      "Category": "Electronics",
+      "StockLevel": "56 / 120",
+      "Identification": "RFID + Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001901",
+      "ItemName": "Blue Heaven Face Cream",
+      "Category": "Cosmetics",
+      "StockLevel": "980 / 1500",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001912",
+      "ItemName": "Dettol Hand Wash 250ml",
+      "Category": "Health & Hygiene",
+      "StockLevel": "1440 / 2000",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001923",
+      "ItemName": "Apple MacBook Air M3",
+      "Category": "Electronics",
+      "StockLevel": "68 / 120",
+      "Identification": "RFID + Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001934",
+      "ItemName": "Sony Bravia 55\" OLED TV",
+      "Category": "Electronics",
+      "StockLevel": "34 / 90",
+      "Identification": "RFID",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001945",
+      "ItemName": "Patanjali Ghee 1L",
+      "Category": "Grocery / Dairy",
+      "StockLevel": "900 / 1500",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001956",
+      "ItemName": "Samsung Galaxy Tab S9",
+      "Category": "Electronics",
+      "StockLevel": "45 / 100",
+      "Identification": "RFID",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001967",
+      "ItemName": "IFB Washing Machine 7kg",
+      "Category": "Appliances",
+      "StockLevel": "89 / 200",
+      "Identification": "RFID + Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001978",
+      "ItemName": "IKEA Study Table",
+      "Category": "Furniture",
+      "StockLevel": "65 / 150",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001989",
+      "ItemName": "Lenovo ThinkPad E14",
+      "Category": "Electronics",
+      "StockLevel": "105 / 200",
+      "Identification": "RFID + Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-001990",
+      "ItemName": "Philips Trimmer QT4011",
+      "Category": "Electronics",
+      "StockLevel": "180 / 250",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002001",
+      "ItemName": "Britannia Good Day 500g",
+      "Category": "Grocery",
+      "StockLevel": "1500 / 2200",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002012",
+      "ItemName": "Milton Water Bottle 1L",
+      "Category": "Household",
+      "StockLevel": "950 / 1200",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002023",
+      "ItemName": "Faber Chimney 60cm",
+      "Category": "Appliances",
+      "StockLevel": "70 / 100",
+      "Identification": "RFID + Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002034",
+      "ItemName": "Havells Ceiling Fan",
+      "Category": "Electronics",
+      "StockLevel": "200 / 350",
+      "Identification": "RFID + Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002045",
+      "ItemName": "Godrej Almirah 3 Door",
+      "Category": "Furniture",
+      "StockLevel": "25 / 60",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002056",
+      "ItemName": "LG Split AC 1.5 Ton",
+      "Category": "Electronics",
+      "StockLevel": "33 / 90",
+      "Identification": "RFID",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002067",
+      "ItemName": "Oppo F27 Pro",
+      "Category": "Electronics",
+      "StockLevel": "89 / 200",
+      "Identification": "RFID",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002078",
+      "ItemName": "HP LaserJet Printer MFP",
+      "Category": "Electronics",
+      "StockLevel": "45 / 100",
+      "Identification": "RFID + Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002089",
+      "ItemName": "Raymond Formal Shirt",
+      "Category": "Apparel",
+      "StockLevel": "320 / 500",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002090",
+      "ItemName": "Nike Running Shoes",
+      "Category": "Footwear",
+      "StockLevel": "200 / 300",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002101",
+      "ItemName": "Samsung Soundbar Q700B",
+      "Category": "Electronics",
+      "StockLevel": "60 / 100",
+      "Identification": "RFID",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002112",
+      "ItemName": "Logitech Wireless Mouse",
+      "Category": "Electronics",
+      "StockLevel": "480 / 700",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002123",
+      "ItemName": "Zebronics Keyboard Combo",
+      "Category": "Electronics",
+      "StockLevel": "650 / 900",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002134",
+      "ItemName": "Bajaj Mixer Grinder",
+      "Category": "Appliances",
+      "StockLevel": "140 / 200",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002145",
+      "ItemName": "Realme 12 Pro+",
+      "Category": "Electronics",
+      "StockLevel": "120 / 200",
+      "Identification": "RFID",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002156",
+      "ItemName": "Apple Watch Series 10",
+      "Category": "Electronics",
+      "StockLevel": "56 / 100",
+      "Identification": "RFID",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002167",
+      "ItemName": "Usha Pedestal Fan",
+      "Category": "Appliances",
+      "StockLevel": "180 / 300",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002178",
+      "ItemName": "Canon DSLR 200D",
+      "Category": "Electronics",
+      "StockLevel": "34 / 80",
+      "Identification": "RFID",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002189",
+      "ItemName": "HP Monitor 24\"",
+      "Category": "Electronics",
+      "StockLevel": "95 / 150",
+      "Identification": "RFID + Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002190",
+      "ItemName": "Lenovo Wireless Earbuds",
+      "Category": "Electronics",
+      "StockLevel": "300 / 400",
+      "Identification": "Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002201",
+      "ItemName": "Voltas Inverter AC 1.5T",
+      "Category": "Electronics",
+      "StockLevel": "44 / 90",
+      "Identification": "RFID",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002212",
+      "ItemName": "LG Washing Machine 8kg",
+      "Category": "Appliances",
+      "StockLevel": "55 / 100",
+      "Identification": "RFID + Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002223",
+      "ItemName": "Samsung Galaxy S24 Ultra",
+      "Category": "Electronics",
+      "StockLevel": "90 / 150",
+      "Identification": "RFID + Barcode",
+      "Status": "Active"
+    },
+    {
+      "ItemCode": "ITM-002234",
+      "ItemName": "Amul Fresh Milk 1L",
+      "Category": "Grocery / Dairy",
+      "StockLevel": "400 / 600",
+      "Identification": "Barcode",
+      "Status": "Active"
+    }
+  ]
+}

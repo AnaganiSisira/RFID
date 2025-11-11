@@ -53,7 +53,7 @@
           "bundleName": "rfidwarehousesuiteui.i18n.i18n"
         }
       },
-       "StorageLocationModel": {
+      "StorageLocationModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/storageLocation.json"
       },
@@ -61,6 +61,17 @@
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/data.json"
       },
+      "ItemMastersModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/itemMasters.json"
+      },
+      "WarehouseMastersModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/warehouseMasters.json"
+      },
+      "PickStrategyModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/pickStrategy.json"
       "UsersModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/users.json"
@@ -112,6 +123,24 @@
           ]
         },
         {
+          "name": "ItemMasters",
+          "pattern": "ItemMasters",
+          "target": [
+            "TargetItemMasters"
+          ]
+        },
+        {
+          "name": "WarehouseMasters",
+          "pattern": "WarehouseMasters",
+          "target": [
+            "TargetWarehouseMasters"
+          ]
+        },
+        {
+          "name": "PickStrategy",
+          "pattern": "PickStrategy",
+          "target": [
+            "TargetPickStrategy"
           "name": "UserManagement",
           "pattern": "UserManagement",
           "target": [
@@ -139,6 +168,17 @@
           "id": "ZonesMasters",
           "name": "ZonesMasters"
         },
+        "TargetItemMasters": {
+          "id": "ItemMasters",
+          "name": "ItemMasters"
+        },
+        "TargetWarehouseMasters": {
+          "id": "WarehouseMasters",
+          "name": "WarehouseMasters"
+        },
+         "TargetPickStrategy": {
+          "id": "PickStrategy",
+          "name": "PickStrategy"
         "TargetUserManagement": {
           "id": "UserManagement",
           "name": "UserManagement"

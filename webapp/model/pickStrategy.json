@@ -1,0 +1,202 @@
+{
+  "PickStrategySet": [
+    {
+      "StrategyCode": "PK-ECOM-01",
+      "StrategyName": "E-commerce Single Orders",
+      "Type": "Single Order",
+      "Priority": "Priority 1",
+      "OrderCriteria": "Channel = E-commerce AND Lines < 10",
+      "PickMethod": "Zone Picking",
+      "PathOptimization": "Shortest Path",
+      "OrdersLinked": 8234,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-BATCH-01",
+      "StrategyName": "Batch Picking - Small Items",
+      "Type": "Batch",
+      "Priority": "Priority 2",
+      "OrderCriteria": "Weight < 5kg AND Volume < 0.1m³",
+      "PickMethod": "Batch Picking",
+      "PathOptimization": "S-Shape",
+      "OrdersLinked": 3456,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-WAVE-01",
+      "StrategyName": "Wave Picking - Morning",
+      "Type": "Wave",
+      "Priority": "Priority 3",
+      "OrderCriteria": "Delivery = Same Day AND Time < 12PM",
+      "PickMethod": "Wave Picking",
+      "PathOptimization": "Zone Sequential",
+      "OrdersLinked": 2123,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-BULK-01",
+      "StrategyName": "Pallet Picking - B2B",
+      "Type": "Pallet",
+      "Priority": "Priority 4",
+      "OrderCriteria": "Customer Type = B2B AND Qty > Full Pallet",
+      "PickMethod": "Pallet Picking",
+      "PathOptimization": "Forklift Route",
+      "OrdersLinked": 567,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-URGENT-01",
+      "StrategyName": "Priority Express Orders",
+      "Type": "Single Order",
+      "Priority": "Priority 1",
+      "OrderCriteria": "Priority = EXPRESS",
+      "PickMethod": "Direct Pick",
+      "PathOptimization": "Fastest Route",
+      "OrdersLinked": 890,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-RETAIL-01",
+      "StrategyName": "Retail Store Replenishment",
+      "Type": "Batch",
+      "Priority": "Priority 2",
+      "OrderCriteria": "Channel = Retail AND Destination = Store",
+      "PickMethod": "Batch Picking",
+      "PathOptimization": "Zone Sequential",
+      "OrdersLinked": 1567,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-BULK-02",
+      "StrategyName": "Multi-Pallet Orders",
+      "Type": "Pallet",
+      "Priority": "Priority 3",
+      "OrderCriteria": "Qty > 5 Pallets",
+      "PickMethod": "Pallet Picking",
+      "PathOptimization": "Dock Sequential",
+      "OrdersLinked": 234,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-WAVE-02",
+      "StrategyName": "Wave Picking - Afternoon",
+      "Type": "Wave",
+      "Priority": "Priority 2",
+      "OrderCriteria": "Delivery = Next Day AND Time > 12PM",
+      "PickMethod": "Wave Picking",
+      "PathOptimization": "Zone Sequential",
+      "OrdersLinked": 1890,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-FRAG-01",
+      "StrategyName": "Fragile Items Special Handling",
+      "Type": "Single Order",
+      "Priority": "Priority 2",
+      "OrderCriteria": "Category = Fragile OR Electronics",
+      "PickMethod": "Zone Picking",
+      "PathOptimization": "Gentle Path",
+      "OrdersLinked": 987,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-COLD-01",
+      "StrategyName": "Cold Storage Picking",
+      "Type": "Batch",
+      "Priority": "Priority 1",
+      "OrderCriteria": "Storage Type = Cold Chain",
+      "PickMethod": "Zone Picking",
+      "PathOptimization": "Shortest Path",
+      "OrdersLinked": 1456,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-HEAVY-01",
+      "StrategyName": "Heavy Items - Equipment Required",
+      "Type": "Single Order",
+      "Priority": "Priority 3",
+      "OrderCriteria": "Weight > 50kg",
+      "PickMethod": "Direct Pick",
+      "PathOptimization": "Equipment Route",
+      "OrdersLinked": 345,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-CROSS-01",
+      "StrategyName": "Cross-Dock Direct Ship",
+      "Type": "Single Order",
+      "Priority": "Priority 1",
+      "OrderCriteria": "Fulfillment = Cross Dock",
+      "PickMethod": "Direct Transfer",
+      "PathOptimization": "Dock to Dock",
+      "OrdersLinked": 678,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-RETURN-01",
+      "StrategyName": "Returns Processing",
+      "Type": "Batch",
+      "Priority": "Priority 4",
+      "OrderCriteria": "Order Type = Return",
+      "PickMethod": "Zone Picking",
+      "PathOptimization": "Zone Sequential",
+      "OrdersLinked": 234,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-SUBS-01",
+      "StrategyName": "Subscription Box Orders",
+      "Type": "Wave",
+      "Priority": "Priority 2",
+      "OrderCriteria": "Service = Subscription",
+      "PickMethod": "Wave Picking",
+      "PathOptimization": "S-Shape",
+      "OrdersLinked": 2100,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-PROMO-01",
+      "StrategyName": "Promotional Campaign Items",
+      "Type": "Batch",
+      "Priority": "Priority 3",
+      "OrderCriteria": "Campaign = Active Promo",
+      "PickMethod": "Batch Picking",
+      "PathOptimization": "Zone Sequential",
+      "OrdersLinked": 1234,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-INT-01",
+      "StrategyName": "International Orders",
+      "Type": "Single Order",
+      "Priority": "Priority 2",
+      "OrderCriteria": "Destination Country != Domestic",
+      "PickMethod": "Zone Picking",
+      "PathOptimization": "Customs Path",
+      "OrdersLinked": 567,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-GIFT-01",
+      "StrategyName": "Gift Wrapping Orders",
+      "Type": "Single Order",
+      "Priority": "Priority 3",
+      "OrderCriteria": "Service = Gift Wrap",
+      "PickMethod": "Zone Picking",
+      "PathOptimization": "Service Station",
+      "OrdersLinked": 456,
+      "Status": "Active"
+    },
+    {
+      "StrategyCode": "PK-SAME-01",
+      "StrategyName": "Same Day Delivery Rush",
+      "Type": "Wave",
+      "Priority": "Priority 1",
+      "OrderCriteria": "Delivery = Same Day AND Time < 2PM",
+      "PickMethod": "Wave Picking",
+      "PathOptimization": "Fastest Route",
+      "OrdersLinked": 789,
+      "Status": "Active"
+    }
+  ]
+}

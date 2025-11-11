@@ -1,0 +1,124 @@
+{
+  "WarehouseMasterSet": [
+    {
+      "WarehouseCode": "WH-001",
+      "WarehouseName": "Main Warehouse - Atlanta",
+      "SAPPlant": "1000",
+      "TotalArea": "50,000 sq.ft",
+      "Zones": "8",
+      "Locations": "2456",
+      "Utilization": 78,
+      "Status": "Active"
+    },
+    {
+      "WarehouseCode": "WH-002",
+      "WarehouseName": "Secondary Warehouse",
+      "SAPPlant": "2000",
+      "TotalArea": "30,000 sq.ft",
+      "Zones": "5",
+      "Locations": "1234",
+      "Utilization": 65,
+      "Status": "Active"
+    },
+    {
+      "WarehouseCode": "WH-003",
+      "WarehouseName": "Electronics DC",
+      "SAPPlant": "3000",
+      "TotalArea": "25,000 sq.ft",
+      "Zones": "4",
+      "Locations": "890",
+      "Utilization": 82,
+      "Status": "Active"
+    },
+    {
+      "WarehouseCode": "WH-004",
+      "WarehouseName": "Grocery Distribution",
+      "SAPPlant": "4000",
+      "TotalArea": "35,000 sq.ft",
+      "Zones": "6",
+      "Locations": "1567",
+      "Utilization": 71,
+      "Status": "Active"
+    },
+    {
+      "WarehouseCode": "WH-005",
+      "WarehouseName": "Northeast Regional Hub",
+      "SAPPlant": "5000",
+      "TotalArea": "45,000 sq.ft",
+      "Zones": "7",
+      "Locations": "2100",
+      "Utilization": 88,
+      "Status": "Active"
+    },
+    {
+      "WarehouseCode": "WH-006",
+      "WarehouseName": "West Coast Facility",
+      "SAPPlant": "6000",
+      "TotalArea": "40,000 sq.ft",
+      "Zones": "6",
+      "Locations": "1890",
+      "Utilization": 73,
+      "Status": "Active"
+    },
+    {
+      "WarehouseCode": "WH-007",
+      "WarehouseName": "Cold Storage Center",
+      "SAPPlant": "7000",
+      "TotalArea": "20,000 sq.ft",
+      "Zones": "3",
+      "Locations": "650",
+      "Utilization": 92,
+      "Status": "Active"
+    },
+    {
+      "WarehouseCode": "WH-008",
+      "WarehouseName": "Midwest Distribution",
+      "SAPPlant": "8000",
+      "TotalArea": "38,000 sq.ft",
+      "Zones": "5",
+      "Locations": "1456",
+      "Utilization": 67,
+      "Status": "Active"
+    },
+    {
+      "WarehouseCode": "WH-009",
+      "WarehouseName": "Southern Hub",
+      "SAPPlant": "9000",
+      "TotalArea": "32,000 sq.ft",
+      "Zones": "4",
+      "Locations": "1123",
+      "Utilization": 58,
+      "Status": "Active"
+    },
+    {
+      "WarehouseCode": "WH-010",
+      "WarehouseName": "Express Fulfillment Center",
+      "SAPPlant": "1100",
+      "TotalArea": "28,000 sq.ft",
+      "Zones": "5",
+      "Locations": "980",
+      "Utilization": 85,
+      "Status": "Active"
+    },
+    {
+      "WarehouseCode": "WH-011",
+      "WarehouseName": "Returns Processing",
+      "SAPPlant": "1200",
+      "TotalArea": "15,000 sq.ft",
+      "Zones": "3",
+      "Locations": "456",
+      "Utilization": 45,
+      "Status": "Active"
+    },
+    {
+      "WarehouseCode": "WH-012",
+      "WarehouseName": "Hazmat Storage Facility",
+      "SAPPlant": "1300",
+      "TotalArea": "12,000 sq.ft",
+      "Zones": "2",
+      "Locations": "234",
+      "Utilization": 54,
+      "Status": "Active"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+<mvc:View xmlns:cards="sap.f.cards" controllerName="rfidwarehousesuiteui.controller.WarehouseMasters"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f" displayBlock="true">
+
+    <Page title="{i18n>Warehousepage.title}" showNavButton="false" class="sapUiResponsiveContentPadding">
+        <content>
+            <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" gap="-3rem" wrap="Wrap">
+
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.totalWarehouses}" class="cardTitle" wrapping="true" />
+                    <ObjectStatus text="12" state="Information" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.totalWarehouses.sub}" state="Information" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.totalCapacity}" class="cardTitle" wrapping="true" />
+                    <ObjectNumber number="250K sq.ft" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.totalCapacity.sub}" state="Success" />
+                </VBox>
+
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.activeOperations}" class="cardTitle" wrapping="true" />
+                    <ObjectNumber number="11" state="Warning" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.activeOperations.sub}" state="Warning" />
+                </VBox>
+
+                <VBox class="card" alignItems="Center">
+                    <Title text="{i18n>card.totalEmployees}" class="cardTitle" wrapping="true" />
+                    <ObjectStatus text="456" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                    <ObjectStatus text="{i18n>card.totalEmployees.sub}" state="Error" />
+                </VBox>
+
+            </HBox>
+
+            <Table id="tblWarehouses"
+                items="{path: 'WarehouseMastersModel>/WarehouseMasterSet'}"
+                growing="true" growingScrollToLoad="true" width="100%" autoPopinMode="true" class="sapUiSmallMarginTop">
+
+                <headerToolbar>
+                    <OverflowToolbar design="Solid">
+                        <content>
+                            <SearchField width="25%" placeholder="{i18n>toolbar.searchWarehouse}" liveChange=".onSearch" />
+                            <Button icon="sap-icon://filter" text="{i18n>toolbar.filter}" />
+                            <ToolbarSpacer />
+                            <Button icon="sap-icon://download" text="{i18n>toolbar.export}" />
+                            <Button icon="sap-icon://add" text="{i18n>toolbar.addWarehouse}" press="onAddWarehouse" />
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column><Text text="{i18n>col.warehouseCode}" /></Column>
+                    <Column><Text text="{i18n>col.warehouseName}" /></Column>
+                    <Column><Text text="{i18n>col.sapPlant}" /></Column>
+                    <Column><Text text="{i18n>col.totalArea}" /></Column>
+                    <Column><Text text="{i18n>col.zones}" /></Column>
+                    <Column><Text text="{i18n>col.locations}" /></Column>
+                    <Column><Text text="{i18n>col.utilization}" /></Column>
+                    <Column><Text text="{i18n>col.status}" /></Column>
+                    <Column width="6rem"><Text text="{i18n>col.actions}" /></Column>
+                </columns>
+
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="{WarehouseMastersModel>WarehouseCode}"></Text>
+                            <Text text="{WarehouseMastersModel>WarehouseName}"></Text>
+                            <Text text="{WarehouseMastersModel>SAPPlant}"></Text>
+                            <Text text="{WarehouseMastersModel>TotalArea}"></Text>
+                            <Text text="{WarehouseMastersModel>Zones}"></Text>
+                            <Text text="{WarehouseMastersModel>Locations}"></Text>
+                            <HBox alignItems="Center">
+                                <ProgressIndicator 
+                                    percentValue="{WarehouseMastersModel>Utilization}" 
+                                    displayValue="{WarehouseMastersModel>Utilization}%"
+                                    state="{= ${WarehouseMastersModel>Utilization} >= 80 ? 'Error' : ${WarehouseMastersModel>Utilization} >= 60 ? 'Warning' : 'Success'}"
+                                    width="100px" />
+                            </HBox>
+                            <ObjectStatus text="{WarehouseMastersModel>Status}" state="{= ${WarehouseMastersModel>Status} === 'Active' ? 'Success' : 'Error'}" />
+                            <HBox justifyContent="Center" alignItems="Center">
+                                <Button icon="sap-icon://show" type="Transparent" />
+                                <Button icon="sap-icon://edit" type="Transparent" />
+                                <Button icon="sap-icon://delete" type="Transparent" />
+                            </HBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+        </content>
+    </Page>
+</mvc:View>
