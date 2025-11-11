@@ -4,33 +4,14 @@
     xmlns:l="sap.ui.layout"
     xmlns:html="http://www.w3.org/1999/xhtml">
 
-    <Dialog
-        id="storageImportDialog"
-        title="Import Storage Locations"
-        class="sapUiSizeCompact"
-        stretch="{= ${device>/system/phone} }"
-        resizable="true">
+    <Dialog id="storageImportDialog" title="Import Storage Locations" class="sapUiSizeCompact" >
 
         <VBox class="sapUiSmallMargin importDialogBox" alignItems="Center" justifyContent="Center">
-            
+
             <!-- Upload Icon -->
-            <core:Icon
-                src="sap-icon://upload-to-cloud"
-                size="3rem"
-                color="#0070f2"
-                class="sapUiTinyMarginBottom" />
-
-            <!-- Upload Header -->
-            <Title text="Upload Excel File" level="H2" class="sapUiTinyMarginBottom" />
-
-            <!-- Description -->
-            <Text
-                text="Import multiple locations from your Excel spreadsheet. Download the template to see the required format."
-                textAlign="Center"
-                class="sapUiTinyMarginBottom" />
-
+            <core:Icon src="sap-icon://upload-to-cloud" size="3rem" color="#0070f2" class="sapUiTinyMarginBottom" />
             <!-- Required Columns Box -->
-            <VBox class="requiredBox sapUiSmallMarginBottom">
+            <VBox class="hierarchy-panel Mandatory-Fields sapUiSmallMarginBottom">
                 <Title text="Required Columns:" level="H3" class="sapUiTinyMarginBottom" />
 
                 <Text text="• Location Code (Required)" />
@@ -40,38 +21,35 @@
                 <Text text="• Temperature (Optional)" />
                 <Text text="• Capacity (Optional)" />
             </VBox>
+            <!-- Download Template Section - OPTIONAL -->
+            <FlexBox class="excelActionFlex sapUiMediumMarginTop" justifyContent="Center" wrap="Wrap" alignItems="Stretch">
 
-            <!-- Action Buttons -->
-            <HBox alignItems="Center" justifyContent="Center" wrap="Wrap" class="sapUiSmallMarginTop">
-                <Button
-                    icon="sap-icon://download"
-                    text="Download Template"
-                    type="Transparent"
-                    press=".onDownloadTemplate"
-                    class="sapUiTinyMarginEnd" />
-                <unified:FileUploader
-                    id="fileUploader"
-                    name="uploadExcel"
-                    width="13rem"
-                    buttonOnly="true"
-                    icon="sap-icon://upload"
-                    buttonText="Choose Excel File"
-                    fileType="xlsx,xls,csv"
-                    maximumFileSize="5"
-                    tooltip="Choose an Excel or CSV file"
-                    change=".onFileSelected"
-                     />
-            </HBox>
-            <VBox alignItems="Center">
-    <Text text="Supported formats: .xlsx, .xls, .csv" textAlign="Center" />
-    <Text text="Maximum file size: 5 MB" textAlign="Center" />
-    <Text text="Maximum rows: 10,000 locations" textAlign="Center" />
-</VBox>
+                <!-- Download Excel Template -->
+                <VBox class="hierarchy-panel Hierarchy-Components sapUiSmallMarginTop sapUiMediumMarginEnd">
+                    <VBox class="excelActionBox" backgroundDesign="Transparent" alignItems="Center">
+                        <core:Icon src="sap-icon://excel-attachment" size="3rem" color="#107C41" class="sapUiTinyMarginBottom"/>
+                        <Text text="Download Excel Template" class="excelActionTitle"/>
+                        <Text text="Get the pre-formatted template with all required columns" class="excelActionSubtext sapUiTinyMarginBottom"/>
+                        <Button text="Download Template" icon="sap-icon://download" type="Default" press="onDownloadTemplate" class="sapUiTinyMarginTop"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Upload Excel File -->
+                <VBox class="hierarchy-panel Mandatory-Fields sapUiSmallMarginTop">
+                    <VBox class="excelActionBox" alignItems="Center">
+                        <core:Icon src="sap-icon://upload" size="3rem" color="#0070f2" class="sapUiTinyMarginBottom"/>
+                        <Text text="Upload Completed Excel File" class="excelActionTitle"/>
+                        <Text text="Supported formats: .xlsx, .xls, .csv (Max 5MB, up to 1000 Locations)" class="excelActionSubtext sapUiTinyMarginBottom"/>
+                        <unified:FileUploader id="fileUploader" name="Choose File" width="13rem" buttonOnly="true" icon="sap-icon://upload" buttonText="Choose Excel File" fileType="xlsx,xls,csv" maximumFileSize="5" tooltip="Choose an Excel or CSV file" change=".onFileSelected" />
+                    </VBox>
+                </VBox>
+
+            </FlexBox>
 
         </VBox>
 
         <endButton>
-			<Button text="Cancel" press=".onCancelPress('storageImportDialog')" />
+            <Button text="Cancel" press=".onCancelPress('storageImportDialog')" />
         </endButton>
     </Dialog>
 </core:FragmentDefinition>

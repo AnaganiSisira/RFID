@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="com.sap.rfid.warehouse.controller.Dashboard"
+    controllerName="rfidwarehousesuiteui.controller.Dashboard"
     xmlns="sap.m"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"

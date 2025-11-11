@@ -263,18 +263,18 @@ Remove any padding from VBox
 }
 
 .Mandatory-Fields{
-    background-color: #FFF9E6;
-    border: 1px solid #f7c65d;
+   background-color: #FFF9E6;
+    border: 1px solid #F5E5B8;
 }
 
 .Barcode-Strategy{
-    background-color: #f9f6ff;
-   border: 1px solid #ce8ccb;
+    background-color: #F3E5F5;
+    border: 1px solid #E1BEE7;
 }
 
 .Hierarchy-Components{
-     background-color: #f8fbff;
-   border: 1px solid #6f94b7;
+   background-color: #E3F2FD;
+    border: 1px solid #BBDEFB;
 }
 
 .PutawayProcess{

@@ -58,7 +58,7 @@
 			<!-- Hierarchy Panel -->
 			<Panel class="hierarchy-panel Hierarchy-Components" backgroundDesign="Transparent">
 				<Toolbar design="Transparent" width="100%">
-					<OverflowToolbar class="Hierarchy-Components" width="100%">
+					<OverflowToolbar design="Transparent"  width="100%">
 						<core:Icon src="sap-icon://tree" />
 						<Title text="Hierarchy Components (Optional)" />
 						<ToolbarSpacer />
@@ -137,7 +137,7 @@
 			</Panel>
 			<Panel class="hierarchy-panel Barcode-Strategy" backgroundDesign="Transparent">
 				<Toolbar design="Transparent">
-					<OverflowToolbar class="Barcode-Strategy">
+					<OverflowToolbar design="Transparent">
 						<core:Icon src="sap-icon://bar-code" size="1.5rem" color="#8e44ad"/>
 						<Title text="Barcode Strategy: Composite Single Barcode" />
 						<ObjectStatus text="Industry Standard" state="Success" class="statusTag"/>
@@ -180,7 +180,7 @@
 					</HBox>
 				</VBox>
 			</Panel>
-			<form:SimpleForm class="hierarchy-panel" editable="true" layout="ColumnLayout" columnsXL="3" columnsL="2" columnsM="2">
+			<form:SimpleForm class="hierarchy-panel Hierarchy-Components" backgroundDesign="Transparent" editable="true" layout="ColumnLayout" columnsXL="3" columnsL="2" columnsM="2">
 				<form:toolbar>
 					<Toolbar>
 						<content>
