@@ -15,8 +15,12 @@ sap.ui.define([
         formatter: formatter,
         onInit: function () {
 
-
+         this.getRouter().getRoute("ZonesMasters").attachPatternMatched(this._onRouterZoneMastersMatched, this)
+       
+       
         },
+
+         _onRouterZoneMastersMatched: function (oEvent) {},
 
 
         onCreateZonesMasters: function () {

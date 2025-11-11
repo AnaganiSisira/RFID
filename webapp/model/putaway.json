@@ -1,0 +1,377 @@
+{
+    "Strategies": [
+        {
+            "strategyCode": "PA-FAST-01",
+            "strategyName": "Fast Moving Electronics",
+            "priority": "1",
+            "itemCriteria": "Category = Electronics AND ABC = A",
+            "itemFilterExpression": "Category = 'Electronics' AND ABC_Class = 'A'",
+            "targetZones": "FAST-ZONE, PICK-FACE",
+            "rules": 4,
+            "itemsLinked": 2345,
+            "status": "Active",
+            "categoryFilter": "Electronics",
+            "abcClass": "A",
+            "storageCondition": "Any",
+            "searchMethod": "Nearest Available Location",
+            "consolidation": "Allow Same SKU Only",
+            "fillStrategy": "Fill to Capacity",
+            "overflowHandling": "Next Best Location",
+            "abcSegregation": "Enforce Strictly",
+            "requireRfidVerification": true,
+            "qualityCheckBeforePutaway": false,
+            "photoVerificationRequired": false,
+            "autoConfirmPutaway": true,
+            "allowCrossDocking": false,
+            "putawayRules": [
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Weight < 5kg",
+                    "action": "Zone = FAST-ZONE"
+                },
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Weight >= 5kg",
+                    "action": "Zone = PICK-FACE"
+                },
+                {
+                    "ruleType": "Location Selection",
+                    "condition": "ABC = A",
+                    "action": "Nearest to shipping dock"
+                },
+                {
+                    "ruleType": "Conditional Routing",
+                    "condition": "Stock > 100 units",
+                    "action": "Reserve additional location"
+                }
+            ]
+        },
+        {
+            "strategyCode": "PA-COLD-01",
+            "strategyName": "Cold Chain Dairy",
+            "priority": "2",
+            "itemCriteria": "Category = Dairy AND Temp < 8°C",
+            "itemFilterExpression": "Category = 'Dairy' AND Temp < 8°C",
+            "targetZones": "COLD-01, COLD-02",
+            "rules": 5,
+            "itemsLinked": 1567,
+            "status": "Active",
+            "categoryFilter": "Dairy",
+            "abcClass": "All",
+            "storageCondition": "Temperature Controlled",
+            "searchMethod": "Nearest Available Location",
+            "consolidation": "Allow Same SKU Only",
+            "fillStrategy": "Fill to Capacity",
+            "overflowHandling": "Next Best Location",
+            "abcSegregation": "Allow Flexibility",
+            "requireRfidVerification": true,
+            "qualityCheckBeforePutaway": true,
+            "photoVerificationRequired": false,
+            "autoConfirmPutaway": true,
+            "allowCrossDocking": false,
+            "putawayRules": [
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Temp < 4°C",
+                    "action": "Zone = COLD-01"
+                },
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Temp >= 4°C AND Temp < 8°C",
+                    "action": "Zone = COLD-02"
+                },
+                {
+                    "ruleType": "Location Selection",
+                    "condition": "Expiry < 7 days",
+                    "action": "Front location for FIFO"
+                },
+                {
+                    "ruleType": "Conditional Routing",
+                    "condition": "Temperature deviation detected",
+                    "action": "Alert quality team"
+                },
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Bulk quantity",
+                    "action": "Reserve entire section"
+                }
+            ]
+        },
+        {
+            "strategyCode": "PA-BULK-01",
+            "strategyName": "Bulk Storage Items",
+            "priority": "3",
+            "itemCriteria": "Weight > 50kg OR Volume > 1m³",
+            "itemFilterExpression": "Weight > 50kg OR Volume > 1m³",
+            "targetZones": "BULK-STORAGE",
+            "rules": 3,
+            "itemsLinked": 890,
+            "status": "Active",
+            "categoryFilter": "All",
+            "abcClass": "All",
+            "storageCondition": "Any",
+            "searchMethod": "Maximize Utilization",
+            "consolidation": "No Consolidation",
+            "fillStrategy": "One SKU Per Location",
+            "overflowHandling": "Create Overflow Task",
+            "abcSegregation": "Ignore Segregation",
+            "requireRfidVerification": true,
+            "qualityCheckBeforePutaway": false,
+            "photoVerificationRequired": false,
+            "autoConfirmPutaway": true,
+            "allowCrossDocking": false,
+            "putawayRules": [
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Weight > 50kg",
+                    "action": "Zone = BULK-STORAGE"
+                },
+                {
+                    "ruleType": "Location Selection",
+                    "condition": "Forklift accessible",
+                    "action": "Ground level only"
+                },
+                {
+                    "ruleType": "Conditional Routing",
+                    "condition": "Volume > 2m³",
+                    "action": "Assign dedicated bay"
+                }
+            ]
+        },
+        {
+            "strategyCode": "PA-HAZMAT-01",
+            "strategyName": "Hazardous Materials",
+            "priority": "4",
+            "itemCriteria": "Hazmat = Yes",
+            "itemFilterExpression": "Hazmat = 'Yes'",
+            "targetZones": "HAZMAT-ZONE",
+            "rules": 7,
+            "itemsLinked": 234,
+            "status": "Active",
+            "categoryFilter": "Hazardous",
+            "abcClass": "All",
+            "storageCondition": "Hazmat Certified",
+            "searchMethod": "Nearest Available Location",
+            "consolidation": "No Consolidation",
+            "fillStrategy": "Partial Fill Allowed",
+            "overflowHandling": "Reject Put-away",
+            "abcSegregation": "Enforce Strictly",
+            "requireRfidVerification": true,
+            "qualityCheckBeforePutaway": true,
+            "photoVerificationRequired": true,
+            "autoConfirmPutaway": false,
+            "allowCrossDocking": false,
+            "putawayRules": [
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Hazmat = Yes",
+                    "action": "Zone = HAZMAT-ZONE"
+                },
+                {
+                    "ruleType": "Location Selection",
+                    "condition": "Fire hazard",
+                    "action": "Segregate from ignition sources"
+                },
+                {
+                    "ruleType": "Conditional Routing",
+                    "condition": "Incompatible materials",
+                    "action": "Maintain separation distance"
+                },
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Flammable",
+                    "action": "Dedicated flammable storage"
+                },
+                {
+                    "ruleType": "Location Selection",
+                    "condition": "Corrosive",
+                    "action": "Corrosion-resistant area"
+                },
+                {
+                    "ruleType": "Conditional Routing",
+                    "condition": "Quantity exceeds limit",
+                    "action": "Create notification for EHS"
+                },
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Toxic material",
+                    "action": "Restricted access zone"
+                }
+            ]
+        },
+        {
+            "strategyCode": "PA-CROSS-01",
+            "strategyName": "Cross-dock Items",
+            "priority": "5",
+            "itemCriteria": "CrossDock = Yes AND Turnover < 24hrs",
+            "itemFilterExpression": "CrossDock = 'Yes' AND Turnover < 24hrs",
+            "targetZones": "STAGING, CROSS-DOCK",
+            "rules": 2,
+            "itemsLinked": 456,
+            "status": "Active",
+            "categoryFilter": "All",
+            "abcClass": "All",
+            "storageCondition": "Any",
+            "searchMethod": "Empty Locations First",
+            "consolidation": "Allow Mixed Items",
+            "fillStrategy": "Partial Fill Allowed",
+            "overflowHandling": "Next Best Location",
+            "abcSegregation": "Ignore Segregation",
+            "requireRfidVerification": true,
+            "qualityCheckBeforePutaway": false,
+            "photoVerificationRequired": false,
+            "autoConfirmPutaway": true,
+            "allowCrossDocking": true,
+            "putawayRules": [
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "CrossDock = Yes",
+                    "action": "Zone = STAGING"
+                },
+                {
+                    "ruleType": "Conditional Routing",
+                    "condition": "Outbound order ready",
+                    "action": "Direct to CROSS-DOCK"
+                }
+            ]
+        },
+        {
+            "strategyCode": "PA-FRAGILE-01",
+            "strategyName": "Fragile Items",
+            "priority": "2",
+            "itemCriteria": "Fragile = Yes OR Breakable = Yes",
+            "itemFilterExpression": "Fragile = 'Yes' OR Breakable = 'Yes'",
+            "targetZones": "FRAGILE-01, FRAGILE-02",
+            "rules": 4,
+            "itemsLinked": 678,
+            "status": "Active",
+            "categoryFilter": "All",
+            "abcClass": "All",
+            "storageCondition": "Gentle Handling",
+            "searchMethod": "Nearest Available Location",
+            "consolidation": "Allow Same SKU Only",
+            "fillStrategy": "Partial Fill Allowed",
+            "overflowHandling": "Next Best Location",
+            "abcSegregation": "Allow Flexibility",
+            "requireRfidVerification": true,
+            "qualityCheckBeforePutaway": true,
+            "photoVerificationRequired": true,
+            "autoConfirmPutaway": false,
+            "allowCrossDocking": false,
+            "putawayRules": [
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Fragile = Yes",
+                    "action": "Zone = FRAGILE-01"
+                },
+                {
+                    "ruleType": "Location Selection",
+                    "condition": "Height restriction",
+                    "action": "Bottom two shelves only"
+                },
+                {
+                    "ruleType": "Conditional Routing",
+                    "condition": "High value",
+                    "action": "Security monitored area"
+                },
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Glass items",
+                    "action": "Padded storage area"
+                }
+            ]
+        },
+        {
+            "strategyCode": "PA-HIGHVAL-01",
+            "strategyName": "High Value Items",
+            "priority": "1",
+            "itemCriteria": "Value > 10000 OR Category = 'Jewelry'",
+            "itemFilterExpression": "Value > 10000 OR Category = 'Jewelry'",
+            "targetZones": "SECURE-VAULT, HIGHVAL-01",
+            "rules": 5,
+            "itemsLinked": 345,
+            "status": "Active",
+            "categoryFilter": "Jewelry",
+            "abcClass": "A",
+            "storageCondition": "Secured",
+            "searchMethod": "Nearest Available Location",
+            "consolidation": "No Consolidation",
+            "fillStrategy": "One SKU Per Location",
+            "overflowHandling": "Reject Put-away",
+            "abcSegregation": "Enforce Strictly",
+            "requireRfidVerification": true,
+            "qualityCheckBeforePutaway": true,
+            "photoVerificationRequired": true,
+            "autoConfirmPutaway": false,
+            "allowCrossDocking": false,
+            "putawayRules": [
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Value > 50000",
+                    "action": "Zone = SECURE-VAULT"
+                },
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Value >= 10000 AND Value <= 50000",
+                    "action": "Zone = HIGHVAL-01"
+                },
+                {
+                    "ruleType": "Location Selection",
+                    "condition": "Security level 5",
+                    "action": "Cage with access control"
+                },
+                {
+                    "ruleType": "Conditional Routing",
+                    "condition": "Multiple units",
+                    "action": "Separate locations for risk distribution"
+                },
+                {
+                    "ruleType": "Location Selection",
+                    "condition": "Jewelry category",
+                    "action": "Climate controlled secure locker"
+                }
+            ]
+        },
+        {
+            "strategyCode": "PA-SEASONAL-01",
+            "strategyName": "Seasonal Products",
+            "priority": "3",
+            "itemCriteria": "Category = 'Seasonal' OR Tags CONTAINS 'Holiday'",
+            "itemFilterExpression": "Category = 'Seasonal' OR Tags CONTAINS 'Holiday'",
+            "targetZones": "SEASONAL-FRONT, SEASONAL-BACK",
+            "rules": 3,
+            "itemsLinked": 1234,
+            "status": "Inactive",
+            "categoryFilter": "Seasonal",
+            "abcClass": "B",
+            "storageCondition": "Any",
+            "searchMethod": "Balance Across Zones",
+            "consolidation": "Allow Mixed Items",
+            "fillStrategy": "Fill to Capacity",
+            "overflowHandling": "Create Overflow Task",
+            "abcSegregation": "Allow Flexibility",
+            "requireRfidVerification": true,
+            "qualityCheckBeforePutaway": false,
+            "photoVerificationRequired": false,
+            "autoConfirmPutaway": true,
+            "allowCrossDocking": true,
+            "putawayRules": [
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Current season",
+                    "action": "Zone = SEASONAL-FRONT"
+                },
+                {
+                    "ruleType": "Zone Selection",
+                    "condition": "Off season",
+                    "action": "Zone = SEASONAL-BACK"
+                },
+                {
+                    "ruleType": "Conditional Routing",
+                    "condition": "Peak demand period",
+                    "action": "Allocate additional pick faces"
+                }
+            ]
+        }
+    ]
+}

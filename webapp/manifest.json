@@ -60,6 +60,14 @@
       "ZonesModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/data.json"
+      },
+      "UsersModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/users.json"
+      },
+      "StrategiesModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/putaway.json"
       }
     },
     "resources": {
@@ -102,6 +110,20 @@
           "target": [
             "TargetZonesMasters"
           ]
+        },
+        {
+          "name": "UserManagement",
+          "pattern": "UserManagement",
+          "target": [
+            "TargetUserManagement"
+          ]
+        },
+        {
+          "name": "PutawayStrategy",
+          "pattern": "PutawayStrategy",
+          "target": [
+            "TargetPutawayStrategy"
+          ]
         }
       ],
       "targets": {
@@ -116,6 +138,14 @@
         "TargetZonesMasters": {
           "id": "ZonesMasters",
           "name": "ZonesMasters"
+        },
+        "TargetUserManagement": {
+          "id": "UserManagement",
+          "name": "UserManagement"
+        },
+        "TargetPutawayStrategy": {
+          "id": "PutawayStrategy",
+          "name": "PutawayStrategy"
         }
       }
     },
