@@ -173,7 +173,7 @@
 		</content>
 		
 		<beginButton>
-			<Button text="Create Location" type="Emphasized" press="onCreateLocationPress" />
+			<Button text="Create Location" type="Emphasized" press=".onSavePress('Bulk Locations','createBulkLocationDialog')" />
 		</beginButton>
 
 		<endButton>

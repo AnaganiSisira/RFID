@@ -172,8 +172,11 @@ sap.ui.define([
             if (this._oBulkDialog) {
                 this._oBulkDialog.close();
             }
+        },
+        onCreateZones:function(){
+            this.onBulkCancelPress();
+             MessageBox.success("Zones Saved Sucessfully");
         }
-
 
 
 

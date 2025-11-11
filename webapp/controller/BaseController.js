@@ -70,6 +70,10 @@ sap.ui.define([
         },
         onCancelPress: function (oDialogId) {
             this.byId(oDialogId).close();
+        },
+        onSavePress:function(sMessage,oDialogId){
+            this.onCancelPress(oDialogId)
+            MessageBox.success(sMessage +" Saved Sucessfully");
         }
     });
 });
