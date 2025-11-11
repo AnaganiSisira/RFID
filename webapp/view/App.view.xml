@@ -130,7 +130,7 @@
                     <tnt:NavigationListItem text="{i18n>navAdmin}" icon="sap-icon://settings" expanded="false" selectable="false">
                         <tnt:NavigationListItem text="{i18n>navStorageMasters}" icon="sap-icon://grid" key="StorageLocationMasters" select="onItemSelect('StorageLocationMasters')"/>
                         <tnt:NavigationListItem text="{i18n>navPutawayStrategy}" icon="sap-icon://group" key="PutawayStrategy" select="onItemSelect('PutawayStrategy')"/>
-                        <!-- <tnt:NavigationListItem text="{i18n>navTagRegistry}" icon="sap-icon://tag" key="TagRegistry"/> -->
+                        <tnt:NavigationListItem text="{i18n>navTagRegistry}" icon="sap-icon://tag" key="TagRegistry"/>
                         <tnt:NavigationListItem text="Warehouse " icon="sap-icon://group" key="WarehouseMasters" select="onItemSelect('WarehouseMasters')"/>
                         <tnt:NavigationListItem text="Pick Strategy" icon="sap-icon://group" key="PickStrategy" select="onItemSelect('PickStrategy')"/>
                         <tnt:NavigationListItem text="Items" icon="sap-icon://tag" key="ItemMasters" select="onItemSelect('ItemMasters')"/>
