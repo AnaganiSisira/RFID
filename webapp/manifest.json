@@ -72,6 +72,7 @@
       "PickStrategyModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/pickStrategy.json"
+      },
       "UsersModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/users.json"
@@ -141,6 +142,8 @@
           "pattern": "PickStrategy",
           "target": [
             "TargetPickStrategy"
+          ]},
+          {
           "name": "UserManagement",
           "pattern": "UserManagement",
           "target": [
@@ -178,7 +181,7 @@
         },
          "TargetPickStrategy": {
           "id": "PickStrategy",
-          "name": "PickStrategy"
+          "name": "PickStrategy"},
         "TargetUserManagement": {
           "id": "UserManagement",
           "name": "UserManagement"

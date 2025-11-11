@@ -45,7 +45,7 @@
 			</form:SimpleForm>
 			<Panel class="hierarchy-panel Hierarchy-Components" backgroundDesign="Transparent">
 				<Toolbar  design="Transparent" width="100%" >
-					<OverflowToolbar class="Hierarchy-Components">
+					<OverflowToolbar design="Transparent">
 						<core:Icon src="sap-icon://dimension" size="1.5rem" color="#1f77d0"/>
 						<Title text="Component Ranges " />
 					</OverflowToolbar>
@@ -113,7 +113,7 @@
 					</HBox>
 				</VBox>
 			</Panel>
-			<Panel class="hierarchy-panel quickPresetsPanel" backgroundDesign="Translucent">
+			<Panel class="hierarchy-panel Barcode-Strategy" backgroundDesign="Transparent">
     <!-- Header -->
     <Toolbar design="Transparent">
         <Title text="Quick Presets (Optional)" class="sectionTitle"/>
@@ -167,8 +167,7 @@
                     <Text text="Final destination: BIN (last component)" class="summaryLine sapUiTinyMarginBegin"/>
                 </HBox>
             </VBox>
-
-            <Title text="1,600" level="H6" class="summaryCount"/>
+			<Text text="1,600" class="summaryNumber"/>
         </HBox>
     </VBox>
 		</content>
