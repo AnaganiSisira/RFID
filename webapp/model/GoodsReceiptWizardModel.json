@@ -1,0 +1,136 @@
+{
+  "currentStep": 0,
+  "poNumber": "4500001234",
+  "vendor": "Samsung Electronics",
+  "expectedDate": "2024-11-14",
+  "totalItems": 365,
+  "totalValue": 125000,
+  "warehouse": "WH01 - Main DC",
+  "hasVariance": true,
+  "grDocNumber": "5000001245",
+  "itemsReceived": 363,
+  "tagsAssigned": 363,
+  "notes": "Two monitors were damaged during transit. Partial delivery confirmed with vendor.",
+  "selectedTagMethod": "RFID Reader",
+  "lineItems": [
+    {
+      "material": "MAT-TV-001",
+      "description": "Samsung 65\" Smart TV",
+      "expectedQty": 50,
+      "uom": "EA"
+    },
+    {
+      "material": "MAT-SND-001",
+      "description": "Samsung Soundbar",
+      "expectedQty": 75,
+      "uom": "EA"
+    },
+    {
+      "material": "MAT-MON-001",
+      "description": "Samsung 27\" Monitor",
+      "expectedQty": 100,
+      "uom": "EA"
+    },
+    {
+      "material": "MAT-TAB-001",
+      "description": "Samsung Galaxy Tab",
+      "expectedQty": 60,
+      "uom": "EA"
+    },
+    {
+      "material": "MAT-PHN-001",
+      "description": "Samsung Galaxy S23",
+      "expectedQty": 80,
+      "uom": "EA"
+    }
+  ],
+  "receiveItems": [
+    {
+      "material": "MAT-TV-001",
+      "description": "Samsung 65\" Smart TV",
+      "expected": 50,
+      "received": 50,
+      "tagType": "RFID",
+      "tagNumber": "RFID-MAT-TV-001-001",
+      "reason": ""
+    },
+    {
+      "material": "MAT-SND-001",
+      "description": "Samsung Soundbar",
+      "expected": 75,
+      "received": 75,
+      "tagType": "RFID",
+      "tagNumber": "RFID-MAT-SND-001-002",
+      "reason": ""
+    },
+    {
+      "material": "MAT-MON-001",
+      "description": "Samsung 27\" Monitor",
+      "expected": 100,
+      "received": 98,
+      "tagType": "RFID",
+      "tagNumber": "RFID-MAT-MON-001-003",
+      "reason": "damaged"
+    },
+    {
+      "material": "MAT-TAB-001",
+      "description": "Samsung Galaxy Tab",
+      "expected": 60,
+      "received": 60,
+      "tagType": "Barcode",
+      "tagNumber": "BC-MAT-TAB-001-004",
+      "reason": ""
+    },
+    {
+      "material": "MAT-PHN-001",
+      "description": "Samsung Galaxy S23",
+      "expected": 80,
+      "received": 80,
+      "tagType": "RFID",
+      "tagNumber": "RFID-MAT-PHN-001-005",
+      "reason": ""
+    }
+  ],
+  "verifyItems": [
+    {
+      "material": "MAT-TV-001",
+      "description": "Samsung 65\" Smart TV",
+      "expected": 50,
+      "received": 50,
+      "variance": 0,
+      "reason": ""
+    },
+    {
+      "material": "MAT-SND-001",
+      "description": "Samsung Soundbar",
+      "expected": 75,
+      "received": 75,
+      "variance": 0,
+      "reason": ""
+    },
+    {
+      "material": "MAT-MON-001",
+      "description": "Samsung 27\" Monitor",
+      "expected": 100,
+      "received": 98,
+      "variance": -2,
+      "reason": "damaged"
+    },
+    {
+      "material": "MAT-TAB-001",
+      "description": "Samsung Galaxy Tab",
+      "expected": 60,
+      "received": 60,
+      "variance": 0,
+      "reason": ""
+    },
+    {
+      "material": "MAT-PHN-001",
+      "description": "Samsung Galaxy S23",
+      "expected": 80,
+      "received": 80,
+      "variance": 0,
+      "reason": ""
+    }
+  ]
+}
