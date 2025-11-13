@@ -1,0 +1,79 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+
+    <Dialog id="CreatePickingWaveDialog" title="Create Picking Task" class="sapUiResponsiveContentPadding" contentWidth="80%">
+        <content>
+            <MessageStrip customIcon="sap-icon://dimension" showIcon="true" type="Success" text="WAVE PICKING STRATEGY: Groups multiple orders to optimize picker routes and warehouse efficiency. Best for high-volume operations with similar delivery schedules."></MessageStrip>
+
+            <!-- Form Section -->
+            <f:SimpleForm editable="true" layout="ColumnLayout" columnsXL="2" columnsL="2" columnsM="2" class="sapUiResponsiveMargin">
+
+                <f:content>
+
+                    <!-- Wave Name -->
+                    <Label text="Wave Name" required="true"/>
+                    <Input id="waveNameInput" placeholder="e.g., Morning Express Wave" value="{/waveName}" required="true"/>
+
+                    <!-- Picking Strategy -->
+                    <Label text="Picking Strategy"/>
+                    <Select id="pickingStrategySelect" selectedKey="{/pickingStrategy}">
+                        <items>
+                            <core:Item key="batch" text="Batch Picking"/>
+                            <core:Item key="discrete" text="Discrete Picking"/>
+                            <core:Item key="zone" text="Zone Picking"/>
+                            <core:Item key="wave" text="Wave Picking"/>
+                        </items>
+                    </Select>
+
+                    <!-- Priority Level -->
+                    <Label text="Priority Level"/>
+                    <Select id="priorityLevelSelect" selectedKey="{/priorityLevel}">
+                        <items>
+                            <core:Item key="normal" text="Normal"/>
+                            <core:Item key="high" text="High"/>
+                            <core:Item key="urgent" text="Urgent"/>
+                        </items>
+                    </Select>
+
+                    <!-- Max Orders -->
+                    <Label text="Max Orders"/>
+                    <Input id="maxOrdersInput" placeholder="50" value="{/maxOrders}" type="Number"/>
+
+                    <!-- Start Time -->
+                    <Label text="Start Time" required="true"/>
+                    <TimePicker id="startTimePicker" placeholder="--:--" value="{/startTime}" valueFormat="HH:mm" displayFormat="HH:mm" required="true"/>
+
+                    <!-- End Time -->
+                    <Label text="End Time" required="true"/>
+                    <TimePicker id="endTimePicker" placeholder="--:--" value="{/endTime}" valueFormat="HH:mm" displayFormat="HH:mm" required="true"/>
+                    <Label text="Select Zones" />
+                        <CheckBox text="A-1" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" selected="{/zones/A1}"/>
+                        <CheckBox text="A-2" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" selected="{/zones/A2}"/>
+                        <CheckBox text="B-1" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" selected="{/zones/B1}"/>
+                        <CheckBox text="B-2" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" selected="{/zones/B2}"/>
+                        <CheckBox text="C-1" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" selected="{/zones/C1}"/>
+                        <CheckBox text="C-2" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" selected="{/zones/C2}"/>
+                    <Label text="Assign Pickers"/>
+                    
+                        <CheckBox text="John Smith" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" selected="{/pickers/johnSmith}"/>
+                        <CheckBox text="Sarah Johnson" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" selected="{/pickers/sarahJohnson}"/>
+                        <CheckBox text="Mike Wilson" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" selected="{/pickers/mikeWilson}"/>
+                        <CheckBox text="Emma Davis" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" selected="{/pickers/emmaDavis}"/>
+
+                </f:content>
+            </f:SimpleForm>
+
+        </content>
+
+        <beginButton>
+            <Button text="{i18n>cancel}" press="onCancelPress('CreatePickingWaveDialog')"/>
+        </beginButton>
+
+        <endButton>
+            <Button text="Create Task" type="Emphasized" press="onCreatePutawayPress"/>
+        </endButton>
+
+    </Dialog>
+</core:FragmentDefinition>

@@ -90,10 +90,16 @@
                             <ObjectStatus text="{StorageLocationModel>status}" state="{= ${StorageLocationModel>status} === 'Active' ? 'Success' : 'Error'}" />
 
                             <HBox justifyContent="Center" alignItems="Center">
+                            
+                                <core:Icon src="sap-icon://show" class="sapUiTinyMargin" color="blue" press=".onShowpress('Preview Sucessfully')" />
+                                <core:Icon src="sap-icon://edit" press=".onShowpress" />
+                                <core:Icon src="sap-icon://delete" class="sapUiTinyMargin" color="red" press=".onShowpress" />
+                            </HBox>
+                            <!-- <FlexBox justifyContent="Center" alignItems="Inherit">
                                 <Button icon="sap-icon://show" type="Transparent" />
                                 <Button icon="sap-icon://edit" type="Transparent" />
                                 <Button icon="sap-icon://delete" type="Transparent" />
-                            </HBox>
+                            </FlexBox> -->
                         </cells>
                     </ColumnListItem>
                 </items>

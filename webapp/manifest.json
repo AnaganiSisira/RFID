@@ -80,6 +80,10 @@
       "StrategiesModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/putaway.json"
+      },
+       "PickingTasksModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/pickingTasks.json"
       }
     },
     "resources": {
@@ -156,6 +160,13 @@
           "target": [
             "TargetPutawayStrategy"
           ]
+        },
+        {
+          "name": "PickingTasks",
+          "pattern": "PickingTasks",
+          "target": [
+            "TargetPickingTasks"
+          ]
         }
       ],
       "targets": {
@@ -189,6 +200,10 @@
         "TargetPutawayStrategy": {
           "id": "PutawayStrategy",
           "name": "PutawayStrategy"
+        },
+        "TargetPickingTasks": {
+          "id": "PickingTasks",
+          "name": "PickingTasks"
         }
       }
     },

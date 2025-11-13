@@ -1,0 +1,343 @@
+<mvc:View xmlns:uxap="sap.uxap"
+    xmlns:cards="sap.f.cards" controllerName="rfidwarehousesuiteui.controller.PickingTasks"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f" displayBlock="true">
+    <f:DynamicPage id="dynamicPageId" stickySubheaderProvider="iconTabBar" class="sapUiNoContentPadding">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>PickingTaskspage.title}"/>
+                </f:heading>
+                <f:expandedContent>
+                    <ObjectAttribute title="{i18n>PickingTaskspage.subTittle}" text="{i18n>PickingTaskspage.subText}" />
+                </f:expandedContent>
+                <f:snappedContent>
+                    <ObjectAttribute title="{i18n>PickingTaskspage.subTittle}" text="{i18n>PickingTaskspage.subText}" />
+                </f:snappedContent>
+                <f:snappedTitleOnMobile>
+                    <Title text="{i18n>PickingTaskspage.title}"/>
+                </f:snappedTitleOnMobile>
+                <f:actions>
+                    <Button icon="sap-icon://upload" text="Export" press="onExportTasksPress" />
+                    <Button text="Create Task" press="onCreatePickingTaskPress" />
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" gap="-3rem" wrap="Wrap">
+
+                    <VBox class="card" alignItems="Center" width="19%">
+                        <Title text="{i18n>card.totalOrders}" class="cardTitle" wrapping="true" />
+                        <ObjectStatus text="4" state="Information" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                        <ObjectStatus text="{i18n>card.totalStrategies.sub}" state="Information" class="cardStatus"/>
+                    </VBox>
+
+                    <VBox class="card" alignItems="Center" width="19%">
+                        <Title text="{i18n>card.PendingTasks}" class="cardTitle" wrapping="true" />
+                        <ObjectNumber number="1" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                        <ObjectStatus text="Requires assignment}" state="Success" />
+                    </VBox>
+
+                    <VBox class="card" alignItems="Center" width="19%">
+                        <Title text="{i18n>card.InProgress}" class="cardTitle" wrapping="true" />
+                        <ObjectNumber number="1" unit="min" state="Warning" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                        <ObjectStatus text="Active picking" state="Warning" />
+                    </VBox>
+
+                    <VBox class="card" alignItems="Center" width="19%">
+                        <Title text="{i18n>card.CompletedToday}" class="cardTitle" wrapping="true" />
+                        <ObjectStatus text="1" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                        <ObjectStatus text="{i18n>card.pickAccuracy.sub}" state="Error" />
+                    </VBox>
+                    <VBox class="card" alignItems="Center" width="19%">
+                        <Title text="{i18n>card.AvgPickTime}" class="cardTitle" wrapping="true" />
+                        <ObjectStatus text="min/item" title="3.2" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom" />
+                        <ObjectStatus text="{i18n>card.pickAccuracy.sub}" state="Error" />
+                    </VBox>
+                </HBox>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <IconTabBar selectedKey="InboundRequests">
+                <items>
+                    <IconTabFilter key="InboundRequests" design="Horizontal" icon="sap-icon://download-from-cloud" text="Inbound Requests" count="4" textDirection="LTR">
+                        <Table id="idPickingTasks" inset="false" items="{
+                path: 'PickingTasksModel>/InboundRequests'
+            }">
+                            <headerToolbar>
+                                <OverflowToolbar design="Solid">
+                                    <content>
+                                        <Title text="Inbound Picking Requests from SAP" level="H3" />
+                                    </content>
+                                </OverflowToolbar>
+                            </headerToolbar>
+
+                            <columns>
+                                <Column>
+                                    <Text text="Transfer Order"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Delivery/Sales Order"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Customer"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Priority"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Items"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Weight/Volume"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Zone"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Due Date/Time"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Source"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Status"/>
+                                </Column>
+                            </columns>
+
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{PickingTasksModel>TransferOrder}" />
+                                        <Text text="{PickingTasksModel>DeliveryOrder}" />
+                                        <Text text="{PickingTasksModel>Customer}" />
+                                        <ObjectStatus text="{PickingTasksModel>Priority}" />
+                                        <Text text="{PickingTasksModel>Items}" />
+                                        <Text text="{PickingTasksModel>WeightVolume}" />
+                                        <Text text="{PickingTasksModel>Zone}" />
+                                        <Text text="{PickingTasksModel>DueDate}" />
+                                        <ObjectStatus text="{PickingTasksModel>Source}" state="Information" />
+                                        <ObjectStatus text="{PickingTasksModel>Status}" state="Success" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                        <f:Card >
+                        <f:header><cards:Header title="SAP Integration Configuration"></cards:Header></f:header>
+                        <f:content>
+                        <VBox >
+                        <FlexBox justifyContent="Start">
+                       
+                        <List headerText="Connected Systems:">
+                        <items>
+                        <StandardListItem title="SAP ECC 6.0 - WM Module (Production)"></StandardListItem>
+                        <StandardListItem title="SAP S/4HANA - EWM 9.5 (Production)"></StandardListItem>
+                        </items>
+                        </List>
+                        
+                        <List headerText="Sync Settings:">
+                        <items>
+                        <StandardListItem title="SAP ECC 6.0 - WM Module (Production)"></StandardListItem>
+                        <StandardListItem title="SAP S/4HANA - EWM 9.5 (Production)"></StandardListItem>
+                        </items>
+                        </List>
+                        </FlexBox>
+                        </VBox>
+                        </f:content>
+                        </f:Card>
+                    </IconTabFilter>
+                    <IconTabFilter design="Horizontal" icon="sap-icon://activity-items" text="Active Tasks" count="3">
+                        <Table id="idActiveTasks" inset="false" items="{
+                path: 'PickingTasksModel>/ActiveTasks',
+                sorter: { path: 'strategyCode' }
+            }">
+                            <headerToolbar >
+                                <OverflowToolbar design="Solid">
+                                    <content>
+                                        <Title text="Active Picking Tasks" level="H3"/>
+                                        <ToolbarSpacer/>
+                                        <Select >
+                                            <core:Item key="all" text="All Tasks"/>
+                                            <core:Item key="pending" text="Pending"/>
+                                            <core:Item key="inprogress" text="In Progress"/>
+                                            <core:Item key="completed" text="Completed"/>
+                                        </Select>
+                                        <SearchField width="20%" placeholder="Search tasks..."/>
+                                    </content>
+                                </OverflowToolbar>
+                            </headerToolbar>
+
+                            <columns>
+                                <Column>
+                                    <Text text="Order/Delivery"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Customer"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Priority"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Items"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Weight/Volume"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Progress"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Zone"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Picker"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Status"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Source"/>
+                                </Column>
+                                <Column>
+                                    <Text text="Actions"/>
+                                </Column>
+                            </columns>
+
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{PickingTasksModel>Order}" />
+                                        <Text text="{PickingTasksModel>Customer}" />
+                                        <ObjectStatus text="{PickingTasksModel>Priority}" />
+                                        <Text text="{PickingTasksModel>Items}" />
+                                        <Text text="{PickingTasksModel>WeightVolume}" />
+                                        <ProgressIndicator percentValue="{PickingTasksModel>Progress}" displayValue="{PickingTasksModel>Progress}%" />
+                                        <Text text="{PickingTasksModel>Zone}" />
+                                        <Text text="{PickingTasksModel>Picker}" />
+                                        <ObjectStatus text="{PickingTasksModel>Status}" />
+                                        <Text text="{PickingTasksModel>Source}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </IconTabFilter>
+                    <IconTabFilter design="Horizontal" icon="sap-icon://dimension" text="Wave Management" count="2">
+                        <HBox class="pickingtaskstabs" >
+                            <Button text="Create Wave" icon="sap-icon://add" type="Emphasized" press=".onCreateWavePress"/>
+                            <Button text="Auto-Generate Wave" icon="sap-icon://batch-payments"/>
+                            <Button text="Import from SAP"  icon="sap-icon://download"/>
+                        </HBox>
+                        <FlexBox class="pickingtaskstabs" justifyContent="Start" alignItems="Center" columnGap="1rem" rowGap="1rem">
+                            <f:Card width="350px">
+                                <f:header>
+                                    <cards:Header title="Morning Wave" subtitle="WAVE-001" statusText="active">
+                                    </cards:Header>
+                                </f:header>
+                                <f:content>
+                                    <VBox class="sapUiSmallMarginBegin sapUiSmallMarginBottom" width="300px">
+                                        <Text text="Wave Progress" />
+                                        <ProgressIndicator percentValue="62" displayValue="28/45 orders (62%)" state="Success" />
+
+                                        <HBox class="sapUiTinyMarginTop" justifyContent="SpaceBetween">
+                                            <VBox>
+                                                <Text text="Time Window"/>
+                                                <Text text="06:00 AM - 12:00 PM"/>
+                                            </VBox>
+                                            <VBox>
+                                                <Text text="Assigned Pickers"/>
+                                                <Text text="5 pickers"/>
+                                            </VBox>
+                                        </HBox>
+                                        <HBox justifyContent="SpaceBetween">
+                                            <Button text="View Details" />
+                                            <Button text="Start Wave" type="Emphasized" visible="false"/>
+                                        </HBox>
+                                    </VBox>
+                                </f:content>
+                            </f:Card>
+
+                            <f:Card width="350px">
+                                <f:header>
+                                    <cards:Header title="Afternoon Wave" subtitle="WAVE-002" statusText="scheduled">
+                                    </cards:Header>
+                                </f:header>
+                                <f:content>
+                                    <VBox class="sapUiSmallMarginBegin sapUiSmallMarginBottom" width="300px">
+                                        <Text text="Wave Progress" />
+                                        <ProgressIndicator percentValue="62" displayValue="28/45 orders (62%)" state="Success" />
+
+                                        <HBox class="sapUiTinyMarginTop" justifyContent="SpaceBetween">
+                                            <VBox>
+                                                <Text text="Time Window"/>
+                                                <Text text="06:00 AM - 12:00 PM"/>
+                                            </VBox>
+                                            <VBox>
+                                                <Text text="Assigned Pickers"/>
+                                                <Text text="5 pickers"/>
+                                            </VBox>
+                                        </HBox>
+
+                                        <HBox justifyContent="SpaceBetween">
+                                            <Button text="View Details" />
+                                            <Button text="Start Wave" type="Emphasized"/>
+                                        </HBox>
+                                    </VBox>
+                                </f:content>
+                            </f:Card>
+                        </FlexBox>
+                    </IconTabFilter>
+                    <IconTabFilter design="Horizontal" icon="sap-icon://business-objects-experience" text="Picker Performance" count="4">
+                        <FlexBox class="pickingtaskstabs" justifyContent="Start" alignItems="Center" columnGap="1rem" rowGap="1rem">
+                            <f:Card width="350px">
+                                <f:header>
+                                    <cards:Header title="Picker Performance">
+                                    </cards:Header>
+                                </f:header>
+                                <f:content>
+                                    <VBox class="sapUiSmallMarginBegin sapUiSmallMarginBottom" width="300px">
+                                        <HBox alignItems="Center" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+                                            <HBox alignItems="Center">
+                                                <Avatar initials="JS" displaySize="XS" class="sapUiTinyMarginEnd" />
+                                                <VBox>
+                                                    <Title text="John Smith" level="H2" />
+                                                    <Text text="Zone: A-1" />
+                                                </VBox>
+                                            </HBox>
+                                            <ObjectStatus text="active" state="Success" inverted="true" />
+                                        </HBox>
+
+                                        <HBox class="sapUiTinyMarginBottom">
+                                            <Text text="Tasks: 3" class="sapUiTinyMarginEnd" />
+                                            <Text text="Completed: 12" class="sapUiTinyMarginEnd" />
+                                            <Text text="Efficiency: 94%" />
+                                        </HBox>
+
+                                        <HBox class="sapUiTinyMarginTop" justifyContent="SpaceBetween">
+                                            <VBox>
+                                                <Text text="Time Window"/>
+                                                <Text text="06:00 AM - 12:00 PM"/>
+                                            </VBox>
+                                            <VBox>
+                                                <Text text="Assigned Pickers"/>
+                                                <Text text="5 pickers"/>
+                                            </VBox>
+                                        </HBox>
+                                        <ProgressIndicator percentValue="60%" displayValue="Workload" state="Information" />
+                                    </VBox>
+                                </f:content>
+                            </f:Card>
+
+
+                        </FlexBox>
+
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

@@ -84,7 +84,7 @@
                     </tnt:NavigationListItem>
 
                     <tnt:NavigationListItem text="{i18n>navOutbound}" icon="sap-icon://outbox" expanded="true">
-                        <tnt:NavigationListItem text="{i18n>navPickingTasks}" icon="sap-icon://cart" key="PickingTasks"/>
+                        <tnt:NavigationListItem text="{i18n>navPickingTasks}" icon="sap-icon://cart" key="PickingTasks" select="onItemSelect('PickingTasks')"/>
                         <tnt:NavigationListItem text="{i18n>navPacking}" icon="sap-icon://shipping-status" key="Packing"/>
                         <tnt:NavigationListItem text="{i18n>navShipping}" icon="sap-icon://cargo-train" key="Shipping"/>
                     </tnt:NavigationListItem>

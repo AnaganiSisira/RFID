@@ -74,6 +74,9 @@ sap.ui.define([
         onSavePress:function(sMessage,oDialogId){
             this.onCancelPress(oDialogId)
             MessageBox.success(sMessage +" Saved Sucessfully");
+        },
+        onShowpress:function(sMessage){
+              MessageBox.success(sMessage);
         }
     });
 });
