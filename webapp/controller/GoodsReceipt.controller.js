@@ -44,6 +44,7 @@ sap.ui.define([
 
         _onRouterGoodsReceiptMatched: function (oEvent) {
             // Reset wizard when route is matched
+            
             if (this._oWizard) {
                 this._oWizard.discardProgress(this._oWizard.getSteps()[0]);
             }
