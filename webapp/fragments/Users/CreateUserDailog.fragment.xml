@@ -153,11 +153,11 @@
         </content>
 
         <beginButton>
-            <Button text="{i18n>cancel}" press="onCancelPress('createUsersDialog')"/>
+            <Button text="{i18n>cancel}" press=".onCancelPress('createUsersDialog')"/>
         </beginButton>
 
         <endButton>
-            <Button text="{i18n>createUser}" type="Emphasized" press="onCreateUserPress"/>
+            <Button text="{i18n>createUser}" type="Emphasized" press=".onSavePress('User','createUsersDialog')"/>
         </endButton>
 
     </Dialog>

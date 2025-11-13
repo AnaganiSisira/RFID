@@ -164,7 +164,7 @@
                                 <Text text="Total Zones to Create:" class="summaryLabel"/>
                                 <Text id="summaryRangeText" text="From STOR-01 to STOR-10" class="summarySubtext"/>
                             </VBox>
-                            <Text id="summaryNumberText" text="10" class="summaryNumber"/>
+                            <Text id="summaryNumberText" text="10" class=""/>
                         </HBox>
                     </VBox>
 

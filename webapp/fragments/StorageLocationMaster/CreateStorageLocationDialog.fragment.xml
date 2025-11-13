@@ -7,11 +7,9 @@
 	<Dialog id="createStorageLocationDialog" title="Create Storage Location" contentWidth="80%" class="sapUiResponsiveContentPadding">
 
 		<content>
-			<Title text="Location Structure Type" />
-			<HBox class="typeContainer sapUiMediumMarginBottom" justifyContent="Start" wrap="Wrap">
-
+			<Title class="sapUiMediumMarginBegin" text="Location Structure Type" />
+				<FlexBox class="sapUiTinyMarginTop sapUiTinyMarginBottom" justifyContent="Center" gap="1rem" wrap="Wrap" alignItems="Stretch">
 				<!-- Hierarchical Card -->
-				<layout:VerticalLayout ></layout:VerticalLayout>
 				<VBox id="idHierarchicalCard"  class="typeCard" tooltip="Hierarchical (Auto-generated)">
 					<Title text="Hierarchical (Auto-generated)" level="H5" />
 					<Text text="Build location code from components like Aisle, Rack, Level, Bin, etc." />
@@ -25,7 +23,7 @@
 					<Text text="Example: RECV-BAY-01 or FLOOR-AREA-5" class="exampleText" />
 				</VBox>
 
-			</HBox>
+			</FlexBox>
 
 
 			<form:SimpleForm class="hierarchy-panel Mandatory-Fields" backgroundDesign="Transparent" editable="true" layout="ColumnLayout" columnsXL="3" columnsL="2" columnsM="2" width="100%">
@@ -58,7 +56,7 @@
 			<!-- Hierarchy Panel -->
 			<Panel class="hierarchy-panel Hierarchy-Components" backgroundDesign="Transparent">
 				<Toolbar design="Transparent" width="100%">
-					<OverflowToolbar class="Hierarchy-Components" width="100%">
+					<OverflowToolbar design="Transparent"  width="100%">
 						<core:Icon src="sap-icon://tree" />
 						<Title text="Hierarchy Components (Optional)" />
 						<ToolbarSpacer />
@@ -137,7 +135,7 @@
 			</Panel>
 			<Panel class="hierarchy-panel Barcode-Strategy" backgroundDesign="Transparent">
 				<Toolbar design="Transparent">
-					<OverflowToolbar class="Barcode-Strategy">
+					<OverflowToolbar design="Transparent">
 						<core:Icon src="sap-icon://bar-code" size="1.5rem" color="#8e44ad"/>
 						<Title text="Barcode Strategy: Composite Single Barcode" />
 						<ObjectStatus text="Industry Standard" state="Success" class="statusTag"/>
@@ -180,7 +178,7 @@
 					</HBox>
 				</VBox>
 			</Panel>
-			<form:SimpleForm class="hierarchy-panel" editable="true" layout="ColumnLayout" columnsXL="3" columnsL="2" columnsM="2">
+			<form:SimpleForm class="hierarchy-panel Hierarchy-Components" backgroundDesign="Transparent" editable="true" layout="ColumnLayout" columnsXL="3" columnsL="2" columnsM="2">
 				<form:toolbar>
 					<Toolbar>
 						<content>
@@ -233,7 +231,7 @@
 		</content>
 
 		<beginButton>
-			<Button text="Create Location" type="Emphasized" press="onCreateLocationPress" />
+			<Button text="Save Location" type="Emphasized" press=".onSavePress('Location','createStorageLocationDialog')" />
 		</beginButton>
 
 		<endButton>
