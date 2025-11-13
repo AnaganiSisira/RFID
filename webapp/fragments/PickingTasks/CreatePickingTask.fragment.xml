@@ -1,0 +1,128 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+
+    <Dialog id="CreatePickingTaskDialog" title="Create Picking Task" class="sapUiResponsiveContentPadding" contentWidth="80%">
+       <content>
+            
+                
+                
+  <!-- SAP Integration Note -->
+                <VBox class=" SAPIntegrationNote sapUiSmallMarginBottom">
+                    <HBox alignItems="Start" class="sapUiTinyMarginBottom">
+                        <core:Icon src="sap-icon://information" color="#0854A0" class="sapUiTinyMarginEnd" size="1.25rem"/>
+                        <Text text="SAP Integration Note: Typically, picking tasks are automatically created from SAP ECC/S4HANA when:" 
+                              renderWhitespace="true">
+                            <customData>
+                                <core:CustomData key="style" value="font-weight: 600; color: #0854A0;"/>
+                            </customData>
+                        </Text>
+                    </HBox>
+                    <VBox class="sapUiTinyMarginBegin">
+                        <Text text="• Sales orders are released for delivery (VL01N/VL10)" class="sapUiTinyMarginBottom"/>
+                        <Text text="• Transfer orders are created in WM module (LT03)" class="sapUiTinyMarginBottom"/>
+                        <Text text="• Production orders require material staging" class="sapUiTinyMarginBottom"/>
+                        <Text text="Manual creation should be used for exceptions only." class="sapUiTinyMarginTop"/>
+                    </VBox>
+                </VBox>
+                
+                <!-- Form Section -->
+                <f:SimpleForm
+                    editable="true"
+                    layout="ColumnLayout"
+                    
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="2"
+                    class="sapUiResponsiveMargin">
+                    
+                    <f:content>
+                        
+                        <!-- Delivery Number -->
+                        <Label text="Delivery Number" required="true"/>
+                        <Input
+                            id="deliveryNumberInput"
+                            placeholder="e.g., 80000127"
+                            value="{/deliveryNumber}"
+                            required="true"/>
+                        
+                        <!-- Storage Location -->
+                        <Label text="Storage Location" required="true"/>
+                        <Select
+                            id="storageLocationSelect"
+                            selectedKey="{/storageLocation}"
+                            required="true">
+                            <items>
+                                <core:Item key="" text="Select Storage Location"/>
+                                <core:Item key="SL01" text="Storage Location 01"/>
+                                <core:Item key="SL02" text="Storage Location 02"/>
+                                <core:Item key="SL03" text="Storage Location 03"/>
+                            </items>
+                        </Select>
+                        
+                        <!-- Picking Area/Zone -->
+                        <Label text="Picking Area/Zone" required="true"/>
+                        <Select
+                            id="pickingZoneSelect"
+                            selectedKey="{/pickingZone}"
+                            required="true">
+                            <items>
+                                <core:Item key="" text="Select Zone"/>
+                                <core:Item key="A-1" text="Zone A-1"/>
+                                <core:Item key="A-2" text="Zone A-2"/>
+                                <core:Item key="B-1" text="Zone B-1"/>
+                                <core:Item key="B-2" text="Zone B-2"/>
+                                <core:Item key="C-1" text="Zone C-1"/>
+                                <core:Item key="C-2" text="Zone C-2"/>
+                                <core:Item key="C-3" text="Zone C-3"/>
+                            </items>
+                        </Select>
+                        
+                        <!-- Priority -->
+                        <Label text="Priority"/>
+                        <Select
+                            id="prioritySelect"
+                            selectedKey="{/priority}">
+                            <items>
+                                <core:Item key="normal" text="Normal"/>
+                                <core:Item key="high" text="High"/>
+                                <core:Item key="urgent" text="Urgent"/>
+                            </items>
+                        </Select>
+                        
+                        <!-- Due Date -->
+                        <Label text="Due Date" required="true"/>
+                        <DatePicker
+                            id="dueDatePicker"
+                            placeholder="dd-mm-yyyy"
+                            value="{/dueDate}"
+                            valueFormat="dd-MM-yyyy"
+                            displayFormat="dd-MM-yyyy"
+                            required="true"/>
+                        
+                        <!-- Due Time -->
+                        <Label text="Due Time"/>
+                        <TimePicker
+                            id="dueTimePicker"
+                            placeholder="--:--"
+                            value="{/dueTime}"
+                            valueFormat="HH:mm"
+                            displayFormat="HH:mm"/>
+                        <Label text="Special Instructions"></Label>
+                        <TextArea ></TextArea>
+                        
+                    </f:content>
+                </f:SimpleForm>
+        </content>
+
+        <beginButton>
+            <Button text="{i18n>cancel}" press="onCancelPress('CreatePickingTaskDialog')"/>
+        </beginButton>
+
+        <endButton>
+            <Button text="Create Task" type="Emphasized" press="onCreatePutawayPress"/>
+        </endButton>
+
+    </Dialog>
+</core:FragmentDefinition>

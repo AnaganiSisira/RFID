@@ -1,0 +1,318 @@
+{
+  "InboundRequests": [
+    {
+      "TransferOrder": "4500000123",
+      "DeliveryOrder": "80000128 / SO:10000460",
+      "Customer": "Delta Manufacturing",
+      "Priority": "high",
+      "Items": "18",
+      "WeightVolume": "52.3 kg / 0.9 m³",
+      "Zone": "A-1",
+      "DueDate": "2025-11-13 14:00",
+      "Source": "SAP_WM",
+      "Status": "new"
+    },
+    {
+      "TransferOrder": "4500000124",
+      "DeliveryOrder": "80000129 / SO:10000461",
+      "Customer": "Echo Logistics",
+      "Priority": "urgent",
+      "Items": "8",
+      "WeightVolume": "15.7 kg / 0.3 m³",
+      "Zone": "B-1",
+      "DueDate": "2025-11-13 12:00",
+      "Source": "SAP_EWM",
+      "Status": "new"
+    },
+    {
+      "TransferOrder": "4500000125",
+      "DeliveryOrder": "80000130 / SO:10000462",
+      "Customer": "Foxtrot Industries",
+      "Priority": "medium",
+      "Items": "24",
+      "WeightVolume": "65.4 kg / 1.2 m³",
+      "Zone": "A-2",
+      "DueDate": "2025-11-13 17:00",
+      "Source": "SAP_ECC",
+      "Status": "pending"
+    },
+    {
+      "TransferOrder": "4500000126",
+      "DeliveryOrder": "80000131 / SO:10000463",
+      "Customer": "Global Traders",
+      "Priority": "low",
+      "Items": "10",
+      "WeightVolume": "21.0 kg / 0.5 m³",
+      "Zone": "C-1",
+      "DueDate": "2025-11-14 09:00",
+      "Source": "SAP_WM",
+      "Status": "scheduled"
+    },
+    {
+      "TransferOrder": "4500000127",
+      "DeliveryOrder": "80000132 / SO:10000464",
+      "Customer": "Hawk Electronics",
+      "Priority": "urgent",
+      "Items": "15",
+      "WeightVolume": "42.5 kg / 0.8 m³",
+      "Zone": "A-3",
+      "DueDate": "2025-11-13 11:00",
+      "Source": "SAP_EWM",
+      "Status": "new"
+    },
+    {
+      "TransferOrder": "4500000128",
+      "DeliveryOrder": "80000133 / SO:10000465",
+      "Customer": "Ivy Supplies",
+      "Priority": "medium",
+      "Items": "32",
+      "WeightVolume": "80.1 kg / 1.5 m³",
+      "Zone": "B-2",
+      "DueDate": "2025-11-14 16:00",
+      "Source": "SAP_ECC",
+      "Status": "pending"
+    },
+    {
+      "TransferOrder": "4500000129",
+      "DeliveryOrder": "80000134 / SO:10000466",
+      "Customer": "Jet Retail",
+      "Priority": "low",
+      "Items": "12",
+      "WeightVolume": "33.8 kg / 0.6 m³",
+      "Zone": "A-4",
+      "DueDate": "2025-11-15 10:00",
+      "Source": "SAP_WM",
+      "Status": "scheduled"
+    },
+    {
+      "TransferOrder": "4500000130",
+      "DeliveryOrder": "80000135 / SO:10000467",
+      "Customer": "Krypton Labs",
+      "Priority": "high",
+      "Items": "22",
+      "WeightVolume": "59.0 kg / 1.1 m³",
+      "Zone": "A-1",
+      "DueDate": "2025-11-13 15:00",
+      "Source": "SAP_EWM",
+      "Status": "new"
+    }
+  ],
+
+  "ActiveTasks": [
+    {
+      "Order": "ORD-2025-1001",
+      "Customer": "ABC Corporation",
+      "Priority": "high",
+      "Items": "8/15",
+      "WeightVolume": "45.5 kg / 0.8 m³",
+      "Progress": 53,
+      "Zone": "A-1",
+      "Picker": "John Smith",
+      "Status": "in progress",
+      "Source": "SAP_ECC"
+    },
+    {
+      "Order": "ORD-2025-1002",
+      "Customer": "Global Traders",
+      "Priority": "medium",
+      "Items": "12/12",
+      "WeightVolume": "34.2 kg / 0.6 m³",
+      "Progress": 100,
+      "Zone": "A-2",
+      "Picker": "Mike Wilson",
+      "Status": "completed",
+      "Source": "SAP_ECC"
+    },
+    {
+      "Order": "ORD-2025-1003",
+      "Customer": "Delta Manufacturing",
+      "Priority": "urgent",
+      "Items": "5/10",
+      "WeightVolume": "20.8 kg / 0.4 m³",
+      "Progress": 50,
+      "Zone": "B-1",
+      "Picker": "Emma Davis",
+      "Status": "in progress",
+      "Source": "SAP_WM"
+    },
+    {
+      "Order": "ORD-2025-1004",
+      "Customer": "Echo Logistics",
+      "Priority": "low",
+      "Items": "4/4",
+      "WeightVolume": "10.5 kg / 0.2 m³",
+      "Progress": 100,
+      "Zone": "C-2",
+      "Picker": "Oliver Brown",
+      "Status": "completed",
+      "Source": "SAP_EWM"
+    },
+    {
+      "Order": "ORD-2025-1005",
+      "Customer": "Foxtrot Industries",
+      "Priority": "medium",
+      "Items": "2/8",
+      "WeightVolume": "8.9 kg / 0.1 m³",
+      "Progress": 25,
+      "Zone": "B-3",
+      "Picker": "Sophia White",
+      "Status": "in progress",
+      "Source": "SAP_EWM"
+    },
+    {
+      "Order": "ORD-2025-1006",
+      "Customer": "Hawk Electronics",
+      "Priority": "urgent",
+      "Items": "9/9",
+      "WeightVolume": "24.0 kg / 0.5 m³",
+      "Progress": 100,
+      "Zone": "A-3",
+      "Picker": "Liam Taylor",
+      "Status": "completed",
+      "Source": "SAP_WM"
+    },
+    {
+      "Order": "ORD-2025-1007",
+      "Customer": "Ivy Supplies",
+      "Priority": "medium",
+      "Items": "6/10",
+      "WeightVolume": "30.2 kg / 0.7 m³",
+      "Progress": 60,
+      "Zone": "B-2",
+      "Picker": "Ava Johnson",
+      "Status": "in progress",
+      "Source": "SAP_ECC"
+    },
+    {
+      "Order": "ORD-2025-1008",
+      "Customer": "Jet Retail",
+      "Priority": "high",
+      "Items": "10/15",
+      "WeightVolume": "40.0 kg / 0.9 m³",
+      "Progress": 67,
+      "Zone": "A-4",
+      "Picker": "Ethan Lee",
+      "Status": "in progress",
+      "Source": "SAP_WM"
+    }
+  ],
+
+  "WaveManagement": [
+    {
+      "WaveTitle": "Morning Wave",
+      "WaveId": "WAVE-001",
+      "Progress": 72,
+      "Orders": "32/45 orders",
+      "TimeWindow": "06:00 AM - 12:00 PM",
+      "Pickers": "6 pickers",
+      "Status": "active"
+    },
+    {
+      "WaveTitle": "Afternoon Wave",
+      "WaveId": "WAVE-002",
+      "Progress": 10,
+      "Orders": "4/38 orders",
+      "TimeWindow": "12:00 PM - 06:00 PM",
+      "Pickers": "5 pickers",
+      "Status": "active"
+    },
+    {
+      "WaveTitle": "Evening Wave",
+      "WaveId": "WAVE-003",
+      "Progress": 0,
+      "Orders": "0/40 orders",
+      "TimeWindow": "06:00 PM - 12:00 AM",
+      "Pickers": "3 pickers",
+      "Status": "scheduled"
+    },
+    {
+      "WaveTitle": "Weekend Wave",
+      "WaveId": "WAVE-004",
+      "Progress": 0,
+      "Orders": "0/50 orders",
+      "TimeWindow": "Sat - Sun",
+      "Pickers": "2 pickers",
+      "Status": "planned"
+    }
+  ],
+
+  "PickerPerformance": [
+    {
+      "Name": "John Smith",
+      "Zone": "A-1",
+      "Tasks": 3,
+      "Completed": 12,
+      "Efficiency": 94,
+      "Status": "active",
+      "AvgPickTime": "3.2 min",
+      "Progress": "12 orders",
+      "Workload": 70
+    },
+    {
+      "Name": "Emma Davis",
+      "Zone": "A-2",
+      "Tasks": 4,
+      "Completed": 18,
+      "Efficiency": 98,
+      "Status": "active",
+      "AvgPickTime": "2.5 min",
+      "Progress": "18 orders",
+      "Workload": 90
+    },
+    {
+      "Name": "Liam Taylor",
+      "Zone": "A-3",
+      "Tasks": 2,
+      "Completed": 9,
+      "Efficiency": 89,
+      "Status": "active",
+      "AvgPickTime": "3.8 min",
+      "Progress": "9 orders",
+      "Workload": 60
+    },
+    {
+      "Name": "Sophia White",
+      "Zone": "B-1",
+      "Tasks": 5,
+      "Completed": 22,
+      "Efficiency": 92,
+      "Status": "active",
+      "AvgPickTime": "3.0 min",
+      "Progress": "22 orders",
+      "Workload": 85
+    },
+    {
+      "Name": "Ethan Lee",
+      "Zone": "A-4",
+      "Tasks": 3,
+      "Completed": 15,
+      "Efficiency": 95,
+      "Status": "active",
+      "AvgPickTime": "2.9 min",
+      "Progress": "15 orders",
+      "Workload": 78
+    },
+    {
+      "Name": "Oliver Brown",
+      "Zone": "C-1",
+      "Tasks": 2,
+      "Completed": 8,
+      "Efficiency": 87,
+      "Status": "idle",
+      "AvgPickTime": "4.2 min",
+      "Progress": "8 orders",
+      "Workload": 50
+    },
+    {
+      "Name": "Ava Johnson",
+      "Zone": "B-2",
+      "Tasks": 4,
+      "Completed": 20,
+      "Efficiency": 91,
+      "Status": "active",
+      "AvgPickTime": "3.1 min",
+      "Progress": "20 orders",
+      "Workload": 80
+    }
+  ]
+}
