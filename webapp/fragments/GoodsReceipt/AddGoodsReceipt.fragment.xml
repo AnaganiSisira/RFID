@@ -1,0 +1,394 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+
+    <Dialog 
+        id="wizardDialog"
+        contentWidth="90%" 
+        contentHeight="90%"
+        draggable="true"
+        resizable="true">
+        
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Title text="Goods Receipt &amp; Tag Assignment - PO {GoodsReceiptWizardModel>/poNumber}" level="H4" />
+                </contentLeft>
+                <contentRight>
+                    <Button icon="sap-icon://decline" press=".onCancelWizard" tooltip="Cancel" />
+                </contentRight>
+            </Bar>
+        </customHeader>
+
+        <content>
+            <!-- Wizard with Page Render Mode -->
+            <Wizard 
+                id="goodsReceiptWizard" 
+                complete=".onWizardComplete"
+                renderMode="Page"
+                class="sapUiResponsiveContentPadding">
+                
+                <!-- Step 1: Document Review -->
+                <WizardStep 
+                    id="step1" 
+                    title="Document" 
+                    validated="true"
+                    activate=".onStep1Activate">
+                    <VBox class="sapUiSmallMargin">
+                        <Title text="Document Details Review" level="H2" class="sapUiMediumMarginBottom" />
+                        
+                        <f:SimpleForm 
+                            editable="false"
+                            layout="ResponsiveGridLayout"
+                            labelSpanXL="4"
+                            labelSpanL="4"
+                            labelSpanM="4"
+                            labelSpanS="12"
+                            emptySpanXL="0"
+                            emptySpanL="0"
+                            emptySpanM="0"
+                            emptySpanS="0"
+                            columnsXL="2"
+                            columnsL="2"
+                            columnsM="1">
+                            <f:content>
+                                <Label text="PO NUMBER" />
+                                <Text text="{GoodsReceiptWizardModel>/poNumber}" />
+                                
+                                <Label text="VENDOR" />
+                                <Text text="{GoodsReceiptWizardModel>/vendor}" />
+                                
+                                <Label text="EXPECTED DATE" />
+                                <Text text="{GoodsReceiptWizardModel>/expectedDate}" />
+                                
+                                <Label text="TOTAL ITEMS" />
+                                <Text text="{GoodsReceiptWizardModel>/totalItems} Items" />
+                                
+                                <Label text="TOTAL VALUE" />
+                                <ObjectNumber number="{GoodsReceiptWizardModel>/totalValue}" unit="USD" emphasized="true" />
+                                
+                                <Label text="WAREHOUSE" />
+                                <Text text="{GoodsReceiptWizardModel>/warehouse}" />
+                            </f:content>
+                        </f:SimpleForm>
+
+                        <Title text="Line Items" level="H3" class="sapUiMediumMarginTop sapUiSmallMarginBottom" />
+                        
+                        <Table 
+                            id="lineItemsTable"
+                            items="{GoodsReceiptWizardModel>/lineItems}"
+                            growing="true"
+                            growingThreshold="10">
+                            <columns>
+                                <Column><Text text="Material" /></Column>
+                                <Column><Text text="Description" /></Column>
+                                <Column hAlign="Center"><Text text="Expected Qty" /></Column>
+                                <Column hAlign="Center"><Text text="UOM" /></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{GoodsReceiptWizardModel>material}" />
+                                        <Text text="{GoodsReceiptWizardModel>description}" />
+                                        <ObjectNumber number="{GoodsReceiptWizardModel>expectedQty}" />
+                                        <Text text="{GoodsReceiptWizardModel>uom}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+
+                        <MessageStrip 
+                            text="Review document details before proceeding to receive items" 
+                            type="Information" 
+                            showIcon="true"
+                            class="sapUiMediumMarginTop" />
+                    </VBox>
+                </WizardStep>
+
+                <!-- Step 2: Receive & Tag -->
+                <WizardStep 
+                    id="step2" 
+                    title="Receive &amp; Tag" 
+                    validated="true"
+                    activate=".onStep2Activate"
+                    complete=".onStep2Complete">
+                    <VBox class="sapUiSmallMargin">
+                        <Title text="Receive Items &amp; Assign Tags" level="H2" class="sapUiMediumMarginBottom" />
+                        
+                        <!-- Tag Method Selection -->
+                        <VBox class="sapUiSmallMarginBottom">
+                            <Title text="Select Tag Method" level="H3" class="sapUiSmallMarginBottom" />
+                            <HBox wrap="Wrap" class="sapUiSmallMarginBottom">
+                                <Button 
+                                    id="btnManualEntry"
+                                    icon="sap-icon://keyboard-and-mouse" 
+                                    text="Manual Entry" 
+                                    width="200px"
+                                    class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                                    press=".onSelectTagMethod" />
+                                <Button 
+                                    id="btnBarcode"
+                                    icon="sap-icon://bar-code" 
+                                    text="Barcode" 
+                                    width="200px"
+                                    class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                                    press=".onSelectTagMethod" />
+                                <Button 
+                                    id="btnRFID"
+                                    icon="sap-icon://sensor" 
+                                    text="RFID Tags" 
+                                    width="200px"
+                                    class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                                    press=".onSelectTagMethod" />
+                                <Button 
+                                    id="btnExcel"
+                                    icon="sap-icon://excel-attachment" 
+                                    text="Excel Upload" 
+                                    width="200px"
+                                    class="sapUiTinyMarginBottom"
+                                    press=".onSelectTagMethod" />
+                            </HBox>
+                            <Text text="Selected Method: {GoodsReceiptWizardModel>/selectedTagMethod}" class="sapUiSmallMarginTop" />
+                        </VBox>
+
+                        <Title text="Item Receipt &amp; Tagging" level="H3" class="sapUiSmallMarginTop sapUiSmallMarginBottom" />
+                        
+                        <Table 
+                            id="receiveTagTable"
+                            items="{GoodsReceiptWizardModel>/receiveItems}"
+                            growing="true"
+                            growingThreshold="10">
+                            <columns>
+                                <Column width="10em"><Text text="Material" /></Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Description" /></Column>
+                                <Column hAlign="Center" width="8em"><Text text="Expected" /></Column>
+                                <Column hAlign="Center" width="8em"><Text text="Received" /></Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true" width="10em"><Text text="Tag Type" /></Column>
+                                <Column width="15em"><Text text="Tag Number" /></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{GoodsReceiptWizardModel>material}" />
+                                        <Text text="{GoodsReceiptWizardModel>description}" />
+                                        <ObjectNumber number="{GoodsReceiptWizardModel>expected}" />
+                                        <Input 
+                                            value="{GoodsReceiptWizardModel>received}" 
+                                            type="Number"
+                                            change=".onReceivedChange"
+                                            width="100%" />
+                                        <Select 
+                                            selectedKey="{GoodsReceiptWizardModel>tagType}"
+                                            change=".onTagTypeChange"
+                                            width="100%">
+                                            <items>
+                                                <core:Item key="RFID" text="RFID" />
+                                                <core:Item key="Barcode" text="Barcode" />
+                                                <core:Item key="Manual" text="Manual" />
+                                            </items>
+                                        </Select>
+                                        <Input 
+                                            value="{GoodsReceiptWizardModel>tagNumber}" 
+                                            placeholder="Enter tag number..."
+                                            change=".onTagNumberChange"
+                                            width="100%" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+
+                        <HBox class="sapUiSmallMarginTop" justifyContent="SpaceBetween">
+                            <Button 
+                                icon="sap-icon://add" 
+                                text="Add More Rows" 
+                                press=".onAddMoreRows" />
+                            <Button 
+                                icon="sap-icon://generate-shortcut" 
+                                text="Generate Sequential" 
+                                type="Emphasized"
+                                press=".onGenerateSequential" />
+                        </HBox>
+
+                        <MessageStrip 
+                            text="Enter received quantities and assign tags for tracking. Tags will be used for inventory management." 
+                            type="Information" 
+                            showIcon="true"
+                            class="sapUiMediumMarginTop" />
+                    </VBox>
+                </WizardStep>
+
+                <!-- Step 3: Verify -->
+                <WizardStep 
+                    id="step3" 
+                    title="Verify" 
+                    validated="true"
+                    activate=".onStep3Activate"
+                    complete=".onStep3Complete">
+                    <VBox class="sapUiSmallMargin">
+                        <Title text="Verification &amp; Variance Check" level="H2" class="sapUiMediumMarginBottom" />
+                        
+                        <MessageStrip 
+                            id="varianceAlert"
+                            text="Variance Detected - Please review and provide reasons for any discrepancies." 
+                            type="Warning" 
+                            showIcon="true"
+                            visible="{GoodsReceiptWizardModel>/hasVariance}"
+                            class="sapUiSmallMarginBottom" />
+
+                        <Table 
+                            id="verifyTable"
+                            items="{GoodsReceiptWizardModel>/verifyItems}">
+                            <columns>
+                                <Column width="10em"><Text text="Material" /></Column>
+                                <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Description" /></Column>
+                                <Column hAlign="Center" width="8em"><Text text="Expected" /></Column>
+                                <Column hAlign="Center" width="8em"><Text text="Received" /></Column>
+                                <Column hAlign="Center" width="8em"><Text text="Variance" /></Column>
+                                <Column minScreenWidth="Desktop" demandPopin="true" width="15em"><Text text="Reason" /></Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text text="{GoodsReceiptWizardModel>material}" />
+                                        <Text text="{GoodsReceiptWizardModel>description}" />
+                                        <ObjectNumber number="{GoodsReceiptWizardModel>expected}" />
+                                        <ObjectNumber number="{GoodsReceiptWizardModel>received}" />
+                                        <ObjectNumber 
+                                            number="{GoodsReceiptWizardModel>variance}" 
+                                            state="{= ${GoodsReceiptWizardModel>variance} === 0 ? 'Success' : 'Error'}" 
+                                            emphasized="true" />
+                                        <Select 
+                                            selectedKey="{GoodsReceiptWizardModel>reason}"
+                                            enabled="{= ${GoodsReceiptWizardModel>variance} !== 0}"
+                                            change=".onReasonChange"
+                                            width="100%">
+                                            <items>
+                                                <core:Item key="" text="Select reason..." />
+                                                <core:Item key="damaged" text="Damaged in transit" />
+                                                <core:Item key="partial" text="Partial delivery" />
+                                                <core:Item key="overdelivery" text="Over delivery" />
+                                                <core:Item key="wrong" text="Wrong item received" />
+                                                <core:Item key="other" text="Other" />
+                                            </items>
+                                        </Select>
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+
+                        <VBox class="sapUiMediumMarginTop">
+                            <Title text="Additional Notes" level="H3" class="sapUiSmallMarginBottom" />
+                            <TextArea 
+                                value="{GoodsReceiptWizardModel>/notes}"
+                                rows="4"
+                                placeholder="Enter any additional comments or observations..."
+                                width="100%" />
+                        </VBox>
+
+                        <MessageStrip 
+                            text="Review all items and confirm before completing the goods receipt" 
+                            type="Information" 
+                            showIcon="true"
+                            class="sapUiMediumMarginTop" />
+                    </VBox>
+                </WizardStep>
+
+                <!-- Step 4: Complete -->
+                <WizardStep 
+                    id="step4" 
+                    title="Complete"
+                    validated="true"
+                    activate=".onStep4Activate">
+                    <VBox 
+                        alignItems="Center" 
+                        justifyContent="Center" 
+                        class="sapUiLargeMargin">
+                        
+                        <core:Icon 
+                            src="sap-icon://message-success" 
+                            size="5rem" 
+                            color="#2b7c2b"
+                            class="sapUiMediumMarginBottom" />
+                        
+                        <Title 
+                            text="Goods Receipt Completed Successfully!" 
+                            level="H2" 
+                            textAlign="Center"
+                            class="sapUiSmallMarginBottom" />
+                        
+                        <Text 
+                            text="Document has been posted to SAP successfully" 
+                            class="sapUiMediumMarginBottom" />
+
+                        <Panel 
+                            headerText="Receipt Summary" 
+                            width="500px"
+                            class="sapUiMediumMarginTop">
+                            <VBox class="sapUiSmallMargin">
+                                <HBox justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+                                    <Label text="GR Document Number:" design="Bold" />
+                                    <Link text="{GoodsReceiptWizardModel>/grDocNumber}" press=".onGRDocPress" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+                                    <Label text="Items Received:" design="Bold" />
+                                    <Text text="{GoodsReceiptWizardModel>/itemsReceived}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+                                    <Label text="Tags Assigned:" design="Bold" />
+                                    <Text text="{GoodsReceiptWizardModel>/tagsAssigned}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween">
+                                    <Label text="Status:" design="Bold" />
+                                    <ObjectStatus text="Posted" state="Success" />
+                                </HBox>
+                            </VBox>
+                        </Panel>
+
+                        <HBox class="sapUiLargeMarginTop">
+                            <Button 
+                                icon="sap-icon://print" 
+                                text="Print Labels" 
+                                press=".onPrintLabels"
+                                class="sapUiTinyMarginEnd" />
+                            <Button 
+                                icon="sap-icon://warehouse" 
+                                text="Start Put-Away" 
+                                type="Emphasized"
+                                press=".onStartPutAway" />
+                        </HBox>
+                    </VBox>
+                </WizardStep>
+            </Wizard>
+        </content>
+
+        <!-- Footer Buttons -->
+        <beginButton>
+            <Button 
+                text="Back" 
+                icon="sap-icon://nav-back"
+                press=".onWizardBack" 
+                visible="{= ${GoodsReceiptWizardModel>/currentStep} > 0 &amp;&amp; ${GoodsReceiptWizardModel>/currentStep} &lt; 3 }" />
+        </beginButton>
+
+        <endButton>
+            <Button 
+                id="wizardNextButton"
+                text="Next: Receive &amp; Tag" 
+                icon="sap-icon://arrow-right"
+                iconFirst="false"
+                type="Emphasized"
+                press=".onWizardNext" 
+                visible="{= ${GoodsReceiptWizardModel>/currentStep} &lt; 3 }" />
+        </endButton>
+
+        <buttons>
+            <Button 
+                text="Close" 
+                icon="sap-icon://decline"
+                press=".onCloseWizard" 
+                visible="{= ${GoodsReceiptWizardModel>/currentStep} === 3 }" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

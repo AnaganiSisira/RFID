@@ -39,7 +39,9 @@
       "libs": {
         "sap.m": {},
         "sap.tnt": {},
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.ui.unified": {}
       }
     },
     "contentDensities": {
@@ -80,6 +82,14 @@
       "StrategiesModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/putaway.json"
+      },
+      "GoodsReceiptModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/GoodsReceiptModel.json"
+      },
+      "GoodsReceiptWizardModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/GoodsReceiptWizardModel.json"
       }
     },
     "resources": {
@@ -142,8 +152,9 @@
           "pattern": "PickStrategy",
           "target": [
             "TargetPickStrategy"
-          ]},
-          {
+          ]
+        },
+        {
           "name": "UserManagement",
           "pattern": "UserManagement",
           "target": [
@@ -155,6 +166,13 @@
           "pattern": "PutawayStrategy",
           "target": [
             "TargetPutawayStrategy"
+          ]
+        },
+        {
+          "name": "GoodsReceipt",
+          "pattern": "GoodsReceipt",
+          "target": [
+            "TargetGoodsReceipt"
           ]
         }
       ],
@@ -179,9 +197,10 @@
           "id": "WarehouseMasters",
           "name": "WarehouseMasters"
         },
-         "TargetPickStrategy": {
+        "TargetPickStrategy": {
           "id": "PickStrategy",
-          "name": "PickStrategy"},
+          "name": "PickStrategy"
+        },
         "TargetUserManagement": {
           "id": "UserManagement",
           "name": "UserManagement"
@@ -189,6 +208,10 @@
         "TargetPutawayStrategy": {
           "id": "PutawayStrategy",
           "name": "PutawayStrategy"
+        },
+        "TargetGoodsReceipt": {
+          "id": "GoodsReceipt",
+          "name": "GoodsReceipt"
         }
       }
     },
