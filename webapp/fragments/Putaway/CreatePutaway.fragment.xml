@@ -15,19 +15,19 @@
                     
                     <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
                         <VBox>
-                            <Label text="{i18n>strategyCode}" required="true"/>
+                            <Label text="{i18n>strategyCode}" />
                             <Input placeholder="{i18n>strategyCodePlaceholder}" width="100%"/>
                             <Text text="{i18n>uniqueStrategyIdentifier}" class="fieldDescription"/>
                         </VBox>
                         <VBox>
-                            <Label text="{i18n>strategyName}" required="true"/>
+                            <Label text="{i18n>strategyName}" />
                             <Input placeholder="{i18n>strategyNamePlaceholder}" width="100%"/>
                         </VBox>
                     </l:Grid>
                     
                     <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
                         <VBox>
-                            <Label text="{i18n>priority}" required="true"/>
+                            <Label text="{i18n>priority}" />
                             <Select selectedKey="1" width="100%">
                                 <core:Item key="1" text="{i18n>priorityHighest}"/>
                                 <core:Item key="2" text="{i18n>priorityHigh}"/>
@@ -38,7 +38,7 @@
                             <Text text="{i18n>executionOrderMultiple}" class="fieldDescription"/>
                         </VBox>
                         <VBox>
-                            <Label text="{i18n>status}" required="true"/>
+                            <Label text="{i18n>status}" />
                             <Select selectedKey="ACTIVE" width="100%">
                                 <core:Item key="ACTIVE" text="{i18n>active}"/>
                                 <core:Item key="INACTIVE" text="{i18n>inactive}"/>
@@ -56,7 +56,7 @@
                     </HBox>
                     
                     <VBox class="sapUiSmallMarginTop">
-                        <Label text="{i18n>itemFilterExpression}" required="true"/>
+                        <Label text="{i18n>itemFilterExpression}" />
                         <TextArea 
                             placeholder="{i18n>itemFilterPlaceholder}" 
                             width="100%" 
@@ -106,9 +106,9 @@
                         <!-- Rule 1 -->
                         <HBox alignItems="Start" justifyContent="SpaceBetween" class="ruleRow sapUiSmallMarginBottom">
                             <HBox alignItems="Center" width="100%">
-                                <VBox alignItems="Center" justifyContent="Center" class="ruleNumber sapUiTinyMarginEnd">
+                                <!-- <VBox alignItems="Center" justifyContent="Center" class="ruleNumber sapUiTinyMarginEnd">
                                     <Text text="1" class="ruleNumberText"/>
-                                </VBox>
+                                </VBox> -->
                                 <VBox width="25%" class="sapUiTinyMarginEnd">
                                     <Label text="{i18n>ruleType}"/>
                                     <Select selectedKey="ZONE" width="100%">
@@ -127,7 +127,7 @@
                                     <Input placeholder="{i18n>actionPlaceholder}" width="100%"/>
                                 </VBox>
                             </HBox>
-                            <Button icon="sap-icon://delete" type="Transparent" press=".onDeleteRule" tooltip="{i18n>deleteRule}"/>
+                            <Button icon="sap-icon://delete" type="Transparent" press=".onDeleteRule" tooltip="{i18n>deleteRule}" class="sapUiMediumMarginTop"/>
                         </HBox>
                     </VBox>
                     
