@@ -2,9 +2,8 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
-    xmlns:f="sap.ui.layout.form"
-    displayBlock="true">
-    
+    xmlns:f="sap.ui.layout.form" displayBlock="true">
+
     <Page title="Goods Receipt Management" class="sapUiResponsiveContentPadding">
         <headerContent>
             <!-- <Button icon="sap-icon://synchronize" text="Sync SAP" press=".onSyncSAP" /> -->
@@ -14,7 +13,7 @@
         <content>
             <!-- KPI Cards -->
             <HBox class="sapUiSmallMarginBottom kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
-                
+
                 <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
                     <Title text="Total Pending" wrapping="true" level="H2" class="cardTitle"/>
                     <ObjectNumber number="234" state="Information" emphasized="true" class="cardNumber"/>
@@ -73,32 +72,54 @@
                 </items>
                 <content>
                     <!-- Goods Receipt Table -->
-                    <Table id="idGoodsReceiptTable" 
-                           inset="false" 
-                           items="{GoodsReceiptModel>/Documents}"
-                           mode="MultiSelect">
+                    <Table id="idGoodsReceiptTable" inset="false" items="{GoodsReceiptModel>/Documents}" mode="MultiSelect" class="sapUiResponsiveMargin">
+
                         <headerToolbar>
                             <OverflowToolbar>
                                 <content>
-                                    <SearchField width="25%" placeholder="Search documents..." liveChange=".onSearch" />
-                                    <ToolbarSpacer />
+                                    <SearchField width="100%" placeholder="Search documents..." liveChange=".onSearch"/>
                                 </content>
                             </OverflowToolbar>
                         </headerToolbar>
 
                         <columns>
-                            <Column width="12em"><Text text="Document No." /></Column>
-                            <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Vendor" /></Column>
-                            <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Expected Date" /></Column>
-                            <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center"><Text text="Total Items" /></Column>
-                            <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center"><Text text="Tagged" /></Column>
-                            <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center"><Text text="Pending" /></Column>
-                            <Column minScreenWidth="Tablet" demandPopin="true" hAlign="End"><Text text="Value" /></Column>
-                            <Column hAlign="Center"><Text text="Actions" /></Column>
+
+                            <Column width="12em" minScreenWidth="Phone" demandPopin="false">
+                                <Text text="Document No." />
+                            </Column>
+
+                            <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                                <Text text="Vendor" />
+                            </Column>
+
+                            <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                                <Text text="Expected Date" />
+                            </Column>
+
+                            <Column minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" hAlign="Center">
+                                <Text text="Total Items" />
+                            </Column>
+
+                            <Column minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" hAlign="Center">
+                                <Text text="Tagged" />
+                            </Column>
+
+                            <Column minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline" hAlign="Center">
+                                <Text text="Pending" />
+                            </Column>
+
+                            <Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" hAlign="End">
+                                <Text text="Value" />
+                            </Column>
+
+                            <Column hAlign="Center" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+                                <Text text="Actions" />
+                            </Column>
+
                         </columns>
 
                         <items>
-                            <ColumnListItem>
+                            <ColumnListItem type="Navigation">
                                 <cells>
                                     <ObjectIdentifier title="{GoodsReceiptModel>documentNo}" />
                                     <Text text="{GoodsReceiptModel>vendor}" />
@@ -112,6 +133,7 @@
                             </ColumnListItem>
                         </items>
                     </Table>
+
                 </content>
             </IconTabBar>
         </content>
