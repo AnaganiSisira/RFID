@@ -81,9 +81,6 @@
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/putaway.json"
       },
-       "PickingTasksModel": {
-        "type": "sap.ui.model.json.JSONModel",
-        "uri": "model/pickingTasks.json"
       "PickingTasksModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/pickingTasks.json"
@@ -95,6 +92,10 @@
       "GoodsReceiptWizardModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/GoodsReceiptWizardModel.json"
+      },
+      "PutAwayModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/putAway.json"
       }
     },
     "resources": {
@@ -120,37 +121,51 @@
         {
           "name": "RouteDashboard",
           "pattern": ":?query:",
-          "target": ["TargetDashboard"]
+          "target": [
+            "TargetDashboard"
+          ]
         },
         {
           "name": "StorageLocationMasters",
           "pattern": "storageLocationMasters",
-          "target": ["TargetStorageLocationMasters"]
+          "target": [
+            "TargetStorageLocationMasters"
+          ]
         },
         {
           "name": "ZonesMasters",
           "pattern": "ZonesMasters",
-          "target": ["TargetZonesMasters"]
+          "target": [
+            "TargetZonesMasters"
+          ]
         },
         {
           "name": "ItemMasters",
           "pattern": "ItemMasters",
-          "target": ["TargetItemMasters"]
+          "target": [
+            "TargetItemMasters"
+          ]
         },
         {
           "name": "WarehouseMasters",
           "pattern": "WarehouseMasters",
-          "target": ["TargetWarehouseMasters"]
+          "target": [
+            "TargetWarehouseMasters"
+          ]
         },
         {
           "name": "PickStrategy",
           "pattern": "PickStrategy",
-          "target": ["TargetPickStrategy"]
+          "target": [
+            "TargetPickStrategy"
+          ]
         },
         {
           "name": "UserManagement",
           "pattern": "UserManagement",
-          "target": ["TargetUserManagement"]
+          "target": [
+            "TargetUserManagement"
+          ]
         },
         {
           "name": "PutawayStrategy",
@@ -158,7 +173,6 @@
           "target": [
             "TargetPutawayStrategy"
           ]
-          "target": ["TargetPutawayStrategy"]
         },
         {
           "name": "PickingTasks",
@@ -166,12 +180,20 @@
           "target": [
             "TargetPickingTasks"
           ]
-          "target": ["TargetPickingTasks"]
         },
         {
           "name": "GoodsReceipt",
           "pattern": "GoodsReceipt",
-          "target": ["TargetGoodsReceipt"]
+          "target": [
+            "TargetGoodsReceipt"
+          ]
+        },
+         {
+          "name": "PutAway",
+          "pattern": "PutAway",
+          "target": [
+            "TargetPutAway"
+          ]
         }
       ],
       "targets": {
@@ -214,6 +236,10 @@
         "TargetGoodsReceipt": {
           "id": "GoodsReceipt",
           "name": "GoodsReceipt"
+        },
+        "TargetPutAway": {
+          "id": "PutAway",
+          "name": "PutAway"
         }
       }
     },

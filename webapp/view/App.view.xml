@@ -79,7 +79,7 @@
                     <tnt:NavigationListItem text="Dashboard" icon="sap-icon://home" key="Dashboard"/>
                     <tnt:NavigationListItem text="{i18n>navInbound}" icon="sap-icon://inbox" expanded="true">
                         <tnt:NavigationListItem text="{i18n>navGoodsReceipt}" icon="sap-icon://receipt" key="GoodsReceipt" select="onItemSelect('GoodsReceipt')"/>
-                        <tnt:NavigationListItem text="{i18n>navPutAway}" icon="sap-icon://add-product" key="PutAway"/>
+                        <tnt:NavigationListItem text="{i18n>navPutAway}" icon="sap-icon://add-product" key="PutAway" select="onItemSelect('PutAway')"/>
                         <tnt:NavigationListItem text="{i18n>navReceivingHistory}" icon="sap-icon://history" key="ReceivingHistory"/>
                     </tnt:NavigationListItem>
  

@@ -1,0 +1,43 @@
+{
+    "PutAwaySet": [
+        {
+            "grNumber": "GR-2024-0156",
+            "poNumber": "PO-2024-0892",
+            "vendor": "Dell Technologies",
+            "itemsQty": "5 items / 250 units",
+            "status": "URGENT",
+            "statusDetail": "CROSS-DOCK",
+            "compliance": "Pass",
+            "strategy": "Direct to Dock",
+            "actionText": "Process Cross-Dock →",
+            "actionIcon": "sap-icon://process",
+            "actionType": "orange"
+        },
+        {
+            "grNumber": "GR-2024-0157",
+            "poNumber": "PO-2024-0893",
+            "vendor": "FreshFood Suppliers",
+            "itemsQty": "3 items / 500 units",
+            "status": "PENDING",
+            "statusDetail": "",
+            "compliance": "Temp Zone",
+            "strategy": "FEFO + Cold Chain",
+            "actionText": "Create Putaway →",
+            "actionIcon": "sap-icon://create",
+            "actionType": "blue"
+        },
+        {
+            "grNumber": "GR-2024-0158",
+            "poNumber": "PO-2024-0894",
+            "vendor": "Chemical Industries",
+            "itemsQty": "4 items / 80 units",
+            "status": "QC HOLD",
+            "statusDetail": "",
+            "compliance": "Hazmat",
+            "strategy": "Isolation Required",
+            "actionText": "QC Putaway →",
+            "actionIcon": "sap-icon://quality-issue",
+            "actionType": "red"
+        }
+    ]
+}

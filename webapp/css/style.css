@@ -1038,3 +1038,196 @@ Remove any padding from VBox
     padding: 20px;
     background-color: #ffffff !important;
 }
+
+
+
+
+
+
+
+
+
+
+
+/* Put Awat */
+
+/* Main dialog spacing */
+.CrossDockDialog .sapMDialogScrollCont {
+    padding: 1.5rem !important;
+}
+
+/* Compliance Box */
+.ComplianceBox {
+    background: #fff8e1;
+    border-left: 4px solid #d7a307;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+/* Item Card */
+.ItemCard {
+    border: 1px solid #dcdcdc;
+    padding: 1rem;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+/* Status labels */
+.StatusTag {
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+/* Consolidation strip */
+.ConsolidateBar {
+    background: #e8f8e2;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid #2e7d32;
+    border-radius: 6px;
+}
+
+/* AI Recommendation Box */
+.AIBox {
+    background: #eef2ff;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #4355b8;
+}
+
+.AICaption {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.AIConfidence {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Split note */
+.SplitNote {
+    background: #fff3e0;
+    padding: 0.5rem 1rem;
+    border-left: 4px solid #f39c12;
+    border-radius: 6px;
+    margin-top: 1rem;
+}
+/* Cross-Dock Item Card (Yellow background) */
+.CrossDockItemCard {
+    background-color: #fffde6; /* Pale yellow */
+    border: 1px solid #fae38b; /* Yellow border */
+    margin-top: 0.5rem;
+}
+
+/* FOOD-115 Tags */
+.CrossDockTag .sapMObjStatusText {
+    background-color: #e6f7ff; /* Light blue */
+    color: #007cc0; /* Blue text */
+}
+
+.UrgentTag .sapMObjStatusText {
+    background-color: #fff5e6; /* Light orange/pink */
+    color: #e36a00; /* Orange text */
+}
+
+/* Text Colors */
+.BlueText {
+    color: #007cc0; /* Blue for Customer Order */
+    font-weight: bold;
+}
+
+.RedText {
+    color: #c50000; /* Red for Ship Time */
+    font-weight: bold;
+}
+
+/* Shipping Dock Directive (Blue strip) */
+.ShippingDockBar {
+    background-color: #e6f7ff; /* Light blue */
+    color: #007cc0; /* Blue text/icon */
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+/* ... (Existing styles like .ComplianceBox, .ItemCard, etc.) ... */
+
+/* ======================== */
+/* NEW STYLES for Capacity Check */
+/* ======================== */
+
+/* Style for the SimpleForm layout to add dividers */
+.capacityAnalysisForm .sapUiFormElement:not(:last-child) {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Ensure the text is bold and right-aligned for the values */
+.capacityAnalysisForm .BoldValue {
+    font-weight: bold;
+    text-align: right;
+    display: block; /* Important for text alignment */
+    color: #333;
+}
+
+/* Specific style for the "Clearance OK" part to match the screenshot's color */
+.capacityAnalysisForm .sapMText:contains("Clearance OK") {
+    color: #007c2e; /* Green color for the clearance status */
+}
+
+/* ... (Existing styles remain unchanged) ... */
+
+/* ======================== */
+/* NEW STYLES for Equipment Tab */
+/* ======================== */
+
+.equipmentOptionsContainer {
+    gap: 1rem; /* Spacing between tiles */
+}
+
+.equipmentTile {
+    width: 15rem;
+    height: 10rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Selected Tile Style (Pallet Jack) */
+.equipmentTile.selected {
+    border: 2px solid #007cc0; /* Blue border */
+    background-color: #f2f8ff; /* Light blue background */
+}
+
+/* Unavailable Tile Style (Forklift) */
+.equipmentTile.unavailable {
+    background-color: #ffffff;
+}
+
+.equipmentDetails {
+    color: #6a6a6a; /* Grey color for details text */
+    font-size: 0.875rem;
+}
+
+.unavailableText {
+    color: #c50000; /* Red color for "Not Available" */
+    font-weight: bold;
+    margin-top: 0.25rem;
+}
+
+.availableText {
+    color: #007c2e; /* Green color for "Available" */
+    font-weight: bold;
+    margin-top: 0.25rem;
+}
+
+.boldRouteText {
+    font-weight: bold;
+}
