@@ -8,7 +8,7 @@
             <VBox class="sapUiSmallMargin">
                 <!-- Zone Type Section -->
                 <VBox class="zoneSection mandatory">
-                    <Label text="{i18n>zoneType}" required="true" class="sapUiTinyMarginBottom"/>
+                    <Label text="{i18n>zoneType}"  class="sapUiTinyMarginBottom sectionTitle" />
                     <l:HorizontalLayout allowWrapping="true" class="sapUiTinyMarginBottom">
                         <GenericTile class="sapUiTinyMargin" header="{i18n>receiving}" subheader="{i18n>incomingGoods}" frameType="TwoByHalf" press="onZoneTypeSelect" pressEnabled="true">
                             <TileContent footer="{i18n>receiving}">
@@ -40,12 +40,12 @@
                 <VBox class="zoneSection mandatory">
                     <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
                         <VBox>
-                            <Label text="{i18n>zoneCode}" required="true"/>
+                            <Label text="{i18n>zoneCode}" class="sectionTitle" />
                             <Input placeholder="{i18n>zoneCodePlaceholder}" width="100%"/>
                             <Text text="{i18n>zoneCodeDescription}" class="fieldDescription"/>
                         </VBox>
                         <VBox>
-                            <Label text="{i18n>zoneName}" required="true"/>
+                            <Label text="{i18n>zoneName}" class="sectionTitle" />
                             <Input placeholder="{i18n>zoneNamePlaceholder}" width="100%"/>
                         </VBox>
                     </l:Grid>

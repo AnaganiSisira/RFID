@@ -81,10 +81,10 @@
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/putaway.json"
       },
-      "PickingTasksModel": {
+       "PickingTasksModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/pickingTasks.json"
-      },
+       },
       "GoodsReceiptModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/GoodsReceiptModel.json"
@@ -173,6 +173,7 @@
           "target": [
             "TargetPutawayStrategy"
           ]
+         
         },
         {
           "name": "PickingTasks",
@@ -180,6 +181,7 @@
           "target": [
             "TargetPickingTasks"
           ]
+     
         },
         {
           "name": "GoodsReceipt",
