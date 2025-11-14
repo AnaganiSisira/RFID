@@ -1,0 +1,159 @@
+<mvc:View controllerName="rfidwarehousesuiteui.controller.PutAway"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form" displayBlock="true">
+
+    <Page title="Goods Receipts - Intelligent Putaway" class="sapUiResponsiveContentPadding">
+
+
+        <content>
+            <!-- KPI Cards -->
+            <HBox class="sapUiSmallMarginBottom kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
+
+                <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
+                    <Title text="Pending Receipts" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="234" state="Information" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="All documents" state="Information" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
+                    <Title text="Cross-Dock" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="166" state="None" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="Awaiting receipt" state="None" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
+                    <Title text="QC Hold" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="45" state="None" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="In transit" state="None" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
+                    <Title text="Items" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="1833" state="None" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="To process" state="None" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
+                    <Title text="AI Confidence" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="94%" state="Success" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="Items tagged" state="Success" class="cardStatus"/>
+                </VBox>
+
+                <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
+                    <Title text="Space Utilization" wrapping="true" level="H2" class="cardTitle"/>
+                    <ObjectNumber number="78%" state="Warning" emphasized="true" class="cardNumber"/>
+                    <ObjectStatus text="Items untagged" state="Warning" class="cardStatus"/>
+                </VBox>
+            </HBox>
+
+            <Table id="idPutAwayTable" inset="false" items="{PutAwayModel>/PutAwaySet}" mode="MultiSelect">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <SearchField width="25%" placeholder="Search documents..." liveChange=".onSearch" />
+                            <ToolbarSpacer ></ToolbarSpacer>
+                            <Select id="statusFilter" width="150px" selectedKey="all">
+                                <items>
+                                    <core:Item key="all" text="All Status"/>
+                                    <core:Item key="urgent" text="Urgent"/>
+                                    <core:Item key="pending" text="Pending"/>
+                                    <core:Item key="qc_hold" text="QC Hold"/>
+                                    <core:Item key="cross_dock" text="Cross-Dock"/>
+                                </items>
+                            </Select>
+                            <Select id="urgencyFilter" width="150px" selectedKey="urgent">
+                                <items>
+                                    <core:Item key="all" text="All"/>
+                                    <core:Item key="urgent" text="Urgent"/>
+                                    <core:Item key="normal" text="Normal"/>
+                                </items>
+                            </Select>
+                            <Button icon="sap-icon://refresh" text="Refresh" press=".onRefresh"/>
+                            <Button icon="sap-icon://action" text="Bulk Process" type="Emphasized" press=".onBulkProcess"/>
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+
+                <columns>
+                    <Column width="12%">
+                        <Text text="GR Number"/>
+                    </Column>
+                    <Column width="15%">
+                        <Text text="Vendor"/>
+                    </Column>
+                    <Column width="12%">
+                        <Text text="Items/Qty"/>
+                    </Column>
+                    <Column width="12%">
+                        <Text text="Status"/>
+                    </Column>
+                    <Column width="12%">
+                        <Text text="Compliance"/>
+                    </Column>
+                    <Column width="15%">
+                        <Text text="Strategy"/>
+                    </Column>
+                    <Column width="22%">
+                        <Text text="Actions"/>
+                    </Column>
+                </columns>
+
+                <items>
+                      <ColumnListItem>
+                            <cells>
+                                <!-- GR Number -->
+                                <VBox>
+                                    <Text text="{PutAwayModel>grNumber}" class="sapUiTinyMarginBottom"/>
+                                    <Text text="{PutAwayModel>poNumber}" class="sapUiSmallText"/>
+                                </VBox>
+
+                                <!-- Vendor -->
+                                <Text text="{PutAwayModel>vendor}"/>
+
+                                <!-- Items/Qty -->
+                                <Text text="{PutAwayModel>itemsQty}"/>
+
+                                <!-- Status -->
+                                <VBox>
+                                    <ObjectStatus 
+                                        text="{PutAwayModel>status}"
+                                        state="{= ${PutAwayModel>status} === 'URGENT' ? 'Error' : ${PutAwayModel>status} === 'PENDING' ? 'Warning' : 'None'}"
+                                        class="sapUiTinyMarginBottom"/>
+                                    <ObjectStatus 
+                                        text="{PutAwayModel>statusDetail}"
+                                        state="Information"
+                                        visible="{= ${PutAwayModel>statusDetail} !== ''}"/>
+                                </VBox>
+
+                                <!-- Compliance -->
+                                <HBox alignItems="Center">
+                                    <core:Icon 
+                                        src="{= ${PutAwayModel>compliance} === 'Pass' ? 'sap-icon://sys-enter' : ${PutAwayModel>compliance} === 'Temp Zone' ? 'sap-icon://warning' : 'sap-icon://error'}"
+                                        color="{= ${PutAwayModel>compliance} === 'Pass' ? '#107E3E' : ${PutAwayModel>compliance} === 'Temp Zone' ? '#E9730C' : '#BB0000'}"
+                                        class="sapUiTinyMarginEnd"/>
+                                    <Text text="{PutAwayModel>compliance}"/>
+                                </HBox>
+
+                                <!-- Strategy -->
+                                <Text text="{PutAwayModel>strategy}"/>
+
+                                <!-- Actions -->
+                                <HBox>
+                                    <Button 
+                                        text="{PutAwayModel>actionText}"
+                                        type="{= ${PutAwayModel>actionType} === 'orange' ? 'Emphasized' : ${PutAwayModel>actionType} === 'blue' ? 'Default' : 'Reject'}"
+                                        icon="{PutAwayModel>actionIcon}"
+                                        press=".onPutAwayProcess"
+                                        class="sapUiTinyMarginEnd"
+                                        visible="{= ${PutAwayModel>actionText} !== ''}"/>
+                                </HBox>
+                            </cells>
+                        </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
