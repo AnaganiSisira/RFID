@@ -65,7 +65,7 @@
         <f:content>
             <IconTabBar selectedKey="InboundRequests">
                 <items>
-                    <IconTabFilter key="InboundRequests" design="Horizontal" icon="sap-icon://download-from-cloud" text="Inbound Requests" count="4" textDirection="LTR">
+                    <IconTabFilter key="InboundRequests" design="Horizontal" icon="sap-icon://download-from-cloud" text="Inbound Requests" textDirection="LTR">
                         <Table id="idPickingTasks" inset="false" items="{
                 path: 'PickingTasksModel>/InboundRequests'
             }">
@@ -151,7 +151,7 @@
                         </f:content>
                         </f:Card>
                     </IconTabFilter>
-                    <IconTabFilter design="Horizontal" icon="sap-icon://activity-items" text="Active Tasks" count="3">
+                    <IconTabFilter design="Horizontal" icon="sap-icon://activity-items" text="Active Tasks" >
                         <Table id="idActiveTasks" inset="false" items="{
                 path: 'PickingTasksModel>/ActiveTasks',
                 sorter: { path: 'strategyCode' }
@@ -226,7 +226,7 @@
                             </items>
                         </Table>
                     </IconTabFilter>
-                    <IconTabFilter design="Horizontal" icon="sap-icon://dimension" text="Wave Management" count="2">
+                    <IconTabFilter design="Horizontal" icon="sap-icon://dimension" text="Wave Management">
                         <HBox class="pickingtaskstabs" >
                             <Button text="Create Wave" icon="sap-icon://add" type="Emphasized" press=".onCreateWavePress"/>
                             <Button text="Auto-Generate Wave" icon="sap-icon://batch-payments"/>
@@ -291,7 +291,7 @@
                             </f:Card>
                         </FlexBox>
                     </IconTabFilter>
-                    <IconTabFilter design="Horizontal" icon="sap-icon://business-objects-experience" text="Picker Performance" count="4">
+                    <IconTabFilter design="Horizontal" icon="sap-icon://business-objects-experience" text="Picker Performance">
                         <FlexBox class="pickingtaskstabs" justifyContent="Start" alignItems="Center" columnGap="1rem" rowGap="1rem">
                             <f:Card width="350px">
                                 <f:header>

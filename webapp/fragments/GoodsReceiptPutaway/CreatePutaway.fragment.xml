@@ -1,0 +1,364 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form">
+
+    <Dialog title="{crossDockModel>/grNumber} - Cross-Dock Processing" contentWidth="80%" class="sapUiResponsiveContentPadding">
+
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <VBox>
+                        <Title text="{crossDockModel>/grNumber} - Cross-Dock Processing" level="H3"/>
+                        <Text text="{crossDockModel>/vendor} | {crossDockModel>/itemCount} items | {crossDockModel>/totalUnits} units total" class="sapUiTinyMarginTop"/>
+                    </VBox>
+                </contentLeft>
+                <contentRight>
+                    <Button icon="sap-icon://decline" press=".onCloseDialog"/>
+                </contentRight>
+            </Bar>
+        </customHeader>
+
+        <content>
+            <VBox class="ComplianceBox sapUiSmallMarginBottom">
+                <HBox class="sapUiSmallMarginBottom">
+                    <core:Icon src="sap-icon://alert" color="#d0a518" size="1.3rem" class="sapUiTinyMarginEnd"/>
+                    <Title text="Compliance Checks:"/>
+                </HBox>
+                <VBox class="sapUiTinyMarginBegin">
+                    <Text text="• Temperature control required (2–8°C)"/>
+                    <Text text="• FEFO rotation mandatory - earliest expiry: 2024-12-31"/>
+                    <Text text="• Food safety zone only - no chemical mixing"/>
+                </VBox>
+            </VBox>
+
+            <IconTabBar >
+                <items>
+                    <IconTabFilter text="Items and Locations">
+
+                        <VBox class="ItemCard ">
+                            <HBox justifyContent="Start" alignItems="Center">
+                        <CheckBox selected="true" class="sapUiTinyMarginEnd"></CheckBox>
+
+                                <HBox>
+                                    <VBox>
+                                        <Title text="FOOD-201" level="H5"/>
+                                        <Text text="Organic Rice 5kg - Batch BTH2020404"/>
+                                    </VBox>
+                                </HBox>
+                                <SplitContainer ></SplitContainer>
+                                <HBox>
+                                    <ObjectStatus text="QC SAMPLE TAKEN" state="Information" class="StatusTag"/>
+                                    <ObjectStatus text="PERISHABLE" state="Error" class="StatusTag sapUiTinyMarginBegin"/>
+                                </HBox>
+                            </HBox>
+                            <HBox class="sapUiSmallMarginTop" justifyContent="SpaceBetween">
+                                <VBox><Text text="QUANTITY"/><Title level="H6" text="200 BAGS"/></VBox>
+                                <VBox><Text text="WEIGHT"/><Title level="H6" text="1000 kg"/></VBox>
+                                <VBox><Text text="VOLUME"/><Title level="H6" text="2.5 m³"/></VBox>
+                                <VBox><Text text="EXPIRY"/><Title level="H6" text="2025-06-15"/></VBox>
+                                <VBox><Text text="TEMP REQ"/><Title level="H6" text="Ambient"/></VBox>
+                            </HBox>
+                        </VBox>
+
+                        <HBox class="ConsolidateBar sapUiSmallMarginBottom" justifyContent="SpaceBetween" alignItems="Center">
+                            <Text text="🔄 Consolidation Opportunity: Same SKU found in F-08-02-FLOOR (150 bags, exp: 2025-07-20)."/>
+                            <Button text="Consolidate" type="Emphasized"/>
+                        </HBox>
+
+                        <VBox class="AIBox sapUiMediumMarginBottom">
+                            <HBox justifyContent="SpaceBetween">
+                                <VBox>
+                                    <Text text="AI Recommended Location" class="AICaption"/>
+                                    <Title text="F-08-01-FLOOR" level="H4"/>
+                                    <Text text="Strategy: FEFO + Zone Consolidation + Capacity Optimization" class="sapUiTinyMarginTop"/>
+                                </VBox>
+                                <ObjectStatus text="94% Confidence" state="Success" class="AIConfidence"/>
+                            </HBox>
+                            <VBox class="sapUiSmallMarginTop">
+                                <ProgressIndicator
+                                    percentValue="70"
+                                    displayValue="Location Capacity After Putaway"
+                                    state="Success"/>
+                                <Text text="Current: 70% — After: 85% (+1000kg) — Max: 5000kg"
+                                      class="sapUiTinyMarginTop"/>
+                            </VBox>
+                        </VBox>
+
+                        <VBox class="SplitNote sapUiMediumMarginBottom">
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://split" size="1.2rem" class="sapUiTinyMarginEnd"/>
+                                <Title text="Split Putaway Required" level="H4"/>
+                            </HBox>
+                            <Text text="Quantity exceeds single location capacity. Recommended split:" class="sapUiTinyMarginBottom"/>
+                            
+                            <layout:VerticalLayout class="sapUiTinyMarginTop">
+                                <HBox alignItems="Center" class="sapUiTinyMarginBottom">
+                                    <Input value="150" width="5rem" type="Number" textAlign="End"/>
+                                    <Text text="bags to" class="sapUiTinyMarginBeginEnd"/>
+                                    <ComboBox selectedKey="F-08-01-FLOOR (Primary - 30% available)" width="20rem">
+                                        <core:Item key="F-08-01-FLOOR (Primary - 30% available)" text="F-08-01-FLOOR (Primary - 30% available)"/>
+                                        <core:Item key="F-08-02-FLOOR (Overflow - 45% available)" text="F-08-02-FLOOR (Overflow - 45% available)"/>
+                                    </ComboBox>
+                                    <Button text="Remove" type="Reject" class="sapUiTinyMarginBegin"/>
+                                </HBox>
+
+                                <HBox alignItems="Center" class="sapUiTinyMarginBottom">
+                                    <Input value="50" width="5rem" type="Number" textAlign="End"/>
+                                    <Text text="bags to" class="sapUiTinyMarginBeginEnd"/>
+                                    <ComboBox selectedKey="F-08-02-FLOOR (Overflow - 45% available)" width="20rem">
+                                        <core:Item key="F-08-01-FLOOR (Primary - 30% available)" text="F-08-01-FLOOR (Primary - 30% available)"/>
+                                        <core:Item key="F-08-02-FLOOR (Overflow - 45% available)" text="F-08-02-FLOOR (Overflow - 45% available)"/>
+                                    </ComboBox>
+                                    <Button text="Remove" type="Reject" class="sapUiTinyMarginBegin"/>
+                                </HBox>
+
+                                <Button text="+ Add Split Location" type="Transparent" class="sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+                            </layout:VerticalLayout>
+                        </VBox>
+
+                        <VBox class="ItemCard CrossDockItemCard">
+                            <HBox justifyContent="Start" alignItems="Center">
+                        <CheckBox selected="true" class="sapUiTinyMarginEnd"></CheckBox>
+
+                                <HBox>
+                                    <VBox>
+                                        <Title text="FOOD-115" level="H5"/>
+                                        <Text text="Frozen Vegetables Mix"/>
+                                    </VBox>
+                                </HBox>
+                                <SplitContainer ></SplitContainer>
+                                <HBox>
+                                    <ObjectStatus text="CROSS-DOCK" state="Information" class="StatusTag CrossDockTag"/>
+                                    <ObjectStatus text="URGENT ORDER" state="Error" class="StatusTag UrgentTag sapUiTinyMarginBegin"/>
+                                </HBox>
+                            </HBox>
+                            <HBox class="sapUiSmallMarginTop" justifyContent="Start">
+                                <VBox>
+                                    <Text text="QUANTITY"/>
+                                    <Title level="H6" text="100 BAGS"/>
+                                </VBox>
+                                <VBox>
+                                    <Text text="CUSTOMER ORDER"/>
+                                    <Title level="H6" text="SO-2024-1893" class="BlueText"/>
+                                </VBox>
+                                <VBox>
+                                    <Text text="SHIP TIME"/>
+                                    <Title level="H6" text="14:00 Today" class="RedText"/>
+                                </VBox>
+                            </HBox>
+                            
+                            <HBox class="ShippingDockBar sapUiSmallMarginTop" alignItems="Center">
+                                <core:Icon src="sap-icon://shipping-status" size="1.2rem" class="sapUiTinyMarginEnd"/>
+                                <Text text="Direct to Shipping Dock 8 - No storage required. ETA: 2 hours | Assigned to: Express Lane"/>
+                            </HBox>
+                        </VBox>
+
+                    </IconTabFilter>
+                    <IconTabFilter text="Capacity Check">
+                    <VBox class="sapUiSmallMarginTop">
+                            <Title text="Location Capacity Analysis" level="H4" class="sapUiTinyMarginBottom"/>
+                            
+                            <form:SimpleForm
+                                editable="false"
+                                layout="ResponsiveGridLayout"
+                                columnsL="2"
+                                columnsM="2"
+                                labelSpanL="6"
+                                labelSpanM="6"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                class="capacityAnalysisForm"
+                            >
+                                <Label text="Total Weight to Putaway"/>
+                                <Text text="1,200 kg" class="BoldValue"/>
+
+                                <Label text="Total Volume"/>
+                                <Text text="3.3 m³" class="BoldValue"/>
+
+                                <Label text="Locations Required"/>
+                                <Text text="2-3 locations" class="BoldValue"/>
+
+                                <Label text="Height Restriction"/>
+                                <HBox alignItems="Center">
+                                    <Text text="Max 2.5m (Clearance OK ✔)" class="BoldValue"/>
+                                </HBox>
+                            </form:SimpleForm>
+                        </VBox>
+                    </IconTabFilter>
+                    <IconTabFilter text="Consolidation">
+                    
+                        <VBox class="ItemCard ">
+                            <HBox justifyContent="Start" alignItems="Center">
+                        <CheckBox selected="true" class="sapUiTinyMarginEnd"></CheckBox>
+
+                                <HBox>
+                                    <VBox>
+                                        <Title text="FOOD-201" level="H5"/>
+                                        <Text text="Organic Rice 5kg - Batch BTH2020404"/>
+                                    </VBox>
+                                </HBox>
+                                <SplitContainer ></SplitContainer>
+                                <HBox>
+                                    <ObjectStatus text="QC SAMPLE TAKEN" state="Information" class="StatusTag"/>
+                                    <ObjectStatus text="PERISHABLE" state="Error" class="StatusTag sapUiTinyMarginBegin"/>
+                                </HBox>
+                            </HBox>
+                            <HBox class="sapUiSmallMarginTop" justifyContent="SpaceBetween">
+                                <VBox><Text text="QUANTITY"/><Title level="H6" text="200 BAGS"/></VBox>
+                                <VBox><Text text="WEIGHT"/><Title level="H6" text="1000 kg"/></VBox>
+                                <VBox><Text text="VOLUME"/><Title level="H6" text="2.5 m³"/></VBox>
+                                <VBox><Text text="EXPIRY"/><Title level="H6" text="2025-06-15"/></VBox>
+                                <VBox><Text text="TEMP REQ"/><Title level="H6" text="Ambient"/></VBox>
+                            </HBox>
+                        </VBox>
+
+                        <HBox class="ConsolidateBar sapUiSmallMarginBottom" justifyContent="SpaceBetween" alignItems="Center">
+                            <Text text="🔄 Consolidation Opportunity: Same SKU found in F-08-02-FLOOR (150 bags, exp: 2025-07-20)."/>
+                            <Button text="Consolidate" type="Emphasized"/>
+                        </HBox>
+
+                        <VBox class="AIBox sapUiMediumMarginBottom">
+                            <HBox justifyContent="SpaceBetween">
+                                <VBox>
+                                    <Text text="AI Recommended Location" class="AICaption"/>
+                                    <Title text="F-08-01-FLOOR" level="H4"/>
+                                    <Text text="Strategy: FEFO + Zone Consolidation + Capacity Optimization" class="sapUiTinyMarginTop"/>
+                                </VBox>
+                                <ObjectStatus text="94% Confidence" state="Success" class="AIConfidence"/>
+                            </HBox>
+                            <VBox class="sapUiSmallMarginTop">
+                                <ProgressIndicator
+                                    percentValue="70"
+                                    displayValue="Location Capacity After Putaway"
+                                    state="Success"/>
+                                <Text text="Current: 70% — After: 85% (+1000kg) — Max: 5000kg"
+                                      class="sapUiTinyMarginTop"/>
+                            </VBox>
+                        </VBox>
+
+                        <VBox class="SplitNote sapUiMediumMarginBottom">
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://split" size="1.2rem" class="sapUiTinyMarginEnd"/>
+                                <Title text="Split Putaway Required" level="H4"/>
+                            </HBox>
+                            <Text text="Quantity exceeds single location capacity. Recommended split:" class="sapUiTinyMarginBottom"/>
+                            
+                            <layout:VerticalLayout class="sapUiTinyMarginTop">
+                                <HBox alignItems="Center" class="sapUiTinyMarginBottom">
+                                    <Input value="150" width="5rem" type="Number" textAlign="End"/>
+                                    <Text text="bags to" class="sapUiTinyMarginBeginEnd"/>
+                                    <ComboBox selectedKey="F-08-01-FLOOR (Primary - 30% available)" width="20rem">
+                                        <core:Item key="F-08-01-FLOOR (Primary - 30% available)" text="F-08-01-FLOOR (Primary - 30% available)"/>
+                                        <core:Item key="F-08-02-FLOOR (Overflow - 45% available)" text="F-08-02-FLOOR (Overflow - 45% available)"/>
+                                    </ComboBox>
+                                    <Button text="Remove" type="Reject" class="sapUiTinyMarginBegin"/>
+                                </HBox>
+
+                                <HBox alignItems="Center" class="sapUiTinyMarginBottom">
+                                    <Input value="50" width="5rem" type="Number" textAlign="End"/>
+                                    <Text text="bags to" class="sapUiTinyMarginBeginEnd"/>
+                                    <ComboBox selectedKey="F-08-02-FLOOR (Overflow - 45% available)" width="20rem">
+                                        <core:Item key="F-08-01-FLOOR (Primary - 30% available)" text="F-08-01-FLOOR (Primary - 30% available)"/>
+                                        <core:Item key="F-08-02-FLOOR (Overflow - 45% available)" text="F-08-02-FLOOR (Overflow - 45% available)"/>
+                                    </ComboBox>
+                                    <Button text="Remove" type="Reject" class="sapUiTinyMarginBegin"/>
+                                </HBox>
+
+                                <Button text="+ Add Split Location" type="Transparent" class="sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+                            </layout:VerticalLayout>
+                        </VBox>
+
+                        <VBox class="ItemCard CrossDockItemCard">
+                            <HBox justifyContent="Start" alignItems="Center">
+                        <CheckBox selected="true" class="sapUiTinyMarginEnd"></CheckBox>
+
+                                <HBox>
+                                    <VBox>
+                                        <Title text="FOOD-115" level="H5"/>
+                                        <Text text="Frozen Vegetables Mix"/>
+                                    </VBox>
+                                </HBox>
+                                <SplitContainer ></SplitContainer>
+                                <HBox>
+                                    <ObjectStatus text="CROSS-DOCK" state="Information" class="StatusTag CrossDockTag"/>
+                                    <ObjectStatus text="URGENT ORDER" state="Error" class="StatusTag UrgentTag sapUiTinyMarginBegin"/>
+                                </HBox>
+                            </HBox>
+                            <HBox class="sapUiSmallMarginTop" justifyContent="Start">
+                                <VBox>
+                                    <Text text="QUANTITY"/>
+                                    <Title level="H6" text="100 BAGS"/>
+                                </VBox>
+                                <VBox>
+                                    <Text text="CUSTOMER ORDER"/>
+                                    <Title level="H6" text="SO-2024-1893" class="BlueText"/>
+                                </VBox>
+                                <VBox>
+                                    <Text text="SHIP TIME"/>
+                                    <Title level="H6" text="14:00 Today" class="RedText"/>
+                                </VBox>
+                            </HBox>
+                            
+                            <HBox class="ShippingDockBar sapUiSmallMarginTop" alignItems="Center">
+                                <core:Icon src="sap-icon://shipping-status" size="1.2rem" class="sapUiTinyMarginEnd"/>
+                                <Text text="Direct to Shipping Dock 8 - No storage required. ETA: 2 hours | Assigned to: Express Lane"/>
+                            </HBox>
+                        </VBox>
+                    </IconTabFilter>
+                    <IconTabFilter text="Equipment">
+                    <VBox class="sapUiSmallMarginTop">
+                            <Title text="Required Equipment" level="H4" class="sapUiTinyMarginBottom"/>
+                            
+                            <HBox justifyContent="Start" class="equipmentOptionsContainer sapUiSmallMarginBottom">
+                                
+                                <VBox class="equipmentTile unavailable">
+                                    <core:Icon src="sap-icon://forklift" size="2rem" class="sapUiTinyMarginBottom"/>
+                                    <Title text="Forklift" level="H5" class="sapUiTinyMarginBottom"/>
+                                    <Text text="Heavy items (>500kg)" class="equipmentDetails"/>
+                                    <Text text="Not Available" class="unavailableText"/>
+                                </VBox>
+
+                                <VBox class="equipmentTile selected">
+                                    <core:Icon src="sap-icon://cart-3" size="2rem" class="sapUiTinyMarginBottom"/>
+                                    <Title text="Pallet Jack" level="H5" class="sapUiTinyMarginBottom"/>
+                                    <Text text="Standard pallets" class="equipmentDetails"/>
+                                    <Text text="3 Available" class="availableText"/>
+                                </VBox>
+
+                                <VBox class="equipmentTile unavailable">
+                                    <core:Icon src="sap-icon://manager-care" size="2rem" class="sapUiTinyMarginBottom"/>
+                                    <Title text="Manual" level="H5" class="sapUiTinyMarginBottom"/>
+                                    <Text text="Small items" class="equipmentDetails"/>
+                                    <Text text="Always Available" class="availableText"/>
+                                </VBox>
+                            </HBox>
+
+                            <VBox class="routeDetailsBox sapUiSmallMarginTop">
+                                <Text text="Estimated Time with Pallet Jack: 25 minutes" class="sapUiTinyMarginBottom"/>
+                                <Text text="Distance: 380 meters total" class="sapUiTinyMarginBottom"/>
+                                <Text text="Recommended Route: Dock 3 → Aisle F → Zone 8" class="boldRouteText"/>
+                            </VBox>
+
+                        </VBox>
+                    </IconTabFilter>
+                </items>
+            </IconTabBar>
+        </content>
+<!--         
+        <footer>
+            <Bar>
+                <contentLeft>
+                    <Text text="Summary: 2 items selected | 1 cross-dock | 1 split required"/>
+                </contentLeft>
+                <contentRight>
+                    <Button text="Cancel" type="Transparent"/>
+                    <Button text="Save Draft" type="Default" class="OrangeButton"/>
+                    <Button text="Validate &amp; Assign →" type="Accept" class="GreenButton sapUiTinyMarginBegin"/>
+                </contentRight>
+            </Bar>
+        </footer> -->
+
+    </Dialog>
+</core:FragmentDefinition>
