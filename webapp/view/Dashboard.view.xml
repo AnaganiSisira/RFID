@@ -9,413 +9,946 @@
     xmlns:micro="sap.suite.ui.microchart"
     height="100%">
     
-    <Page
-        id="dashboardPage"
-        title=""
-        showNavButton="false"
-        showHeader="false"
-        enableScrolling="true"
-        class="dashboardPage">
-        
-        <content>
-            <!-- Header Section -->
+    <Page id="dashboardPage" showHeader="false" class="wmsDashboard">
+        <!-- Header -->
+        <customHeader>
             <Bar class="dashboardHeader">
                 <contentLeft>
-                    <VBox>
-                        <Title text="Warehouse Dashboard" level="H3" class="dashboardTitle"/>
-                     
+                    <VBox class="headerTitleBox">
+                        <Title text="WMS Operations Dashboard" class="dashboardTitle"/>
+                        <Text text="Real-time warehouse operations monitoring" class="dashboardSubtitle"/>
                     </VBox>
                 </contentLeft>
                 <contentRight>
-                    <Button
-                        icon="sap-icon://refresh"
-                        text="Refresh"
-                        tooltip="Refresh Dashboard"
-                        type="Transparent"
-                        press=".onRefresh"/>
-                    <Button
-                        icon="sap-icon://filter"
-                        text="Filter"
-                        type="Transparent"
-                        press=".onFilter"/>
-                    <Button
-                        icon="sap-icon://action-settings"
-                        tooltip="Settings"
-                        type="Transparent"
-                        press=".onSettings"/>
+                    <HBox alignItems="Center" class="headerControls">
+                        <Select id="dateFilter" width="120px" selectedKey="today" class="headerSelect">
+                            <items>
+                                <core:Item key="today" text="Today"/>
+                                <core:Item key="week" text="This Week"/>
+                                <core:Item key="month" text="This Month"/>
+                            </items>
+                        </Select>
+                        <Select id="warehouseFilter" width="150px" selectedKey="wh001" class="headerSelect">
+                            <items>
+                                <core:Item key="wh001" text="WH-001 - Main"/>
+                                <core:Item key="wh002" text="WH-002 - North"/>
+                            </items>
+                        </Select>
+                        <Button text="Live" icon="sap-icon://synchronize" class="liveButton"/>
+                        <Button text="Activity Feed" icon="sap-icon://menu2" press="onToggleActivityFeed" class="headerButton"/>
+                        <Button text="Export" icon="sap-icon://download" class="headerButton"/>
+                        <Button icon="sap-icon://bell" type="Emphasized" class="notificationButton"/>
+                    </HBox>
                 </contentRight>
             </Bar>
-            
-            <!-- KPI Cards Section -->
-            <VBox class="kpiSection">
-                <layout:Grid
-                    defaultSpan="XL3 L3 M6 S12"
-                    hSpacing="1"
-                    vSpacing="1">
+        </customHeader>
+        
+        <content>
+            <HBox class="mainContentWrapper">
+                <!-- Main Dashboard Area -->
+                <VBox class="dashboardMainArea">
+                    <!-- Tab Bar -->
+                    <IconTabBar id="mainTabBar" selectedKey="operations" class="dashboardTabs" select="onTabSelect">
+                        <items>
+                            <IconTabFilter key="operations" text="Operations"/>
+                            <IconTabFilter key="zoneHeatmap" text="Zone Heatmap"/>
+                            <IconTabFilter key="workerPerformance" text="Worker Performance"/>
+                            <IconTabFilter key="alerts" text="Alerts &amp; Actions" count="3"/>
+                        </items>
+                    </IconTabBar>
                     
-                    <!-- Active Tasks KPI -->
-                    <VBox class="kpiCard kpiCardPrimary">
-                        <HBox justifyContent="SpaceBetween" alignItems="Start" class="sapUiSmallMarginBottom">
-                            <VBox>
-                                <Text text="Active Tasks" class="kpiLabel"/>
-                                <Title text="{dashboard>/kpi/activeTasks}" level="H1" class="kpiValue"/>
-                            </VBox>
-                            <core:Icon src="sap-icon://activities" size="2.5rem" class="kpiIcon kpiIconPrimary"/>
+                    <!-- Status Bar -->
+                    <HBox justifyContent="SpaceBetween" alignItems="Center" class="statusBar">
+                        <HBox alignItems="Center" class="statusLeft">
+                            <core:Icon src="sap-icon://history" size="1rem" color="#94a3b8"/>
+                            <Text text="Last updated: 11:42:52 am" class="statusText"/>
                         </HBox>
-                        <HBox alignItems="Center" justifyContent="SpaceBetween">
-                            <HBox alignItems="Center">
-                                <core:Icon
-                                    src="{= ${dashboard>/kpi/activeTasksTrend} > 0 ? 'sap-icon://trend-up' : 'sap-icon://trend-down'}"
-                                    color="{= ${dashboard>/kpi/activeTasksTrend} > 0 ? '#2ECC71' : '#E74C3C'}"
-                                    size="1rem"
-                                    class="sapUiTinyMarginEnd"/>
-                                <Text text="{dashboard>/kpi/activeTasksTrend}%" class="kpiTrend"/>
-                            </HBox>
-                            <Text text="vs yesterday" class="kpiSecondary"/>
+                        <HBox alignItems="Center" class="statusRight">
+                            <core:Icon src="sap-icon://status-positive" size="1rem" color="#22c55e"/>
+                            <Text text="System Operational" class="statusOperational"/>
                         </HBox>
-                    </VBox>
+                    </HBox>
                     
-                    <!-- Pending Receipts KPI -->
-                    <VBox class="kpiCard kpiCardWarning">
-                        <HBox justifyContent="SpaceBetween" alignItems="Start" class="sapUiSmallMarginBottom">
-                            <VBox>
-                                <Text text="Pending Receipts" class="kpiLabel"/>
-                                <Title text="{dashboard>/kpi/pendingReceipts}" level="H1" class="kpiValue"/>
-                            </VBox>
-                            <core:Icon src="sap-icon://inbox" size="2.5rem" class="kpiIcon kpiIconWarning"/>
-                        </HBox>
-                        <HBox alignItems="Center" justifyContent="SpaceBetween">
-                            <HBox alignItems="Center">
-                                <core:Icon
-                                    src="sap-icon://alert"
-                                    color="#F39C12"
-                                    size="1rem"
-                                    class="sapUiTinyMarginEnd"/>
-                                <Text text="Urgent: {dashboard>/kpi/urgentReceipts}" class="kpiTrend"/>
-                            </HBox>
-                            <Text text="awaiting" class="kpiSecondary"/>
-                        </HBox>
-                    </VBox>
-                    
-                    <!-- Completed Today KPI -->
-                    <VBox class="kpiCard kpiCardSuccess">
-                        <HBox justifyContent="SpaceBetween" alignItems="Start" class="sapUiSmallMarginBottom">
-                            <VBox>
-                                <Text text="Completed Today" class="kpiLabel"/>
-                                <Title text="{dashboard>/kpi/completedToday}" level="H1" class="kpiValue"/>
-                            </VBox>
-                            <core:Icon src="sap-icon://accept" size="2.5rem" class="kpiIcon kpiIconSuccess"/>
-                        </HBox>
-                        <HBox alignItems="Center" justifyContent="SpaceBetween">
-                            <ProgressIndicator
-                                percentValue="{= (${dashboard>/kpi/completedToday} / ${dashboard>/kpi/todayTarget}) * 100 }"
-                                displayValue="{dashboard>/kpi/completedToday}/{dashboard>/kpi/todayTarget}"
-                                state="Success"
-                                width="120px"
-                                showValue="true"/>
-                            <Text text="Target" class="kpiSecondary"/>
-                        </HBox>
-                    </VBox>
-                    
-                    <!-- Inventory Accuracy KPI -->
-                    <VBox class="kpiCard kpiCardInfo">
-                        <HBox justifyContent="SpaceBetween" alignItems="Start" class="sapUiSmallMarginBottom">
-                            <VBox>
-                                <Text text="Inventory Accuracy" class="kpiLabel"/>
-                                <Title text="{dashboard>/kpi/inventoryAccuracy}%" level="H1" class="kpiValue"/>
-                            </VBox>
-                            <core:Icon src="sap-icon://product" size="2.5rem" class="kpiIcon kpiIconInfo"/>
-                        </HBox>
-                        <HBox alignItems="Center" justifyContent="SpaceBetween">
-                            <HBox alignItems="Center">
-                                <core:Icon
-                                    src="sap-icon://checkmark"
-                                    color="#3498DB"
-                                    size="1rem"
-                                    class="sapUiTinyMarginEnd"/>
-                                <Text text="RFID Tracked" class="kpiTrend"/>
-                            </HBox>
-                            <Text text="{dashboard>/kpi/rfidItems} items" class="kpiSecondary"/>
-                        </HBox>
-                    </VBox>
-                    
-                </layout:Grid>
-            </VBox>
-
-              <VBox class="quickActionsSection">
-                <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMarginBottom">
-                    <Title text="Quick Actions" level="H3" class="sectionTitle"/>
-                    <Link text="View All" press=".onViewAllActions"/>
-                </HBox>
-                <layout:Grid
-                    defaultSpan="XL2 L3 M4 S6"
-                    hSpacing="1"
-                    vSpacing="1">
-                    
-                    <VBox class="quickActionCard" >
-                        <core:Icon src="sap-icon://cart" size="2rem" class="quickActionIcon quickActionPrimary"/>
-                        <Text text="Create Wave" class="quickActionTitle"/>
-                        <Text text="New picking wave" class="quickActionSubtitle"/>
-                    </VBox>
-                    
-                    <VBox class="quickActionCard" >
-                        <core:Icon src="sap-icon://receipt" size="2rem" class="quickActionIcon quickActionSuccess"/>
-                        <Text text="Goods Receipt" class="quickActionTitle"/>
-                        <Text text="Receive items" class="quickActionSubtitle"/>
-                    </VBox>
-                    
-                    <VBox class="quickActionCard" >
-                        <core:Icon src="sap-icon://tag" size="2rem" class="quickActionIcon quickActionWarning"/>
-                        <Text text="Generate Tags" class="quickActionTitle"/>
-                        <Text text="RFID/Barcode" class="quickActionSubtitle"/>
-                    </VBox>
-                    
-                    <VBox class="quickActionCard">
-                        <core:Icon src="sap-icon://inventory" size="2rem" class="quickActionIcon quickActionInfo"/>
-                        <Text text="Cycle Count" class="quickActionTitle"/>
-                        <Text text="Start counting" class="quickActionSubtitle"/>
-                    </VBox>
-                    
-                    <VBox class="quickActionCard" >
-                        <core:Icon src="sap-icon://business-objects-experience" size="2rem" class="quickActionIcon quickActionPurple"/>
-                        <Text text="View Reports" class="quickActionTitle"/>
-                        <Text text="Analytics" class="quickActionSubtitle"/>
-                    </VBox>
-                    
-                    <VBox class="quickActionCard" >
-                        <core:Icon src="sap-icon://grid" size="2rem" class="quickActionIcon quickActionTeal"/>
-                        <Text text="Manage Bins" class="quickActionTitle"/>
-                        <Text text="Bin operations" class="quickActionSubtitle"/>
-                    </VBox>
-                    
-                </layout:Grid>
-            </VBox>
-            
-            
-            <!-- Main Content Grid -->
-            <layout:Grid
-                defaultSpan="XL8 L8 M12 S12"
-                hSpacing="1"
-                vSpacing="1"
-                class="mainContentGrid">
-                
-                <!-- Left Column: Charts and Activity -->
-                <VBox class="contentColumn">
-                    <!-- Activity Feed -->
-                    <VBox class="dashboardCard sapUiSmallMarginTop">
-                        <HBox justifyContent="SpaceBetween" alignItems="Center" class="cardHeader">
-                            <VBox>
-                                <Title text="Real-Time Activity Feed" level="H3" class="cardTitle"/>
-                                <Text text="Live updates" class="cardSubtitle"/>
-                            </VBox>
-                            <HBox>
-                                <Button
-                                    icon="sap-icon://filter"
-                                    tooltip="Filter"
-                                    type="Transparent"
-                                    press=".onFilterActivities"/>
-                                <Button
-                                    icon="sap-icon://refresh"
-                                    tooltip="Refresh"
-                                    type="Transparent"
-                                    press=".onRefreshActivities"/>
-                            </HBox>
-                        </HBox>
-                        <VBox class="cardContent noPadding">
-                            <List
-                                id="activityFeed"
-                                items="{dashboard>/activities}"
-                                noDataText="No recent activities"
-                                mode="None">
-                                <CustomListItem class="activityItem">
-                                    <HBox alignItems="Center" width="100%">
-                                        <Avatar
-                                            initials="{dashboard>userInitials}"
-                                            displaySize="XS"
-                                            backgroundColor="{dashboard>avatarColor}"
-                                            class="activityAvatar"/>
-                                        <VBox class="sapUiTinyMarginBegin" width="100%">
-                                            <HBox justifyContent="SpaceBetween" width="100%">
-                                                <HBox alignItems="Center">
-                                                    <Text text="{dashboard>userName}" class="activityUser"/>
-                                                    <ObjectStatus
-                                                        text="{dashboard>taskType}"
-                                                        state="{dashboard>statusState}"
-                                                        class="sapUiTinyMarginBegin activityStatus"/>
+                    <!-- Tab Content Container -->
+                    <ScrollContainer height="100%" width="100%" vertical="true" horizontal="false" class="tabScrollContainer">
+                        <VBox id="tabContentArea" class="tabContentArea">
+                            
+                            <!-- Operations Tab Content -->
+                            <VBox id="operationsContent" class="tabContent" visible="true">
+                                <!-- KPI Cards Grid -->
+                                <HBox class="kpiCardsRow">
+                                    <!-- Active Orders -->
+                                    <VBox class="kpiCard">
+                                        <HBox class="kpiCardHeader">
+                                            <VBox class="kpiIconBox blueIcon">
+                                                <core:Icon src="sap-icon://cart" color="#3b82f6" size="1.5rem"/>
+                                            </VBox>
+                                            <VBox class="kpiHeaderInfo">
+                                                <HBox justifyContent="SpaceBetween" width="100%">
+                                                    <Text text="Active Orders" class="kpiLabel"/>
+                                                    <HBox class="trendBadge positive">
+                                                        <core:Icon src="sap-icon://trend-up" size="0.6rem"/>
+                                                        <Text text="+12" class="trendText"/>
+                                                    </HBox>
                                                 </HBox>
-                                                <Text text="{dashboard>timestamp}" class="activityTime"/>
+                                            </VBox>
+                                        </HBox>
+                                        <VBox class="kpiCardBody">
+                                            <Text text="156" class="kpiValue"/>
+                                            <HBox class="urgentBadge">
+                                                <Text text="8 Urgent" class="urgentText"/>
                                             </HBox>
-                                            <Text text="{dashboard>description}" class="activityDescription"/>
+                                            <VBox class="kpiDetails">
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Picking:" class="detailLabel"/>
+                                                    <Text text="89" class="detailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Packing:" class="detailLabel"/>
+                                                    <Text text="45" class="detailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Staged:" class="detailLabel"/>
+                                                    <Text text="22" class="detailValue"/>
+                                                </HBox>
+                                            </VBox>
                                         </VBox>
-                                    </HBox>
-                                </CustomListItem>
-                            </List>
-                        </VBox>
-                    </VBox>
-                    
-                </VBox>
-                
-                <!-- Right Column: Zones and Workers -->
-                <VBox class="contentColumn">
-                    
-                    <!-- Warehouse Zone Status -->
-                    <VBox class="dashboardCard">
-                        <HBox justifyContent="SpaceBetween" alignItems="Center" class="cardHeader">
-                            <VBox>
-                                <Title text="Warehouse Zones" level="H3" class="cardTitle"/>
-                                <Text text="Capacity overview" class="cardSubtitle"/>
+                                    </VBox>
+                                    
+                                    <!-- Pick Rate -->
+                                    <VBox class="kpiCard">
+                                        <HBox class="kpiCardHeader">
+                                            <VBox class="kpiIconBox greenIcon">
+                                                <core:Icon src="sap-icon://product" color="#22c55e" size="1.5rem"/>
+                                            </VBox>
+                                            <VBox class="kpiHeaderInfo">
+                                                <HBox justifyContent="SpaceBetween" width="100%">
+                                                    <Text text="Pick Rate" class="kpiLabel"/>
+                                                    <HBox class="trendBadge positive">
+                                                        <core:Icon src="sap-icon://trend-up" size="0.6rem"/>
+                                                        <Text text="+8/hr" class="trendText"/>
+                                                    </HBox>
+                                                </HBox>
+                                            </VBox>
+                                        </HBox>
+                                        <VBox class="kpiCardBody">
+                                            <Text text="142/hr" class="kpiValue"/>
+                                            <VBox class="kpiDetails">
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Target:" class="detailLabel"/>
+                                                    <Text text="135/hr" class="detailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Current:" class="detailLabel"/>
+                                                    <Text text="142/hr" class="detailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Efficiency:" class="detailLabel"/>
+                                                    <Text text="105%" class="detailValue"/>
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+                                    </VBox>
+                                    
+                                    <!-- Putaway Rate -->
+                                    <VBox class="kpiCard">
+                                        <HBox class="kpiCardHeader">
+                                            <VBox class="kpiIconBox purpleIcon">
+                                                <core:Icon src="sap-icon://shipping-status" color="#8b5cf6" size="1.5rem"/>
+                                            </VBox>
+                                            <VBox class="kpiHeaderInfo">
+                                                <HBox justifyContent="SpaceBetween" width="100%">
+                                                    <Text text="Putaway Rate" class="kpiLabel"/>
+                                                    <HBox class="trendBadge positive">
+                                                        <core:Icon src="sap-icon://trend-up" size="0.6rem"/>
+                                                        <Text text="+5/hr" class="trendText"/>
+                                                    </HBox>
+                                                </HBox>
+                                            </VBox>
+                                        </HBox>
+                                        <VBox class="kpiCardBody">
+                                            <Text text="98/hr" class="kpiValue"/>
+                                            <VBox class="kpiDetails">
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Target:" class="detailLabel"/>
+                                                    <Text text="95/hr" class="detailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Current:" class="detailLabel"/>
+                                                    <Text text="98/hr" class="detailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Efficiency:" class="detailLabel"/>
+                                                    <Text text="103%" class="detailValue"/>
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+                                    </VBox>
+                                    
+                                    <!-- Active Workers -->
+                                    <VBox class="kpiCard">
+                                        <HBox class="kpiCardHeader">
+                                            <VBox class="kpiIconBox yellowIcon">
+                                                <core:Icon src="sap-icon://employee" color="#f59e0b" size="1.5rem"/>
+                                            </VBox>
+                                            <VBox class="kpiHeaderInfo">
+                                                <HBox justifyContent="SpaceBetween" width="100%">
+                                                    <Text text="Active Workers" class="kpiLabel"/>
+                                                    <HBox class="trendBadge positive">
+                                                        <core:Icon src="sap-icon://trend-up" size="0.6rem"/>
+                                                        <Text text="+2" class="trendText"/>
+                                                    </HBox>
+                                                </HBox>
+                                            </VBox>
+                                        </HBox>
+                                        <VBox class="kpiCardBody">
+                                            <Text text="47" class="kpiValue"/>
+                                            <VBox class="kpiDetails">
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Picking:" class="detailLabel"/>
+                                                    <Text text="28" class="detailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Packing:" class="detailLabel"/>
+                                                    <Text text="12" class="detailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Putaway:" class="detailLabel"/>
+                                                    <Text text="7" class="detailValue"/>
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+                                    </VBox>
+                                    
+                                    <!-- Pending Tasks -->
+                                    <VBox class="kpiCard">
+                                        <HBox class="kpiCardHeader">
+                                            <VBox class="kpiIconBox greenCheckIcon">
+                                                <core:Icon src="sap-icon://accept" color="#22c55e" size="1.5rem"/>
+                                            </VBox>
+                                            <VBox class="kpiHeaderInfo">
+                                                <HBox justifyContent="SpaceBetween" width="100%">
+                                                    <Text text="Pending Tasks" class="kpiLabel"/>
+                                                    <HBox class="trendBadge negative">
+                                                        <core:Icon src="sap-icon://trend-down" size="0.6rem"/>
+                                                        <Text text="-18" class="trendText"/>
+                                                    </HBox>
+                                                </HBox>
+                                            </VBox>
+                                        </HBox>
+                                        <VBox class="kpiCardBody">
+                                            <Text text="234" class="kpiValue"/>
+                                            <HBox class="criticalBadge">
+                                                <Text text="12 Critical" class="criticalText"/>
+                                            </HBox>
+                                            <VBox class="kpiDetails">
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Picks:" class="detailLabel"/>
+                                                    <Text text="156" class="detailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Putaways:" class="detailLabel"/>
+                                                    <Text text="58" class="detailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Counts:" class="detailLabel"/>
+                                                    <Text text="20" class="detailValue"/>
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+                                    </VBox>
+                                    
+                                    <!-- Accuracy Rate -->
+                                    <VBox class="kpiCard">
+                                        <HBox class="kpiCardHeader">
+                                            <VBox class="kpiIconBox cyanIcon">
+                                                <core:Icon src="sap-icon://target-group" color="#06b6d4" size="1.5rem"/>
+                                            </VBox>
+                                            <VBox class="kpiHeaderInfo">
+                                                <HBox justifyContent="SpaceBetween" width="100%">
+                                                    <Text text="Accuracy Rate" class="kpiLabel"/>
+                                                    <HBox class="trendBadge positive">
+                                                        <core:Icon src="sap-icon://trend-up" size="0.6rem"/>
+                                                        <Text text="+0.1%" class="trendText"/>
+                                                    </HBox>
+                                                </HBox>
+                                            </VBox>
+                                        </HBox>
+                                        <VBox class="kpiCardBody">
+                                            <Text text="99.2%" class="kpiValue"/>
+                                            <VBox class="kpiDetails">
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Picks:" class="detailLabel"/>
+                                                    <Text text="99.5%" class="detailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Putaways:" class="detailLabel"/>
+                                                    <Text text="99.8%" class="detailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween">
+                                                    <Text text="Counts:" class="detailLabel"/>
+                                                    <Text text="98.3%" class="detailValue"/>
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+                                    </VBox>
+                                </HBox>
+                                
+                                <!-- Bottom Cards Row -->
+                                <HBox class="bottomCardsRow">
+                                    <!-- Pending Tasks List -->
+                                    <VBox class="detailCard">
+                                        <HBox justifyContent="SpaceBetween" alignItems="Center" class="detailCardHeader">
+                                            <Text text="Pending Tasks" class="detailCardTitle"/>
+                                            <Text text="234" class="detailCardCount"/>
+                                        </HBox>
+                                        <VBox class="detailCardBody">
+                                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="detailRow">
+                                                <HBox alignItems="Center" class="detailRowLeft">
+                                                    <core:Icon src="sap-icon://product" color="#f59e0b" size="1rem"/>
+                                                    <Text text="Pick Tasks" class="detailRowLabel"/>
+                                                </HBox>
+                                                <HBox alignItems="Center" class="detailRowRight">
+                                                    <Text text="156" class="detailRowValue"/>
+                                                    <Text text="8 urgent" class="detailRowUrgent"/>
+                                                </HBox>
+                                            </HBox>
+                                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="detailRow">
+                                                <HBox alignItems="Center" class="detailRowLeft">
+                                                    <core:Icon src="sap-icon://shipping-status" color="#8b5cf6" size="1rem"/>
+                                                    <Text text="Putaway Tasks" class="detailRowLabel"/>
+                                                </HBox>
+                                                <Text text="58" class="detailRowValue"/>
+                                            </HBox>
+                                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="detailRow">
+                                                <HBox alignItems="Center" class="detailRowLeft">
+                                                    <core:Icon src="sap-icon://accept" color="#22c55e" size="1rem"/>
+                                                    <Text text="Cycle Counts" class="detailRowLabel"/>
+                                                </HBox>
+                                                <Text text="20" class="detailRowValue"/>
+                                            </HBox>
+                                            <Button text="View All Tasks" width="100%" type="Emphasized" class="detailCardButton"/>
+                                        </VBox>
+                                    </VBox>
+                                    
+                                    <!-- Order Status -->
+                                    <VBox class="detailCard">
+                                        <HBox justifyContent="SpaceBetween" alignItems="Center" class="detailCardHeader">
+                                            <Text text="Order Status" class="detailCardTitle"/>
+                                            <Text text="156" class="detailCardCount"/>
+                                        </HBox>
+                                        <VBox class="detailCardBody">
+                                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="detailRow">
+                                                <HBox alignItems="Center" class="detailRowLeft">
+                                                    <core:Icon src="sap-icon://product" color="#3b82f6" size="1rem"/>
+                                                    <Text text="Picking" class="detailRowLabel"/>
+                                                </HBox>
+                                                <Text text="89" class="detailRowValue"/>
+                                            </HBox>
+                                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="detailRow">
+                                                <HBox alignItems="Center" class="detailRowLeft">
+                                                    <core:Icon src="sap-icon://inbox" color="#8b5cf6" size="1rem"/>
+                                                    <Text text="Packing" class="detailRowLabel"/>
+                                                </HBox>
+                                                <Text text="45" class="detailRowValue"/>
+                                            </HBox>
+                                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="detailRow">
+                                                <HBox alignItems="Center" class="detailRowLeft">
+                                                    <core:Icon src="sap-icon://complete" color="#22c55e" size="1rem"/>
+                                                    <Text text="Staged" class="detailRowLabel"/>
+                                                </HBox>
+                                                <Text text="22" class="detailRowValue"/>
+                                            </HBox>
+                                            <Button text="View Orders" width="100%" type="Success" class="detailCardButton"/>
+                                        </VBox>
+                                    </VBox>
+                                    
+                                    <!-- Today's Summary -->
+                                    <VBox class="detailCard">
+                                        <HBox class="detailCardHeader">
+                                            <Text text="Today's Summary" class="detailCardTitle"/>
+                                        </HBox>
+                                        <VBox class="summaryCardBody">
+                                            <VBox class="summaryRow blueBg">
+                                                <Text text="Total Picks" class="summaryLabel"/>
+                                                <Text text="1,456" class="summaryValue"/>
+                                            </VBox>
+                                            <VBox class="summaryRow purpleBg">
+                                                <Text text="Total Putaways" class="summaryLabel"/>
+                                                <Text text="892" class="summaryValue"/>
+                                            </VBox>
+                                            <VBox class="summaryRow greenBg">
+                                                <Text text="Avg Efficiency" class="summaryLabel"/>
+                                                <Text text="104%" class="summaryValue"/>
+                                            </VBox>
+                                        </VBox>
+                                    </VBox>
+                                </HBox>
                             </VBox>
-                            <Button
-                                icon="sap-icon://map"
-                                text="View Map"
-                                type="Transparent"
-                                press=".onViewMap"/>
-                        </HBox>
-                        <VBox class="cardContent">
-                            <List
-                                items="{dashboard>/zones}"
-                                noDataText="No zone data available"
-                                mode="None">
-                                <CustomListItem class="zoneItem">
-                                    <VBox width="100%">
-                                        <HBox justifyContent="SpaceBetween" alignItems="Center" class="sapUiSmallMarginBottom">
+                            
+                            <!-- Zone Heatmap Tab Content -->
+                            <VBox id="zoneHeatmapContent" class="tabContent" visible="false">
+                                <HBox class="zoneCardsRow">
+                                    <!-- Zone A -->
+                                    <VBox class="zoneCard">
+                                        <HBox justifyContent="SpaceBetween" alignItems="Start" class="zoneCardHeader">
                                             <HBox alignItems="Center">
-                                                <core:Icon
-                                                    src="sap-icon://customer-and-supplier"
-                                                    size="1.5rem"
-                                                    color="{= ${dashboard>occupancyPercent} > 90 ? '#E74C3C' : ${dashboard>occupancyPercent} > 75 ? '#F39C12' : '#2ECC71'}"
-                                                    class="sapUiTinyMarginEnd"/>
-                                                <VBox>
-                                                    <Text text="{dashboard>zoneName}" class="zoneName"/>
-                                                    <Text text="{dashboard>zoneType}" class="zoneType"/>
+                                                <core:Icon src="sap-icon://map" color="#ef4444" size="1.25rem"/>
+                                                <Text text="Zone A" class="zoneTitle"/>
+                                            </HBox>
+                                        </HBox>
+                                        <VBox class="zoneCardBody">
+                                            <Text text="Utilization" class="zoneLabel"/>
+                                            <Text text="87%" class="zoneUtilization high"/>
+                                            <ProgressIndicator percentValue="87" displayValue="3456 items / 4000" state="Error" class="zoneProgress"/>
+                                            <VBox class="zoneDetails">
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <Text text="Activity" class="zoneDetailLabel"/>
+                                                    <ObjectStatus text="High" state="Error"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <HBox alignItems="Center">
+                                                        <core:Icon src="sap-icon://employee" color="#f59e0b" size="0.875rem"/>
+                                                        <Text text="Workers" class="zoneDetailLabel"/>
+                                                    </HBox>
+                                                    <Text text="12" class="zoneDetailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <HBox alignItems="Center">
+                                                        <core:Icon src="sap-icon://accept" color="#22c55e" size="0.875rem"/>
+                                                        <Text text="Tasks" class="zoneDetailLabel"/>
+                                                    </HBox>
+                                                    <Text text="45" class="zoneDetailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <HBox alignItems="Center">
+                                                        <core:Icon src="sap-icon://product" color="#f59e0b" size="0.875rem"/>
+                                                        <Text text="Picks" class="zoneDetailLabel"/>
+                                                    </HBox>
+                                                    <Text text="28" class="zoneDetailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <HBox alignItems="Center">
+                                                        <core:Icon src="sap-icon://shipping-status" color="#8b5cf6" size="0.875rem"/>
+                                                        <Text text="Putaways" class="zoneDetailLabel"/>
+                                                    </HBox>
+                                                    <Text text="17" class="zoneDetailValue"/>
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+                                    </VBox>
+                                    
+                                    <!-- Zone B -->
+                                    <VBox class="zoneCard">
+                                        <HBox justifyContent="SpaceBetween" alignItems="Start" class="zoneCardHeader">
+                                            <HBox alignItems="Center">
+                                                <core:Icon src="sap-icon://map" color="#f59e0b" size="1.25rem"/>
+                                                <Text text="Zone B" class="zoneTitle"/>
+                                            </HBox>
+                                        </HBox>
+                                        <VBox class="zoneCardBody">
+                                            <Text text="Utilization" class="zoneLabel"/>
+                                            <Text text="72%" class="zoneUtilization medium"/>
+                                            <ProgressIndicator percentValue="72" displayValue="2876 items / 4000" state="Warning" class="zoneProgress"/>
+                                            <VBox class="zoneDetails">
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <Text text="Activity" class="zoneDetailLabel"/>
+                                                    <ObjectStatus text="Medium" state="Warning"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <HBox alignItems="Center">
+                                                        <core:Icon src="sap-icon://employee" color="#f59e0b" size="0.875rem"/>
+                                                        <Text text="Workers" class="zoneDetailLabel"/>
+                                                    </HBox>
+                                                    <Text text="8" class="zoneDetailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <HBox alignItems="Center">
+                                                        <core:Icon src="sap-icon://accept" color="#22c55e" size="0.875rem"/>
+                                                        <Text text="Tasks" class="zoneDetailLabel"/>
+                                                    </HBox>
+                                                    <Text text="23" class="zoneDetailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <HBox alignItems="Center">
+                                                        <core:Icon src="sap-icon://product" color="#f59e0b" size="0.875rem"/>
+                                                        <Text text="Picks" class="zoneDetailLabel"/>
+                                                    </HBox>
+                                                    <Text text="18" class="zoneDetailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <HBox alignItems="Center">
+                                                        <core:Icon src="sap-icon://shipping-status" color="#8b5cf6" size="0.875rem"/>
+                                                        <Text text="Putaways" class="zoneDetailLabel"/>
+                                                    </HBox>
+                                                    <Text text="5" class="zoneDetailValue"/>
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+                                    </VBox>
+                                    
+                                    <!-- Zone C -->
+                                    <VBox class="zoneCard">
+                                        <HBox justifyContent="SpaceBetween" alignItems="Start" class="zoneCardHeader">
+                                            <HBox alignItems="Center">
+                                                <core:Icon src="sap-icon://map" color="#22c55e" size="1.25rem"/>
+                                                <Text text="Zone C" class="zoneTitle"/>
+                                            </HBox>
+                                        </HBox>
+                                        <VBox class="zoneCardBody">
+                                            <Text text="Utilization" class="zoneLabel"/>
+                                            <Text text="68%" class="zoneUtilization low"/>
+                                            <ProgressIndicator percentValue="68" displayValue="2345 items / 3500" state="Success" class="zoneProgress"/>
+                                            <VBox class="zoneDetails">
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <Text text="Activity" class="zoneDetailLabel"/>
+                                                    <ObjectStatus text="Medium" state="Warning"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <HBox alignItems="Center">
+                                                        <core:Icon src="sap-icon://employee" color="#f59e0b" size="0.875rem"/>
+                                                        <Text text="Workers" class="zoneDetailLabel"/>
+                                                    </HBox>
+                                                    <Text text="6" class="zoneDetailValue"/>
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+                                    </VBox>
+                                    
+                                    <!-- Receiving Zone -->
+                                    <VBox class="zoneCard">
+                                        <HBox justifyContent="SpaceBetween" alignItems="Start" class="zoneCardHeader">
+                                            <HBox alignItems="Center">
+                                                <core:Icon src="sap-icon://map" color="#3b82f6" size="1.25rem"/>
+                                                <Text text="Receiving" class="zoneTitle"/>
+                                            </HBox>
+                                        </HBox>
+                                        <VBox class="zoneCardBody">
+                                            <Text text="Utilization" class="zoneLabel"/>
+                                            <Text text="45%" class="zoneUtilization low"/>
+                                            <ProgressIndicator percentValue="45" displayValue="890 items / 2000" state="Success" class="zoneProgress"/>
+                                            <VBox class="zoneDetails">
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <Text text="Activity" class="zoneDetailLabel"/>
+                                                    <ObjectStatus text="Low" state="Success"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <HBox alignItems="Center">
+                                                        <core:Icon src="sap-icon://employee" color="#f59e0b" size="0.875rem"/>
+                                                        <Text text="Workers" class="zoneDetailLabel"/>
+                                                    </HBox>
+                                                    <Text text="4" class="zoneDetailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <HBox alignItems="Center">
+                                                        <core:Icon src="sap-icon://accept" color="#22c55e" size="0.875rem"/>
+                                                        <Text text="Tasks" class="zoneDetailLabel"/>
+                                                    </HBox>
+                                                    <Text text="12" class="zoneDetailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <HBox alignItems="Center">
+                                                        <core:Icon src="sap-icon://product" color="#f59e0b" size="0.875rem"/>
+                                                        <Text text="Picks" class="zoneDetailLabel"/>
+                                                    </HBox>
+                                                    <Text text="0" class="zoneDetailValue"/>
+                                                </HBox>
+                                                <HBox justifyContent="SpaceBetween" class="zoneDetailRow">
+                                                    <HBox alignItems="Center">
+                                                        <core:Icon src="sap-icon://shipping-status" color="#8b5cf6" size="0.875rem"/>
+                                                        <Text text="Putaways" class="zoneDetailLabel"/>
+                                                    </HBox>
+                                                    <Text text="12" class="zoneDetailValue"/>
+                                                </HBox>
+                                            </VBox>
+                                        </VBox>
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+                            
+                            <!-- Worker Performance Tab Content -->
+                            <VBox id="workerPerformanceContent" class="tabContent" visible="false">
+                                <VBox class="workerPerformanceSection">
+                                    <HBox class="sectionHeader">
+                                        <Text text="Worker Performance" class="sectionTitle"/>
+                                    </HBox>
+                                    <Text text="Real-time productivity tracking" class="sectionSubtitle"/>
+                                    
+                                    <Table id="workerTable" class="workerTable" items="{/workers}">
+                                        <columns>
+                                            <Column width="15%">
+                                                <Text text="WORKER" class="tableHeaderText"/>
+                                            </Column>
+                                            <Column width="12%">
+                                                <Text text="ROLE" class="tableHeaderText"/>
+                                            </Column>
+                                            <Column width="12%" hAlign="Center">
+                                                <Text text="TODAY" class="tableHeaderText"/>
+                                            </Column>
+                                            <Column width="12%" hAlign="Center">
+                                                <Text text="TARGET" class="tableHeaderText"/>
+                                            </Column>
+                                            <Column width="15%" hAlign="Center">
+                                                <Text text="EFFICIENCY" class="tableHeaderText"/>
+                                            </Column>
+                                            <Column width="15%" hAlign="Center">
+                                                <Text text="ACCURACY" class="tableHeaderText"/>
+                                            </Column>
+                                            <Column width="12%" hAlign="Center">
+                                                <Text text="STATUS" class="tableHeaderText"/>
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem class="workerRow">
+                                                <cells>
+                                                    <Text text="John D." class="workerName"/>
+                                                    <Text text="Picker" class="workerRole"/>
+                                                    <Text text="156" class="todayValue"/>
+                                                    <Text text="135" class="targetValue"/>
+                                                    <Text text="115%" class="efficiencyHigh"/>
+                                                    <Text text="99.8%" class="accuracyValue"/>
+                                                    <ObjectStatus text="active" state="Success"/>
+                                                </cells>
+                                            </ColumnListItem>
+                                            <ColumnListItem class="workerRow">
+                                                <cells>
+                                                    <Text text="Sarah M." class="workerName"/>
+                                                    <Text text="Putaway" class="workerRole"/>
+                                                    <Text text="102" class="todayValue"/>
+                                                    <Text text="95" class="targetValue"/>
+                                                    <Text text="107%" class="efficiencyHigh"/>
+                                                    <Text text="100%" class="accuracyValue"/>
+                                                    <ObjectStatus text="active" state="Success"/>
+                                                </cells>
+                                            </ColumnListItem>
+                                            <ColumnListItem class="workerRow">
+                                                <cells>
+                                                    <Text text="Mike R." class="workerName"/>
+                                                    <Text text="Picker" class="workerRole"/>
+                                                    <Text text="148" class="todayValue"/>
+                                                    <Text text="135" class="targetValue"/>
+                                                    <Text text="110%" class="efficiencyHigh"/>
+                                                    <Text text="98.9%" class="accuracyValue"/>
+                                                    <ObjectStatus text="active" state="Success"/>
+                                                </cells>
+                                            </ColumnListItem>
+                                            <ColumnListItem class="workerRow">
+                                                <cells>
+                                                    <Text text="Lisa K." class="workerName"/>
+                                                    <Text text="Counter" class="workerRole"/>
+                                                    <Text text="78" class="todayValue"/>
+                                                    <Text text="75" class="targetValue"/>
+                                                    <Text text="104%" class="efficiencyMedium"/>
+                                                    <Text text="100%" class="accuracyValue"/>
+                                                    <ObjectStatus text="active" state="Success"/>
+                                                </cells>
+                                            </ColumnListItem>
+                                            <ColumnListItem class="workerRow">
+                                                <cells>
+                                                    <Text text="Tom B." class="workerName"/>
+                                                    <Text text="Packer" class="workerRole"/>
+                                                    <Text text="134" class="todayValue"/>
+                                                    <Text text="130" class="targetValue"/>
+                                                    <Text text="103%" class="efficiencyMedium"/>
+                                                    <Text text="99.1%" class="accuracyValue"/>
+                                                    <ObjectStatus text="active" state="Success"/>
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </VBox>
+                            </VBox>
+                            
+                            <!-- Alerts & Actions Tab Content -->
+                            <VBox id="alertsContent" class="tabContent" visible="false">
+                                <VBox class="alertsSection">
+                                    <!-- Critical Stock Out Alert -->
+                                    <VBox class="alertCard critical">
+                                        <HBox justifyContent="SpaceBetween" alignItems="Start" class="alertHeader">
+                                            <HBox alignItems="Start" class="alertLeft">
+                                                <core:Icon src="sap-icon://alert" color="#ef4444" size="1.5rem" class="alertIcon"/>
+                                                <VBox class="alertInfo">
+                                                    <HBox alignItems="Center" class="alertTitleRow">
+                                                        <Text text="Critical Stock Out" class="alertTitle"/>
+                                                        <ObjectStatus text="CRITICAL" state="Error" class="alertBadge"/>
+                                                    </HBox>
+                                                    <Text text="SKU-10234 out of stock in Zone A" class="alertMessage"/>
+                                                    <HBox class="alertMeta">
+                                                        <HBox alignItems="Center" class="alertMetaItem">
+                                                            <core:Icon src="sap-icon://map" color="#ef4444" size="0.75rem"/>
+                                                            <Text text="Zone A" class="alertMetaText"/>
+                                                        </HBox>
+                                                        <HBox alignItems="Center" class="alertMetaItem">
+                                                            <core:Icon src="sap-icon://cart" color="#94a3b8" size="0.75rem"/>
+                                                            <Text text="3 orders" class="alertMetaText"/>
+                                                        </HBox>
+                                                        <HBox alignItems="Center" class="alertMetaItem">
+                                                            <core:Icon src="sap-icon://history" color="#94a3b8" size="0.75rem"/>
+                                                            <Text text="5 mins ago" class="alertMetaText"/>
+                                                        </HBox>
+                                                    </HBox>
                                                 </VBox>
                                             </HBox>
-                                            <VBox alignItems="End">
-                                                <Title text="{dashboard>occupancyPercent}%" level="H4" class="zoneOccupancy"/>
-                                                <Text text="Occupied" class="zoneLabel"/>
-                                            </VBox>
-                                        </HBox>
-                                        <ProgressIndicator
-                                            percentValue="{dashboard>occupancyPercent}"
-                                            displayValue=""
-                                            state="{= ${dashboard>occupancyPercent} > 90 ? 'Error' : ${dashboard>occupancyPercent} > 75 ? 'Warning' : 'Success'}"
-                                            width="100%"
-                                            class="zoneProgress"/>
-                                        <HBox justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
-                                            <Text text="{dashboard>usedBins} / {dashboard>capacity} bins" class="zoneCapacity"/>
-                                            <Link text="Details" press=".onZoneDetails"/>
+                                            <HBox class="alertActions">
+                                                <Button text="Create PO" type="Emphasized" class="alertActionBtn primary"/>
+                                                <Button text="Dismiss" type="Transparent" class="alertActionBtn"/>
+                                            </HBox>
                                         </HBox>
                                     </VBox>
-                                </CustomListItem>
-                            </List>
-                        </VBox>
-                    </VBox>
-                    
-                    <!-- Active Workers -->
-                    <VBox class="dashboardCard sapUiSmallMarginTop">
-                        <HBox justifyContent="SpaceBetween" alignItems="Center" class="cardHeader">
-                            <VBox>
-                                <Title text="Active Workers" level="H3" class="cardTitle"/>
-                                <Text text="{dashboard>/activeWorkersCount} online" class="cardSubtitle"/>
+                                    
+                                    <!-- Location Accuracy Issue Alert -->
+                                    <VBox class="alertCard critical">
+                                        <HBox justifyContent="SpaceBetween" alignItems="Start" class="alertHeader">
+                                            <HBox alignItems="Start" class="alertLeft">
+                                                <core:Icon src="sap-icon://alert" color="#ef4444" size="1.5rem" class="alertIcon"/>
+                                                <VBox class="alertInfo">
+                                                    <HBox alignItems="Center" class="alertTitleRow">
+                                                        <Text text="Location Accuracy Issue" class="alertTitle"/>
+                                                        <ObjectStatus text="CRITICAL" state="Error" class="alertBadge"/>
+                                                    </HBox>
+                                                    <Text text="Multiple discrepancies in Zone C - Sector 06" class="alertMessage"/>
+                                                    <HBox class="alertMeta">
+                                                        <HBox alignItems="Center" class="alertMetaItem">
+                                                            <core:Icon src="sap-icon://map" color="#ef4444" size="0.75rem"/>
+                                                            <Text text="Zone C" class="alertMetaText"/>
+                                                        </HBox>
+                                                        <HBox alignItems="Center" class="alertMetaItem">
+                                                            <core:Icon src="sap-icon://product" color="#94a3b8" size="0.75rem"/>
+                                                            <Text text="12 items" class="alertMetaText"/>
+                                                        </HBox>
+                                                        <HBox alignItems="Center" class="alertMetaItem">
+                                                            <core:Icon src="sap-icon://history" color="#94a3b8" size="0.75rem"/>
+                                                            <Text text="12 mins ago" class="alertMetaText"/>
+                                                        </HBox>
+                                                    </HBox>
+                                                </VBox>
+                                            </HBox>
+                                            <HBox class="alertActions">
+                                                <Button text="Schedule Count" type="Emphasized" class="alertActionBtn primary"/>
+                                                <Button text="Dismiss" type="Transparent" class="alertActionBtn"/>
+                                            </HBox>
+                                        </HBox>
+                                    </VBox>
+                                    
+                                    <!-- Items Expiring Soon Alert -->
+                                    <VBox class="alertCard warning">
+                                        <HBox justifyContent="SpaceBetween" alignItems="Start" class="alertHeader">
+                                            <HBox alignItems="Start" class="alertLeft">
+                                                <core:Icon src="sap-icon://alert" color="#f59e0b" size="1.5rem" class="alertIcon"/>
+                                                <VBox class="alertInfo">
+                                                    <HBox alignItems="Center" class="alertTitleRow">
+                                                        <Text text="Items Expiring Soon" class="alertTitle"/>
+                                                        <ObjectStatus text="WARNING" state="Warning" class="alertBadge"/>
+                                                    </HBox>
+                                                    <Text text="45 items in Cold Storage expire in 7 days" class="alertMessage"/>
+                                                    <HBox class="alertMeta">
+                                                        <HBox alignItems="Center" class="alertMetaItem">
+                                                            <core:Icon src="sap-icon://map" color="#f59e0b" size="0.75rem"/>
+                                                            <Text text="Cold Storage" class="alertMetaText"/>
+                                                        </HBox>
+                                                        <HBox alignItems="Center" class="alertMetaItem">
+                                                            <core:Icon src="sap-icon://history" color="#94a3b8" size="0.75rem"/>
+                                                            <Text text="1 hour ago" class="alertMetaText"/>
+                                                        </HBox>
+                                                    </HBox>
+                                                </VBox>
+                                            </HBox>
+                                            <HBox class="alertActions">
+                                                <Button text="Review &amp; Mark Down" type="Emphasized" class="alertActionBtn primary"/>
+                                                <Button text="Dismiss" type="Transparent" class="alertActionBtn"/>
+                                            </HBox>
+                                        </HBox>
+                                    </VBox>
+                                    
+                                    <!-- Temperature Alert -->
+                                    <VBox class="alertCard critical">
+                                        <HBox justifyContent="SpaceBetween" alignItems="Start" class="alertHeader">
+                                            <HBox alignItems="Start" class="alertLeft">
+                                                <core:Icon src="sap-icon://alert" color="#ef4444" size="1.5rem" class="alertIcon"/>
+                                                <VBox class="alertInfo">
+                                                    <HBox alignItems="Center" class="alertTitleRow">
+                                                        <Text text="Temperature Alert" class="alertTitle"/>
+                                                        <ObjectStatus text="CRITICAL" state="Error" class="alertBadge"/>
+                                                    </HBox>
+                                                    <Text text="Cold Storage temp rising: 9.2°C (limit: 8°C)" class="alertMessage"/>
+                                                    <HBox class="alertMeta">
+                                                        <HBox alignItems="Center" class="alertMetaItem">
+                                                            <core:Icon src="sap-icon://map" color="#ef4444" size="0.75rem"/>
+                                                            <Text text="Cold Storage" class="alertMetaText"/>
+                                                        </HBox>
+                                                        <HBox alignItems="Center" class="alertMetaItem">
+                                                            <core:Icon src="sap-icon://history" color="#94a3b8" size="0.75rem"/>
+                                                            <Text text="3 mins ago" class="alertMetaText"/>
+                                                        </HBox>
+                                                    </HBox>
+                                                </VBox>
+                                            </HBox>
+                                            <HBox class="alertActions">
+                                                <Button text="Check HVAC" type="Emphasized" class="alertActionBtn primary"/>
+                                                <Button text="Dismiss" type="Transparent" class="alertActionBtn"/>
+                                            </HBox>
+                                        </HBox>
+                                    </VBox>
+                                </VBox>
                             </VBox>
-                            <Button
-                                icon="sap-icon://group"
-                                text="All Workers"
-                                type="Transparent"
-                                press=".onViewAllWorkers"/>
-                        </HBox>
-                        <VBox class="cardContent noPadding">
-                            <Table
-                                id="workersTable"
-                                items="{dashboard>/activeWorkers}"
-                                mode="None"
-                                sticky="ColumnHeaders">
-                                <columns>
-                                    <Column width="3rem">
-                                        <Text text=""/>
-                                    </Column>
-                                    <Column>
-                                        <Text text="Worker"/>
-                                    </Column>
-                                    <Column>
-                                        <Text text="Task"/>
-                                    </Column>
-                                    <Column hAlign="End">
-                                        <Text text="Today"/>
-                                    </Column>
-                                    <Column hAlign="Center" width="6rem">
-                                        <Text text="Status"/>
-                                    </Column>
-                                </columns>
-                                <items>
-                                    <ColumnListItem class="workerRow">
-                                        <cells>
-                                            <Avatar
-                                                initials="{dashboard>initials}"
-                                                displaySize="XS"
-                                                backgroundColor="{dashboard>avatarColor}"/>
-                                            <VBox>
-                                                <Text text="{dashboard>name}" class="workerName"/>
-                                                <Text text="{dashboard>location}" class="workerLocation"/>
-                                            </VBox>
-                                            <Text text="{dashboard>currentTask}" class="workerTask"/>
-                                            <ObjectNumber
-                                                number="{dashboard>tasksCompleted}"
-                                                emphasized="false"
-                                                class="workerCount"/>
-                                            <ObjectStatus
-                                                text="{dashboard>status}"
-                                                state="{= ${dashboard>status} === 'Available' ? 'Success' : ${dashboard>status} === 'Busy' ? 'Warning' : 'Error'}"
-                                                inverted="true"/>
-                                        </cells>
-                                    </ColumnListItem>
-                                </items>
-                            </Table>
                         </VBox>
-                    </VBox>
-                    
+                    </ScrollContainer>
                 </VBox>
                 
-            </layout:Grid>
-            
-            <!-- Quick Actions Section -->
-          
-            <!-- Alerts Section -->
-            <VBox class="alertsSection">
-                <HBox justifyContent="SpaceBetween" alignItems="Center" class="cardHeader">
-                    <VBox>
-                        <Title text="Active Alerts" level="H3" class="cardTitle"/>
-                        <Text text="{dashboard>/alertsCount} require attention" class="cardSubtitle"/>
+                <!-- Activity Feed Sidebar -->
+                <VBox id="activityFeedSidebar" class="activityFeedSidebar" visible="false">
+                    <HBox justifyContent="SpaceBetween" alignItems="Center" class="feedHeader">
+                        <HBox alignItems="Center">
+                            <core:Icon src="sap-icon://menu2" size="1.25rem" color="#1e293b"/>
+                            <Text text="Live Activity" class="feedTitle"/>
+                        </HBox>
+                        <HBox alignItems="Center" class="liveIndicator">
+                            <core:Icon src="sap-icon://record" color="#22c55e" size="0.75rem"/>
+                            <Text text="Live" class="liveText"/>
+                        </HBox>
+                    </HBox>
+                    
+                    <VBox class="feedContent">
+                        <!-- Activity Item 1 -->
+                        <VBox class="activityItem">
+                            <HBox justifyContent="SpaceBetween" alignItems="Start">
+                                <HBox alignItems="Start" class="activityLeft">
+                                    <VBox class="activityIconBox orange">
+                                        <core:Icon src="sap-icon://product" color="#f59e0b" size="1rem"/>
+                                    </VBox>
+                                    <VBox class="activityDetails">
+                                        <Text text="John D." class="activityUser"/>
+                                        <Text text="Picked SKU-10234" class="activityAction"/>
+                                        <HBox class="activityMeta">
+                                            <core:Icon src="sap-icon://map" color="#ef4444" size="0.625rem"/>
+                                            <Text text="A-01-02-03" class="activityMetaText"/>
+                                            <Text text="•" class="activitySeparator"/>
+                                            <Text text="Qty: 5" class="activityMetaText"/>
+                                        </HBox>
+                                        <Link text="Order: ORD-5678" class="activityLink"/>
+                                    </VBox>
+                                </HBox>
+                                <Text text="2s ago" class="activityTime"/>
+                            </HBox>
+                        </VBox>
+                        
+                        <!-- Activity Item 2 -->
+                        <VBox class="activityItem">
+                            <HBox justifyContent="SpaceBetween" alignItems="Start">
+                                <HBox alignItems="Start" class="activityLeft">
+                                    <VBox class="activityIconBox purple">
+                                        <core:Icon src="sap-icon://shipping-status" color="#8b5cf6" size="1rem"/>
+                                    </VBox>
+                                    <VBox class="activityDetails">
+                                        <Text text="Sarah M." class="activityUser"/>
+                                        <Text text="Put away SKU-20145" class="activityAction"/>
+                                        <HBox class="activityMeta">
+                                            <core:Icon src="sap-icon://map" color="#ef4444" size="0.625rem"/>
+                                            <Text text="B-05-01-02" class="activityMetaText"/>
+                                            <Text text="•" class="activitySeparator"/>
+                                            <Text text="Qty: 10" class="activityMetaText"/>
+                                        </HBox>
+                                        <Link text="PO: PO-1234" class="activityLink"/>
+                                    </VBox>
+                                </HBox>
+                                <Text text="8s ago" class="activityTime"/>
+                            </HBox>
+                        </VBox>
+                        
+                        <!-- Activity Item 3 -->
+                        <VBox class="activityItem">
+                            <HBox justifyContent="SpaceBetween" alignItems="Start">
+                                <HBox alignItems="Start" class="activityLeft">
+                                    <VBox class="activityIconBox orange">
+                                        <core:Icon src="sap-icon://product" color="#f59e0b" size="1rem"/>
+                                    </VBox>
+                                    <VBox class="activityDetails">
+                                        <Text text="Mike R." class="activityUser"/>
+                                        <Text text="Picked SKU-30456" class="activityAction"/>
+                                        <HBox class="activityMeta">
+                                            <core:Icon src="sap-icon://map" color="#ef4444" size="0.625rem"/>
+                                            <Text text="C-03-04-01" class="activityMetaText"/>
+                                            <Text text="•" class="activitySeparator"/>
+                                            <Text text="Qty: 2" class="activityMetaText"/>
+                                        </HBox>
+                                        <Link text="Order: ORD-5679" class="activityLink"/>
+                                    </VBox>
+                                </HBox>
+                                <Text text="15s ago" class="activityTime"/>
+                            </HBox>
+                        </VBox>
+                        
+                        <!-- Activity Item 4 -->
+                        <VBox class="activityItem">
+                            <HBox justifyContent="SpaceBetween" alignItems="Start">
+                                <HBox alignItems="Start" class="activityLeft">
+                                    <VBox class="activityIconBox green">
+                                        <core:Icon src="sap-icon://accept" color="#22c55e" size="1rem"/>
+                                    </VBox>
+                                    <VBox class="activityDetails">
+                                        <Text text="Lisa K." class="activityUser"/>
+                                        <Text text="Counted SKU-40234" class="activityAction"/>
+                                        <HBox class="activityMeta">
+                                            <core:Icon src="sap-icon://map" color="#ef4444" size="0.625rem"/>
+                                            <Text text="A-08-01-04" class="activityMetaText"/>
+                                            <Text text="•" class="activitySeparator"/>
+                                            <Text text="Qty: 50" class="activityMetaText"/>
+                                        </HBox>
+                                        <Link text="PO: PO-1235" class="activityLink"/>
+                                    </VBox>
+                                </HBox>
+                                <Text text="23s ago" class="activityTime"/>
+                            </HBox>
+                        </VBox>
+                        
+                        <!-- Activity Item 5 -->
+                        <VBox class="activityItem">
+                            <HBox justifyContent="SpaceBetween" alignItems="Start">
+                                <HBox alignItems="Start" class="activityLeft">
+                                    <VBox class="activityIconBox purple">
+                                        <core:Icon src="sap-icon://shipping-status" color="#8b5cf6" size="1rem"/>
+                                    </VBox>
+                                    <VBox class="activityDetails">
+                                        <Text text="Tom B." class="activityUser"/>
+                                        <Text text="Put away SKU-50123" class="activityAction"/>
+                                        <HBox class="activityMeta">
+                                            <core:Icon src="sap-icon://map" color="#ef4444" size="0.625rem"/>
+                                            <Text text="COLD-01-S3" class="activityMetaText"/>
+                                            <Text text="•" class="activitySeparator"/>
+                                            <Text text="Qty: 8" class="activityMetaText"/>
+                                        </HBox>
+                                        <Link text="PO: PO-1235" class="activityLink"/>
+                                    </VBox>
+                                </HBox>
+                                <Text text="34s ago" class="activityTime"/>
+                            </HBox>
+                        </VBox>
+                        
+                        <!-- Activity Item 6 - Error -->
+                        <VBox class="activityItem">
+                            <HBox justifyContent="SpaceBetween" alignItems="Start">
+                                <HBox alignItems="Start" class="activityLeft">
+                                    <VBox class="activityIconBox red">
+                                        <core:Icon src="sap-icon://error" color="#ef4444" size="1rem"/>
+                                    </VBox>
+                                    <VBox class="activityDetails">
+                                        <Text text="David H." class="activityUser"/>
+                                        <Text text="Error SKU-70345" class="activityAction"/>
+                                        <HBox class="activityMeta">
+                                            <core:Icon src="sap-icon://map" color="#ef4444" size="0.625rem"/>
+                                            <Text text="C-06-02-01" class="activityMetaText"/>
+                                            <Text text="•" class="activitySeparator"/>
+                                            <Text text="Qty: 0" class="activityMetaText"/>
+                                        </HBox>
+                                        <Text text="Location mismatch" class="activityError"/>
+                                    </VBox>
+                                </HBox>
+                                <Text text="1m ago" class="activityTime"/>
+                            </HBox>
+                        </VBox>
                     </VBox>
-                    <Button
-                        text="View All Alerts"
-                        type="Transparent"
-                        press=".onViewAllAlerts"/>
-                </HBox>
-                <HBox wrap="Wrap" class="alertsContainer">
-                    <MessageStrip
-                        text="Low inventory alert for Material MAT-001 in Zone A"
-                        type="Warning"
-                        showIcon="true"
-                        showCloseButton="true"
-                        class="alertItem"/>
-                    <MessageStrip
-                        text="Overdue picking task #1234 - Action required"
-                        type="Error"
-                        showIcon="true"
-                        showCloseButton="true"
-                        class="alertItem"/>
-                    <MessageStrip
-                        text="RFID reader in Zone C requires calibration"
-                        type="Information"
-                        showIcon="true"
-                        showCloseButton="true"
-                        class="alertItem"/>
-                </HBox>
-            </VBox>
-            
+                </VBox>
+            </HBox>
         </content>
-        
     </Page>
-    
 </mvc:View>
