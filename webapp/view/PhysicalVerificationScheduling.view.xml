@@ -8,7 +8,7 @@
         <content>
             <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" gap="-3rem" wrap="Wrap">
 
-                <VBox class="card" alignItems="Center" width="12%">
+                <VBox class="card colorActive" alignItems="Center" width="12%">
                     <HBox >
                         <core:Icon src="sap-icon://activity-items" size="1.5rem" class="sapUiSmallMarginEnd"/>
                         <Title text="Active" class="cardTitle" wrapping="true"/>
@@ -16,46 +16,46 @@
                     <ObjectStatus text="1" state="Information" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
                 </VBox>
 
-                <VBox class="card" alignItems="Center" width="12%">  <HBox >
+                <VBox class="card colorPending" alignItems="Center" width="12%">  <HBox >
                     <core:Icon src="sap-icon://pending" size="1.5rem" class="sapUiSmallMarginEnd"/>
                     <Title text="Pending" class="cardTitle" wrapping="true"/></HBox >
                     <ObjectNumber number="1" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
                 </VBox>
 
-                <VBox class="card" alignItems="Center" width="12%">  <HBox >
+                <VBox class="card colorCompleted" alignItems="Center" width="12%">  <HBox >
                     <core:Icon src="sap-icon://complete" size="1.5rem" class="sapUiSmallMarginEnd"/>
                     <Title text="Completed" class="cardTitle" wrapping="true"/></HBox >
                     <ObjectNumber number="1" state="Warning" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
                 </VBox>
 
-                <VBox class="card" alignItems="Center" width="12%">  <HBox >
+                <VBox class="card colorOverdue" alignItems="Center" width="12%">  <HBox >
                     <core:Icon src="sap-icon://error" size="1.5rem" class="sapUiSmallMarginEnd"/>
                     <Title text="Overdue" class="cardTitle" wrapping="true"/></HBox >
                     <ObjectStatus text="1" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
                 </VBox>
 
-                <VBox class="card" alignItems="Center" width="12%">  <HBox >
+                <VBox class="card colorOnline" alignItems="Center" width="12%">  <HBox >
                     <core:Icon src="sap-icon://connected" size="1.5rem" class="sapUiSmallMarginEnd"/>
                     <Title text="Online" class="cardTitle" wrapping="true"/></HBox >
                     <ObjectStatus text="3" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
                 </VBox>
 
-                <VBox class="card" alignItems="Center" width="12%">  <HBox >
+                <VBox class="card colorVariances" alignItems="Center" width="12%">  <HBox >
                     <core:Icon src="sap-icon://inspection" size="1.5rem" class="sapUiSmallMarginEnd"/>
                     <Title text="Variances" class="cardTitle" wrapping="true"/></HBox >
                     <ObjectStatus text="16" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
                 </VBox>
 
-                <VBox class="card" alignItems="Center" width="12%">  <HBox >
-                    <core:Icon src="sap-icon://alert" size="1.5rem" class="sapUiSmallMarginEnd"/>
+                <VBox class="card colorNeedCount" alignItems="Center" width="12%">  <HBox >
+                    <core:Icon src="sap-icon://alert" size="1.4rem" class="sapUiSmallMarginEnd"/>
                     <Title text="Need Count" class="cardTitle" wrapping="true"/></HBox >
                     <ObjectStatus text="3" state="Warning" class="sapUiTinyMarginTop "/>
                 </VBox>
 
-                <VBox class="card" alignItems="Center" width="12%">  <HBox >
-                    <core:Icon src="sap-icon://number-sign" size="1.5rem" class="sapUiSmallMarginEnd"/>
+                <VBox class="card colorTotalItems" alignItems="Center" width="12%">  <HBox >
+                    <core:Icon src="sap-icon://number-sign" size="1.4rem" class="sapUiTinyMarginEnd"/>
                     <Title text="Total Items" class="cardTitle" wrapping="true"/>  </HBox >
-                    <ObjectStatus text="10" state="Information" class="sapUiTinyMarginTop "/>
+                    <ObjectStatus text="10" state="Information" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
                 </VBox>
             </HBox>
             <!-- <IconTabHeader mode="Inline" id="taskTabBar" select="onTabSelect">
@@ -130,7 +130,7 @@
                 </HBox>
 
                 <!-- ACTION -->
-                <Button text="View" type="Transparent" class="viewButton" />
+                <Button text="View" type="Emphasized" class="viewButton" press=".onViewPVPress" />
 
             </cells>
         </ColumnListItem>

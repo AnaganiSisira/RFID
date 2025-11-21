@@ -12,10 +12,19 @@ sap.ui.define([
   return BaseController.extend("rfidwarehousesuiteui.controller.PhysicalVerificationScheduling", {
     formatter: formatter,
     onInit() {
-      this.getRouter().getRoute("PickStrategy").attachPatternMatched(this._onRouterPickStrategyMatched, this)
+      this.getRouter().getRoute("PhysicalVerificationScheduling").attachPatternMatched(this._onRouterPhysicalVerificationSchedulingMatched, this)
     },
-    _onRouterPickStrategysMatched: function (oEvent) {
+    _onRouterPhysicalVerificationSchedulingMatched: function (oEvent) {
 
-    }
+    },
+    onViewPVPress: function () {
+      if (!this._DamageAssessmentDialog) {
+        this._DamageAssessmentDialog = this.loadFragments("rfidwarehousesuiteui.fragments.PhysicalVerification.DamageAssessment")
+      }
+      this._DamageAssessmentDialog.then(function (oDialog) {
+        oDialog.open();
+      });
+    },
+    
   });
 });
