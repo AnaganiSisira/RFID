@@ -1,0 +1,34 @@
+{
+  "workers": [
+    {
+      "name": "John D.",
+      "role": "Picker",
+      "today": "156",
+      "target": "135",
+      "efficiency": "115%",
+      "accuracy": "99.8%",
+      "status": "active",
+      "state": "Success"
+    },
+    {
+      "name": "Sarah M.",
+      "role": "Putaway",
+      "today": "102",
+      "target": "95",
+      "efficiency": "107%",
+      "accuracy": "100%",
+      "status": "active",
+      "state": "Success"
+    },
+    {
+      "name": "Mike R.",
+      "role": "Picker",
+      "today": "148",
+      "target": "135",
+      "efficiency": "110%",
+      "accuracy": "98.9%",
+      "status": "active",
+      "state": "Success"
+    }
+  ]
+}
