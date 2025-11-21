@@ -81,10 +81,10 @@
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/putaway.json"
       },
-       "PickingTasksModel": {
+      "PickingTasksModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/pickingTasks.json"
-       },
+      },
       "GoodsReceiptModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/GoodsReceiptModel.json"
@@ -93,6 +93,9 @@
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/GoodsReceiptWizardModel.json"
       },
+      "WorkersModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/workers.json"
       "PutAwayModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/putAway.json"
@@ -177,7 +180,6 @@
           "target": [
             "TargetPutawayStrategy"
           ]
-         
         },
         {
           "name": "PickingTasks",
@@ -185,7 +187,6 @@
           "target": [
             "TargetPickingTasks"
           ]
-     
         },
         {
           "name": "GoodsReceipt",
