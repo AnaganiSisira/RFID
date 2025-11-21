@@ -14,37 +14,37 @@
                 <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
                     <Title text="Pending Receipts" wrapping="true" level="H2" class="cardTitle"/>
                     <ObjectNumber number="234" state="Information" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="All documents" state="Information" class="cardStatus"/>
+                    <ObjectStatus text="" state="Information" class="cardStatus"/>
                 </VBox>
 
                 <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
                     <Title text="Cross-Dock" wrapping="true" level="H2" class="cardTitle"/>
                     <ObjectNumber number="166" state="None" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="Awaiting receipt" state="None" class="cardStatus"/>
+                    <ObjectStatus text="" state="None" class="cardStatus"/>
                 </VBox>
 
                 <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
                     <Title text="QC Hold" wrapping="true" level="H2" class="cardTitle"/>
                     <ObjectNumber number="45" state="None" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="In transit" state="None" class="cardStatus"/>
+                    <ObjectStatus text="" state="None" class="cardStatus"/>
                 </VBox>
 
                 <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
                     <Title text="Items" wrapping="true" level="H2" class="cardTitle"/>
                     <ObjectNumber number="1833" state="None" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="To process" state="None" class="cardStatus"/>
+                    <ObjectStatus text="" state="None" class="cardStatus"/>
                 </VBox>
 
                 <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
                     <Title text="AI Confidence" wrapping="true" level="H2" class="cardTitle"/>
                     <ObjectNumber number="94%" state="Success" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="Items tagged" state="Success" class="cardStatus"/>
+                    <ObjectStatus text="" state="Success" class="cardStatus"/>
                 </VBox>
 
                 <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
                     <Title text="Space Utilization" wrapping="true" level="H2" class="cardTitle"/>
                     <ObjectNumber number="78%" state="Warning" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="Items untagged" state="Warning" class="cardStatus"/>
+                    <ObjectStatus text="" state="Warning" class="cardStatus"/>
                 </VBox>
             </HBox>
 

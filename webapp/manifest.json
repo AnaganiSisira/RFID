@@ -96,6 +96,10 @@
       "PutAwayModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/putAway.json"
+      },
+       "PhysicalVerificationModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/physicalVerification.json"
       }
     },
     "resources": {
@@ -196,6 +200,13 @@
           "target": [
             "TargetPutAway"
           ]
+        },
+        {
+          "name": "PhysicalVerificationScheduling",
+          "pattern": "PhysicalVerificationScheduling",
+          "target": [
+            "TargetPhysicalVerificationScheduling"
+          ]
         }
       ],
       "targets": {
@@ -242,6 +253,10 @@
         "TargetPutAway": {
           "id": "PutAway",
           "name": "PutAway"
+        },
+        "TargetPhysicalVerificationScheduling": {
+          "id": "PhysicalVerificationScheduling",
+          "name": "PhysicalVerificationScheduling"
         }
       }
     },

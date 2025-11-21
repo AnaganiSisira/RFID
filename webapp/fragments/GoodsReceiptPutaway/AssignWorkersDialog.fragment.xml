@@ -1,0 +1,70 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form">
+
+    <Dialog id="assignWorkersDialog"
+        title="Assign Workers to Putaway Tasks"
+        resizable="true"
+        draggable="true"
+        class="sapUiContentPadding"
+        contentWidth="500px">
+
+        <VBox class="sapUiSmallMargin">
+            <MessageStrip
+                type="Information"
+                showIcon="true"
+                text="Creating putaway tasks. Tasks will be sent to selected workers' mobile devices."/>
+        </VBox>
+
+        <VBox class="sapUiSmallMargin">
+            <Title text="Available Workers" level="H5"/>
+
+            <HBox alignItems="Center" class="workerBox">
+                <RadioButton groupName="workerGroup" selected="true"/>
+                <VBox class="sapUiSmallMarginBegin">
+                    <Text text="Auto-assign (Recommended)"/>
+                    <Text text="System will distribute tasks optimally based on worker location and workload"/>
+                </VBox>
+            </HBox>
+
+            <HBox alignItems="Center" class="workerBox">
+                <RadioButton groupName="workerGroup"/>
+                <VBox class="sapUiSmallMarginBegin">
+                    <Text text="Mike Wilson"/>
+                    <Text text="Scanner #003 | Zone A | 2 active tasks"/>
+                </VBox>
+                <ObjectStatus text="Available" state="Success"/>
+            </HBox>
+
+            <HBox alignItems="Center" class="workerBox">
+                <RadioButton groupName="workerGroup"/>
+                <VBox class="sapUiSmallMarginBegin">
+                    <Text text="Lisa Chen"/>
+                    <Text text="Forklift #002 | Zone E | 0 active tasks"/>
+                </VBox>
+                <ObjectStatus text="Available" state="Success"/>
+            </HBox>
+        </VBox>
+
+        <VBox class="sapUiSmallMargin">
+            <Title text="Priority Level" level="H5"/>
+            <Select id="idprioritySelect" selectedKey="normal">
+                <core:Item key="normal" text="Normal Priority"/>
+                <core:Item key="high" text="High Priority (Complete within 2 hours)"/>
+                <core:Item key="urgent" text="Urgent (Complete within 1 hour)"/>
+            </Select>
+        </VBox>
+
+        <beginButton>
+            <Button text="Back" type="Transparent" press=".onCancelPress('assignWorkersDialog')"/>
+        </beginButton>
+
+        <endButton>
+            <Button text="Create &amp; Send to Mobile" type="Accept" press=".onCreate"/>
+        </endButton>
+
+    </Dialog>
+
+</core:FragmentDefinition>
