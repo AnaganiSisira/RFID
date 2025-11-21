@@ -1314,12 +1314,32 @@ Remove any padding from VBox
     margin-top: 0.25rem;
 }
 
-.urgentBadge {
-    display: inline-flex;
-    padding: 0.25rem 0.625rem;
-    background: #fee2e2;
-    border-radius: 0.375rem;
-    width: fit-content;
+.boldRouteText {
+    font-weight: bold;
+}
+
+/* Assign Workers */
+
+.workerBox {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.titleText {
+    font-weight: bold;
+}
+
+.descText {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+
+/* Dashboard Page */
+.dashboardPage {
+    background-color: #f5f5f5;
 }
 
 .urgentText {
@@ -2014,3 +2034,4 @@ Remove any padding from VBox
         font-size: 1.75rem;
     }
 }
+

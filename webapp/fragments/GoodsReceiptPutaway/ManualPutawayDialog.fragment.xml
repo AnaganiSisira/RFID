@@ -18,7 +18,6 @@
                 <contentLeft>
                     <VBox>
                         <Title text="Create Manual Putaway Request" level="H2"/>
-                        <Text text="Create putaway tasks for items without goods receipt"/>
                     </VBox>
                 </contentLeft>
                 <contentRight>

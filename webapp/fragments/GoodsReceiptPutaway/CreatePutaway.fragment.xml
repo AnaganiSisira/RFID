@@ -4,7 +4,7 @@
     xmlns:layout="sap.ui.layout"
     xmlns:form="sap.ui.layout.form">
 
-    <Dialog title="{crossDockModel>/grNumber} - Cross-Dock Processing" contentWidth="80%" class="sapUiResponsiveContentPadding">
+    <Dialog id="CreatePutAwayDialog" title="GR-2024-0156 - Cross-Dock Processing" contentWidth="80%" class="sapUiResponsiveContentPadding">
 
         <customHeader>
             <Bar>
@@ -346,19 +346,18 @@
                 </items>
             </IconTabBar>
         </content>
-<!--         
+        
+        
         <footer>
-            <Bar>
-                <contentLeft>
+        <OverflowToolbar >
+            
                     <Text text="Summary: 2 items selected | 1 cross-dock | 1 split required"/>
-                </contentLeft>
-                <contentRight>
-                    <Button text="Cancel" type="Transparent"/>
+                        <ToolbarSpacer ></ToolbarSpacer>
+                    <Button text="Cancel" type="Transparent" press=".onCancelPress('CreatePutAwayDialog')" />
                     <Button text="Save Draft" type="Default" class="OrangeButton"/>
-                    <Button text="Validate &amp; Assign →" type="Accept" class="GreenButton sapUiTinyMarginBegin"/>
-                </contentRight>
-            </Bar>
-        </footer> -->
+                    <Button text="Validate &amp; Assign →" type="Accept" class="GreenButton sapUiTinyMarginBegin" press=".onAssignWorkersPress" />
+            </OverflowToolbar>
+        </footer>
 
     </Dialog>
 </core:FragmentDefinition>

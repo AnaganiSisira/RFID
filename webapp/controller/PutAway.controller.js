@@ -1,42 +1,50 @@
 sap.ui.define([
-  "rfidwarehousesuiteui/controller/BaseController",
-  "sap/ui/core/mvc/Controller",
-  "sap/ui/core/Fragment",
-  "sap/ui/model/json/JSONModel",
-  "sap/m/MessageToast",
-  "sap/m/MessageBox",
-  "rfidwarehousesuiteui/model/formatter"
+    "rfidwarehousesuiteui/controller/BaseController",
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/core/Fragment",
+    "sap/ui/model/json/JSONModel",
+    "sap/m/MessageToast",
+    "sap/m/MessageBox",
+    "rfidwarehousesuiteui/model/formatter"
 ], function (BaseController, Controller, Fragment, JSONModel, MessageToast, MessageBox, formatter) {
-  "use strict";
+    "use strict";
 
-  return BaseController.extend("rfidwarehousesuiteui.controller.PutAway", {
-    formatter: formatter,
-    onInit() {
-      this.getRouter().getRoute("PutAway").attachPatternMatched(this._onRouterPutAwayMatched, this)
-    },
-    _onRouterPutAwayMatched: function (oEvent) {
-    },
-    onBulkProcess: function () {
-      if (!this._ManualPutawayDialog) {
-        this._ManualPutawayDialog = this.loadFragments("rfidwarehousesuiteui.fragments.GoodsReceiptPutaway.ManualPutawayDialog")
-      }
-      this._ManualPutawayDialog.then(function (oDialog) {
-        oDialog.open();
-      });
-    },
-onPutAwayProcess: function () {
-      if (!this._CreateStorageDialog) {
-        this._CreateStorageDialog = this.loadFragments("rfidwarehousesuiteui.fragments.GoodsReceiptPutaway.CreatePutaway")
-      }
-      this._CreateStorageDialog.then(function (oDialog) {
-        oDialog.open();
-      });
-    },
+    return BaseController.extend("rfidwarehousesuiteui.controller.PutAway", {
+        formatter: formatter,
+        onInit() {
+            this.getRouter().getRoute("PutAway").attachPatternMatched(this._onRouterPutAwayMatched, this)
+        },
+        _onRouterPutAwayMatched: function (oEvent) {
+        },
+        onBulkProcess: function () {
+            if (!this._ManualPutawayDialog) {
+                this._ManualPutawayDialog = this.loadFragments("rfidwarehousesuiteui.fragments.GoodsReceiptPutaway.ManualPutawayDialog")
+            }
+            this._ManualPutawayDialog.then(function (oDialog) {
+                oDialog.open();
+            });
+        },
+        onPutAwayProcess: function () {
+            if (!this._CreateStorageDialog) {
+                this._CreateStorageDialog = this.loadFragments("rfidwarehousesuiteui.fragments.GoodsReceiptPutaway.CreatePutaway")
+            }
+            this._CreateStorageDialog.then(function (oDialog) {
+                oDialog.open();
+            });
+        },
+        onAssignWorkersPress: function () {
+            if (!this._assignWorkersDialog) {
+                this._assignWorkersDialog = this.loadFragments("rfidwarehousesuiteui.fragments.GoodsReceiptPutaway.AssignWorkersDialog")
+            }
+            this._assignWorkersDialog.then(function (oDialog) {
+                oDialog.open();
+            });
+        },
         onAction: function (oEvent) {
             var oButton = oEvent.getSource();
             var oContext = oButton.getBindingContext("PutAwayModel");
             var oData = oContext.getObject();
-            
+
             // Open Cross-Dock Processing Dialog
             if (oData.actionText.includes("Cross-Dock")) {
                 this._openCrossDockDialog(oData);
@@ -160,7 +168,7 @@ onPutAwayProcess: function () {
         onAddSplitLocation: function () {
             var oModel = this._oCrossDockDialog.getModel("crossDockModel");
             var aItems = oModel.getProperty("/items");
-            
+
             // Find the item with split locations
             for (var i = 0; i < aItems.length; i++) {
                 if (aItems[i].splitRequired && aItems[i].splitLocations) {
@@ -171,7 +179,7 @@ onPutAwayProcess: function () {
                     break;
                 }
             }
-            
+
             oModel.setProperty("/items", aItems);
             MessageToast.show("Split location added");
         },
@@ -185,7 +193,7 @@ onPutAwayProcess: function () {
             var sQuery = oEvent.getParameter("query");
             var oTable = this.byId("grTable");
             var oBinding = oTable.getBinding("items");
-            
+
             if (sQuery) {
                 var aFilters = [
                     new sap.ui.model.Filter("grNumber", sap.ui.model.FilterOperator.Contains, sQuery),
@@ -209,12 +217,12 @@ onPutAwayProcess: function () {
         // onBulkProcess: function () {
         //     var oTable = this.byId("grTable");
         //     var aSelectedItems = oTable.getSelectedItems();
-            
+
         //     if (aSelectedItems.length === 0) {
         //         MessageToast.show("Please select at least one item");
         //         return;
         //     }
-            
+
         //     MessageToast.show(aSelectedItems.length + " items selected for bulk processing");
         // }
 
