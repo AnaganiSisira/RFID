@@ -1,0 +1,192 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+
+  <Dialog id="damageDialog"
+          class="damageDialog"
+          showHeader="false"
+          draggable="false"
+          contentWidth="1000px"
+          contentHeight="700px"
+          resizable="true">
+          <customHeader >
+          <OverflowToolbar  height="4rem" design="Solid" class="daHeader">
+    <VBox >
+    <Title text="Damage Assessment"></Title>
+    <Label text="VER-2024-004 • Spot Check" class="sapUiSmallMarginBegin"></Label>
+    </VBox>
+    <ToolbarSpacer ></ToolbarSpacer>
+    <Button icon="sap-icon://decline" type="Transparent" press=".onCancelPress('damageDialog')"></Button>
+          </OverflowToolbar>
+          </customHeader>
+
+
+    <!-- Header with gradient background (we style it with CSS) -->
+    <content>
+    <VBox >
+   
+     <!-- TOP HEADER metrics -->
+
+          <HBox justifyContent="Center" alignItems="Center" class="metricsRow">
+            <HBox class="metricCard blue" width="23%">
+              <VBox>
+               <Text class="metricLabel" text="Progress" />
+                <Text class="metricValue" text="20%" />
+                <Text class="metricSub" text="2/10 items" />
+              </VBox>
+            </HBox>
+
+            <HBox class="metricCard green" width="23%">
+              <VBox>
+               <Text class="metricLabel" text="Verified" />
+                <Text class="metricValue" text="1" />
+                <Text class="metricSub" text="No variance" />
+              </VBox>
+            </HBox>
+
+            <HBox class="metricCard orange" width="23%">
+              <VBox>
+              <Text class="metricLabel" text="Variances" />
+                <Text class="metricValue" text="1" />
+                <Text class="metricSub" text="50.0% variance rate" />
+              </VBox>
+            </HBox>
+
+            <HBox class="metricCard purple" width="23%">
+              <VBox >
+               <Text class="metricLabel" text="Total Variance" />
+                <Text class="metricValue" text="5" />
+                <Text class="metricSub" text="Units" />
+              </VBox>
+            </HBox>
+        </HBox>
+
+           <HBox class="infoSection" width="100%" justifyContent="SpaceBetween">
+          <VBox width="48%" class="infoBox">
+            <Text class="sectionTitle" text="Schedule Information" />
+            <HBox class="infoRow"><Text class="infoKey" text="Status:" /><Text class="infoVal" text="overdue" /></HBox>
+            <HBox class="infoRow"><Text class="infoKey" text="Priority:" /><Text class="infoVal" text="high" /></HBox>
+            <HBox class="infoRow"><Text class="infoKey" text="Created:" /><Text class="infoVal" text="2024-11-09 14:00" /></HBox>
+            <HBox class="infoRow"><Text class="infoKey" text="Due Date:" /><Text class="infoVal" text="2024-11-09 18:00" /></HBox>
+            <HBox class="infoRow"><Text class="infoKey" text="Started:" /><Text class="infoVal" text="2024-11-09 14:30" /></HBox>
+          </VBox>
+
+          <VBox width="48%" class="infoBox">
+            <Text class="sectionTitle" text="Assignment" />
+            <HBox class="infoRow"><Text class="infoKey" text="Assigned To:" /><Text class="infoVal" text="David Lee" /></HBox>
+            <HBox class="infoRow"><Text class="infoKey" text="Device:" /><Text class="infoVal" text="iOS #T05" /></HBox>
+            <HBox class="infoRow"><Text class="infoKey" text="Sync Status:" /><Text class="infoVal" text="offline" /></HBox>
+            <HBox class="infoRow"><Text class="infoKey" text="Last Sync:" /><Text class="infoVal" text="2024-11-09 15:20" /></HBox>
+          </VBox>
+        </HBox>
+        <!-- Notes -->
+        <VBox class="notesBox">
+          <Text class="sectionTitle" text="Notes" />
+          <Text text="Check for damaged inventory" class="notesText" />
+        </VBox>
+          <!-- Counted Items header -->
+        <HBox class="countedHeader" alignItems="Center" justifyContent="Start" gap="0.5rem">
+          <core:Icon src="sap-icon://sys-enter-2" />
+          <Text class="sectionTitle" text="Counted Items (1)" />
+        </HBox>
+
+        <!-- Counted item card (orange) -->
+        <Panel class="itemCard" width="auto" backgroundDesign="Transparent">
+          <VBox>
+            <HBox justifyContent="SpaceBetween" alignItems="Start">
+              <VBox>
+                <Text class="itemTitle" text="SKU-404 - Glass Vase Set" />
+                <Text class="itemLocation" text=" C-02-03-01" />
+              </VBox>
+
+              <HBox alignItems="Center" gap="0.5rem">
+                <Button icon="sap-icon://warning2" text="Variance" type="Transparent" class="variantBadge"/>
+              </HBox>
+            </HBox>
+
+            <HBox  class="itemStatsRow">
+              <HBox class="statCol">
+                <Text class="statLabel" text="System Qty"></Text>
+                <Text class="statVal" text="200" />
+              </HBox>
+              <HBox class="statCol">
+                <Text class="statLabel" text="Counted Qty"></Text>
+                <Text class="statVal" text="195" />
+              </HBox>
+              <HBox class="statCol">
+                <Text class="statLabel" text="Variance"> </Text>
+                <Text class="statVal variance" text="-5" />
+              </HBox>
+              <HBox class="statCol">
+                <Text class="statLabel" text="Time"></Text>
+                <Text class="statVal" text="14:45" />
+              </HBox>
+            </HBox>
+
+            <HBox class="itemFooter" justifyContent="Start" alignItems="Center">
+              <core:Icon src="sap-icon://message-information" />
+              <Text class="smallNote" text=" 5 units damaged" />
+            </HBox>
+          </VBox>
+        </Panel>
+
+         <!-- Activity Timeline -->
+        <VBox class="timelineBox">
+          <Text class="sectionTitle" text="Activity Timeline" />
+          <VBox class="timelineList" width="100%">
+            <!-- use binding to repeat timeline items -->
+            <VBox >
+              <HBox class="timelineItem" alignItems="Center" width="100%" justifyContent="Start" gap="1rem">
+                <VBox class="timelineDotBox">
+                  <html:div class="timelineDot" />
+                </VBox>
+                <HBox class="timelineContent" justifyContent="SpaceBetween">
+                <VBox>
+                  <Text class="timelineTitle" text="Schedule created" />
+                  <Text class="timelineSubtitle" text="by Admin" />
+                </VBox>
+
+                <Text class="timelineTime" text="14:00" />
+                </HBox>
+              </HBox>
+              
+              <HBox class="timelineItem" alignItems="Center" width="100%" justifyContent="Start" gap="1rem">
+                <VBox class="timelineDotBox">
+                  <html:div class="timelineDot" />
+                </VBox>
+                <HBox class="timelineContent" justifyContent="SpaceBetween">
+                <VBox>
+                  <Text class="timelineTitle" text="Count started" />
+                  <Text class="timelineSubtitle" text="by David Lee" />
+                </VBox>
+
+                <Text class="timelineTime" text="14:30" />
+                </HBox>
+              </HBox>
+              <HBox class="timelineItem" alignItems="Center" width="100%" justifyContent="Start" gap="1rem">
+                <VBox class="timelineDotBox">
+                  <html:div class="timelineDot" />
+                </VBox>
+                <HBox class="timelineContent" justifyContent="SpaceBetween">
+                <VBox>
+                  <Text class="timelineTitle" text="Device went offline" />
+                  <Text class="timelineSubtitle" text="by System" />
+                </VBox>
+
+                <Text class="timelineTime" text="15:20" />
+                </HBox>
+              </HBox>
+            </VBox>
+          </VBox>
+        </VBox>
+    </VBox>
+   
+    </content>
+
+    <endButton>
+      <Button text="Close" press=".onCloseDamageDialog" />
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>

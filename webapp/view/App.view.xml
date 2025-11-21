@@ -89,7 +89,8 @@
                         <tnt:NavigationListItem text="{i18n>navShipping}" icon="sap-icon://cargo-train" key="Shipping"/>
                     </tnt:NavigationListItem>
                     <tnt:NavigationListItem text="Cycle Count" icon="sap-icon://inbox" expanded="true">
-                        <tnt:NavigationListItem text="Physical Verification Scheduling" icon="sap-icon://history" key="PhysicalVerificationScheduling" select="onItemSelect('PhysicalVerificationScheduling')"/>
+                        <tnt:NavigationListItem text="Physical Verification" icon="sap-icon://history" key="PhysicalVerificationScheduling" select="onItemSelect('PhysicalVerificationScheduling')"/>
+                        <tnt:NavigationListItem text="Cycle Count" icon="sap-icon://history" key="CycleCount" select="onItemSelect('PhysicalVerificationScheduling')"/>
                     </tnt:NavigationListItem>
  
                     <tnt:NavigationListItem text="{i18n>navAnalytics}" icon="sap-icon://bar-chart" expanded="false">

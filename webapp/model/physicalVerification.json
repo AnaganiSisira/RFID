@@ -11,7 +11,98 @@
       "variance": "3",
       "dueDate": "2024-11-10",
       "dueTime": "17:00",
-      "status": "in progress"
+      "status": "Overdue"
+    },
+    {
+      "id": "VER-2024-002",
+      "name": "Pallet Inspection – Cold Storage",
+      "type": "Damage Assessment",
+      "assigned": "David Lee",
+      "device": "iOS #T05",
+      "progressPercent": 20,
+      "progressText": "2/10 items",
+      "variance": "5",
+      "dueDate": "2024-11-12",
+      "dueTime": "15:30",
+      "status": "Active"
+    },
+    {
+      "id": "VER-2024-003",
+      "name": "Bin Verification – Aisle 5",
+      "type": "Spot Check",
+      "assigned": "Maria Gomez",
+      "device": "Android #A19",
+      "progressPercent": 100,
+      "progressText": "40/40 items",
+      "variance": "0",
+      "dueDate": "2024-11-08",
+      "dueTime": "11:00",
+      "status": "Completed"
+    },
+    {
+      "id": "VER-2024-004",
+      "name": "Hazmat Material Count",
+      "type": "Cycle Count",
+      "assigned": "Kevin Patel",
+      "device": "iOS #T11",
+      "progressPercent": 0,
+      "progressText": "0/25 items",
+      "variance": "0",
+      "dueDate": "2024-11-15",
+      "dueTime": "09:00",
+      "status": "Pending"
+    },
+    {
+      "id": "VER-2024-005",
+      "name": "Inbound Verification – Dock 3",
+      "type": "Inbound Receiving",
+      "assigned": "Admin",
+      "device": "Android #D08",
+      "progressPercent": 54,
+      "progressText": "27/50 items",
+      "variance": "1",
+      "dueDate": "2024-11-11",
+      "dueTime": "13:45",
+      "status": "Active"
+    },
+    {
+      "id": "VER-2024-006",
+      "name": "Outbound Pack Verification – Lane 2",
+      "type": "Outbound Check",
+      "assigned": "Lily Harper",
+      "device": "iOS #T03",
+      "progressPercent": 92,
+      "progressText": "46/50 items",
+      "variance": "2",
+      "dueDate": "2024-11-12",
+      "dueTime": "16:30",
+      "status": "Active"
+    },
+    {
+      "id": "VER-2024-007",
+      "name": "Random SKU Count – High Value",
+      "type": "Spot Check",
+      "assigned": "System",
+      "device": "N/A",
+      "progressPercent": 100,
+      "progressText": "10/10 items",
+      "variance": "0",
+      "dueDate": "2024-11-05",
+      "dueTime": "10:00",
+      "status": "Completed"
+    },
+    {
+      "id": "VER-2024-008",
+      "name": "Freezer Inventory Audit",
+      "type": "Cycle Count",
+      "assigned": "Mark Wilson",
+      "device": "Android #M15",
+      "progressPercent": 5,
+      "progressText": "1/20 items",
+      "variance": "0",
+      "dueDate": "2024-11-09",
+      "dueTime": "18:00",
+      "status": "Overdue"
     }
   ]
 }

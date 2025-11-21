@@ -2035,3 +2035,89 @@ Remove any padding from VBox
     }
 }
 
+/* physicalVerification */
+.colorActive{
+    background-color: #cee1f7;
+}
+.colorPending{
+    background-color: #f5fb84;
+}
+.colorCompleted{
+    background-color: #b7efa9;
+}
+.colorOverdue{
+    background-color: #efbfc0;
+}
+.colorOnline{
+    background-color: #cee9f7;
+}
+.colorVariances{
+    background-color: #f9e5ad;
+}
+.colorNeedCount{
+    background-color: #f3cef7;
+}
+.colorTotalItems{
+    background-color: #f7c3a9;
+}
+
+.daHeader {
+  background-color: linear-gradient(90deg,#c3aef8,#b7a5d2) !important;
+  color: #fff !important;
+}
+/* Metrics */
+.metricsRow { gap: 12px; display:flex; align-items:center; }
+.metricCard { background: #fff; border-radius: 8px; padding: 10px 14px;  box-shadow: 0 3px 10px rgba(3,10,30,0.06); }
+.metricCard.blue { border: 1px solid rgba(204, 238, 242, 0.12); background-color: rgba(204, 238, 242, 0.12); }
+.metricCard.green { border: 1px solid rgba(34,197,94,0.12); background-color: rgba(34,197,94,0.12); }
+.metricCard.orange { border: 1px solid rgba(255,153,51,0.12); background-color: rgba(255,153,51,0.12); }
+.metricCard.purple { border: 1px solid rgba(140,98,255,0.12); background-color: rgba(140,98,255,0.12);}
+.metricValue { font-size: 20px; font-weight: 700; color: #1b2340; }
+.metricLabel { font-size: 12px; color: #6b6f76; }
+.metricSub { font-size: 11px; color: #9aa0ab; }
+
+.infoSection { padding: 16px 24px; display:flex; gap:16px; }
+.infoBox { background: transparent; }
+.sectionTitle { font-weight: 400; margin-bottom: 8px; }
+.infoRow { margin: 6px 0; gap: 8px; display:flex; }
+.infoKey { width: 110px; color: #6b6f76; font-weight: 600; }
+.infoVal { color: #222; }
+/* Notes */
+.notesBox { padding: 12px 24px; }
+.notesText { background: #f8fafb; padding: 10px; border-radius: 6px; border: 1px solid #e7eef7; }
+.countedHeader { padding:12px 18px; align-items:center; }
+/* Item card */
+.itemCard { margin: 0px 18px; padding:14px; border-radius:8px; background:#fff7f0; border:1px solid rgba(255,160,50,0.2); }
+.itemTitle { font-weight:700; font-size:16px; }
+.itemLocation { color:#6b6f76; font-size:12px; margin-top:4px; }
+.itemStatsRow { display:flex; justify-content:space-between; padding:12px ; border-top:1px solid rgba(0,0,0,0.04); margin-top:10px; }
+.statCol { display:flex; flex-direction:column; align-items:flex-start; min-width:110px; }
+.statLabel { font-size:12px; color:#6b6f76; }
+.statVal { font-weight:700; margin-top:6px; }
+.variance { color:#d9534f; }
+
+/* Variant badge */
+.variantBadge .sapMBtn { border-radius:12px; padding:4px 8px; background:transparent; }
+
+/* small note */
+.itemFooter { padding-top:10px; display:flex; gap:8px; align-items:center; color:#6b6f76; }
+
+/* Timeline */
+.timelineBox { padding:12px 18px; }
+.sectionTitle { font-weight:700; margin-bottom:8px; }
+.timelineList { padding-left:6px; }
+.timelineItem { display:flex; gap:12px; align-items:flex-start; margin-bottom:12px; }
+.timelineDotBox { width:24px; }
+.timelineDot { width:12px; height:12px; border-radius:50%; background:#2f80ed; display:block; border:3px solid #fff; box-shadow:0 2px 6px rgba(0,0,0,0.06); margin-top:6px; }
+.timelineContent { background:#fff; padding:10px 12px; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.04); min-width:380px; }
+.timelineTitle { font-weight:700; }
+.timelineSubtitle { font-size:12px; color:#6b6f76; margin-top:4px; }
+.timelineTime { margin-left:auto; color:#9aa0ab; font-size:12px; align-self:flex-start; }
+
+/* Responsive */
+@media only screen and (max-width: 800px) {
+  .damageDialog { width: 95% !important; }
+  .metricsRow { flex-direction:column; align-items:stretch; }
+  .metricCard { width:100%; }
+  .timelineContent { min-width: auto; width: calc(100% - 80px); }
+}
