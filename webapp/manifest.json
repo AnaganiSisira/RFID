@@ -96,6 +96,13 @@
       "WorkersModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/workers.json"
+      "PutAwayModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/putAway.json"
+      },
+       "PhysicalVerificationModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/physicalVerification.json"
       }
     },
     "resources": {
@@ -187,6 +194,20 @@
           "target": [
             "TargetGoodsReceipt"
           ]
+        },
+         {
+          "name": "PutAway",
+          "pattern": "PutAway",
+          "target": [
+            "TargetPutAway"
+          ]
+        },
+        {
+          "name": "PhysicalVerificationScheduling",
+          "pattern": "PhysicalVerificationScheduling",
+          "target": [
+            "TargetPhysicalVerificationScheduling"
+          ]
         }
       ],
       "targets": {
@@ -229,6 +250,14 @@
         "TargetGoodsReceipt": {
           "id": "GoodsReceipt",
           "name": "GoodsReceipt"
+        },
+        "TargetPutAway": {
+          "id": "PutAway",
+          "name": "PutAway"
+        },
+        "TargetPhysicalVerificationScheduling": {
+          "id": "PhysicalVerificationScheduling",
+          "name": "PhysicalVerificationScheduling"
         }
       }
     },

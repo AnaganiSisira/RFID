@@ -1,0 +1,17 @@
+{
+  "tasks": [
+    {
+      "id": "VER-2024-001",
+      "name": "Zone A Cycle Count",
+      "type": "Cycle Count",
+      "assigned": "John Doe",
+      "device": "Android #M01",
+      "progressPercent": 66,
+      "progressText": "33/50 items",
+      "variance": "3",
+      "dueDate": "2024-11-10",
+      "dueTime": "17:00",
+      "status": "in progress"
+    }
+  ]
+}

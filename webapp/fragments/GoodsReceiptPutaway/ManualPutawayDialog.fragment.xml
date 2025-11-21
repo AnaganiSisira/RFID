@@ -1,0 +1,113 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form">
+
+    <Dialog
+        id="manualPutawayDialog"
+        title="Create Manual Putaway Request"
+        resizable="true"
+        draggable="true"
+        contentWidth="60%"
+        contentHeight="auto"
+        class="sapUiSizeCompact"
+    >
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <VBox>
+                        <Title text="Create Manual Putaway Request" level="H2"/>
+                    </VBox>
+                </contentLeft>
+                <contentRight>
+                    <Button icon="sap-icon://decline" press=".onCloseManualPutawayDialog"/>
+                </contentRight>
+            </Bar>
+        </customHeader>
+
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <form:SimpleForm
+                    id="manualPutawayForm"
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanXL="3"
+                    labelSpanL="3"
+                    labelSpanM="4"
+                    labelSpanS="12"
+                    adjustLabelSpan="false"
+                    emptySpanXL="1"
+                    emptySpanL="1"
+                    emptySpanM="1"
+                    emptySpanS="0"
+                    columnsXL="2"
+                    columnsL="2"
+                    columnsM="1"
+                    class="sapUiForceWrapLabels"
+                >
+                    <form:content>
+                        <Label text="Item Code" required="true"/>
+                        <Input placeholder="Enter or scan item code" value=""/>
+
+                        <Label text="Item Name"/>
+                        <Input placeholder="Auto-populated or enter manually" value=""/>
+
+                        <Label text="Quantity" required="true"/>
+                        <Input placeholder="Enter quantity" value="" type="Number">
+                            <layoutData><layout:GridData span="XL1 L1 M2 S2"/></layoutData>
+                        </Input>
+
+                        <Label text="Unit" required="true"/>
+                        <ComboBox selectedKey="PCS" width="auto">
+                            <core:Item key="PCS" text="PCS"/>
+                            <core:Item key="BOX" text="BOX"/>
+                            <core:Item key="KG" text="KG"/>
+                        </ComboBox>
+
+                        <Label text="Source Location"/>
+                        <Input placeholder="e.g., RECV-01" value=""/>
+
+                        <Label text="Batch/Serial Number"/>
+                        <Input placeholder="Optional" value=""/>
+
+                        <Label text="Reason for Manual Putaway"/>
+                        <ComboBox selectedKey="Direct Store Delivery" width="auto">
+                            <core:Item key="Direct Store Delivery" text="Direct Store Delivery"/>
+                            <core:Item key="Production Line" text="Production Line"/>
+                            <core:Item key="Return" text="Return"/>
+                        </ComboBox>
+                    </form:content>
+                </form:SimpleForm>
+
+                <Title text="Storage Location" level="H3" class="sapUiSmallMarginTop sapUiSmallMarginBottom"/>
+                <SegmentedButton selectedKey="AIRecommendation" class="sapUiSmallMarginBottom">
+                    <items>
+                        <SegmentedButtonItem text="AI Recommendation" key="AIRecommendation"/>
+                        <SegmentedButtonItem text="Manual Selection" key="ManualSelection"/>
+                    </items>
+                </SegmentedButton>
+
+                <Panel class="aiRecommendationPanel">
+                    <VBox>
+                        <HBox justifyContent="SpaceBetween" alignItems="Center">
+                            <VBox>
+                                <Text text="AI Suggested Location" class="aiCaption"/>
+                                <Title text="B-15-03-A" level="H3" class="aiLocationText"/>
+                                <Text text="Based on item category, available space, and picking optimization" class="aiDetailsText"/>
+                            </VBox>
+                            <ObjectStatus text="92% Confidence" state="Success" class="aiConfidenceBadge"/>
+                        </HBox>
+                    </VBox>
+                </Panel>
+            </VBox>
+        </content>
+
+        <beginButton>                    <Button text="Clear Form" type="Transparent" press=".onClearForm"/>
+</beginButton>
+<endButton>
+                    <Button text="Create Putaway Request" type="Accept" press=".onCreatePutawayRequest"/>
+
+</endButton>
+    </Dialog>
+</core:FragmentDefinition>

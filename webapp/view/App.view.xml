@@ -79,7 +79,7 @@
                     <tnt:NavigationListItem text="Dashboard" icon="sap-icon://home" key="Dashboard"/>
                     <tnt:NavigationListItem text="{i18n>navInbound}" icon="sap-icon://inbox" expanded="true">
                         <tnt:NavigationListItem text="{i18n>navGoodsReceipt}" icon="sap-icon://receipt" key="GoodsReceipt" select="onItemSelect('GoodsReceipt')"/>
-                        <tnt:NavigationListItem text="{i18n>navPutAway}" icon="sap-icon://add-product" key="PutAway"/>
+                        <tnt:NavigationListItem text="{i18n>navPutAway}" icon="sap-icon://add-product" key="PutAway" select="onItemSelect('PutAway')"/>
                         <tnt:NavigationListItem text="{i18n>navReceivingHistory}" icon="sap-icon://history" key="ReceivingHistory"/>
                     </tnt:NavigationListItem>
  
@@ -87,6 +87,9 @@
                         <tnt:NavigationListItem text="{i18n>navPickingTasks}" icon="sap-icon://cart" key="PickingTasks" select="onItemSelect('PickingTasks')"/>
                         <tnt:NavigationListItem text="{i18n>navPacking}" icon="sap-icon://shipping-status" key="Packing"/>
                         <tnt:NavigationListItem text="{i18n>navShipping}" icon="sap-icon://cargo-train" key="Shipping"/>
+                    </tnt:NavigationListItem>
+                    <tnt:NavigationListItem text="Cycle Count" icon="sap-icon://inbox" expanded="true">
+                        <tnt:NavigationListItem text="Physical Verification Scheduling" icon="sap-icon://history" key="PhysicalVerificationScheduling" select="onItemSelect('PhysicalVerificationScheduling')"/>
                     </tnt:NavigationListItem>
  
                     <tnt:NavigationListItem text="{i18n>navAnalytics}" icon="sap-icon://bar-chart" expanded="false">
