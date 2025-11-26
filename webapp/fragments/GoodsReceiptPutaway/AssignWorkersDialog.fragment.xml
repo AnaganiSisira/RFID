@@ -62,7 +62,7 @@
         </beginButton>
 
         <endButton>
-            <Button text="Create &amp; Send to Mobile" type="Accept" press=".onCreate"/>
+            <Button text="Create &amp; Send to Mobile" type="Accept" press=".onAssoignWorkers"/>
         </endButton>
 
     </Dialog>

@@ -1,0 +1,94 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+
+  <Dialog id="CreateScheduleDialog"
+          class="CreateScheduleDialog"
+          showHeader="true"
+          draggable="false"
+          contentWidth="800px"
+        title="Create Schedule">
+        
+
+
+    <!-- Header with gradient background (we style it with CSS) -->
+    <content>
+    <form:SimpleForm editable="true">
+    <form:content>
+       <Label text="Schedule Name" />
+          <Input id="scheduleName" placeholder="e.g., Zone A Cycle Count"/>
+             <Label text="Type" />
+          <Select id="typeSelect" selectedKey="CycleCount">
+            <core:Item key="CycleCount" text="Cycle Count" />
+            <core:Item key="StockCheck" text="Stock Check" />
+            <core:Item key="Other" text="Other" />
+          </Select>
+           <Label text="Priority" />
+          <Select id="idSchedulePrioritySelect" selectedKey="Normal">
+            <core:Item key="Low" text="Low" />
+            <core:Item key="Normal" text="Normal" />
+            <core:Item key="High" text="High" />
+          </Select>
+           <Label text="Assign To" />
+          <ComboBox placeholder="Select Mobile user....">
+          <items >
+              <core:Item text="John Doe - Android"></core:Item>
+              <core:Item text="Sarah Smith - IOS"></core:Item>
+          </items>
+          </ComboBox>
+          <Label text="Due Date amp; Time" />
+          <DateTimePicker id="dueDate" displayFormat="dd-MM-yyyy HH:mm" placeholder="dd-mm-yyyy --:--"/>
+          <Label text="Select Items (0 selected)"></Label>
+         <List mode="MultiSelect" items="{PhysicalVerificationModel>/items}">
+    <CustomListItem class="customListCard">
+        <VBox>
+
+            <!-- First Row: SKU + Class Badge -->
+            <HBox>
+                <Text class="sapUiMediumMarginEnd" text="{PhysicalVerificationModel>sku}" />
+
+                <GenericTag
+                    text="{PhysicalVerificationModel>class}"
+                    status="Warning"
+                    design="StatusIconHidden"
+                    />
+            </HBox>
+
+            <!-- Description -->
+            <Text class="descText"
+                  text="{PhysicalVerificationModel>description}" />
+
+            <!-- Bottom Row: Location + Last Seen -->
+            <HBox class="bottomInfo" alignItems="Center">
+                <core:Icon src="sap-icon://map" size="0.9rem" />
+                <Text text="{PhysicalVerificationModel>location}" class="sapUiSmallMarginEnd"/>
+
+                <core:Icon src="sap-icon://time-entry-request" size="0.9rem" />
+                <Text text="{PhysicalVerificationModel>lastSeen}" />
+
+                <!-- Variance Warning (optional) -->
+                <Text class="varianceWarning"
+                      visible="{= ${PhysicalVerificationModel>variance} > 0 }"
+                      text="⚠ {PhysicalVerificationModel>variance}% var" />
+            </HBox>
+
+        </VBox>
+    </CustomListItem>
+</List>
+<Label text="Instructions/Notes"></Label>
+<TextArea placeholder="Special instructions for mobile users......."></TextArea>
+
+    </form:content>
+    </form:SimpleForm>
+    </content>
+    <beginButton>
+    <Button text="Create and Send to mobile" type="Emphasized" press=".onSavePress('Created and Sent','CreateScheduleDialog')"></Button>
+    </beginButton>
+
+    <endButton>
+      <Button text="Close" press=".onCancelPress('CreateScheduleDialog')" />
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>

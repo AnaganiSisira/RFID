@@ -12,10 +12,10 @@
                     <Title text="{i18n>PickingTaskspage.title}"/>
                 </f:heading>
                 <f:expandedContent>
-                    <ObjectAttribute title="{i18n>PickingTaskspage.subTittle}" text="{i18n>PickingTaskspage.subText}" />
+                    <ObjectAttribute class="sapUiSmallMarginBegin" title="{i18n>PickingTaskspage.subTittle}" text="{i18n>PickingTaskspage.subText}" />
                 </f:expandedContent>
                 <f:snappedContent>
-                    <ObjectAttribute title="{i18n>PickingTaskspage.subTittle}" text="{i18n>PickingTaskspage.subText}" />
+                    <ObjectAttribute class="sapUiSmallMarginBegin" title="{i18n>PickingTaskspage.subTittle}" text="{i18n>PickingTaskspage.subText}" />
                 </f:snappedContent>
                 <f:snappedTitleOnMobile>
                     <Title text="{i18n>PickingTaskspage.title}"/>
@@ -27,9 +27,9 @@
             </f:DynamicPageTitle>
         </f:title>
         <!-- DynamicPage Header -->
-        <f:header>
-            <f:DynamicPageHeader pinnable="true">
-                <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" gap="-3rem" wrap="Wrap">
+        <f:header >
+            <f:DynamicPageHeader pinnable="false" class="sapUiHideMedium">
+                <HBox justifyContent="SpaceBetween" gap="-3rem" wrap="Wrap">
 
                     <VBox class="card" alignItems="Center" width="19%">
                         <Title text="{i18n>card.totalOrders}" class="cardTitle" wrapping="true" />
@@ -127,31 +127,33 @@
                                 </ColumnListItem>
                             </items>
                         </Table>
-                        <f:Card >
-                        <f:header><cards:Header title="SAP Integration Configuration"></cards:Header></f:header>
-                        <f:content>
-                        <VBox >
-                        <FlexBox justifyContent="Start">
-                       
-                        <List headerText="Connected Systems:">
-                        <items>
-                        <StandardListItem title="SAP ECC 6.0 - WM Module (Production)"></StandardListItem>
-                        <StandardListItem title="SAP S/4HANA - EWM 9.5 (Production)"></StandardListItem>
-                        </items>
-                        </List>
-                        
-                        <List headerText="Sync Settings:">
-                        <items>
-                        <StandardListItem title="SAP ECC 6.0 - WM Module (Production)"></StandardListItem>
-                        <StandardListItem title="SAP S/4HANA - EWM 9.5 (Production)"></StandardListItem>
-                        </items>
-                        </List>
-                        </FlexBox>
-                        </VBox>
-                        </f:content>
+                        <f:Card class="SAPIntegrationNote sapUiSmallMarginTop">
+                            <f:content>
+                                <HBox justifyContent="SpaceBetween" width="100%">
+                                    <VBox backgroundDesign="Transparent">
+                                        <Title text=" Connected Systems:"></Title>
+                                        <List backgroundDesign="Transparent">
+                                            <items>
+                                                <StandardListItem title="SAP ECC 6.0 - WM Module (Production)"></StandardListItem>
+                                                <StandardListItem title="SAP S/4HANA - EWM 9.5 (Production)"></StandardListItem>
+                                            </items>
+                                        </List>
+                                    </VBox>
+                                    <VBox backgroundDesign="Transparent">
+                                        <Title text="Sync Settings:"></Title>
+                                        <List backgroundDesign="Transparent">
+                                            <items>
+                                                <StandardListItem title="SAP ECC 6.0 - WM Module (Production)"></StandardListItem>
+                                                <StandardListItem title="SAP S/4HANA - EWM 9.5 (Production)"></StandardListItem>
+                                            </items>
+                                        </List>
+                                    </VBox>
+                                </HBox>
+                            </f:content>
                         </f:Card>
+
                     </IconTabFilter>
-                    <IconTabFilter design="Horizontal" icon="sap-icon://activity-items" text="Active Tasks" >
+                    <IconTabFilter design="Horizontal" icon="sap-icon://activity-items" text="Active Tasks">
                         <Table id="idActiveTasks" inset="false" items="{
                 path: 'PickingTasksModel>/ActiveTasks',
                 sorter: { path: 'strategyCode' }
@@ -227,10 +229,10 @@
                         </Table>
                     </IconTabFilter>
                     <IconTabFilter design="Horizontal" icon="sap-icon://dimension" text="Wave Management">
-                        <HBox class="pickingtaskstabs" >
+                        <HBox class="pickingtaskstabs">
                             <Button text="Create Wave" icon="sap-icon://add" type="Emphasized" press=".onCreateWavePress"/>
-                            <Button text="Auto-Generate Wave" icon="sap-icon://batch-payments"/>
-                            <Button text="Import from SAP"  icon="sap-icon://download"/>
+                            <Button text="Auto-Generate Wave" icon="sap-icon://batch-payments" class="sapUiSmallMarginBegin sapUiSmallMarginEnd"/>
+                            <Button text="Import from SAP" icon="sap-icon://download"/>
                         </HBox>
                         <FlexBox class="pickingtaskstabs" justifyContent="Start" alignItems="Center" columnGap="1rem" rowGap="1rem">
                             <f:Card width="350px">

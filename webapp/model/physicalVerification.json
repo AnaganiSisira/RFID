@@ -104,5 +104,10 @@
       "dueTime": "18:00",
       "status": "Overdue"
     }
-  ]
+  ],
+  "items":[
+          { "sku": "SKU-808", "class": "A-Class", "description": "Yoga Mat Premium", "location": "E-02-01-01", "lastSeen": "17d ago", "variance": "2.6% var" },
+          { "sku": "SKU-909", "class": "A-Class", "description": "iPhone 15 Pro Max", "location": "A-01-01-01", "lastSeen": "20d ago", "variance": "1.2% var" },
+          { "sku": "SKU-1010", "class": "C-Class", "description": "Detergent Powder 1kg", "location": "B-05-01-03", "lastSeen": "30d ago", "variance": "" }
+        ]
 }

@@ -1,14 +1,35 @@
-<mvc:View controllerName="rfidwarehousesuiteui.controller.PutawayStrategy"
+<mvc:View xmlns:f2="sap.f" controllerName="rfidwarehousesuiteui.controller.PutawayStrategy"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form"
     displayBlock="true">
-    
-    <Page title="{i18n>putawayStrategyTitle}" class="sapUiResponsiveContentPadding">
-        <content>
-            <!-- KPI Cards -->
-            <HBox class="sapUiSmallMarginBottom kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
+    <f2:DynamicPage id="PutawayStrategyPage" stickySubheaderProvider="iconTabBar" class="sapUiNoContentPadding">
+        <!-- DynamicPage Title -->
+        <f2:title>
+            <f2:DynamicPageTitle>
+                <f2:heading>
+                    <Title text="{i18n>putawayStrategyTitle}"/>
+                </f2:heading>
+                <f2:expandedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin" text="Receive and assign tags to incoming goods"  />
+                </f2:expandedContent>
+                <f2:snappedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin" text="Receive and assign tags to incoming goods" />
+                </f2:snappedContent>
+                <f2:snappedTitleOnMobile>
+                    <Title text="{i18n>putawayStrategyTitle}"/>
+                </f2:snappedTitleOnMobile>
+                <f2:actions>
+                    <!-- <Button icon="sap-icon://synchronize" text="Sync SAP" press=".onSyncSAP" /> -->
+            <Button icon="sap-icon://add" text="Quick Receive" type="Emphasized" press="._openWizardDialog" />
+                </f2:actions>
+            </f2:DynamicPageTitle>
+        </f2:title>
+        <!-- DynamicPage Header -->
+        <f2:header >
+            <f2:DynamicPageHeader pinnable="false" class="sapUiHideMedium">
+                <HBox class="kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
                 
                 <VBox class="card" alignItems="Center" justifyContent="Center">
                     <Title text="{i18n>totalStrategies}" wrapping="true" level="H2" class="cardTitle"/>
@@ -35,13 +56,17 @@
                 </VBox>
             </HBox>
 
+            </f2:DynamicPageHeader>
+        </f2:header>
+        <f2:content>
             <!-- Strategies Table -->
             <Table id="idStrategiesTable" inset="false" items="{
                 path: 'StrategiesModel>/Strategies',
                 sorter: { path: 'strategyCode' }
-            }">
-                <headerToolbar>
-                    <OverflowToolbar>
+            }"
+            class="sapUiSmallMargin" width="98%">
+                <headerToolbar >
+                    <OverflowToolbar design="Solid">
                         <content>
                             <SearchField width="25%" placeholder="{i18n>searchStrategiesPlaceholder}" liveChange="onSearch" />
                             <Button icon="sap-icon://filter" text="{i18n>filters}" />
@@ -90,6 +115,6 @@
                     </ColumnListItem>
                 </items>
             </Table>
-        </content>
-    </Page>
-</mvc:View>
+</f2:content>
+    </f2:DynamicPage>
+    </mvc:View>

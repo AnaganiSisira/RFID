@@ -49,6 +49,159 @@
       "pallets": "10 / 25",
       "locations": 12,
       "status": "Inactive"
+    },
+
+    {
+      "zoneCode": "STR-06",
+      "zoneName": "Storage Zone B",
+      "type": "Storage",
+      "areaCapacity": "600㎡ / 60,000kg",
+      "utilization": 72,
+      "pallets": "38 / 60",
+      "locations": 48,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "CLD-07",
+      "zoneName": "Cold Storage Freezer",
+      "type": "Cold Chain",
+      "areaCapacity": "180㎡ / 12,000kg",
+      "utilization": 64,
+      "pallets": "14 / 28",
+      "locations": 20,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "MEZ-08",
+      "zoneName": "Mezzanine Floor 1",
+      "type": "Pick-Face",
+      "areaCapacity": "250㎡ / 18,000kg",
+      "utilization": 49,
+      "pallets": "20 / 40",
+      "locations": 30,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "RCT-09",
+      "zoneName": "Returns Processing",
+      "type": "Returns",
+      "areaCapacity": "140㎡ / 9,000kg",
+      "utilization": 58,
+      "pallets": "11 / 20",
+      "locations": 14,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "HZM-10",
+      "zoneName": "Hazmat Room",
+      "type": "Hazmat",
+      "areaCapacity": "90㎡ / 6,000kg",
+      "utilization": 33,
+      "pallets": "5 / 15",
+      "locations": 10,
+      "status": "Maintenance"
+    },
+
+    {
+      "zoneCode": "STR-11",
+      "zoneName": "Storage Zone C",
+      "type": "Storage",
+      "areaCapacity": "450㎡ / 40,000kg",
+      "utilization": 70,
+      "pallets": "29 / 45",
+      "locations": 35,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "RCV-12",
+      "zoneName": "Receiving Bay 2",
+      "type": "Receiving",
+      "areaCapacity": "220㎡ / 22,000kg",
+      "utilization": 50,
+      "pallets": "17 / 40",
+      "locations": 28,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "DOC-13",
+      "zoneName": "Cross-Docking Zone",
+      "type": "Cross-Dock",
+      "areaCapacity": "280㎡ / 18,000kg",
+      "utilization": 85,
+      "pallets": "30 / 35",
+      "locations": 18,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "HND-14",
+      "zoneName": "Manual Handling Area",
+      "type": "Sorting",
+      "areaCapacity": "160㎡ / 10,500kg",
+      "utilization": 47,
+      "pallets": "8 / 20",
+      "locations": 16,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "QLT-15",
+      "zoneName": "Quality Lab",
+      "type": "Inspection",
+      "areaCapacity": "110㎡ / 8,500kg",
+      "utilization": 36,
+      "pallets": "6 / 15",
+      "locations": 12,
+      "status": "Inactive"
+    },
+
+    {
+      "zoneCode": "STR-16",
+      "zoneName": "Bulk Storage Zone",
+      "type": "Bulk",
+      "areaCapacity": "650㎡ / 80,000kg",
+      "utilization": 63,
+      "pallets": "32 / 70",
+      "locations": 50,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "DIS-17",
+      "zoneName": "Outbound Staging",
+      "type": "Dispatch",
+      "areaCapacity": "320㎡ / 28,000kg",
+      "utilization": 74,
+      "pallets": "22 / 30",
+      "locations": 20,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "CLD-18",
+      "zoneName": "Chilled Room",
+      "type": "Cold Chain",
+      "areaCapacity": "200㎡ / 14,000kg",
+      "utilization": "41",
+      "pallets": "10 / 22",
+      "locations": 14,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "MEZ-19",
+      "zoneName": "Mezzanine Floor 2",
+      "type": "Pick-Face",
+      "areaCapacity": "260㎡ / 20,000kg",
+      "utilization": 53,
+      "pallets": "18 / 35",
+      "locations": 22,
+      "status": "Active"
+    },
+    {
+      "zoneCode": "PAK-20",
+      "zoneName": "Packing & Labeling",
+      "type": "Packaging",
+      "areaCapacity": "130㎡ / 12,000kg",
+      "utilization": 45,
+      "pallets": "9 / 20",
+      "locations": 15,
+      "status": "Active"
     }
   ]
 }

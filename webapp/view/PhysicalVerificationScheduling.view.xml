@@ -3,140 +3,175 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.f" displayBlock="true">
+    <f:DynamicPage id="PhysicalVerificationSchedulingPageId" stickySubheaderProvider="iconTabBar" class="sapUiNoContentPadding">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="Physical Verification Scheduling"/>
+                </f:heading>
+                <f:expandedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin" text="{i18n>PickingTaskspage.subText}" />
+                </f:expandedContent>
+                <f:snappedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin" text="{i18n>PickingTaskspage.subText}" />
+                </f:snappedContent>
+                <f:snappedTitleOnMobile>
+                    <Title text="Physical Verification Scheduling"/>
+                </f:snappedTitleOnMobile>
+                <f:actions>
+                    <Button text="Create Schedule" type="Emphasized" press="onCreateSchedulePress" />
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header >
+            <f:DynamicPageHeader pinnable="false" class="sapUiHideMedium">
+                <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" gap="-3rem" wrap="Wrap">
 
-    <Page title="Physical Verification Scheduling" showNavButton="false" class="sapUiResponsiveContentPadding">
-        <content>
-            <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" gap="-3rem" wrap="Wrap">
+                    <VBox class="card colorActive" alignItems="Center" width="12%">
+                        <HBox >
+                            <core:Icon src="sap-icon://activity-items" size="1.5rem" class="sapUiSmallMarginEnd"/>
+                            <Title text="Active" class="cardTitle" wrapping="true"/>
+                        </HBox>
+                        <ObjectStatus text="1" state="Information" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+                    </VBox>
 
-                <VBox class="card colorActive" alignItems="Center" width="12%">
-                    <HBox >
-                        <core:Icon src="sap-icon://activity-items" size="1.5rem" class="sapUiSmallMarginEnd"/>
-                        <Title text="Active" class="cardTitle" wrapping="true"/>
-                    </HBox>
-                    <ObjectStatus text="1" state="Information" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
-                </VBox>
+                    <VBox class="card colorPending" alignItems="Center" width="12%">
+                        <HBox >
+                            <core:Icon src="sap-icon://pending" size="1.5rem" class="sapUiSmallMarginEnd"/>
+                            <Title text="Pending" class="cardTitle" wrapping="true"/>
+                        </HBox >
+                        <ObjectNumber number="1" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+                    </VBox>
 
-                <VBox class="card colorPending" alignItems="Center" width="12%">  <HBox >
-                    <core:Icon src="sap-icon://pending" size="1.5rem" class="sapUiSmallMarginEnd"/>
-                    <Title text="Pending" class="cardTitle" wrapping="true"/></HBox >
-                    <ObjectNumber number="1" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
-                </VBox>
+                    <VBox class="card colorCompleted" alignItems="Center" width="12%">
+                        <HBox >
+                            <core:Icon src="sap-icon://complete" size="1.5rem" class="sapUiSmallMarginEnd"/>
+                            <Title text="Completed" class="cardTitle" wrapping="true"/>
+                        </HBox >
+                        <ObjectNumber number="1" state="Warning" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+                    </VBox>
 
-                <VBox class="card colorCompleted" alignItems="Center" width="12%">  <HBox >
-                    <core:Icon src="sap-icon://complete" size="1.5rem" class="sapUiSmallMarginEnd"/>
-                    <Title text="Completed" class="cardTitle" wrapping="true"/></HBox >
-                    <ObjectNumber number="1" state="Warning" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
-                </VBox>
+                    <VBox class="card colorOverdue" alignItems="Center" width="12%">
+                        <HBox >
+                            <core:Icon src="sap-icon://error" size="1.5rem" class="sapUiSmallMarginEnd"/>
+                            <Title text="Overdue" class="cardTitle" wrapping="true"/>
+                        </HBox >
+                        <ObjectStatus text="1" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+                    </VBox>
 
-                <VBox class="card colorOverdue" alignItems="Center" width="12%">  <HBox >
-                    <core:Icon src="sap-icon://error" size="1.5rem" class="sapUiSmallMarginEnd"/>
-                    <Title text="Overdue" class="cardTitle" wrapping="true"/></HBox >
-                    <ObjectStatus text="1" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
-                </VBox>
+                    <VBox class="card colorOnline" alignItems="Center" width="12%">
+                        <HBox >
+                            <core:Icon src="sap-icon://connected" size="1.5rem" class="sapUiSmallMarginEnd"/>
+                            <Title text="Online" class="cardTitle" wrapping="true"/>
+                        </HBox >
+                        <ObjectStatus text="3" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+                    </VBox>
 
-                <VBox class="card colorOnline" alignItems="Center" width="12%">  <HBox >
-                    <core:Icon src="sap-icon://connected" size="1.5rem" class="sapUiSmallMarginEnd"/>
-                    <Title text="Online" class="cardTitle" wrapping="true"/></HBox >
-                    <ObjectStatus text="3" state="Success" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
-                </VBox>
+                    <VBox class="card colorVariances" alignItems="Center" width="12%">
+                        <HBox >
+                            <core:Icon src="sap-icon://inspection" size="1.5rem" class="sapUiSmallMarginEnd"/>
+                            <Title text="Variances" class="cardTitle" wrapping="true"/>
+                        </HBox >
+                        <ObjectStatus text="16" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+                    </VBox>
 
-                <VBox class="card colorVariances" alignItems="Center" width="12%">  <HBox >
-                    <core:Icon src="sap-icon://inspection" size="1.5rem" class="sapUiSmallMarginEnd"/>
-                    <Title text="Variances" class="cardTitle" wrapping="true"/></HBox >
-                    <ObjectStatus text="16" state="Error" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
-                </VBox>
+                    <VBox class="card colorNeedCount" alignItems="Center" width="12%">
+                        <HBox >
+                            <core:Icon src="sap-icon://alert" size="1.4rem" class="sapUiSmallMarginEnd"/>
+                            <Title text="Need Count" class="cardTitle" wrapping="true"/>
+                        </HBox >
+                        <ObjectStatus text="3" state="Warning" class="sapUiTinyMarginTop "/>
+                    </VBox>
 
-                <VBox class="card colorNeedCount" alignItems="Center" width="12%">  <HBox >
-                    <core:Icon src="sap-icon://alert" size="1.4rem" class="sapUiSmallMarginEnd"/>
-                    <Title text="Need Count" class="cardTitle" wrapping="true"/></HBox >
-                    <ObjectStatus text="3" state="Warning" class="sapUiTinyMarginTop "/>
-                </VBox>
-
-                <VBox class="card colorTotalItems" alignItems="Center" width="12%">  <HBox >
-                    <core:Icon src="sap-icon://number-sign" size="1.4rem" class="sapUiTinyMarginEnd"/>
-                    <Title text="Total Items" class="cardTitle" wrapping="true"/>  </HBox >
-                    <ObjectStatus text="10" state="Information" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
-                </VBox>
-            </HBox>
-            <!-- <IconTabHeader mode="Inline" id="taskTabBar" select="onTabSelect">
-    <items>
-        <IconTabFilter key="Active" text="Active" count="1" />
-        <IconTabFilter key="Pending" text="Pending" count="1" />
-        <IconTabFilter key="Completed" text="Completed" count="1" />
-        <IconTabFilter key="Overdue" text="Overdue" count="1" />
-    </items>
-</IconTabHeader> -->
-           <Table
-    id="tblPhysicalVerificationScheduling"
-    items="{path: 'PhysicalVerificationModel>/tasks'}"
-    width="100%"
-    autoPopinMode="true"
-    growing="true"
-    growingScrollToLoad="true"
-    class="customTaskTable"
->
-    <columns>
-        <Column><Text text="ID" /></Column>
-        <Column><Text text="NAME  TYPE" /></Column>
-        <Column><Text text="ASSIGNED TO" /></Column>
-        <Column><Text text="PROGRESS" /></Column>
-        <Column><Text text="VARIANCE" /></Column>
-        <Column><Text text="DUE DATE" /></Column>
-        <Column><Text text="STATUS" /></Column>
-        <Column><Text text="ACTIONS" /></Column>
-    </columns>
-
-    <items>
-        <ColumnListItem class="taskRow">
-            <cells>
-
-                <!-- ID -->
-                <Text text="{PhysicalVerificationModel>id}" />
-
-                <!-- Name & Type -->
-                <VBox>
-                    <Text text="{PhysicalVerificationModel>name}" class="nameText" />
-                    <Text text="{PhysicalVerificationModel>type}" class="typeText" />
-                </VBox>
-
-                <!-- Assigned -->
-                <VBox>
-                    <HBox>
-                        <core:Icon src="sap-icon://mobile" class="deviceIcon"/>
-                        <Text text="{PhysicalVerificationModel>device}" />
-                    </HBox>
-                    <Text text="{PhysicalVerificationModel>assigned}" />
-                </VBox>
-
-
-                    <ProgressIndicator
-                        percentValue="{PhysicalVerificationModel>progressPercent}"
-                        displayValue="{PhysicalVerificationModel>progressText}"
-                        state="Information"
-                        class="progressBar"
-                    />
-
-                <ObjectStatus text="{PhysicalVerificationModel>variance}"></ObjectStatus>
-
-                <!-- DUE DATE -->
-                <VBox>
-                    <Text text="{PhysicalVerificationModel>dueDate}" />
-                    <Text text="{PhysicalVerificationModel>dueTime}" />
-                </VBox>
-
-                <!-- STATUS -->
-                <HBox class="statusPill bluePill">
-                    <Text text="{PhysicalVerificationModel>status}" />
+                    <VBox class="card colorTotalItems" alignItems="Center" width="12%">
+                        <HBox >
+                            <core:Icon src="sap-icon://number-sign" size="1.4rem" class="sapUiTinyMarginEnd"/>
+                            <Title text="Total Items" class="cardTitle" wrapping="true"/>
+                        </HBox >
+                        <ObjectStatus text="10" state="Information" class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+                    </VBox>
                 </HBox>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
 
-                <!-- ACTION -->
-                <Button text="View" type="Emphasized" class="viewButton" press=".onViewPVPress" />
 
-            </cells>
-        </ColumnListItem>
-    </items>
-</Table>
+            <Table id="tblPhysicalVerificationScheduling" items="{path: 'PhysicalVerificationModel>/tasks'}" width="98%" autoPopinMode="true" growing="true" growingScrollToLoad="true" class="sapUiSmallMargin">
+                <columns>
+                    <Column>
+                        <Text text="ID" />
+                    </Column>
+                    <Column>
+                        <Text text="NAME  TYPE" />
+                    </Column>
+                    <Column>
+                        <Text text="ASSIGNED TO" />
+                    </Column>
+                    <Column>
+                        <Text text="PROGRESS" />
+                    </Column>
+                    <Column>
+                        <Text text="VARIANCE" />
+                    </Column>
+                    <Column>
+                        <Text text="DUE DATE" />
+                    </Column>
+                    <Column>
+                        <Text text="STATUS" />
+                    </Column>
+                    <Column>
+                        <Text text="ACTIONS" />
+                    </Column>
+                </columns>
 
-        </content>
-    </Page>
+                <items>
+                    <ColumnListItem class="taskRow">
+                        <cells>
+
+                            <!-- ID -->
+                            <Text text="{PhysicalVerificationModel>id}" />
+
+                            <!-- Name & Type -->
+                            <VBox>
+                                <Text text="{PhysicalVerificationModel>name}" class="nameText" />
+                                <Text text="{PhysicalVerificationModel>type}" class="typeText" />
+                            </VBox>
+
+                            <!-- Assigned -->
+                            <VBox>
+                                <HBox>
+                                    <core:Icon src="sap-icon://mobile" class="deviceIcon"/>
+                                    <Text text="{PhysicalVerificationModel>device}" />
+                                </HBox>
+                                <Text text="{PhysicalVerificationModel>assigned}" />
+                            </VBox>
+
+
+                            <ProgressIndicator percentValue="{PhysicalVerificationModel>progressPercent}" displayValue="{PhysicalVerificationModel>progressText}" state="Information" class="progressBar" />
+
+                            <ObjectStatus text="{PhysicalVerificationModel>variance}"></ObjectStatus>
+
+                            <!-- DUE DATE -->
+                            <VBox>
+                                <Text text="{PhysicalVerificationModel>dueDate}" />
+                                <Text text="{PhysicalVerificationModel>dueTime}" />
+                            </VBox>
+
+                            <!-- STATUS -->
+                            <HBox class="statusPill bluePill">
+                                <Text text="{PhysicalVerificationModel>status}" />
+                            </HBox>
+
+                            <!-- ACTION -->
+                            <Button text="View" type="Emphasized" class="viewButton" press=".onViewPVPress" />
+
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+        </f:content>
+    </f:DynamicPage>
 </mvc:View>

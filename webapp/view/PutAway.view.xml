@@ -1,56 +1,78 @@
-<mvc:View controllerName="rfidwarehousesuiteui.controller.PutAway"
+<mvc:View xmlns:f2="sap.f" controllerName="rfidwarehousesuiteui.controller.PutAway"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form" displayBlock="true">
+    <f2:DynamicPage id="PutAwayPage" stickySubheaderProvider="iconTabBar" class="sapUiNoContentPadding">
+        <!-- DynamicPage Title -->
+        <f2:title>
+            <f2:DynamicPageTitle>
+                <f2:heading>
+                    <Title text="Goods Receipts - Intelligent Putaway"/>
+                </f2:heading>
+                <f2:expandedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin" text="AI-powered location recommendations with capacity validation and compliance checks" />
+                </f2:expandedContent>
+                <f2:snappedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin" text="AI-powered location recommendations with capacity validation and compliance checks" />
+                </f2:snappedContent>
+                <f2:snappedTitleOnMobile>
+                    <Title text="Goods Receipts - Intelligent Putaway"/>
+                </f2:snappedTitleOnMobile>
+                <!-- <f2:actions></f2:actions> -->
+            </f2:DynamicPageTitle>
+        </f2:title>
+        <!-- DynamicPage Header -->
+        <f2:header >
+            <f2:DynamicPageHeader pinnable="false" class="sapUiHideMedium">
+                <HBox class="sapUiSmallMarginBottom kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
 
-    <Page title="Goods Receipts - Intelligent Putaway" class="sapUiResponsiveContentPadding">
+                    <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
+                        <Title text="Pending Receipts" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="234" state="Information" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="" state="Information" class="cardStatus"/>
+                    </VBox>
+
+                    <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
+                        <Title text="Cross-Dock" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="166" state="None" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="" state="None" class="cardStatus"/>
+                    </VBox>
+
+                    <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
+                        <Title text="QC Hold" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="45" state="None" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="" state="None" class="cardStatus"/>
+                    </VBox>
+
+                    <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
+                        <Title text="Items" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="1833" state="None" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="" state="None" class="cardStatus"/>
+                    </VBox>
+
+                    <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
+                        <Title text="AI Confidence" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="94%" state="Success" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="" state="Success" class="cardStatus"/>
+                    </VBox>
+
+                    <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
+                        <Title text="Space Utilization" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="78%" state="Warning" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="" state="Warning" class="cardStatus"/>
+                    </VBox>
+                </HBox>
+            </f2:DynamicPageHeader>
+        </f2:header>
+        <f2:content>
 
 
-        <content>
-            <!-- KPI Cards -->
-            <HBox class="sapUiSmallMarginBottom kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
 
-                <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
-                    <Title text="Pending Receipts" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="234" state="Information" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="" state="Information" class="cardStatus"/>
-                </VBox>
 
-                <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
-                    <Title text="Cross-Dock" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="166" state="None" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="" state="None" class="cardStatus"/>
-                </VBox>
-
-                <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
-                    <Title text="QC Hold" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="45" state="None" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="" state="None" class="cardStatus"/>
-                </VBox>
-
-                <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
-                    <Title text="Items" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="1833" state="None" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="" state="None" class="cardStatus"/>
-                </VBox>
-
-                <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
-                    <Title text="AI Confidence" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="94%" state="Success" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="" state="Success" class="cardStatus"/>
-                </VBox>
-
-                <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
-                    <Title text="Space Utilization" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="78%" state="Warning" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="" state="Warning" class="cardStatus"/>
-                </VBox>
-            </HBox>
-
-            <Table id="idPutAwayTable" inset="false" items="{PutAwayModel>/PutAwaySet}" mode="MultiSelect">
+            <Table id="idPutAwayTable" inset="false" items="{PutAwayModel>/PutAwaySet}" mode="MultiSelect" class="sapUiSmallMargin" width="98%">
                 <headerToolbar>
-                    <OverflowToolbar>
+                    <OverflowToolbar design="Solid">
                         <content>
                             <SearchField width="25%" placeholder="Search documents..." liveChange=".onSearch" />
                             <ToolbarSpacer ></ToolbarSpacer>
@@ -102,58 +124,43 @@
                 </columns>
 
                 <items>
-                      <ColumnListItem>
-                            <cells>
-                                <!-- GR Number -->
-                                <VBox>
-                                    <Text text="{PutAwayModel>grNumber}" class="sapUiTinyMarginBottom"/>
-                                    <Text text="{PutAwayModel>poNumber}" class="sapUiSmallText"/>
-                                </VBox>
+                    <ColumnListItem>
+                        <cells>
+                            <!-- GR Number -->
+                            <VBox>
+                                <Text text="{PutAwayModel>grNumber}" class="sapUiTinyMarginBottom"/>
+                                <Text text="{PutAwayModel>poNumber}" class="sapUiSmallText"/>
+                            </VBox>
 
-                                <!-- Vendor -->
-                                <Text text="{PutAwayModel>vendor}"/>
+                            <!-- Vendor -->
+                            <Text text="{PutAwayModel>vendor}"/>
 
-                                <!-- Items/Qty -->
-                                <Text text="{PutAwayModel>itemsQty}"/>
+                            <!-- Items/Qty -->
+                            <Text text="{PutAwayModel>itemsQty}"/>
 
-                                <!-- Status -->
-                                <VBox>
-                                    <ObjectStatus 
-                                        text="{PutAwayModel>status}"
-                                        state="{= ${PutAwayModel>status} === 'URGENT' ? 'Error' : ${PutAwayModel>status} === 'PENDING' ? 'Warning' : 'None'}"
-                                        class="sapUiTinyMarginBottom"/>
-                                    <ObjectStatus 
-                                        text="{PutAwayModel>statusDetail}"
-                                        state="Information"
-                                        visible="{= ${PutAwayModel>statusDetail} !== ''}"/>
-                                </VBox>
+                            <!-- Status -->
+                            <VBox>
+                                <ObjectStatus text="{PutAwayModel>status}" state="{= ${PutAwayModel>status} === 'URGENT' ? 'Error' : ${PutAwayModel>status} === 'PENDING' ? 'Warning' : 'None'}" class="sapUiTinyMarginBottom"/>
+                                <ObjectStatus text="{PutAwayModel>statusDetail}" state="Information" visible="{= ${PutAwayModel>statusDetail} !== ''}"/>
+                            </VBox>
 
-                                <!-- Compliance -->
-                                <HBox alignItems="Center">
-                                    <core:Icon 
-                                        src="{= ${PutAwayModel>compliance} === 'Pass' ? 'sap-icon://sys-enter' : ${PutAwayModel>compliance} === 'Temp Zone' ? 'sap-icon://warning' : 'sap-icon://error'}"
-                                        color="{= ${PutAwayModel>compliance} === 'Pass' ? '#107E3E' : ${PutAwayModel>compliance} === 'Temp Zone' ? '#E9730C' : '#BB0000'}"
-                                        class="sapUiTinyMarginEnd"/>
-                                    <Text text="{PutAwayModel>compliance}"/>
-                                </HBox>
+                            <!-- Compliance -->
+                            <HBox alignItems="Center">
+                                <core:Icon src="{= ${PutAwayModel>compliance} === 'Pass' ? 'sap-icon://sys-enter' : ${PutAwayModel>compliance} === 'Temp Zone' ? 'sap-icon://warning' : 'sap-icon://error'}" color="{= ${PutAwayModel>compliance} === 'Pass' ? '#107E3E' : ${PutAwayModel>compliance} === 'Temp Zone' ? '#E9730C' : '#BB0000'}" class="sapUiTinyMarginEnd"/>
+                                <Text text="{PutAwayModel>compliance}"/>
+                            </HBox>
 
-                                <!-- Strategy -->
-                                <Text text="{PutAwayModel>strategy}"/>
+                            <!-- Strategy -->
+                            <Text text="{PutAwayModel>strategy}"/>
 
-                                <!-- Actions -->
-                                <HBox>
-                                    <Button 
-                                        text="{PutAwayModel>actionText}"
-                                        type="{= ${PutAwayModel>actionType} === 'orange' ? 'Emphasized' : ${PutAwayModel>actionType} === 'blue' ? 'Default' : 'Reject'}"
-                                        icon="{PutAwayModel>actionIcon}"
-                                        press=".onPutAwayProcess"
-                                        class="sapUiTinyMarginEnd"
-                                        visible="{= ${PutAwayModel>actionText} !== ''}"/>
-                                </HBox>
-                            </cells>
-                        </ColumnListItem>
+                            <!-- Actions -->
+                            <HBox>
+                                <Button text="{PutAwayModel>actionText}" type="{= ${PutAwayModel>actionType} === 'orange' ? 'Emphasized' : ${PutAwayModel>actionType} === 'blue' ? 'Default' : 'Reject'}" icon="{PutAwayModel>actionIcon}" press=".onPutAwayProcess" class="sapUiTinyMarginEnd" visible="{= ${PutAwayModel>actionText} !== ''}"/>
+                            </HBox>
+                        </cells>
+                    </ColumnListItem>
                 </items>
             </Table>
-        </content>
-    </Page>
+        </f2:content>
+    </f2:DynamicPage>
 </mvc:View>

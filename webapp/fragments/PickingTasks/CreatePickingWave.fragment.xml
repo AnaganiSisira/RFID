@@ -3,7 +3,7 @@
     xmlns:f="sap.ui.layout.form"
     xmlns:l="sap.ui.layout">
 
-    <Dialog id="CreatePickingWaveDialog" title="Create Picking Task" class="sapUiResponsiveContentPadding" contentWidth="80%">
+    <Dialog id="CreatePickingWaveDialog" title="Create Picking Wave" class="sapUiResponsiveContentPadding" contentWidth="80%">
         <content>
             <MessageStrip customIcon="sap-icon://dimension" showIcon="true" type="Success" text="WAVE PICKING STRATEGY: Groups multiple orders to optimize picker routes and warehouse efficiency. Best for high-volume operations with similar delivery schedules."></MessageStrip>
 
@@ -49,6 +49,7 @@
                     <Label text="End Time" required="true"/>
                     <TimePicker id="endTimePicker" placeholder="--:--" value="{/endTime}" valueFormat="HH:mm" displayFormat="HH:mm" required="true"/>
                     <Label text="Select Zones" />
+                    <Text ></Text>
                         <CheckBox text="A-1" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" selected="{/zones/A1}"/>
                         <CheckBox text="A-2" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" selected="{/zones/A2}"/>
                         <CheckBox text="B-1" class="sapUiTinyMarginEnd sapUiTinyMarginBottom" selected="{/zones/B1}"/>
@@ -72,7 +73,7 @@
         </beginButton>
 
         <endButton>
-            <Button text="Create Task" type="Emphasized" press="onCreatePutawayPress"/>
+            <Button text="Create Task" type="Emphasized" press="onSavePress('Picking Wave','CreatePickingWaveDialog')"/>
         </endButton>
 
     </Dialog>

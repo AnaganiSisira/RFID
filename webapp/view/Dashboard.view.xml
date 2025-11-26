@@ -7,7 +7,7 @@
     xmlns:card="sap.f.cards"
     xmlns:micro="sap.suite.ui.microchart" height="100%">
 
-    <Page id="dashboardPage" showHeader="true" class="wmsDashboard">
+    <Page id="dashboardPage" showHeader="true" class="wmsDashboard" enableScrolling="false">
         <!-- Header -->
         <customHeader>
             <Bar class="dashboardHeader">
@@ -31,7 +31,7 @@
                             </items>
                         </Select>
                         <Button text="Live" icon="sap-icon://synchronize" class="liveButton"/>
-                        <Button text="Activity Feed" icon="sap-icon://menu2" press="onToggleActivityFeed" class="headerButton"/>
+                        <Button text="Activity Feed" icon="sap-icon://filter-analytics" type="Attention" press="onToggleActivityFeed" class="headerButton"/>
                         <Button text="Export" icon="sap-icon://download" class="headerButton"/>
                         <Button icon="sap-icon://bell" type="Emphasized" class="notificationButton"/>
                     </HBox>
@@ -61,7 +61,7 @@
                                 </HBox>
 
                                 <!-- Scrollable Content Area -->
-                                <ScrollContainer vertical="true" horizontal="false" class="tabScrollContainer" height="400px">
+                                <ScrollContainer vertical="true" horizontal="false" class="tabScrollContainer" height="60vh">
                                     <VBox class="tabContentArea">
                                         <!-- KPI Cards Grid -->
                                         <HBox class="kpiCardsRow">
@@ -389,7 +389,7 @@
                                 </HBox>
 
                                 <!-- Scrollable Content Area -->
-                                <ScrollContainer vertical="true" horizontal="false" class="tabScrollContainer" height="400px">
+                                <ScrollContainer vertical="true" horizontal="false" class="tabScrollContainer" height="60vh">
                                     <VBox class="tabContentArea">
                                         <!-- KPI Cards Row -->
                                         <HBox class="kpiCardsRow">
@@ -833,7 +833,7 @@
                                 </HBox>
 
                                 <!-- Scrollable Content Area -->
-                                <ScrollContainer vertical="true" horizontal="false" class="tabScrollContainer" height="400px">
+                                <ScrollContainer vertical="true" horizontal="false" class="tabScrollContainer" height="60vh">
                                     <VBox class="tabContentArea">
                                         <!-- KPI Cards Row -->
                                         <HBox class="kpiCardsRow">
@@ -1062,31 +1062,45 @@
                                             </HBox>
 
                                             <!-- Worker Performance Table -->
-                                        <Table items="{WorkersModel>/workers}" class="workerTable">
-    <columns>
-        <Column width="15%"><Text text="WORKER" class="tableHeader"/></Column>
-        <Column width="15%"><Text text="ROLE" class="tableHeader"/></Column>
-        <Column width="15%"><Text text="TODAY" class="tableHeader"/></Column>
-        <Column width="15%"><Text text="TARGET" class="tableHeader"/></Column>
-        <Column width="15%"><Text text="EFFICIENCY" class="tableHeader"/></Column>
-        <Column width="15%"><Text text="ACCURACY" class="tableHeader"/></Column>
-        <Column width="10%"><Text text="STATUS" class="tableHeader"/></Column>
-    </columns>
+                                            <Table items="{WorkersModel>/workers}" class="workerTable">
+                                                <columns>
+                                                    <Column width="15%">
+                                                        <Text text="WORKER" class="tableHeader"/>
+                                                    </Column>
+                                                    <Column width="15%">
+                                                        <Text text="ROLE" class="tableHeader"/>
+                                                    </Column>
+                                                    <Column width="15%">
+                                                        <Text text="TODAY" class="tableHeader"/>
+                                                    </Column>
+                                                    <Column width="15%">
+                                                        <Text text="TARGET" class="tableHeader"/>
+                                                    </Column>
+                                                    <Column width="15%">
+                                                        <Text text="EFFICIENCY" class="tableHeader"/>
+                                                    </Column>
+                                                    <Column width="15%">
+                                                        <Text text="ACCURACY" class="tableHeader"/>
+                                                    </Column>
+                                                    <Column width="10%">
+                                                        <Text text="STATUS" class="tableHeader"/>
+                                                    </Column>
+                                                </columns>
 
-    <items>
-        <ColumnListItem>
-            <cells>
-                <Text text="{WorkersModel>name}" class="tableCell"/>
-                <Text text="{WorkersModel>role}" class="tableCell"/>
-                <Text text="{WorkersModel>today}" class="tableCell"/>
-                <Text text="{WorkersModel>target}" class="tableCell"/>
-                <Text text="{WorkersModel>efficiency}" class="tableCellSuccess"/>
-                <Text text="{WorkersModel>accuracy}" class="tableCell"/>
-                <ObjectStatus text="{WorkersModel>status}" state="{state}"/>
-            </cells>
-        </ColumnListItem>
-    </items>
-</Table>
+                                                <items>
+                                                    <ColumnListItem>
+                                                        <cells>
+                                                            <Text text="{WorkersModel>name}" class="tableCell"/>
+                                                            <Text text="{WorkersModel>role}" class="tableCell"/>
+                                                            <Text text="{WorkersModel>today}" class="tableCell"/>
+                                                            <Text text="{WorkersModel>target}" class="tableCell"/>
+                                                            <Text text="{WorkersModel>efficiency}" class="tableCellSuccess"/>
+                                                            <Text text="{WorkersModel>accuracy}" class="tableCell"/>
+                                                            <ObjectStatus text="{WorkersModel>status}" state="{state}"/>
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                </items>
+                                            </Table>
 
                                         </VBox>
                                     </VBox>
@@ -1106,7 +1120,7 @@
                                 </HBox>
 
                                 <!-- Scrollable Content Area -->
-                                <ScrollContainer vertical="true" horizontal="false" class="tabScrollContainer" height="400px">
+                                <ScrollContainer vertical="true" horizontal="false" class="tabScrollContainer" height="60vh">
                                     <VBox class="tabContentArea">
                                         <!-- KPI Cards Row -->
                                         <HBox class="kpiCardsRow">
@@ -1341,15 +1355,15 @@
                                                         <Text text="SKU-10234 out of stock in Zone A" class="alertDescription sapUiSmallMarginBegin" />
                                                         <HBox class="alertMeta">
                                                             <HBox alignItems="Center" class="alertMetaItem">
-                                                                <core:Icon src="sap-icon://map" color="#ef4444" size="0.8rem"  class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
+                                                                <core:Icon src="sap-icon://map" color="#ef4444" size="0.8rem" class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                                 <Text text="Zone A" class="alertMetaText sapUiSmallMarginBegin sapUiSmallMarginBottom" />
                                                             </HBox>
                                                             <HBox alignItems="Center" class="alertMetaItem">
-                                                                <core:Icon src="sap-icon://product" color="#64748b" size="0.8rem"  class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
+                                                                <core:Icon src="sap-icon://product" color="#64748b" size="0.8rem" class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                                 <Text text="3 orders" class="alertMetaText sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                             </HBox>
                                                             <HBox alignItems="Center" class="alertMetaItem">
-                                                                <core:Icon src="sap-icon://history" color="#64748b" size="0.8rem"  class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
+                                                                <core:Icon src="sap-icon://history" color="#64748b" size="0.8rem" class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                                 <Text text="5 mins ago" class="alertMetaText sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                             </HBox>
                                                         </HBox>
@@ -1373,15 +1387,15 @@
                                                         <Text text="Multiple discrepancies in Zone C - Sector 06" class="alertDescription sapUiSmallMarginBegin"/>
                                                         <HBox class="alertMeta">
                                                             <HBox alignItems="Center" class="alertMetaItem">
-                                                                <core:Icon src="sap-icon://map" color="#ef4444" size="0.8rem"  class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
+                                                                <core:Icon src="sap-icon://map" color="#ef4444" size="0.8rem" class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                                 <Text text="Zone C" class="alertMetaText sapUiSmallMarginBegin sapUiSmallMarginBottom" />
                                                             </HBox>
                                                             <HBox alignItems="Center" class="alertMetaItem">
-                                                                <core:Icon src="sap-icon://product" color="#64748b" size="0.8rem"  class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
+                                                                <core:Icon src="sap-icon://product" color="#64748b" size="0.8rem" class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                                 <Text text="12 items" class="alertMetaText sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                             </HBox>
                                                             <HBox alignItems="Center" class="alertMetaItem">
-                                                                <core:Icon src="sap-icon://history" color="#64748b" size="0.8rem"  class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
+                                                                <core:Icon src="sap-icon://history" color="#64748b" size="0.8rem" class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                                 <Text text="12 mins ago" class="alertMetaText sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                             </HBox>
                                                         </HBox>
@@ -1405,15 +1419,15 @@
                                                         <Text text="Worker efficiency below 85% in Zone B" class="alertDescription sapUiSmallMarginBegin"/>
                                                         <HBox class="alertMeta">
                                                             <HBox alignItems="Center" class="alertMetaItem">
-                                                                <core:Icon src="sap-icon://map" color="#f59e0b" size="0.8rem"  class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
+                                                                <core:Icon src="sap-icon://map" color="#f59e0b" size="0.8rem" class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                                 <Text text="Zone B" class="alertMetaText sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                             </HBox>
                                                             <HBox alignItems="Center" class="alertMetaItem">
-                                                                <core:Icon src="sap-icon://employee" color="#64748b" size="0.8rem"  class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
+                                                                <core:Icon src="sap-icon://employee" color="#64748b" size="0.8rem" class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                                 <Text text="3 workers" class="alertMetaText sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                             </HBox>
                                                             <HBox alignItems="Center" class="alertMetaItem">
-                                                                <core:Icon src="sap-icon://history" color="#64748b" size="0.8rem"  class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
+                                                                <core:Icon src="sap-icon://history" color="#64748b" size="0.8rem" class="sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                                 <Text text="18 mins ago" class="alertMetaText sapUiSmallMarginBegin sapUiSmallMarginBottom"/>
                                                             </HBox>
                                                         </HBox>
@@ -1435,7 +1449,7 @@
                 </VBox>
 
                 <!-- Activity Feed Sidebar (Right Side) -->
-                <VBox id="activityFeedSidebar" class="activityFeedSidebar" visible="true">
+                <VBox id="activityFeedSidebar" class="activityFeedSidebar" visible="false">
                     <HBox justifyContent="SpaceBetween" alignItems="Center" class="feedHeader">
                         <HBox alignItems="Center">
                             <core:Icon src="sap-icon://menu2" size="1.25rem" color="#1e293b"/>
@@ -1447,7 +1461,38 @@
                         </HBox>
                     </HBox>
 
-                    <VBox class="feedContent">
+                    <VBox class="">
+                    <ScrollContainer height="74vh" vertical="true">
+                        <!-- <List id="liveActivityList" inset="false" showSeparators="None"
+              items="{dashboard>/activities}">
+            
+            <CustomListItem>
+                <HBox class="activityItem" justifyContent="SpaceBetween" width="100%">
+                    
+                    <HBox alignItems="Center" width="80%">
+                        <VBox class="{= 'iconBubble ' +
+                                       (${dashboard>type} === 'pick' ? 'yellowBubble' :
+                                        ${dashboard>type} === 'putaway' ? 'purpleBubble' :
+                                        ${dashboard>type} === 'count' ? 'greenBubble' : 'redBubble') }"
+                              alignItems="Center" justifyContent="Center">
+                            <core:Icon src="{= ${dashboard>type} === 'pick' ? 'sap-icon://shipping-status' :
+                                               ${dashboard>type} === 'putaway' ? 'sap-icon://inventory' :
+                                               ${dashboard>type} === 'count' ? 'sap-icon://accept' : 'sap-icon://decline' }"
+                                       size="1.1rem" />
+                        </VBox>
+
+                        <VBox class="textBlock">
+                            <Text text="{dashboard>name}" class="userName" />
+                            <Text text="{dashboard>action}" class="activityText" />
+                        </VBox>
+                    </HBox>
+
+                    <Text text="{dashboard>time}" class="timeText"/>
+                </HBox>
+            </CustomListItem>
+
+        </List> -->
+
                         <!-- Activity Item 1 -->
                         <VBox class="activityItem">
                             <HBox justifyContent="SpaceBetween" alignItems="Start">
@@ -1585,7 +1630,9 @@
                                 <Text text="1m ago" class="activityTime"/>
                             </HBox>
                         </VBox>
+                        </ScrollContainer>
                     </VBox>
+                    
                 </VBox>
             </HBox>
         </content>
