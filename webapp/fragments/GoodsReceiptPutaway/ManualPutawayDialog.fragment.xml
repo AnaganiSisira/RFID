@@ -1,18 +1,9 @@
-<core:FragmentDefinition
-    xmlns="sap.m"
+<core:FragmentDefinition xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:layout="sap.ui.layout"
     xmlns:form="sap.ui.layout.form">
 
-    <Dialog
-        id="manualPutawayDialog"
-        title="Create Manual Putaway Request"
-        resizable="true"
-        draggable="true"
-        contentWidth="60%"
-        contentHeight="auto"
-        class="sapUiSizeCompact"
-    >
+    <Dialog id="manualPutawayDialog" title="Create Manual Putaway Request" resizable="true" draggable="true" contentWidth="60%" contentHeight="auto" class="sapUiSizeCompact">
         <customHeader>
             <Bar>
                 <contentLeft>
@@ -21,31 +12,14 @@
                     </VBox>
                 </contentLeft>
                 <contentRight>
-                    <Button icon="sap-icon://decline" press=".onCloseManualPutawayDialog"/>
+                    <Button icon="sap-icon://decline" press=".onCancelPress('manualPutawayDialog')"/>
                 </contentRight>
             </Bar>
         </customHeader>
 
         <content>
             <VBox class="sapUiSmallMargin">
-                <form:SimpleForm
-                    id="manualPutawayForm"
-                    editable="true"
-                    layout="ResponsiveGridLayout"
-                    labelSpanXL="3"
-                    labelSpanL="3"
-                    labelSpanM="4"
-                    labelSpanS="12"
-                    adjustLabelSpan="false"
-                    emptySpanXL="1"
-                    emptySpanL="1"
-                    emptySpanM="1"
-                    emptySpanS="0"
-                    columnsXL="2"
-                    columnsL="2"
-                    columnsM="1"
-                    class="sapUiForceWrapLabels"
-                >
+                <form:SimpleForm id="manualPutawayForm" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="1" emptySpanL="1" emptySpanM="1" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" class="sapUiForceWrapLabels">
                     <form:content>
                         <Label text="Item Code" required="true"/>
                         <Input placeholder="Enter or scan item code" value=""/>
@@ -55,7 +29,9 @@
 
                         <Label text="Quantity" required="true"/>
                         <Input placeholder="Enter quantity" value="" type="Number">
-                            <layoutData><layout:GridData span="XL1 L1 M2 S2"/></layoutData>
+                            <layoutData>
+                                <layout:GridData span="XL1 L1 M2 S2"/>
+                            </layoutData>
                         </Input>
 
                         <Label text="Unit" required="true"/>
@@ -88,9 +64,9 @@
                     </items>
                 </SegmentedButton>
 
-                <Panel class="aiRecommendationPanel">
+                <Panel class="aiRecommendationPanel" backgroundDesign="Transparent">
                     <VBox>
-                        <HBox justifyContent="SpaceBetween" alignItems="Center">
+                        <HBox  justifyContent="SpaceBetween" alignItems="Center">
                             <VBox>
                                 <Text text="AI Suggested Location" class="aiCaption"/>
                                 <Title text="B-15-03-A" level="H3" class="aiLocationText"/>
@@ -103,11 +79,12 @@
             </VBox>
         </content>
 
-        <beginButton>                    <Button text="Clear Form" type="Transparent" press=".onClearForm"/>
-</beginButton>
-<endButton>
-                    <Button text="Create Putaway Request" type="Accept" press=".onCreatePutawayRequest"/>
+        <beginButton>
+            <Button text="Clear Form" type="Transparent" press=".onCancelPress('manualPutawayDialog')"/>
+        </beginButton>
+        <endButton>
+            <Button text="Create Putaway Request" type="Accept" press=".onSavePress('Putaway Request','manualPutawayDialog')"/>
 
-</endButton>
+        </endButton>
     </Dialog>
 </core:FragmentDefinition>

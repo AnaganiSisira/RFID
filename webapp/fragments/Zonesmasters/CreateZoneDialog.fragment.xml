@@ -8,7 +8,8 @@
             <VBox class="sapUiSmallMargin">
                 <!-- Zone Type Section -->
                 <VBox class="zoneSection mandatory">
-                    <Label text="{i18n>zoneType}"  class="sapUiTinyMarginBottom sectionTitle" />
+                			<Title class="sapUiMediumMarginBegin" text="{i18n>zoneType}" />
+
                     <l:HorizontalLayout allowWrapping="true" class="sapUiTinyMarginBottom">
                         <GenericTile class="sapUiTinyMargin" header="{i18n>receiving}" subheader="{i18n>incomingGoods}" frameType="TwoByHalf" press="onZoneTypeSelect" pressEnabled="true">
                             <TileContent footer="{i18n>receiving}">
@@ -52,8 +53,14 @@
                 </VBox>
 
                 <!-- Zone Properties Section -->
-                <VBox class="zoneSection optional sapUiSmallMarginTop">
-                    <Text text="{i18n>zoneProperties}" class="sectionTitle"/>
+                <Panel class="hierarchy-panel Hierarchy-Components" backgroundDesign="Transparent">
+				<Toolbar design="Transparent" width="100%">
+					<OverflowToolbar design="Transparent"  width="100%">
+					
+						<Title text="{i18n>zoneProperties}" />
+						<ToolbarSpacer />
+					</OverflowToolbar>
+				</Toolbar>
                     <l:Grid containerQuery="true" defaultSpan="L4 M4 S12" class="sapUiSmallMarginTop">
                         <VBox>
                             <Label text="{i18n>areaSize}"/>
@@ -106,14 +113,20 @@
                             <Input value="1" type="Number" width="100%"/>
                         </VBox>
                     </l:Grid>
-                </VBox>
+                </Panel>
 
                 <!-- Temperature Control Section -->
-                <VBox class="zoneSection optional sapUiSmallMarginTop">
-                    <HBox justifyContent="SpaceBetween" alignItems="Center">
-                        <Text text="{i18n>temperatureControl}" class="sectionTitle"/>
-                        <CheckBox text="{i18n>enable}"/>
-                    </HBox>
+                <Panel class="hierarchy-panel Hierarchy-Components" backgroundDesign="Transparent">
+				<Toolbar design="Transparent" width="100%">
+					<OverflowToolbar design="Transparent"  width="100%">
+						<Title text="Zone Settings" />
+                        <Text text="(optional)"></Text>
+
+					</OverflowToolbar>
+				</Toolbar>
+                <VBox class="optional sapUiSmallMarginTop">
+                                   <Text text="Temperature Control" class="sectionTitle"/>
+
                     <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
                         <VBox>
                             <Label text="{i18n>minTemperature}"/>
@@ -130,10 +143,10 @@
                             <Input value="8" type="Number" width="100%"/>
                         </VBox>
                     </l:Grid>
-                </VBox>
+                        </VBox>
 
                 <!-- Storage Rules Section -->
-                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                <VBox class="optional sapUiSmallMarginTop">
                     <Text text="{i18n>storageRules}" class="sectionTitle"/>
                     <l:Grid containerQuery="true" defaultSpan="L4 M4 S12" class="sapUiSmallMarginTop">
                         <CheckBox text="{i18n>allowMixedSKUs}"/>
@@ -143,7 +156,7 @@
                 </VBox>
 
                 <!-- Zone Flags Section -->
-                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                <VBox class=" optional sapUiSmallMarginTop">
                     <Text text="{i18n>zoneFlags}" class="sectionTitle"/>
                     <l:Grid containerQuery="true" defaultSpan="L4 M4 S12" class="sapUiSmallMarginTop">
                         <CheckBox text="{i18n>pickingZone}"/>
@@ -153,7 +166,7 @@
                 </VBox>
 
                 <!-- Security & Access Section -->
-                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                <VBox class=" optional sapUiSmallMarginTop">
                     <Text text="{i18n>securityAccess}" class="sectionTitle"/>
                     <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
                         <VBox>
@@ -165,11 +178,12 @@
                             </Select>
                         </VBox>
                         <VBox class="sapUiTinyMarginTop">
-                            <Label text="" />
+                            
                             <CheckBox text="{i18n>cameraMonitored}"/>
                         </VBox>
                     </l:Grid>
                 </VBox>
+                </Panel>
             </VBox>
         </content>
 
@@ -178,7 +192,7 @@
         </beginButton>
 
         <endButton>
-            <Button text="{i18n>createZone}" type="Emphasized" press="onCreateZonePress"/>
+            <Button text="{i18n>createZone}" type="Emphasized" press=".onSavePress('Zone','createZoneDialog')"/>
         </endButton>
 
     </Dialog>

@@ -3,7 +3,7 @@
     xmlns:f="sap.ui.layout.form"
     xmlns:l="sap.ui.layout">
 
-    <Dialog id="CreatePickingTaskDialog" title="Create Picking Task" class="sapUiResponsiveContentPadding" contentWidth="80%">
+    <Dialog id="CreatePickingTaskDialog" title="Create Picking Task" class="sapUiResponsiveContentPadding" contentWidth="75%">
        <content>
             
                 
@@ -121,7 +121,7 @@
         </beginButton>
 
         <endButton>
-            <Button text="Create Task" type="Emphasized" press="onCreatePutawayPress"/>
+            <Button text="Create Task" type="Emphasized" press="onSavePress('Picking task','CreatePickingTaskDialog')"/>
         </endButton>
 
     </Dialog>

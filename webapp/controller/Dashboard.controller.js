@@ -25,7 +25,15 @@ sap.ui.define([
                 activities: [],
                 zones: [],
                 activeWorkers: [],
-                activeWorkersCount: 0
+                activeWorkersCount: 0,
+                activities: [
+            { name: "John D.",     action: "Picked SKU-10234",  time: "2s ago",  type: "pick" },
+            { name: "Sarah M.",    action: "Put away SKU-20145", time: "8s ago",  type: "putaway" },
+            { name: "Mike R.",     action: "Picked SKU-30456",   time: "15s ago", type: "pick" },
+            { name: "Lisa K.",     action: "Counted SKU-40234",  time: "23s ago", type: "count" },
+            { name: "Tom B.",      action: "Put away SKU-50123", time: "34s ago", type: "putaway" },
+            { name: "David H.",    action: "Error SKU-70345",    time: "1m ago",  type: "error" }
+        ]
             });
             this.getView().setModel(oDashboardModel, "dashboard");
 
@@ -341,6 +349,10 @@ sap.ui.define([
             if (this._dateTimeInterval) {
                 clearInterval(this._dateTimeInterval);
             }
+        },
+        onToggleActivityFeed:function(){
+            let sVisible=this.byId("activityFeedSidebar").getVisible();
+            this.byId("activityFeedSidebar").setVisible(!sVisible);
         }
 
     });

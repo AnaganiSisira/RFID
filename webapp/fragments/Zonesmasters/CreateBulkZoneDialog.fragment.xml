@@ -2,14 +2,14 @@
     xmlns:core="sap.ui.core"
     xmlns:l="sap.ui.layout"
     xmlns:mvc="sap.ui.core.mvc">
-    <Dialog id="createBulkZonesDialog" title="Bulk Create Zones" contentWidth="700px" resizable="true" draggable="true">
+    <Dialog id="createBulkZonesDialog" title="Bulk Create Zones" showHeader="true" contentWidth="900px" contentHeight="40%" >
         <content>
             <VBox class="sapUiSmallMargin">
                 <!-- Creation Method Section -->
-                <VBox class="sapUiSmallMarginTop ">
-                    <Label text="Creation Method" class="sectionLabel sapUiTinyMarginBottom"/>
-                    <l:HorizontalLayout allowWrapping="true" class="sapUiTinyMarginTop">
-                        <FlexBox id="patternMethodCard" class="creationMethodCard selectedMethodCard">
+                <VBox>
+                    <Title text="Creation Method" class="sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+                    <HBox class="sapUiTinyMarginTop" width="100%">
+                        <FlexBox id="patternMethodCard" class="creationMethodCard selectedMethodCard" width="48%">
                             <customData>
                                 <core:CustomData key="method" value="pattern"/>
                             </customData>
@@ -23,7 +23,7 @@
                             </VBox>
                         </FlexBox>
 
-                        <FlexBox id="excelMethodCard" class="creationMethodCard">
+                        <FlexBox id="excelMethodCard" class="creationMethodCard" width="49%">
                             <customData>
                                 <core:CustomData key="method" value="excel"/>
                             </customData>
@@ -36,14 +36,20 @@
                                 <Text text="Upload Excel file with zones" class="methodCardSubtitle"/>
                             </VBox>
                         </FlexBox>
-                    </l:HorizontalLayout>
+                    </HBox>
                 </VBox>
 
                 <!-- Pattern-based Content (visible by default) -->
+
+
                 <VBox id="patternContent" visible="true">
                     <!-- Pattern Configuration Section -->
-                    <VBox class="zoneSection mandatory sapUiSmallMarginTop">
-                        <Text text="Pattern Configuration" class="sectionTitle sapUiTinyMarginBottom"/>
+                    <Panel class="hierarchy-panel Mandatory-Fields" backgroundDesign="Transparent" width="100%">
+                        <Toolbar design="Transparent">
+                            <OverflowToolbar design="Transparent">
+                                <Title text="Pattern Configuration" />
+                            </OverflowToolbar>
+                        </Toolbar>
                         <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
                             <VBox>
                                 <Label text="Prefix"/>
@@ -54,16 +60,19 @@
                                 <Label text="Number Range"/>
                                 <HBox width="100%" alignItems="Center">
                                     <Input id="fromInput" value="1" type="Number" width="42%" placeholder="From: 1" change="onInputChange"/>
-                                    <Text text="to" class="rangeToText sapUiSmallMarginBeginEnd"/>
+                                    <Text text="to" class="rangeToText sapUiSmallMarginBeginEnd" width="1rem"/>
                                     <Input id="toInput" value="10" type="Number" width="42%" placeholder="To: 10" change="onInputChange"/>
                                 </HBox>
                             </VBox>
                         </l:Grid>
-                    </VBox>
-
+                    </Panel>
                     <!-- Generated Codes Section -->
-                    <VBox class="zoneSection optional sapUiSmallMarginTop">
-                        <Text text="Generated Zone Codes:" class="sectionTitle sapUiTinyMarginBottom"/>
+                    <Panel class="hierarchy-panel Hierarchy-Components" backgroundDesign="Transparent" width="100%">
+                        <Toolbar design="Transparent" width="100%">
+                            <OverflowToolbar design="Transparent" width="100%">
+                                <Title text="Generated Zone Codes:" />
+                            </OverflowToolbar>
+                        </Toolbar>
                         <HBox class="generatedCodesBox sapUiTinyMarginTop" wrap="Wrap">
                             <ObjectStatus text="STOR-01" state="None" class="generatedCodeChip"/>
                             <ObjectStatus text="STOR-02" state="None" class="generatedCodeChip"/>
@@ -71,11 +80,15 @@
                             <ObjectStatus text="..." state="None" class="generatedCodeChip"/>
                             <ObjectStatus text="STOR-10" state="None" class="generatedCodeChip"/>
                         </HBox>
-                    </VBox>
+                    </Panel>
 
                     <!-- Common Properties Section -->
-                    <VBox class="zoneSection mandatory sapUiSmallMarginTop">
-                        <Text text="Common Properties (Applied to all zones)" class="sectionTitle sapUiTinyMarginBottom"/>
+                   <Panel class="hierarchy-panel Mandatory-Fields" backgroundDesign="Transparent" width="100%">
+                        <Toolbar design="Transparent">
+                            <OverflowToolbar design="Transparent">
+                                <Title text="Common Properties (Applied to all zones)" />
+                            </OverflowToolbar>
+                        </Toolbar>
                         <l:Grid containerQuery="true" defaultSpan="L4 M4 S12" class="sapUiSmallMarginTop">
                             <VBox>
                                 <Label text="Area Size"/>
@@ -125,7 +138,7 @@
                                 </Select>
                             </VBox>
                         </l:Grid>
-                    </VBox>
+                    </Panel>
 
                     <!-- Quick Templates Section -->
                     <VBox class="sapUiSmallMarginTop">
@@ -143,12 +156,12 @@
                                 </content>
                             </Panel>
 
-                            <Panel class="quickTemplateCard largeTemplateCard" headerText="">
+                            <Panel class="quickTemplateCard largeTemplateCard" backgroundDesign="Transparent" headerText="">
                                 <customData>
                                     <core:CustomData key="template" value="large"/>
                                 </customData>
                                 <content>
-                                    <VBox width="100%">
+                                    <VBox width="100%" backgroundDesign="Transparent">
                                         <Text text="Large Warehouse" class="templateCardTitle"/>
                                         <Text text="20 zones (STOR-01 to STOR-20) with high capacity" class="templateCardSubtitle"/>
                                     </VBox>

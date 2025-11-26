@@ -95,7 +95,7 @@
       },
       "WorkersModel": {
         "type": "sap.ui.model.json.JSONModel",
-        "uri": "model/workers.json"
+        "uri": "model/workers.json"},
       "PutAwayModel": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/putAway.json"

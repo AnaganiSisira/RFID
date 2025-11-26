@@ -1,53 +1,71 @@
-<mvc:View controllerName="rfidwarehousesuiteui.controller.ZonesMasters"
+<mvc:View xmlns:f="sap.f" controllerName="rfidwarehousesuiteui.controller.ZonesMasters"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:core="sap.ui.core"
-    displayBlock="true">
-    
-    <Page title="{i18n>zonesMasterTitle}" class="sapUiResponsiveContentPadding">
-        <headerContent>
-            <Select selectedKey="WH-001">
-                <items>
-                    <core:Item key="WH-001" text="{i18n>warehouseMain}" />
-                    <core:Item key="WH-002" text="{i18n>warehouseSecondary}" />
-                </items>
-            </Select>
-        </headerContent>
+    xmlns:core="sap.ui.core" displayBlock="true">
+    <f:DynamicPage id="ZonesMastersPageId" stickySubheaderProvider="iconTabBar" class="sapUiNoContentPadding">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>zonesMasterTitle}"/>
+                </f:heading>
+                <f:expandedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin" text="{i18n>PickingTaskspage.subText}" />
+                </f:expandedContent>
+                <f:snappedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin" text="{i18n>PickingTaskspage.subText}" />
+                </f:snappedContent>
+                <f:snappedTitleOnMobile>
+                    <Title text="{i18n>zonesMasterTitle}"/>
+                </f:snappedTitleOnMobile>
+                <f:actions>
+                    <Select selectedKey="WH-001">
+                        <items>
+                            <core:Item key="WH-001" text="{i18n>warehouseMain}" />
+                            <core:Item key="WH-002" text="{i18n>warehouseSecondary}" />
+                        </items>
+                    </Select>
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header >
+            <f:DynamicPageHeader pinnable="true" class="sapUiHideMedium">
+                <HBox class="kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
 
-        <content>
-            <HBox class="sapUiSmallMarginBottom kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
-                
-                <VBox class="card" alignItems="Center" justifyContent="Center">
-                    <Title text="{i18n>totalZones}" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="25" state="Information" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="{i18n>warehouseOverview}" state="Information" class="cardStatus"/>
-                </VBox>
+                    <VBox class="card" alignItems="Center" justifyContent="Center">
+                        <Title text="{i18n>totalZones}" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="25" state="Information" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="{i18n>warehouseOverview}" state="Information" class="cardStatus"/>
+                    </VBox>
 
-                <VBox class="card" alignItems="Center" justifyContent="Center">
-                    <Title text="{i18n>activeZones}" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="23" state="Success" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="{i18n>currentlyOperational}" state="Success" class="cardStatus"/>
-                </VBox>
+                    <VBox class="card" alignItems="Center" justifyContent="Center">
+                        <Title text="{i18n>activeZones}" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="23" state="Success" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="{i18n>currentlyOperational}" state="Success" class="cardStatus"/>
+                    </VBox>
 
-                <VBox class="card" alignItems="Center" justifyContent="Center">
-                    <Title text="{i18n>avgUtilization}" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="66" unit="%" state="Warning" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="{i18n>storageUtilization}" state="Warning" class="cardStatus"/>
-                </VBox>
+                    <VBox class="card" alignItems="Center" justifyContent="Center">
+                        <Title text="{i18n>avgUtilization}" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="66" unit="%" state="Warning" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="{i18n>storageUtilization}" state="Warning" class="cardStatus"/>
+                    </VBox>
 
-                <VBox class="card" alignItems="Center" justifyContent="Center">
-                    <Title text="{i18n>activeAlerts}" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="3" state="Error" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="{i18n>criticalConditions}" state="Error" class="cardStatus"/>
-                </VBox>
-            </HBox>
-
+                    <VBox class="card" alignItems="Center" justifyContent="Center">
+                        <Title text="{i18n>activeAlerts}" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="3" state="Error" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="{i18n>criticalConditions}" state="Error" class="cardStatus"/>
+                    </VBox>
+                </HBox>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
             <Table id="idZonesTable" inset="false" items="{
                 path: 'ZonesModel>/Zones',
                 sorter: { path: 'zoneName' }
-            }">
+            }" class="sapUiSmallMargin" width="98%">
                 <headerToolbar>
-                    <OverflowToolbar>
+                    <OverflowToolbar design="Solid">
                         <content>
                             <SearchField width="25%" placeholder="{i18n>searchPlaceholder}" liveChange="onSearch" />
                             <Button icon="sap-icon://filter" text="{i18n>filters}" />
@@ -60,15 +78,33 @@
                 </headerToolbar>
 
                 <columns>
-                    <Column><Text text="{i18n>colZoneCode}" /></Column>
-                    <Column><Text text="{i18n>colZoneName}" /></Column>
-                    <Column><Text text="{i18n>colType}" /></Column>
-                    <Column><Text text="{i18n>colAreaCapacity}" /></Column>
-                    <Column><Text text="{i18n>colUtilization}" /></Column>
-                    <Column><Text text="{i18n>colPallets}" /></Column>
-                    <Column><Text text="{i18n>colLocations}" /></Column>
-                    <Column><Text text="{i18n>colStatus}" /></Column>
-                    <Column><Text text="{i18n>colActions}" /></Column>
+                    <Column>
+                        <Text text="{i18n>colZoneCode}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>colZoneName}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>colType}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>colAreaCapacity}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>colUtilization}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>colPallets}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>colLocations}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>colStatus}" />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>colActions}" />
+                    </Column>
                 </columns>
 
                 <items>
@@ -78,11 +114,7 @@
                             <Text text="{ZonesModel>zoneName}" />
                             <Text text="{ZonesModel>type}" />
                             <Text text="{ZonesModel>areaCapacity}" />
-                            <ProgressIndicator 
-                                percentValue="{ZonesModel>utilization}" 
-                                displayValue="{ZonesModel>utilization}%" 
-                                state="{path: 'ZonesModel>utilization', formatter: '.formatter.getUtilizationState'}"
-                                class="{path: 'ZonesModel>utilization', formatter: '.formatter.getUtilizationClass'}" />
+                            <ProgressIndicator percentValue="{ZonesModel>utilization}" displayValue="{ZonesModel>utilization}%" state="{path: 'ZonesModel>utilization', formatter: '.formatter.getUtilizationState'}" class="{path: 'ZonesModel>utilization', formatter: '.formatter.getUtilizationClass'}" />
                             <Text text="{ZonesModel>pallets}" />
                             <Text text="{ZonesModel>locations}" />
                             <ObjectStatus text="{ZonesModel>status}" state="{= ${ZonesModel>status} === 'Active' ? 'Success' : 'Error'}" />
@@ -95,6 +127,6 @@
                     </ColumnListItem>
                 </items>
             </Table>
-        </content>
-    </Page>
+        </f:content>
+    </f:DynamicPage>
 </mvc:View>

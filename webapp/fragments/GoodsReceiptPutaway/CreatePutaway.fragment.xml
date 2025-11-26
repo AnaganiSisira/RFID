@@ -4,20 +4,19 @@
     xmlns:layout="sap.ui.layout"
     xmlns:form="sap.ui.layout.form">
 
-    <Dialog id="CreatePutAwayDialog" title="GR-2024-0156 - Cross-Dock Processing" contentWidth="80%" class="sapUiResponsiveContentPadding">
+    <Dialog id="CreatePutAwayDialog" title="GR-2024-0156 - Cross-Dock Processing" contentWidth="80%" contentHeight="70%" class="sapUiResponsiveContentPadding">
 
-        <customHeader>
-            <Bar>
-                <contentLeft>
+        <customHeader >
+            <OverflowToolbar height="4rem">
+             
                     <VBox>
-                        <Title text="{crossDockModel>/grNumber} - Cross-Dock Processing" level="H3"/>
-                        <Text text="{crossDockModel>/vendor} | {crossDockModel>/itemCount} items | {crossDockModel>/totalUnits} units total" class="sapUiTinyMarginTop"/>
+                        <Title text="GR-2024-0156 - Cross-Dock Processing" level="H3"/>
+                        <Text text="FreshFood Suppliers | 3 items | 500 units total" class="sapUiTinyMarginTop"/>
                     </VBox>
-                </contentLeft>
-                <contentRight>
-                    <Button icon="sap-icon://decline" press=".onCloseDialog"/>
-                </contentRight>
-            </Bar>
+              <ToolbarSpacer ></ToolbarSpacer>
+                    <Button icon="sap-icon://decline" press=".onCancelPress('CreatePutAwayDialog')"/>
+              
+            </OverflowToolbar>
         </customHeader>
 
         <content>
@@ -354,7 +353,7 @@
                     <Text text="Summary: 2 items selected | 1 cross-dock | 1 split required"/>
                         <ToolbarSpacer ></ToolbarSpacer>
                     <Button text="Cancel" type="Transparent" press=".onCancelPress('CreatePutAwayDialog')" />
-                    <Button text="Save Draft" type="Default" class="OrangeButton"/>
+                    <Button text="Save Draft" type="Default" class="OrangeButton" press=".onCancelPress('CreatePutAwayDialog')"/>
                     <Button text="Validate &amp; Assign →" type="Accept" class="GreenButton sapUiTinyMarginBegin" press=".onAssignWorkersPress" />
             </OverflowToolbar>
         </footer>

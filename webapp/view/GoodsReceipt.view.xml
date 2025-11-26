@@ -1,18 +1,35 @@
-<mvc:View controllerName="rfidwarehousesuiteui.controller.GoodsReceipt"
+<mvc:View xmlns:f2="sap.f" controllerName="rfidwarehousesuiteui.controller.GoodsReceipt"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form" displayBlock="true">
-
-    <Page title="Goods Receipt Management" class="sapUiResponsiveContentPadding">
-        <headerContent>
-            <!-- <Button icon="sap-icon://synchronize" text="Sync SAP" press=".onSyncSAP" /> -->
+    
+    <f2:DynamicPage id="GoodsReceiptPage" stickySubheaderProvider="iconTabBar" class="sapUiNoContentPadding">
+        <!-- DynamicPage Title -->
+        <f2:title>
+            <f2:DynamicPageTitle>
+                <f2:heading>
+                    <Title text="Goods Receipt Management"/>
+                </f2:heading>
+                <f2:expandedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin" text="Receive and assign tags to incoming goods"  />
+                </f2:expandedContent>
+                <f2:snappedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin" text="Receive and assign tags to incoming goods" />
+                </f2:snappedContent>
+                <f2:snappedTitleOnMobile>
+                    <Title text="Goods Receipt Management"/>
+                </f2:snappedTitleOnMobile>
+                <f2:actions>
+                    <!-- <Button icon="sap-icon://synchronize" text="Sync SAP" press=".onSyncSAP" /> -->
             <Button icon="sap-icon://add" text="Quick Receive" type="Emphasized" press="._openWizardDialog" />
-        </headerContent>
-
-        <content>
-            <!-- KPI Cards -->
-            <HBox class="sapUiSmallMarginBottom kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
+                </f2:actions>
+            </f2:DynamicPageTitle>
+        </f2:title>
+        <!-- DynamicPage Header -->
+        <f2:header >
+            <f2:DynamicPageHeader pinnable="false" class="sapUiHideMedium">
+                <HBox class="sapUiSmallMarginBottom kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
 
                 <VBox class="card" alignItems="Center" justifyContent="Center" width="16%">
                     <Title text="Total Pending" wrapping="true" level="H2" class="cardTitle"/>
@@ -50,10 +67,13 @@
                     <ObjectStatus text="Items untagged" state="Warning" class="cardStatus"/>
                 </VBox>
             </HBox>
-
+            </f2:DynamicPageHeader>
+        </f2:header>
+        <f2:content>
+        <VBox>
             <!-- Document Type Segmented Button -->
-            <HBox class="sapUiSmallMarginBottom" alignItems="Center">
-                <Label text="DOCUMENT TYPE:" class="sapUiTinyMarginEnd sapUiSmallMarginTop" />
+            <HBox class="sapUiSmallMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom" alignItems="Center">
+                <Label text="DOCUMENT TYPE:" class="sapUiTinyMarginEnd sapUiTinyMarginTop" />
                 <SegmentedButton id="docTypeSegment" selectedKey="PO">
                     <items>
                         <SegmentedButtonItem key="PO" icon="sap-icon://document" text="Purchase Orders" />
@@ -64,7 +84,7 @@
             </HBox>
 
             <!-- Status Icon Tab Bar -->
-            <IconTabBar id="statusTabBar" selectedKey="pending" class="sapUiResponsiveContentPadding">
+            <IconTabBar  id="statusTabBar"  selectedKey="pending">
                 <items>
                     <IconTabFilter key="pending" text="Pending" count="166" />
                     <IconTabFilter key="inProgress" text="In Progress" count="12" />
@@ -72,12 +92,14 @@
                 </items>
                 <content>
                     <!-- Goods Receipt Table -->
-                    <Table id="idGoodsReceiptTable" inset="false" items="{GoodsReceiptModel>/Documents}" mode="MultiSelect" class="sapUiResponsiveMargin">
+                    <Table id="idGoodsReceiptTable" inset="false" items="{GoodsReceiptModel>/Documents}" mode="MultiSelect">
 
                         <headerToolbar>
-                            <OverflowToolbar>
+                            <OverflowToolbar design="Solid">
                                 <content>
-                                    <SearchField width="100%" placeholder="Search documents..." liveChange=".onSearch"/>
+                                <Title text="Purchase Orders - Pending"></Title>
+                                <ToolbarSpacer ></ToolbarSpacer>
+                                    <SearchField width="30%" placeholder="Search documents..." liveChange=".onSearch"/>
                                 </content>
                             </OverflowToolbar>
                         </headerToolbar>
@@ -136,6 +158,7 @@
 
                 </content>
             </IconTabBar>
-        </content>
-    </Page>
+            </VBox>
+        </f2:content>
+    </f2:DynamicPage>
 </mvc:View>

@@ -225,6 +225,10 @@ sap.ui.define([
 
         //     MessageToast.show(aSelectedItems.length + " items selected for bulk processing");
         // }
+        onAssoignWorkers:function(){
+            this.onCancelPress('assignWorkersDialog');
+            this.onSavePress('Assigned','CreatePutAwayDialog')
+        }
 
     });
 });

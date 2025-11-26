@@ -7,12 +7,17 @@
         <content>
             <VBox class="sapUiSmallMargin">
                 <!-- Personal Information Section -->
-                <VBox class="zoneSection mandatory">
-                    <HBox alignItems="Center" class="sapUiTinyMarginBottom">
-                        <core:Icon src="sap-icon://alert" color="#856404" class="sapUiTinyMarginEnd" />
-                        <Text text="{i18n>personalInformation}" class="sectionTitle"/>
-                    </HBox>
-                    
+                <Panel class="hierarchy-panel Mandatory-Fields" backgroundDesign="Transparent">
+                    <Toolbar design="Transparent" width="100%">
+                        <OverflowToolbar design="Transparent" width="100%">
+                            <core:Icon src="sap-icon://alert" color="#856404" class="sapUiTinyMarginEnd" />
+                            <Title text="{i18n>personalInformation}" />
+                            <ToolbarSpacer />
+
+                        </OverflowToolbar>
+                    </Toolbar>
+
+
                     <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
                         <VBox>
                             <Label text="{i18n>firstName}" />
@@ -23,7 +28,7 @@
                             <Input placeholder="{i18n>enterLastName}" width="100%"/>
                         </VBox>
                     </l:Grid>
-                    
+
                     <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
                         <VBox>
                             <Label text="{i18n>employeeId}" />
@@ -35,7 +40,7 @@
                             <Input placeholder="{i18n>emailPlaceholder}" type="Email" width="100%"/>
                         </VBox>
                     </l:Grid>
-                    
+
                     <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
                         <VBox>
                             <Label text="{i18n>mobileNumber}" />
@@ -46,15 +51,16 @@
                             <DatePicker placeholder="{i18n>dateFormat}" width="100%" displayFormat="dd-MM-yyyy"/>
                         </VBox>
                     </l:Grid>
-                </VBox>
+                </Panel>
 
+                <Panel class="hierarchy-panel Hierarchy-Components" backgroundDesign="Transparent">
                 <!-- Role & Access Control Section -->
-                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                <VBox class=" sapUiSmallMarginTop">
                     <HBox alignItems="Center" class="sapUiTinyMarginBottom">
                         <core:Icon src="sap-icon://shield" color="#0070D8" class="sapUiTinyMarginEnd" />
                         <Text text="{i18n>roleAccessControl}" class="sectionTitle"/>
                     </HBox>
-                    
+
                     <l:Grid containerQuery="true" defaultSpan="L4 M6 S12" class="sapUiSmallMarginTop">
                         <VBox>
                             <Label text="{i18n>userRole}" />
@@ -91,9 +97,9 @@
                 </VBox>
 
                 <!-- RFID & Authentication Section -->
-                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                <VBox class=" sapUiSmallMarginTop">
                     <Text text="{i18n>rfidAuthentication}" class="sectionTitle"/>
-                    
+
                     <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
                         <VBox>
                             <Label text="{i18n>rfidCardNumber}"/>
@@ -105,7 +111,7 @@
                             <Input placeholder="{i18n>fingerprintId}" width="100%"/>
                         </VBox>
                     </l:Grid>
-                    
+
                     <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
                         <VBox>
                             <Label text="{i18n>username}" />
@@ -119,36 +125,32 @@
                 </VBox>
 
                 <!-- Module Permissions Section -->
-                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                <VBox class="  sapUiSmallMarginTop">
                     <Text text="{i18n>modulePermissions}" class="sectionTitle"/>
-                    
-                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+
+                    <l:Grid containerQuery="true" defaultSpan="XL3 L3 M4 S6"  class="sapUiSmallMarginTop">
                         <CheckBox text="{i18n>inboundOperations}"/>
                         <CheckBox text="{i18n>outboundOperations}"/>
-                    </l:Grid>
-                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
+                    
                         <CheckBox text="{i18n>inventoryManagement}"/>
                         <CheckBox text="{i18n>reportsAnalytics}"/>
-                    </l:Grid>
-                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
                         <CheckBox text="{i18n>masterData}"/>
                         <CheckBox text="{i18n>systemSettings}"/>
                     </l:Grid>
                 </VBox>
 
                 <!-- Additional Settings Section -->
-                <VBox class="zoneSection optional sapUiSmallMarginTop">
+                <VBox class=" sapUiSmallMarginTop">
                     <Text text="{i18n>additionalSettings}" class="sectionTitle"/>
-                    
-                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+
+                    <l:Grid containerQuery="true" defaultSpan="XL3 L3 M4 S6"  class="sapUiSmallMarginTop">
                         <CheckBox text="{i18n>userIsActive}" selected="true"/>
                         <CheckBox text="{i18n>sendWelcomeEmail}" selected="true"/>
-                    </l:Grid>
-                    <l:Grid containerQuery="true" defaultSpan="L6 M6 S12" class="sapUiTinyMarginTop">
                         <CheckBox text="{i18n>enable2FA}"/>
                         <CheckBox text="{i18n>enableMobileAppAccess}"/>
                     </l:Grid>
                 </VBox>
+                </Panel>
             </VBox>
         </content>
 

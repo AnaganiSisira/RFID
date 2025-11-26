@@ -25,6 +25,14 @@ sap.ui.define([
         oDialog.open();
       });
     },
+    onCreateSchedulePress:function(){
+       if (!this._CreateScheduleDialog) {
+        this._CreateScheduleDialog = this.loadFragments("rfidwarehousesuiteui.fragments.PhysicalVerification.CreateSchedule")
+      }
+      this._CreateScheduleDialog.then(function (oDialog) {
+        oDialog.open();
+      });
+    }
     
   });
 });

@@ -3,10 +3,29 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.f" displayBlock="true">
-
-    <Page title="{i18n>Storagepage.title}" showNavButton="false" class="sapUiResponsiveContentPadding">
-        <content>
-            <HBox class="sapUiSmallMarginBottom" justifyContent="SpaceBetween" gap="-3rem" wrap="Wrap">
+    <f:DynamicPage id="StorageLocationMastersPageId" stickySubheaderProvider="iconTabBar" class="sapUiNoContentPadding">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle class="DynamiTittle" backgroundDesign="Solid">
+                <f:heading>
+                    <Title text="{i18n>Storagepage.title}"/>
+                </f:heading>
+                <f:expandedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin"  text="Fixed warehouse locations with barcode identification." />
+                </f:expandedContent>
+                <f:snappedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin" text="Fixed warehouse locations with barcode identification." />
+                </f:snappedContent>
+                <f:snappedTitleOnMobile>
+                    <Title text="{i18n>Storagepage.title}"/>
+                </f:snappedTitleOnMobile>
+                <!-- <f:actions></f:actions> -->
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header >
+            <f:DynamicPageHeader class="tilesHeader" pinnable="false">
+               <HBox justifyContent="SpaceBetween" gap="-3rem" wrap="Wrap">
 
                 <VBox class="card" alignItems="Center">
                     <Title text="{i18n>card.totalLocations}" class="cardTitle" wrapping="true" />
@@ -36,10 +55,13 @@
                 </VBox>
 
             </HBox>
-
-            <Table id="tblLocations"
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+         <Table id="tblLocations"
+                
                 items="{path: 'StorageLocationModel>/Locations'}"
-                growing="true" growingScrollToLoad="true" width="100%" autoPopinMode="true" class="sapUiSmallMarginTop">
+                growing="true" growingScrollToLoad="true" width="98%" autoPopinMode="true" class="tblLocations sapUiSmallMargin">
 
                 <headerToolbar>
                     <OverflowToolbar design="Solid">
@@ -55,7 +77,7 @@
                     </OverflowToolbar>
                 </headerToolbar>
 
-                <columns>
+                <columns >
                     <Column><Text text="{i18n>col.locationCode}" /></Column>
                     <Column><Text text="{i18n>col.locationName}" /></Column>
                     <Column><Text text="{i18n>col.zoneType}" /></Column>
@@ -104,7 +126,6 @@
                     </ColumnListItem>
                 </items>
             </Table>
-
-        </content>
-    </Page>
+          </f:content>
+    </f:DynamicPage>
 </mvc:View>

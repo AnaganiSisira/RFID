@@ -1,46 +1,68 @@
-<mvc:View controllerName="rfidwarehousesuiteui.controller.UserManagement"
+<mvc:View xmlns:f="sap.f" controllerName="rfidwarehousesuiteui.controller.UserManagement"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:core="sap.ui.core"
-    displayBlock="true">
-    
-    <Page title="{i18n>userManagementTitle}" class="sapUiResponsiveContentPadding">
-        <content>
-            <!-- KPI Cards -->
-            <HBox class="sapUiSmallMarginBottom kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
-                
-                <VBox class="card" alignItems="Center" justifyContent="Center">
-                    <Title text="{i18n>totalUsers}" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="256" state="Information" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="{i18n>allRegisteredUsers}" state="Information" class="cardStatus"/>
-                </VBox>
+    xmlns:core="sap.ui.core" displayBlock="true">
+    <f:DynamicPage id="UserManagementPageId" stickySubheaderProvider="iconTabBar" class="sapUiNoContentPadding">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>userManagementTitle}"/>
+                </f:heading>
+                <f:expandedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin" text="{i18n>PickingTaskspage.subText}" />
+                </f:expandedContent>
+                <f:snappedContent>
+                    <ObjectAttribute class="sapUiSmallMarginBegin" text="{i18n>PickingTaskspage.subText}" />
+                </f:snappedContent>
+                <f:snappedTitleOnMobile>
+                    <Title text="{i18n>userManagementTitle}"/>
+                </f:snappedTitleOnMobile>
+                <!-- <f:actions>
+                </f:actions> -->
+            </f:DynamicPageTitle>
+        </f:title>
+        <!-- DynamicPage Header -->
+        <f:header >
+            <f:DynamicPageHeader pinnable="true" class="sapUiHideMedium">
+                <HBox class="kpiCardsContainer" justifyContent="SpaceBetween" wrap="Wrap">
 
-                <VBox class="card" alignItems="Center" justifyContent="Center">
-                    <Title text="{i18n>activeNow}" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="48" state="Success" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="{i18n>currentlyOnline}" state="Success" class="cardStatus"/>
-                </VBox>
+                    <VBox class="card" alignItems="Center" justifyContent="Center">
+                        <Title text="{i18n>totalUsers}" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="256" state="Information" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="{i18n>allRegisteredUsers}" state="Information" class="cardStatus"/>
+                    </VBox>
 
-                <VBox class="card" alignItems="Center" justifyContent="Center">
-                    <Title text="{i18n>warehouseStaff}" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="180" state="None" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="70% {i18n>ofTotal}" state="None" class="cardStatus"/>
-                </VBox>
+                    <VBox class="card" alignItems="Center" justifyContent="Center">
+                        <Title text="{i18n>activeNow}" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="48" state="Success" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="{i18n>currentlyOnline}" state="Success" class="cardStatus"/>
+                    </VBox>
 
-                <VBox class="card" alignItems="Center" justifyContent="Center">
-                    <Title text="{i18n>newThisMonth}" wrapping="true" level="H2" class="cardTitle"/>
-                    <ObjectNumber number="12" state="Success" emphasized="true" class="cardNumber"/>
-                    <ObjectStatus text="{i18n>recentlyAdded}" state="Success" class="cardStatus"/>
-                </VBox>
-            </HBox>
+                    <VBox class="card" alignItems="Center" justifyContent="Center">
+                        <Title text="{i18n>warehouseStaff}" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="180" state="None" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="70% {i18n>ofTotal}" state="None" class="cardStatus"/>
+                    </VBox>
+
+                    <VBox class="card" alignItems="Center" justifyContent="Center">
+                        <Title text="{i18n>newThisMonth}" wrapping="true" level="H2" class="cardTitle"/>
+                        <ObjectNumber number="12" state="Success" emphasized="true" class="cardNumber"/>
+                        <ObjectStatus text="{i18n>recentlyAdded}" state="Success" class="cardStatus"/>
+                    </VBox>
+                </HBox>
+
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
 
             <!-- Users Table -->
             <Table id="idUsersTable" inset="false" items="{
                 path: 'UsersModel>/Users',
                 sorter: { path: 'name' }
-            }">
+            }" class="sapUiSmallMargin" width="98%">
                 <headerToolbar>
-                    <OverflowToolbar>
+                    <OverflowToolbar design="Solid">
                         <content>
                             <SearchField width="30%" placeholder="{i18n>searchUsersPlaceholder}" liveChange="onSearch" />
                             <Button icon="sap-icon://filter" text="{i18n>filters}" />
@@ -53,16 +75,36 @@
                 </headerToolbar>
 
                 <columns>
-                    <Column width="8%"><Text text="{i18n>colUserId}" /></Column>
-                    <Column width="12%"><Text text="{i18n>colName}" /></Column>
-                    <Column width="15%"><Text text="{i18n>colEmail}" /></Column>
-                    <Column width="10%"><Text text="{i18n>colRole}" /></Column>
-                    <Column width="8%"><Text text="{i18n>colWarehouse}" /></Column>
-                    <Column width="10%"><Text text="{i18n>colDepartment}" /></Column>
-                    <Column width="12%"><Text text="{i18n>colRfidCard}" /></Column>
-                    <Column width="10%"><Text text="{i18n>colLastActive}" /></Column>
-                    <Column width="8%"><Text text="{i18n>colStatus}" /></Column>
-                    <Column width="6rem"><Text text="{i18n>colActions}" /></Column>
+                    <Column width="8%">
+                        <Text text="{i18n>colUserId}" />
+                    </Column>
+                    <Column width="12%">
+                        <Text text="{i18n>colName}" />
+                    </Column>
+                    <Column width="15%">
+                        <Text text="{i18n>colEmail}" />
+                    </Column>
+                    <Column width="10%">
+                        <Text text="{i18n>colRole}" />
+                    </Column>
+                    <Column width="8%">
+                        <Text text="{i18n>colWarehouse}" />
+                    </Column>
+                    <Column width="10%">
+                        <Text text="{i18n>colDepartment}" />
+                    </Column>
+                    <Column width="12%">
+                        <Text text="{i18n>colRfidCard}" />
+                    </Column>
+                    <Column width="10%">
+                        <Text text="{i18n>colLastActive}" />
+                    </Column>
+                    <Column width="8%">
+                        <Text text="{i18n>colStatus}" />
+                    </Column>
+                    <Column width="6rem">
+                        <Text text="{i18n>colActions}" />
+                    </Column>
                 </columns>
 
                 <items>
@@ -71,17 +113,12 @@
                             <Text text="{UsersModel>id}" class="sapUiTinyMarginEnd" />
                             <Text text="{UsersModel>name}" />
                             <Text text="{UsersModel>email}" />
-                            <ObjectStatus 
-                                text="{UsersModel>role}" 
-                                state="None"
-                                inverted="true" />
+                            <ObjectStatus text="{UsersModel>role}" state="None" inverted="true" />
                             <Text text="{UsersModel>warehouse}" />
                             <Text text="{UsersModel>department}" />
                             <Text text="{UsersModel>rfidCard}" class="sapUiMonoFont" />
                             <Text text="{UsersModel>lastActive}" />
-                            <ObjectStatus 
-                                text="{UsersModel>status}" 
-                                state="{= ${UsersModel>status} === 'Active' ? 'Success' : 'Error'}" />
+                            <ObjectStatus text="{UsersModel>status}" state="{= ${UsersModel>status} === 'Active' ? 'Success' : 'Error'}" />
                             <HBox justifyContent="Center">
                                 <Button icon="sap-icon://show" tooltip="{i18n>viewUser}" press=".onViewUser" type="Transparent" />
                                 <Button icon="sap-icon://edit" tooltip="{i18n>editUser}" press=".onEditUser" type="Transparent" />
@@ -91,6 +128,7 @@
                     </ColumnListItem>
                 </items>
             </Table>
-        </content>
-    </Page>
+
+        </f:content>
+    </f:DynamicPage>
 </mvc:View>

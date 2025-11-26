@@ -15,7 +15,7 @@
           <OverflowToolbar  height="4rem" design="Solid" class="daHeader">
     <VBox >
     <Title text="Damage Assessment"></Title>
-    <Label text="VER-2024-004 • Spot Check" class="sapUiSmallMarginBegin"></Label>
+    <Label text="VER-2024-004 • Spot Check" class="sapUiSmallMarginBegin sapUiTinyMarginTop"></Label>
     </VBox>
     <ToolbarSpacer ></ToolbarSpacer>
     <Button icon="sap-icon://decline" type="Transparent" press=".onCancelPress('damageDialog')"></Button>
@@ -25,7 +25,7 @@
 
     <!-- Header with gradient background (we style it with CSS) -->
     <content>
-    <VBox >
+    <VBox class="sapUiSmallMarginTop" >
    
      <!-- TOP HEADER metrics -->
 
@@ -87,7 +87,7 @@
           <Text text="Check for damaged inventory" class="notesText" />
         </VBox>
           <!-- Counted Items header -->
-        <HBox class="countedHeader" alignItems="Center" justifyContent="Start" gap="0.5rem">
+        <HBox class="countedHeader" alignItems="Center" justifyContent="Start">
           <core:Icon src="sap-icon://sys-enter-2" />
           <Text class="sectionTitle" text="Counted Items (1)" />
         </HBox>
@@ -101,7 +101,7 @@
                 <Text class="itemLocation" text=" C-02-03-01" />
               </VBox>
 
-              <HBox alignItems="Center" gap="0.5rem">
+              <HBox alignItems="Center">
                 <Button icon="sap-icon://warning2" text="Variance" type="Transparent" class="variantBadge"/>
               </HBox>
             </HBox>
@@ -138,7 +138,7 @@
           <VBox class="timelineList" width="100%">
             <!-- use binding to repeat timeline items -->
             <VBox >
-              <HBox class="timelineItem" alignItems="Center" width="100%" justifyContent="Start" gap="1rem">
+              <HBox class="timelineItem" alignItems="Center" width="100%" justifyContent="Start">
                 <VBox class="timelineDotBox">
                   <html:div class="timelineDot" />
                 </VBox>
@@ -152,7 +152,7 @@
                 </HBox>
               </HBox>
               
-              <HBox class="timelineItem" alignItems="Center" width="100%" justifyContent="Start" gap="1rem">
+              <HBox class="timelineItem" alignItems="Center" width="100%" justifyContent="Start" >
                 <VBox class="timelineDotBox">
                   <html:div class="timelineDot" />
                 </VBox>
@@ -165,7 +165,7 @@
                 <Text class="timelineTime" text="14:30" />
                 </HBox>
               </HBox>
-              <HBox class="timelineItem" alignItems="Center" width="100%" justifyContent="Start" gap="1rem">
+              <HBox class="timelineItem" alignItems="Center" width="100%" justifyContent="Start" >
                 <VBox class="timelineDotBox">
                   <html:div class="timelineDot" />
                 </VBox>
@@ -186,7 +186,7 @@
     </content>
 
     <endButton>
-      <Button text="Close" press=".onCloseDamageDialog" />
+      <Button text="Close" press=".onCancelPress('damageDialog')" />
     </endButton>
   </Dialog>
 </core:FragmentDefinition>
